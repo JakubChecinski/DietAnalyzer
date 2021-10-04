@@ -12,6 +12,9 @@ namespace DietAnalyzer.Models.Domains
         public int Id { get; set; }
 
         [Required]
+        public float Quantity { get; set; }
+
+        [Required]
         public int MeasureId { get; set; }
         public Measure Measure { get; set; }
 

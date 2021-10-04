@@ -16,7 +16,7 @@ namespace DietAnalyzer.Data
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Diet> Diets { get; set; }
-        public DbSet<DietItem> DietItem { get; set; }
+        public DbSet<DietItem> DietItems { get; set; }
         public DbSet<FoodDietRecommendation> FoodDietRecommendations { get; set; }
         public DbSet<FoodItem> FoodItems { get; set; }
         public DbSet<Measure> Measures { get; set; }
@@ -53,6 +53,11 @@ namespace DietAnalyzer.Data
                 .WithOne(x => x.Diet)
                 .HasForeignKey(x => x.DietId)
                 .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Diet>()
+                .HasOne(x => x.Nutritions)
+                .WithOne(x => x.Diet)
+                .HasForeignKey<NutritionInfo>(x => x.DietId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<DietItem>()
                 .HasOne(x => x.FoodItem)
@@ -87,12 +92,26 @@ namespace DietAnalyzer.Data
                 .WithOne(x => x.FoodItem)
                 .HasForeignKey<RestrictionsInfo>(x => x.FoodItemId)
                 .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<FoodItem>()
+                .HasOne(x => x.Nutrition)
+                .WithOne(x => x.FoodItem)
+                .HasForeignKey<NutritionInfo>(x => x.FoodItemId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Measure>()
                .HasMany(x => x.DietItems)
                .WithOne(x => x.Measure)
                .HasForeignKey(x => x.MeasureId)
                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<NutritionInfo>()
+                .HasOne(x => x.Diet)
+                .WithOne(x => x.Nutritions)
+                .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<NutritionInfo>()
+                .HasOne(x => x.FoodItem)
+                .WithOne(x => x.Nutrition)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<RestrictionsInfo>()
                 .HasOne(x => x.FoodItem)

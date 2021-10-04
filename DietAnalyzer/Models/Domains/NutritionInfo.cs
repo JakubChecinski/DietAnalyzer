@@ -13,8 +13,11 @@ namespace DietAnalyzer.Models.Domains
         [Key]
         public int Id { get; set; }
 
-        public int FoodItemId { get; set; }
+        // restriction table can belong to either a specific food or a specific diet
+        public int? FoodItemId { get; set; }
         public FoodItem FoodItem { get; set; }
+        public int? DietId { get; set; }
+        public Diet Diet { get; set; }
 
 
         [Range(0.0, float.MaxValue, ErrorMessage = "The value must be positive")]

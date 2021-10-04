@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace DietAnalyzer.Data
 {
-    interface IApplicationDbContext
+    public interface IApplicationDbContext
     {
         DbSet<ApplicationUser> ApplicationUsers { get; set; }
         DbSet<Diet> Diets { get; set; }
-        DbSet<DietItem> DietItem { get; set; }
+        DbSet<DietItem> DietItems { get; set; }
         DbSet<FoodDietRecommendation> FoodDietRecommendations { get; set; }
         DbSet<FoodItem> FoodItems { get; set; }
         DbSet<Measure> Measures { get; set; }
