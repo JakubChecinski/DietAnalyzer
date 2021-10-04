@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31025.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DietAnalyzer", "DietAnalyzer\DietAnalyzer.csproj", "{455ADCF3-3D44-4397-B2DD-95A79E3799FF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{455ADCF3-3D44-4397-B2DD-95A79E3799FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{455ADCF3-3D44-4397-B2DD-95A79E3799FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{455ADCF3-3D44-4397-B2DD-95A79E3799FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{455ADCF3-3D44-4397-B2DD-95A79E3799FF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DDC95B09-09F4-424F-82C8-5F1ECF0AD27E}
+	EndGlobalSection
+EndGlobal
