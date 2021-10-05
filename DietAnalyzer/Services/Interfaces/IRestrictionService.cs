@@ -4,12 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DietAnalyzer.Data.Repositories
+namespace DietAnalyzer.Services
 {
-    public interface IRestrictionRepository
+    public interface IRestrictionService
     {
         RestrictionsInfo Get(string userId);
-        void Add(RestrictionsInfo restriction);
         void Update(RestrictionsInfo restriction);
     }
 }

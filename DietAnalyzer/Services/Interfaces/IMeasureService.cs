@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DietAnalyzer.Data.Repositories
+namespace DietAnalyzer.Services
 {
-    public interface IMeasureRepository
+    public interface IMeasureService
     {
         IEnumerable<MeasureViewModel> Get(string userId);
         Measure Get(string userId, int measureId);

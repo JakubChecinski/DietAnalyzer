@@ -14,6 +14,12 @@ namespace DietAnalyzer.Data.Repositories
             _context = context;
         }
 
+        public RestrictionsInfo Get(string userId)
+        {
+            return _context.RestrictionsInfos
+                .Single(x => (x.UserId == userId));
+        }
+
         public void Add(RestrictionsInfo restriction)
         {
             _context.RestrictionsInfos.Add(restriction);
