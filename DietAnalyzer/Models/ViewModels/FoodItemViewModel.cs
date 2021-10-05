@@ -11,5 +11,6 @@ namespace DietAnalyzer.Models.ViewModels
         public string Name { get; set; }
         public NutritionInfo Nutrition { get; set; }
         public RestrictionsInfo Restrictions { get; set; }
+        public IEnumerable<FoodMeasure> Measures { get; set; }
     }
 }

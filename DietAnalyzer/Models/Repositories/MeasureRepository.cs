@@ -1,11 +1,12 @@
-﻿using DietAnalyzer.Models.Domains;
+﻿using DietAnalyzer.Data;
+using DietAnalyzer.Models.Domains;
 using DietAnalyzer.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DietAnalyzer.Data.Repositories
+namespace DietAnalyzer.Models.Repositories
 {
     public class MeasureRepository : IMeasureRepository
     {

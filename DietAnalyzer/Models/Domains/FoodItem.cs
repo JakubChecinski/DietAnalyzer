@@ -27,11 +27,13 @@ namespace DietAnalyzer.Models.Domains
         public RestrictionsInfo Restrictions { get; set; }
 
         public ICollection<FoodDietRecommendation> Recommendations { get; set; }
+        public ICollection<FoodMeasure> Measures { get; set; }
         public ICollection<DietItem> DietItems { get; set; }
         public FoodItem()
         {
             Recommendations = new Collection<FoodDietRecommendation>();
             DietItems = new Collection<DietItem>();
+            Measures = new Collection<FoodMeasure>();
         }
 
     }

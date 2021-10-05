@@ -26,9 +26,11 @@ namespace DietAnalyzer.Models.Domains
         public float Grams { get; set; }
 
         public ICollection<DietItem> DietItems { get; set; }
+        public ICollection<FoodMeasure> FoodItems { get; set; }
         public Measure()
         {
             DietItems = new Collection<DietItem>();
+            FoodItems = new Collection<FoodMeasure>();
         }
 
     }

@@ -97,12 +97,31 @@ namespace DietAnalyzer.Data
                 .WithOne(x => x.FoodItem)
                 .HasForeignKey<NutritionInfo>(x => x.FoodItemId)
                 .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<FoodItem>()
+                .HasMany(x => x.Measures)
+                .WithOne(x => x.FoodItem)
+                .HasForeignKey(x => x.FoodItemId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<FoodMeasure>()
+                .HasOne(x => x.FoodItem)
+                .WithMany(x => x.Measures)
+                .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<FoodMeasure>()
+                .HasOne(x => x.Measure)
+                .WithMany(x => x.FoodItems)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Measure>()
                .HasMany(x => x.DietItems)
                .WithOne(x => x.Measure)
                .HasForeignKey(x => x.MeasureId)
                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Measure>()
+                .HasMany(x => x.FoodItems)
+                .WithOne(x => x.Measure)
+                .HasForeignKey(x => x.MeasureId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<NutritionInfo>()
                 .HasOne(x => x.Diet)
