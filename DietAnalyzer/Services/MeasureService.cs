@@ -16,33 +16,19 @@ namespace DietAnalyzer.Services
             _unitOfWork = unitOfWork;
         }
 
-        public IEnumerable<MeasureViewModel> Get(string userId)
+        public IEnumerable<Measure> Get(string userId)
         {
             return _unitOfWork.Measures.Get(userId);
         }
 
-        public Measure Get(string userId, int measureId)
+        public void Update(IEnumerable<Measure> measures, string userId)
         {
-            return _unitOfWork.Measures.Get(userId, measureId);
-        }
-
-        public void Add(Measure measure)
-        {
-            _unitOfWork.Measures.Add(measure);
+            var userMeasures = _unitOfWork.Measures.GetCustom(userId);
+            foreach (Measure measure in userMeasures) _unitOfWork.Measures.Delete(measure.Id, userId);
+            foreach (Measure measure in measures) _unitOfWork.Measures.Add(measure);
             _unitOfWork.Save();
         }
 
-        public void Update(Measure measure, string userId)
-        {
-            _unitOfWork.Measures.Update(measure, userId);
-            _unitOfWork.Save();
-        }
-
-        public void Delete(int measureId, string userId)
-        {
-            _unitOfWork.Measures.Delete(measureId, userId);
-            _unitOfWork.Save();
-        }
 
     }
 }

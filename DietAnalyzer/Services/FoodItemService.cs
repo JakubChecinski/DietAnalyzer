@@ -16,14 +16,9 @@ namespace DietAnalyzer.Services
             _unitOfWork = unitOfWork;
         }
 
-        public IEnumerable<FoodItemViewModel> Get(string userId)
+        public IEnumerable<FoodItem> Get(string userId)
         {
             return _unitOfWork.Foods.Get(userId);
-        }
-
-        public IEnumerable<FoodItemViewModel> Get(string userId, string dietName)
-        {
-            return _unitOfWork.Foods.Get(userId, dietName);
         }
 
         public FoodItem Get(string userId, int foodId)
@@ -34,12 +29,16 @@ namespace DietAnalyzer.Services
         public void Add(FoodItem food)
         {
             _unitOfWork.Foods.Add(food);
+            _unitOfWork.Restrictions.Add(food.Restrictions);
+            _unitOfWork.Nutritions.Add(food.Nutrition);
             _unitOfWork.Save();
         }
 
         public void Update(FoodItem food, string userId)
         {
             _unitOfWork.Foods.Update(food, userId);
+            _unitOfWork.Nutritions.Update(food.Nutrition);
+            _unitOfWork.Restrictions.Update(food.Restrictions);
             _unitOfWork.Save();
         }
 

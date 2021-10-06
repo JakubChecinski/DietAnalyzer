@@ -15,34 +15,23 @@ namespace DietAnalyzer.Models.Repositories
         {
             _context = context;
         }
-        public IEnumerable<MeasureViewModel> Get(string userId)
+        public IEnumerable<Measure> Get(string userId)
         {
             var measures = _context.Measures
                  .Where(x => x.UserId == userId || x.UserId == null);
-            return measures.ToList()
-                .Select(x => new MeasureViewModel
-                {
-                    Name = x.Name,
-                    Grams = x.Grams,
-                });
+            return measures.ToList();
         }
 
-        public Measure Get(string userId, int measureId)
+        public IEnumerable<Measure> GetCustom(string userId)
         {
-            return _context.Measures
-                .Single(x => (x.UserId == userId || x.UserId == null) && x.Id == measureId);
+            var measures = _context.Measures
+                 .Where(x => x.UserId == userId);
+            return measures.ToList();
         }
 
         public void Add(Measure measure)
         {
             _context.Measures.Add(measure);
-        }
-
-        public void Update(Measure measure, string userId)
-        {
-            var measureToUpdate = _context.Measures.Single(x => x.Id == measure.Id && x.UserId == userId);
-            measureToUpdate.Name = measure.Name;
-            measureToUpdate.Grams = measure.Grams;
         }
 
         public void Delete(int measureId, string userId)

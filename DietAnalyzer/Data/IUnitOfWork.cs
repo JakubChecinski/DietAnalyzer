@@ -9,6 +9,7 @@ namespace DietAnalyzer.Data
     public interface IUnitOfWork
     {
         IDietRepository Diets { get; }
+        IDietItemRepository DietItems { get; }
         IFoodItemRepository Foods { get; }
         IMeasureRepository Measures { get; }
         INutritionRepository Nutritions { get; }

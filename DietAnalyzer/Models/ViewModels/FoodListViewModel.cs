@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace DietAnalyzer.Models.ViewModels
 {
-    public class DietViewModel
+    public class FoodListViewModel
     {
-        public bool IsAdd { get; set; }
-        public Diet Diet { get; set; }
-        public IEnumerable<FoodItem> AvailableFoods { get; set; }
+        public IEnumerable<FoodItem> Foods { get; set; }
     }
 }

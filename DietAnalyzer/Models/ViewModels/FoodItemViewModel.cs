@@ -8,9 +8,8 @@ namespace DietAnalyzer.Models.ViewModels
 {
     public class FoodItemViewModel
     {
-        public string Name { get; set; }
-        public NutritionInfo Nutrition { get; set; }
-        public RestrictionsInfo Restrictions { get; set; }
-        public IEnumerable<FoodMeasure> Measures { get; set; }
+        public bool IsAdd { get; set; }
+        public FoodItem FoodItem { get; set; }
+        public IEnumerable<FoodMeasure> AvailableMeasures { get; set; }
     }
 }

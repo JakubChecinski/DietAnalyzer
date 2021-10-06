@@ -9,8 +9,7 @@ namespace DietAnalyzer.Models.Repositories
 {
     public interface IDietRepository
     {
-        IEnumerable<DietViewModel> Get(string userId);
-        IEnumerable<DietViewModel> Get(string userId, string dietName);
+        IEnumerable<Diet> Get(string userId);
         Diet Get(string userId, int dietId);
         void Add(Diet diet);
         void Update(Diet diet, string userId);

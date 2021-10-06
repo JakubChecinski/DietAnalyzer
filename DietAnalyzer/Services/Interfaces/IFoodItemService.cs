@@ -9,8 +9,7 @@ namespace DietAnalyzer.Services
 {
     public interface IFoodItemService
     {
-        IEnumerable<FoodItemViewModel> Get(string userId);
-        IEnumerable<FoodItemViewModel> Get(string userId, string dietName);
+        IEnumerable<FoodItem> Get(string userId);
         FoodItem Get(string userId, int foodId);
         void Add(FoodItem food);
         void Update(FoodItem food, string userId);

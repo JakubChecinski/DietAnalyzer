@@ -10,6 +10,7 @@ namespace DietAnalyzer.Data
     {
         private readonly IApplicationDbContext _context;
         public IDietRepository Diets { get; }
+        public IDietItemRepository DietItems { get; }
         public IFoodItemRepository Foods { get; }
         public IMeasureRepository Measures { get; }
         public INutritionRepository Nutritions { get; }
@@ -19,8 +20,9 @@ namespace DietAnalyzer.Data
             _context = context;
             Nutritions = new NutritionRepository(context);
             Restrictions = new RestrictionRepository(context);
-            Diets = new DietRepository(context, Nutritions);
-            Foods = new FoodItemRepository(context, Nutritions, Restrictions);
+            Diets = new DietRepository(context);
+            DietItems = new DietItemRepository(context);
+            Foods = new FoodItemRepository(context);
             Measures = new MeasureRepository(context); 
         }
         public void Save()

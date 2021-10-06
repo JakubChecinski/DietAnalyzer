@@ -9,10 +9,7 @@ namespace DietAnalyzer.Services
 {
     public interface IMeasureService
     {
-        IEnumerable<MeasureViewModel> Get(string userId);
-        Measure Get(string userId, int measureId);
-        void Add(Measure measure);
-        void Update(Measure measure, string userId);
-        void Delete(int measureId, string userId);
+        IEnumerable<Measure> Get(string userId);
+        void Update(IEnumerable<Measure> measures, string userId);
     }
 }
