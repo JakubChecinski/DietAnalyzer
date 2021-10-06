@@ -1,4 +1,5 @@
 using DietAnalyzer.Data;
+using DietAnalyzer.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,6 +28,13 @@ namespace DietAnalyzer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IDietService, DietService>();
+            services.AddScoped<IFoodItemService, FoodItemService>();
+            services.AddScoped<IMeasureService, MeasureService>();
+            services.AddScoped<IRestrictionService, RestrictionService>();
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
