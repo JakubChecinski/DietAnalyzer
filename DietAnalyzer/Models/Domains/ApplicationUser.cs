@@ -16,19 +16,6 @@ namespace DietAnalyzer.Models.Domains
         {
             Measures = new Collection<Measure>();
             Foods = new Collection<FoodItem>();
-            Restrictions = new RestrictionsInfo
-            {
-                Pescetarian = false,
-                Vegetarian = false,
-                DairyIntolerant = false,
-                Vegan = false,
-                GlutenIntolerant = false,
-                Paleo = false,
-                Keto = false,
-                Diabetes = false,
-                HeartProblems = false,
-                KidneyProblems = false,
-            };
         }
     }
 }

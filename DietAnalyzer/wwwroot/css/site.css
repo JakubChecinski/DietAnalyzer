@@ -3,6 +3,35 @@ for details on configuring this project to bundle and minify static web assets. 
 
 /* customized parts start here */
 
+body {
+    background-color: #ffffcc;
+}
+
+header {
+    background-color: #ffe6cc;
+}
+
+.nav-item {
+    box-sizing: unset;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #99ccff;
+    border-color: #1861ac;
+    min-width: 120px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.btn-primary {
+    min-width: 120px;
+}
+
+.container {
+    margin-left: 50px;
+}
+
 .privacyPolicyInfo {
     font-size: 10px;
     position: fixed;
@@ -14,13 +43,7 @@ for details on configuring this project to bundle and minify static web assets. 
     padding: 5px 0;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-    color: #fff;
-    background-color: #e6e6e6;
-    border-color: #1861ac;
-    min-width: 120px;
-    text-align: center;
-}
+
 
 /* customized parts end here */
 

@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -9,21 +13,34 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">DietAnalyzer</a>
+                <ul class="navbar-nav nav-pills ml-0">
+                    <li class="nav-item">
+                        <a class="nav-link active mx-1 px-3 text-dark font-weight-bold" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                </ul>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                <div class="navbar-collapse collapse">
+                    <ul class="navbar-nav nav-pills">
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link active mx-1 px-3 text-dark" asp-area="" asp-controller="Diet" asp-action="DietList">Manage Diets</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active mx-1 px-3 text-dark" asp-area="" asp-controller="FoodItem" asp-action="FoodList">Manage Foods</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active mx-1 px-3 text-dark" asp-area="" asp-controller="Measure" asp-action="Manage">Manage Units</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active mx-1 px-3 text-dark" asp-area="" asp-controller="Restriction" asp-action="Manage">My Restrictions</a>
+                            </li>
+                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
@@ -31,19 +48,46 @@
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main" class="pb-3" background-color="#ffffcc">
             @RenderBody()
         </main>
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - DietAnalyzer - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/lib/jquery-cookie/jquery.cookie.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <div class="privacyPolicyInfo" style="display: none;">
+        This website uses cookies to distinguish you from other users and remember your preferences.
+        Your data is not shared with any third party.
+        By continuing to browse this site you are agreeing to our use of cookies.
+        <button onclick="closePrivacyPolice()" type="button" class="btn btn-light btn-sm mx-2 privacyPolicyButton">
+            I understand.
+        </button>
+    </div>
+
     @await RenderSectionAsync("Scripts", required: false)
+
+    <script>
+        $(document).ready(function () {
+            if ($.cookie("privacyPolicy") !== "1") {
+                $('.privacyPolicyInfo').css("display", "");
+            }
+            else {
+                $('.privacyPolicyInfo').css("display", "none");
+            }
+        });
+
+        function closePrivacyPolice() {
+            $.cookie("privacyPolicy", "1", { path: '/', expires: 180 });
+            $('.privacyPolicyInfo').css("display", "none");
+        }
+    </script>
+
 </body>
-</html>
+</html >

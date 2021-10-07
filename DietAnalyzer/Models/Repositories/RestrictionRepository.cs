@@ -18,7 +18,7 @@ namespace DietAnalyzer.Models.Repositories
         public RestrictionsInfo Get(string userId)
         {
             return _context.RestrictionsInfos
-                .Single(x => (x.UserId == userId));
+                .SingleOrDefault(x => (x.UserId == userId));
         }
 
         public void Add(RestrictionsInfo restriction)

@@ -50,6 +50,7 @@ namespace DietAnalyzer.Models.Domains
         public bool Vegetarian { get; set; }
 
         [DefaultValue(true)]
+        [Display(Name = "Dairy Intolerant")]
         public bool DairyIntolerant { get; set; }  
 
         [DefaultValue(true)]
@@ -57,21 +58,26 @@ namespace DietAnalyzer.Models.Domains
         public bool Vegan { get; set; }
 
         [DefaultValue(true)]
+        [Display(Name = "Gluten Intolerant")]
         public bool GlutenIntolerant { get; set; }
 
         [DefaultValue(true)]
+        [Display(Name = "Paleo Diet")]
         public bool Paleo { get; set; }
 
         [DefaultValue(true)]
+        [Display(Name = "Keto Diet")]
         public bool Keto { get; set; }
 
         [DefaultValue(true)]
         public bool Diabetes { get; set; }
 
         [DefaultValue(true)]
+        [Display(Name = "Heart Problems")]
         public bool HeartProblems { get; set; }
 
         [DefaultValue(true)]
+        [Display(Name = "Kidney Problems")]
         public bool KidneyProblems { get; set; }
 
     }

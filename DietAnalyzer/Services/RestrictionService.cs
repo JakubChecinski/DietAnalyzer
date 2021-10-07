@@ -17,7 +17,25 @@ namespace DietAnalyzer.Services
 
         public RestrictionsInfo Get(string userId)
         {
-            return _unitOfWork.Restrictions.Get(userId);
+            var restrictions = _unitOfWork.Restrictions.Get(userId);
+            if (restrictions != null) return restrictions;
+            var newRestrictions = new RestrictionsInfo
+            {
+                UserId = userId,
+                Pescetarian = false,
+                Vegetarian = false,
+                DairyIntolerant = false,
+                Vegan = false,
+                GlutenIntolerant = false,
+                Paleo = false,
+                Keto = false,
+                Diabetes = false,
+                HeartProblems = false,
+                KidneyProblems = false,
+            };
+            _unitOfWork.Restrictions.Add(newRestrictions);
+            _unitOfWork.Save();
+            return newRestrictions;
         }
 
         public void Update(RestrictionsInfo restriction)
