@@ -1,0 +1,38 @@
+﻿@model Int32
+
+@*
+    helper view to dynamically update measures table in the view
+    see also: https://stackoverflow.com/questions/36317362/how-to-add-an-item-to-a-list-in-a-viewmodel-using-razor-and-net-core
+*@
+
+<tr>
+    <td class="col-sm-1">
+        <label for="Measures_@(Model)__Name">Name</label>:
+    </td>
+    <td class="col-sm-1">
+        <input class="text-input" data-val="true"
+               data-val-maxlength="The field Name must be a string or array type with a maximum length of '50'."
+               data-val-maxlength-max="50" data-val-required="The Name field is required."
+               id="Measures_@(Model)__Name" maxlength="50" name="Measures[@(Model)].Name" type="text" value="">
+    </td>
+    <td class="col-sm-1">
+        equal to:
+    </td>
+    <td class="col-sm-1">
+        <input class="numeric-input" data-val="true"
+               data-val-number="The field Grams must be a number."
+               data-val-range="The value must be positive"
+               data-val-range-max="3.4028234663852886E+38" data-val-range-min="0"
+               data-val-required="The Grams field is required."
+               id="Measures_@(Model)__Grams" name="Measures[@(Model)].Grams" type="text" value="">
+    </td>
+    <td class="col-sm-1">
+        grams
+    </td>
+    <td class="col-sm-2">
+        <button type="button" class="btn btn-danger tn-sm" onclick="deleteRow(this)">
+            Delete unit
+        </button>
+    </td>
+    <td class="col-sm-4"></td>
+</tr>

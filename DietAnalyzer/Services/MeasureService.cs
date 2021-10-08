@@ -21,14 +21,20 @@ namespace DietAnalyzer.Services
             return _unitOfWork.Measures.Get(userId);
         }
 
+        public IEnumerable<Measure> GetCustom(string userId)
+        {
+            return _unitOfWork.Measures.GetCustom(userId);
+        }
+
         public void Update(IEnumerable<Measure> measures, string userId)
         {
             var userMeasures = _unitOfWork.Measures.GetCustom(userId);
-            foreach (Measure measure in userMeasures) _unitOfWork.Measures.Delete(measure.Id, userId);
-            foreach (Measure measure in measures) _unitOfWork.Measures.Add(measure);
+            if(userMeasures != null) 
+                foreach (Measure measure in userMeasures) _unitOfWork.Measures.Delete(measure.Id, userId);
+            if (measures != null) 
+                foreach (Measure measure in measures) _unitOfWork.Measures.Add(measure);
             _unitOfWork.Save();
         }
-
 
     }
 }

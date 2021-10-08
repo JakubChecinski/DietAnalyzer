@@ -8,6 +8,8 @@ namespace DietAnalyzer.Models.ViewModels
 {
     public class MeasureViewModel
     {
-        public IEnumerable<Measure> Measures { get; set; }
+        public List<Measure> Measures { get; set; }
+        public string PositionsToDelete { get; set; }
+
     }
 }
