@@ -7,28 +7,28 @@ using System.Threading.Tasks;
 
 namespace DietAnalyzer.Models.Repositories
 {
-    public class RestrictionRepository : IRestrictionRepository
+    public class RestrictionUserRepository : IRestrictionUserRepository
     {
         private IApplicationDbContext _context;
-        public RestrictionRepository(IApplicationDbContext context)
+        public RestrictionUserRepository(IApplicationDbContext context)
         {
             _context = context;
         }
 
-        public RestrictionsInfo Get(string userId)
+        public RestrictionUser Get(string userId)
         {
-            return _context.RestrictionsInfos
+            return _context.RestrictionsUsers
                 .SingleOrDefault(x => (x.UserId == userId));
         }
 
-        public void Add(RestrictionsInfo restriction)
+        public void Add(RestrictionUser restriction)
         {
-            _context.RestrictionsInfos.Add(restriction);
+            _context.RestrictionsUsers.Add(restriction);
         }
 
-        public void Update(RestrictionsInfo restriction)
+        public void Update(RestrictionUser restriction)
         {
-            var restrictionToUpdate = _context.RestrictionsInfos.Single(x => x.Id == restriction.Id);
+            var restrictionToUpdate = _context.RestrictionsUsers.Single(x => x.Id == restriction.Id);
             restrictionToUpdate.Pescetarian = restriction.Pescetarian;
             restrictionToUpdate.Vegetarian = restriction.Vegetarian;
             restrictionToUpdate.DairyIntolerant = restriction.DairyIntolerant;

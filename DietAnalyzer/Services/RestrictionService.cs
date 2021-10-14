@@ -15,11 +15,11 @@ namespace DietAnalyzer.Services
             _unitOfWork = unitOfWork;
         }
 
-        public RestrictionsInfo Get(string userId)
+        public RestrictionUser Get(string userId)
         {
-            var restrictions = _unitOfWork.Restrictions.Get(userId);
+            var restrictions = _unitOfWork.RestrictionUsers.Get(userId);
             if (restrictions != null) return restrictions;
-            var newRestrictions = new RestrictionsInfo
+            var newRestrictions = new RestrictionUser
             {
                 UserId = userId,
                 Pescetarian = false,
@@ -33,14 +33,14 @@ namespace DietAnalyzer.Services
                 HeartProblems = false,
                 KidneyProblems = false,
             };
-            _unitOfWork.Restrictions.Add(newRestrictions);
+            _unitOfWork.RestrictionUsers.Add(newRestrictions);
             _unitOfWork.Save();
             return newRestrictions;
         }
 
-        public void Update(RestrictionsInfo restriction)
+        public void Update(RestrictionUser restriction)
         {
-            _unitOfWork.Restrictions.Update(restriction);
+            _unitOfWork.RestrictionUsers.Update(restriction);
             _unitOfWork.Save();
         }
 

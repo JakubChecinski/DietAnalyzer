@@ -10,6 +10,6 @@ namespace DietAnalyzer.Models.ViewModels
     // mostly here for symmetry and to make modifications easier in the future
     public class RestrictionViewModel
     {
-        public RestrictionsInfo RestrictionInfo { get; set; }
+        public RestrictionUser RestrictionInfo { get; set; }
     }
 }

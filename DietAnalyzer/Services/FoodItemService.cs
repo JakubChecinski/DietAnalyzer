@@ -29,21 +29,27 @@ namespace DietAnalyzer.Services
         public void Add(FoodItem food)
         {
             _unitOfWork.Foods.Add(food);
-            _unitOfWork.Restrictions.Add(food.Restrictions);
-            _unitOfWork.Nutritions.Add(food.Nutrition);
+            _unitOfWork.RestrictionFoods.Add(food.Restrictions);
+            _unitOfWork.NutritionFoods.Add(food.Nutrition);
             _unitOfWork.Save();
         }
 
         public void Update(FoodItem food, string userId)
         {
             _unitOfWork.Foods.Update(food, userId);
-            _unitOfWork.Nutritions.Update(food.Nutrition);
-            _unitOfWork.Restrictions.Update(food.Restrictions);
+            _unitOfWork.NutritionFoods.Update(food.Nutrition);
+            _unitOfWork.RestrictionFoods.Update(food.Restrictions);
+            foreach(var fm in food.Measures) _unitOfWork.FoodMeasures.Update(fm);
             _unitOfWork.Save();
         }
 
         public void Delete(int foodId, string userId)
         {
+            var foodToDelete = _unitOfWork.Foods.Get(userId, foodId);
+            foreach (var foodMeasure in foodToDelete.Measures)
+                _unitOfWork.FoodMeasures.Delete(foodMeasure.Id);
+            foreach (var recommendation in foodToDelete.Recommendations)
+                _unitOfWork.Recommendations.Delete(recommendation.Id);
             _unitOfWork.Foods.Delete(foodId, userId);
             _unitOfWork.Save();
         }

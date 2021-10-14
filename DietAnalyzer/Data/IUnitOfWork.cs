@@ -11,9 +11,13 @@ namespace DietAnalyzer.Data
         IDietRepository Diets { get; }
         IDietItemRepository DietItems { get; }
         IFoodItemRepository Foods { get; }
+        IFoodDietRecommendationRepository Recommendations { get; }
         IMeasureRepository Measures { get; }
-        INutritionRepository Nutritions { get; }
-        IRestrictionRepository Restrictions { get; }
+        IFoodMeasureRepository FoodMeasures { get; }
+        INutritionDietRepository NutritionDiets { get; }
+        INutritionFoodRepository NutritionFoods { get; }
+        IRestrictionFoodRepository RestrictionFoods { get; }
+        IRestrictionUserRepository RestrictionUsers { get; }
         void Save();
 
     }

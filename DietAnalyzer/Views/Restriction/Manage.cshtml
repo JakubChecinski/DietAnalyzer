@@ -6,7 +6,6 @@
 @using (Html.BeginForm("Manage", "Restriction", FormMethod.Post, new { id = "mainForm" }))
 {
     @Html.AntiForgeryToken()
-    <div asp-validation-summary="All" class="text-danger"></div>
 
     @Html.HiddenFor(x => x.RestrictionInfo.Id)
     @Html.HiddenFor(x => x.RestrictionInfo.UserId)

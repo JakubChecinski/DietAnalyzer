@@ -40,24 +40,6 @@ namespace DietAnalyzer.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Manage(MeasureViewModel vm)
         {
-            if(vm.PositionsToDelete != null)
-            {
-                vm.PositionsToDelete = vm.PositionsToDelete.Remove(vm.PositionsToDelete.Length - 1);
-                var positionsToDelete = vm.PositionsToDelete.Split(',').ToList()
-                    .Select(x => Convert.ToInt32(x))
-                    .OrderByDescending(x => x);
-                if (vm.Measures != null)
-                    foreach (var position in positionsToDelete)
-                    {
-                        vm.Measures.RemoveAt(position);
-                        ModelState["Measures[" + position + "].Name"].Errors.Clear();
-                        ModelState["Measures[" + position + "].Grams"].Errors.Clear();
-                        ModelState["Measures[" + position + "].Name"].ValidationState =
-                            Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState.Valid;
-                        ModelState["Measures[" + position + "].Grams"].ValidationState =
-                            Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState.Valid;
-                    }
-            }
             if (!ModelState.IsValid) return View("Manage", vm);
             var userId = User.GetUserId();
             if (vm.Measures != null)

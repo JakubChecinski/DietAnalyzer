@@ -10,6 +10,7 @@ namespace DietAnalyzer.Models.Repositories
     public interface IMeasureRepository
     {
         IEnumerable<Measure> Get(string userId);
+        Measure Get(int measureId);
         IEnumerable<Measure> GetCustom(string userId);
         void Add(Measure measure);
         void Delete(int measureId, string userId);

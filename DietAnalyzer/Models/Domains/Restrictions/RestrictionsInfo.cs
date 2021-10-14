@@ -30,17 +30,6 @@ namespace DietAnalyzer.Models.Domains
 
     public class RestrictionsInfo
     {
-        [Key]
-        public int Id { get; set; }
-
-        // restriction table can belong to either a specific food or a specific user
-        public int? FoodItemId { get; set; }
-        public FoodItem FoodItem { get; set; }
-
-        [ForeignKey("User")]
-        public string UserId { get; set; }
-        public ApplicationUser User { get; set; }
-
 
         [DefaultValue(true)]
         public bool Pescetarian { get; set; }  // foods: IF product is land animal meat THEN false, ELSE true

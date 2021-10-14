@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace DietAnalyzer.Models.DataAttributes
@@ -34,7 +35,7 @@ namespace DietAnalyzer.Models.DataAttributes
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             string errorReport = "";
-            var valueTested = (bool)value;
+            var valueTested = value == null ? false : (bool)value;
             var performCheck = false;
             //
             if(!valueTested) return ValidationResult.Success;
@@ -42,7 +43,8 @@ namespace DietAnalyzer.Models.DataAttributes
             {
                 var attribute = validationContext.ObjectType.GetProperty(s);
                 if (attribute == null) throw new ArgumentException("Property with this name not found");
-                if (!(bool)attribute.GetValue(validationContext.ObjectInstance))
+                if (attribute.GetValue(validationContext.ObjectInstance) != null 
+                    && !(bool)attribute.GetValue(validationContext.ObjectInstance))
                 {
                     performCheck = true;
                     errorReport = s;
@@ -50,7 +52,7 @@ namespace DietAnalyzer.Models.DataAttributes
                 } 
             }
             if (performCheck) 
-                return new ValidationResult($"There is a conflict between this category and {errorReport}");
+                return new ValidationResult($"There is a logical conflict between this value and {errorReport}");
             return ValidationResult.Success;
         }
     }

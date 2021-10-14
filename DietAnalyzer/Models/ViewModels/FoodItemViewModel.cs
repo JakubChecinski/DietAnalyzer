@@ -10,6 +10,6 @@ namespace DietAnalyzer.Models.ViewModels
     {
         public bool IsAdd { get; set; }
         public FoodItem FoodItem { get; set; }
-        public IEnumerable<FoodMeasure> AvailableMeasures { get; set; }
+        public List<FoodMeasure> AvailableMeasures { get; set; }
     }
 }

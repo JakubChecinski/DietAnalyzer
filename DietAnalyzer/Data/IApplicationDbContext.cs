@@ -12,11 +12,14 @@ namespace DietAnalyzer.Data
         DbSet<ApplicationUser> ApplicationUsers { get; set; }
         DbSet<Diet> Diets { get; set; }
         DbSet<DietItem> DietItems { get; set; }
-        DbSet<FoodDietRecommendation> FoodDietRecommendations { get; set; }
         DbSet<FoodItem> FoodItems { get; set; }
+        DbSet<FoodDietRecommendation> FoodDietRecommendations { get; set; }
         DbSet<Measure> Measures { get; set; }
-        DbSet<NutritionInfo> NutritionInfos { get; set; }
-        DbSet<RestrictionsInfo> RestrictionsInfos { get; set; }
+        DbSet<FoodMeasure> FoodMeasures { get; set; }
+        DbSet<NutritionFood> NutritionFoods { get; set; }
+        DbSet<NutritionDiet> NutritionDiets { get; set; }
+        DbSet<RestrictionFood> RestrictionsFoods { get; set; }
+        DbSet<RestrictionUser> RestrictionsUsers { get; set; }
         int SaveChanges();
     }
 }

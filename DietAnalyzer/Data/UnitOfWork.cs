@@ -12,18 +12,26 @@ namespace DietAnalyzer.Data
         public IDietRepository Diets { get; }
         public IDietItemRepository DietItems { get; }
         public IFoodItemRepository Foods { get; }
+        public IFoodDietRecommendationRepository Recommendations { get; }
         public IMeasureRepository Measures { get; }
-        public INutritionRepository Nutritions { get; }
-        public IRestrictionRepository Restrictions { get; }
+        public IFoodMeasureRepository FoodMeasures { get; }
+        public INutritionDietRepository NutritionDiets { get; }
+        public INutritionFoodRepository NutritionFoods { get; }
+        public IRestrictionFoodRepository RestrictionFoods { get; }
+        public IRestrictionUserRepository RestrictionUsers { get; }
         public UnitOfWork(IApplicationDbContext context)
         {
             _context = context;
-            Nutritions = new NutritionRepository(context);
-            Restrictions = new RestrictionRepository(context);
             Diets = new DietRepository(context);
             DietItems = new DietItemRepository(context);
             Foods = new FoodItemRepository(context);
-            Measures = new MeasureRepository(context); 
+            Recommendations = new FoodDietRecommendationRepository(context);
+            Measures = new MeasureRepository(context);
+            FoodMeasures = new FoodMeasureRepository(context);
+            NutritionDiets = new NutritionDietRepository(context);
+            NutritionFoods = new NutritionFoodRepository(context);
+            RestrictionFoods = new RestrictionFoodRepository(context);
+            RestrictionUsers = new RestrictionUserRepository(context);
         }
         public void Save()
         {

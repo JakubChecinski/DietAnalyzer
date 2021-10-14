@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace DietAnalyzer.Models.Repositories
 {
-    public interface INutritionRepository
+    public interface INutritionFoodRepository
     {
-        void Add(NutritionInfo nutrition);
-        void Update(NutritionInfo nutrition);
+        void Add(NutritionFood nutrition);
+        void Update(NutritionFood nutrition);
     }
 }

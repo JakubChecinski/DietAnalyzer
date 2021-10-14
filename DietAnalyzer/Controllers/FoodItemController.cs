@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,7 +18,7 @@ namespace DietAnalyzer.Controllers
         private readonly ILogger<FoodItemController> _logger;
         private IFoodItemService _service;
         private IMeasureService _measureService;
-        public FoodItemController(ILogger<FoodItemController> logger, 
+        public FoodItemController(ILogger<FoodItemController> logger,
             IFoodItemService service, IMeasureService measureService)
         {
             _logger = logger;
@@ -53,7 +54,7 @@ namespace DietAnalyzer.Controllers
                 return Json(new
                 {
                     success = false,
-                    message = exc.Message
+                    message = exc.Message + exc.InnerException,
                 });
             }
             return Json(new { success = true, redirectToUrl = Url.Action("FoodList", "FoodItem") });
@@ -73,27 +74,29 @@ namespace DietAnalyzer.Controllers
                 {
                     Name = "",
                     UserId = userId,
-                    Nutrition = new NutritionInfo(),
-                    Restrictions = new RestrictionsInfo(),
+                    Nutrition = new NutritionFood(),
+                    Restrictions = new RestrictionFood(),
                 };
                 foodToManage.Nutrition.FoodItem = foodToManage;
                 foodToManage.Restrictions.FoodItem = foodToManage;
+                var availableMeasures = _measureService.Get(userId);
+                foreach (Measure measure in availableMeasures)
+                {
+                    foodToManage.Measures.Add(new FoodMeasure
+                    {
+                        IsCurrentlyLinked = false,
+                        FoodItemId = 0,
+                        Measure = measure,
+                        MeasureId = measure.Id,
+                    });
+                }
             }
             else foodToManage = _service.Get(userId, id);
-            var availableMeasures = _measureService.Get(userId);
-            var availableMeasuresJoinTableClass = new List<FoodMeasure>(
-                availableMeasures.Select(x => new FoodMeasure
-                {
-                    FoodItem = foodToManage,
-                    FoodItemId = foodToManage.Id,
-                    Measure = x,
-                    MeasureId = x.Id,
-                }));
             var vm = new FoodItemViewModel
             {
                 IsAdd = id == 0,
                 FoodItem = foodToManage,
-                AvailableMeasures = availableMeasuresJoinTableClass,
+                AvailableMeasures = ReloadMeasures(foodToManage.Measures.ToList()),
             };
             return View(vm);
         }
@@ -104,9 +107,22 @@ namespace DietAnalyzer.Controllers
         {
             if (!ModelState.IsValid) return View("ManageFood", vm);
             var userId = User.GetUserId();
-            if(vm.IsAdd) _service.Add(vm.FoodItem);
+            vm.FoodItem.UserId = userId; 
+            vm.FoodItem.Measures = ReloadMeasures(vm.AvailableMeasures.ToList());
+            if (vm.IsAdd) _service.Add(vm.FoodItem);
             else _service.Update(vm.FoodItem, userId);
             return RedirectToAction("FoodList", "FoodItem");
+        }
+
+        private List<FoodMeasure> ReloadMeasures(List<FoodMeasure> foodMeasures)
+        {
+            // I was hoping Entity would do this automatically, but apparently it doesn't
+            // Maybe it's because I added a new field to the join FoodMeasure class?
+            for (int i = 0; i < foodMeasures.Count; i++)
+            {
+                foodMeasures[i].Measure = _measureService.Get(foodMeasures[i].MeasureId);
+            }
+            return foodMeasures;
         }
 
     }

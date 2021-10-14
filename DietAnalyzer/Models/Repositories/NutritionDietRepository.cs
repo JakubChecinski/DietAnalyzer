@@ -7,21 +7,21 @@ using System.Threading.Tasks;
 
 namespace DietAnalyzer.Models.Repositories
 {
-    public class NutritionRepository : INutritionRepository
+    public class NutritionDietRepository : INutritionDietRepository
     {
         private IApplicationDbContext _context;
-        public NutritionRepository(IApplicationDbContext context)
+        public NutritionDietRepository(IApplicationDbContext context)
         {
             _context = context;
         }
 
-        public void Add(NutritionInfo nutrition)
+        public void Add(NutritionDiet nutrition)
         {
-            _context.NutritionInfos.Add(nutrition);
+            _context.NutritionDiets.Add(nutrition);
         }
-        public void Update(NutritionInfo nutrition)
+        public void Update(NutritionDiet nutrition)
         {
-            var nutritionToUpdate = _context.NutritionInfos.Single(x => x.Id == nutrition.Id);
+            var nutritionToUpdate = _context.NutritionDiets.Single(x => x.Id == nutrition.Id);
             nutritionToUpdate.CaloriesPer100g = nutrition.CaloriesPer100g;
             nutritionToUpdate.FiberPer100g = nutrition.FiberPer100g;
             nutritionToUpdate.SugarPer100g = nutrition.SugarPer100g;

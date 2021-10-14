@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace DietAnalyzer.Models.DataAttributes
@@ -34,14 +35,16 @@ namespace DietAnalyzer.Models.DataAttributes
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             string errorReport = "";
-            var valueTested = (float)value;
+            var valueTested = value == null ? 0.0 : (float)value;
             var sumOfAttributeValues = 0.0;
             for(int i = 0; i < includedProperties.Length; i++)
             {
                 var attribute = validationContext.ObjectType.GetProperty(includedProperties[i]);
                 if (attribute == null) throw new ArgumentException("Property with this name not found");
-                sumOfAttributeValues += (float)attribute.GetValue(validationContext.ObjectInstance);
-                if(i < includedProperties.Length - 1) errorReport = errorReport + includedProperties[i] + ", ";
+                if(attribute.GetValue(validationContext.ObjectInstance) != null)
+                    sumOfAttributeValues += (float)attribute.GetValue(validationContext.ObjectInstance);
+                if (i < includedProperties.Length - 1) errorReport = errorReport + includedProperties[i] + ", ";
+                else errorReport = errorReport + includedProperties[i];
             }
             if (valueTested < sumOfAttributeValues) 
                 return new ValidationResult($"This value cannot be smaller than the sum of: {errorReport}");

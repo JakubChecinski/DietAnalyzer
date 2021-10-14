@@ -24,7 +24,7 @@ namespace DietAnalyzer.Models.Domains
 
         public ICollection<DietItem> DietItems { get; set; }
         public ICollection<FoodDietRecommendation> Recommendations { get; set; }
-        public NutritionInfo Nutritions { get; set; }
+        public NutritionDiet Nutritions { get; set; }
         public Diet()
         {
             DietItems = new Collection<DietItem>();

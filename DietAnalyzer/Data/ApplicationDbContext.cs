@@ -17,11 +17,14 @@ namespace DietAnalyzer.Data
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Diet> Diets { get; set; }
         public DbSet<DietItem> DietItems { get; set; }
-        public DbSet<FoodDietRecommendation> FoodDietRecommendations { get; set; }
         public DbSet<FoodItem> FoodItems { get; set; }
+        public DbSet<FoodDietRecommendation> FoodDietRecommendations { get; set; }
         public DbSet<Measure> Measures { get; set; }
-        public DbSet<NutritionInfo> NutritionInfos { get; set; }
-        public DbSet<RestrictionsInfo> RestrictionsInfos { get; set; }
+        public DbSet<FoodMeasure> FoodMeasures { get; set; }
+        public DbSet<NutritionFood> NutritionFoods { get; set; }
+        public DbSet<NutritionDiet> NutritionDiets { get; set; }
+        public DbSet<RestrictionFood> RestrictionsFoods { get; set; }
+        public DbSet<RestrictionUser> RestrictionsUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -40,23 +43,16 @@ namespace DietAnalyzer.Data
             modelBuilder.Entity<ApplicationUser>()
                 .HasOne(x => x.Restrictions)
                 .WithOne(x => x.User)
-                .HasForeignKey<RestrictionsInfo>(x => x.UserId)
+                .HasForeignKey<RestrictionUser>(x => x.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Diet>()
                 .HasMany(x => x.DietItems)
                 .WithOne(x => x.Diet)
-                .HasForeignKey(x => x.DietId)
-                .OnDelete(DeleteBehavior.Cascade);
-            modelBuilder.Entity<Diet>()
-                .HasMany(x => x.Recommendations)
-                .WithOne(x => x.Diet)
-                .HasForeignKey(x => x.DietId)
                 .OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<Diet>()
                 .HasOne(x => x.Nutritions)
                 .WithOne(x => x.Diet)
-                .HasForeignKey<NutritionInfo>(x => x.DietId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<DietItem>()
@@ -64,81 +60,35 @@ namespace DietAnalyzer.Data
                 .WithMany(x => x.DietItems)
                 .OnDelete(DeleteBehavior.Restrict);
             modelBuilder.Entity<DietItem>()
-                .HasOne(x => x.Diet)
+                .HasOne(x => x.Measure)
                 .WithMany(x => x.DietItems)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<FoodDietRecommendation>()
-                .HasOne(x => x.FoodItem)
-                .WithMany(x => x.Recommendations)
-                .OnDelete(DeleteBehavior.Restrict);
-            modelBuilder.Entity<FoodDietRecommendation>()
-                .HasOne(x => x.Diet)
-                .WithMany(x => x.Recommendations)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<FoodItem>()
-                .HasMany(x => x.Recommendations)
-                .WithOne(x => x.FoodItem)
-                .HasForeignKey(x => x.FoodItemId)
-                .OnDelete(DeleteBehavior.Cascade);
-            modelBuilder.Entity<FoodItem>()
-                .HasMany(x => x.Recommendations)
-                .WithOne(x => x.FoodItem)
-                .HasForeignKey(x => x.FoodItemId)
-                .OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<FoodItem>()
                 .HasOne(x => x.Restrictions)
                 .WithOne(x => x.FoodItem)
-                .HasForeignKey<RestrictionsInfo>(x => x.FoodItemId)
                 .OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<FoodItem>()
                 .HasOne(x => x.Nutrition)
                 .WithOne(x => x.FoodItem)
-                .HasForeignKey<NutritionInfo>(x => x.FoodItemId)
-                .OnDelete(DeleteBehavior.Cascade);
-            modelBuilder.Entity<FoodItem>()
-                .HasMany(x => x.Measures)
-                .WithOne(x => x.FoodItem)
-                .HasForeignKey(x => x.FoodItemId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<FoodMeasure>()
+            modelBuilder.Entity<FoodDietRecommendation>()
                 .HasOne(x => x.FoodItem)
-                .WithMany(x => x.Measures)
+                .WithMany(x => x.Recommendations)
                 .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<FoodDietRecommendation>()
+                .HasOne(x => x.Diet)
+                .WithMany(x => x.Recommendations)
+                .OnDelete(DeleteBehavior.Restrict);
+
             modelBuilder.Entity<FoodMeasure>()
                 .HasOne(x => x.Measure)
                 .WithMany(x => x.FoodItems)
                 .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<Measure>()
-               .HasMany(x => x.DietItems)
-               .WithOne(x => x.Measure)
-               .HasForeignKey(x => x.MeasureId)
-               .OnDelete(DeleteBehavior.Cascade);
-            modelBuilder.Entity<Measure>()
-                .HasMany(x => x.FoodItems)
-                .WithOne(x => x.Measure)
-                .HasForeignKey(x => x.MeasureId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<NutritionInfo>()
-                .HasOne(x => x.Diet)
-                .WithOne(x => x.Nutritions)
-                .OnDelete(DeleteBehavior.Restrict);
-            modelBuilder.Entity<NutritionInfo>()
+            modelBuilder.Entity<FoodMeasure>()
                 .HasOne(x => x.FoodItem)
-                .WithOne(x => x.Nutrition)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<RestrictionsInfo>()
-                .HasOne(x => x.FoodItem)
-                .WithOne(x => x.Restrictions)
-                .OnDelete(DeleteBehavior.Restrict);
-            modelBuilder.Entity<RestrictionsInfo>()
-                .HasOne(x => x.User)
-                .WithOne(x => x.Restrictions)
+                .WithMany(x => x.Measures)
                 .OnDelete(DeleteBehavior.Restrict);
 
         }

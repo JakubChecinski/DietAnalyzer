@@ -72,7 +72,7 @@ namespace DietAnalyzer.Controllers
                 {
                     Name = "",
                     UserId = userId,
-                    Nutritions = new NutritionInfo(),
+                    Nutritions = new NutritionDiet(),
                 };
                 dietToManage.Nutritions.Diet = dietToManage;
             }

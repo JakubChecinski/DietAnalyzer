@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace DietAnalyzer.Models.Repositories
 {
-    public interface IRestrictionRepository
+    public interface IRestrictionUserRepository
     {
-        RestrictionsInfo Get(string userId);
-        void Add(RestrictionsInfo restriction);
-        void Update(RestrictionsInfo restriction);
+        RestrictionUser Get(string userId);
+        void Add(RestrictionUser restriction);
+        void Update(RestrictionUser restriction);
     }
 }

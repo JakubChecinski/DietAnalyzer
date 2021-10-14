@@ -1,6 +1,7 @@
 ﻿using DietAnalyzer.Data;
 using DietAnalyzer.Models.Domains;
 using DietAnalyzer.Models.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,10 +23,16 @@ namespace DietAnalyzer.Models.Repositories
             return measures.ToList();
         }
 
+        public Measure Get(int measureId)
+        {
+            return _context.Measures.Single(x => x.Id == measureId);
+        }
+
         public IEnumerable<Measure> GetCustom(string userId)
         {
             var measures = _context.Measures
-                 .Where(x => x.UserId == userId);
+                 .Where(x => x.UserId == userId)
+                 .Include(x => x.FoodItems);
             return measures.ToList();
         }
 

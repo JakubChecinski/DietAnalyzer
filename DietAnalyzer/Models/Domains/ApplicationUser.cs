@@ -11,7 +11,7 @@ namespace DietAnalyzer.Models.Domains
     {
         public ICollection<Measure> Measures { get; set; }
         public ICollection<FoodItem> Foods { get; set; }
-        public RestrictionsInfo Restrictions { get; set; }
+        public RestrictionUser Restrictions { get; set; }
         public ApplicationUser()
         {
             Measures = new Collection<Measure>();

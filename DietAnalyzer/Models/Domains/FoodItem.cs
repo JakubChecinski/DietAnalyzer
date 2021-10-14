@@ -22,9 +22,8 @@ namespace DietAnalyzer.Models.Domains
         public ApplicationUser User { get; set; }
 
         [Required]
-        public NutritionInfo Nutrition { get; set; }
-
-        public RestrictionsInfo Restrictions { get; set; }
+        public NutritionFood Nutrition { get; set; }
+        public RestrictionFood Restrictions { get; set; }
 
         public ICollection<FoodDietRecommendation> Recommendations { get; set; }
         public ICollection<FoodMeasure> Measures { get; set; }

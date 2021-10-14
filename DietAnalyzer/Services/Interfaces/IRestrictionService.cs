@@ -8,7 +8,7 @@ namespace DietAnalyzer.Services
 {
     public interface IRestrictionService
     {
-        RestrictionsInfo Get(string userId);
-        void Update(RestrictionsInfo restriction);
+        RestrictionUser Get(string userId);
+        void Update(RestrictionUser restriction);
     }
 }

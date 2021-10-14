@@ -8,15 +8,18 @@ namespace DietAnalyzer.Models.Domains
 {
     /// <summary>
     /// 
-    /// this is a purely technical class 
+    /// this is an (almost) purely technical class 
     /// used to represent the many-to-many relationship between FoodItem and Measure
     /// (a join table)
+    /// the only difference is an additional boolean field
     /// 
     /// </summary>
     public class FoodMeasure
     {
         [Key]
         public int Id { get; set; }
+
+        public bool IsCurrentlyLinked { get; set; }
 
         public int FoodItemId { get; set; }
         public FoodItem FoodItem { get; set; }

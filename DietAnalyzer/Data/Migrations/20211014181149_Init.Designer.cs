@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace DietAnalyzer.Data.Migrations
+namespace DietAnalyzer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211004124513_AddQuantityToDietItem")]
-    partial class AddQuantityToDietItem
+    [Migration("20211014181149_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -71,7 +71,7 @@ namespace DietAnalyzer.Data.Migrations
 
                     b.HasIndex("MeasureId");
 
-                    b.ToTable("DietItem");
+                    b.ToTable("DietItems");
                 });
 
             modelBuilder.Entity("DietAnalyzer.Models.Domains.FoodDietRecommendation", b =>
@@ -118,6 +118,31 @@ namespace DietAnalyzer.Data.Migrations
                     b.ToTable("FoodItems");
                 });
 
+            modelBuilder.Entity("DietAnalyzer.Models.Domains.FoodMeasure", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("FoodItemId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsCurrentlyLinked")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("MeasureId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FoodItemId");
+
+                    b.HasIndex("MeasureId");
+
+                    b.ToTable("FoodMeasures");
+                });
+
             modelBuilder.Entity("DietAnalyzer.Models.Domains.Measure", b =>
                 {
                     b.Property<int>("Id")
@@ -143,7 +168,7 @@ namespace DietAnalyzer.Data.Migrations
                     b.ToTable("Measures");
                 });
 
-            modelBuilder.Entity("DietAnalyzer.Models.Domains.NutritionInfo", b =>
+            modelBuilder.Entity("DietAnalyzer.Models.Domains.NutritionDiet", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -162,7 +187,7 @@ namespace DietAnalyzer.Data.Migrations
                     b.Property<float?>("CopperPer100g")
                         .HasColumnType("real");
 
-                    b.Property<int?>("DietId")
+                    b.Property<int>("DietId")
                         .HasColumnType("int");
 
                     b.Property<float?>("FatsPer100g")
@@ -170,9 +195,6 @@ namespace DietAnalyzer.Data.Migrations
 
                     b.Property<float?>("FiberPer100g")
                         .HasColumnType("real");
-
-                    b.Property<int?>("FoodItemId")
-                        .HasColumnType("int");
 
                     b.Property<float?>("IronPer100g")
                         .HasColumnType("real");
@@ -243,17 +265,114 @@ namespace DietAnalyzer.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("DietId")
-                        .IsUnique()
-                        .HasFilter("[DietId] IS NOT NULL");
+                        .IsUnique();
 
-                    b.HasIndex("FoodItemId")
-                        .IsUnique()
-                        .HasFilter("[FoodItemId] IS NOT NULL");
-
-                    b.ToTable("NutritionInfos");
+                    b.ToTable("NutritionDiets");
                 });
 
-            modelBuilder.Entity("DietAnalyzer.Models.Domains.RestrictionsInfo", b =>
+            modelBuilder.Entity("DietAnalyzer.Models.Domains.NutritionFood", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<float?>("CalciumPer100g")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("CaloriesPer100g")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("CarbohydratesPer100g")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("CopperPer100g")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("FatsPer100g")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("FiberPer100g")
+                        .HasColumnType("real");
+
+                    b.Property<int>("FoodItemId")
+                        .HasColumnType("int");
+
+                    b.Property<float?>("IronPer100g")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("MagnesiumPer100g")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("ManganesePer100g")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("PhosphorusPer100g")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("PotassiumPer100g")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("ProteinsPer100g")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("SaturatedFatPer100g")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("SeleniumPer100g")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("SodiumPer100g")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("SugarPer100g")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("VitaminAPer100g")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("VitaminB12Per100g")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("VitaminB1Per100g")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("VitaminB2Per100g")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("VitaminB3Per100g")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("VitaminB6Per100g")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("VitaminB9Per100g")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("VitaminCPer100g")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("VitaminDPer100g")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("VitaminEPer100g")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("VitaminKPer100g")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("ZincPer100g")
+                        .HasColumnType("real");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FoodItemId")
+                        .IsUnique();
+
+                    b.ToTable("NutritionFoods");
+                });
+
+            modelBuilder.Entity("DietAnalyzer.Models.Domains.RestrictionFood", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -266,8 +385,53 @@ namespace DietAnalyzer.Data.Migrations
                     b.Property<bool>("Diabetes")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("FoodItemId")
+                    b.Property<int>("FoodItemId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("GlutenIntolerant")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("HeartProblems")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Keto")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("KidneyProblems")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Paleo")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Pescetarian")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Vegan")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Vegetarian")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FoodItemId")
+                        .IsUnique();
+
+                    b.ToTable("RestrictionsFoods");
+                });
+
+            modelBuilder.Entity("DietAnalyzer.Models.Domains.RestrictionUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("DairyIntolerant")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Diabetes")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("GlutenIntolerant")
                         .HasColumnType("bit");
@@ -298,15 +462,11 @@ namespace DietAnalyzer.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FoodItemId")
-                        .IsUnique()
-                        .HasFilter("[FoodItemId] IS NOT NULL");
-
                     b.HasIndex("UserId")
                         .IsUnique()
                         .HasFilter("[UserId] IS NOT NULL");
 
-                    b.ToTable("RestrictionsInfos");
+                    b.ToTable("RestrictionsUsers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -538,7 +698,7 @@ namespace DietAnalyzer.Data.Migrations
                     b.HasOne("DietAnalyzer.Models.Domains.Diet", "Diet")
                         .WithMany("DietItems")
                         .HasForeignKey("DietId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DietAnalyzer.Models.Domains.FoodItem", "FoodItem")
@@ -550,7 +710,7 @@ namespace DietAnalyzer.Data.Migrations
                     b.HasOne("DietAnalyzer.Models.Domains.Measure", "Measure")
                         .WithMany("DietItems")
                         .HasForeignKey("MeasureId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Diet");
@@ -571,7 +731,7 @@ namespace DietAnalyzer.Data.Migrations
                     b.HasOne("DietAnalyzer.Models.Domains.FoodItem", "FoodItem")
                         .WithMany("Recommendations")
                         .HasForeignKey("FoodItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Diet");
@@ -589,6 +749,25 @@ namespace DietAnalyzer.Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("DietAnalyzer.Models.Domains.FoodMeasure", b =>
+                {
+                    b.HasOne("DietAnalyzer.Models.Domains.FoodItem", "FoodItem")
+                        .WithMany("Measures")
+                        .HasForeignKey("FoodItemId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("DietAnalyzer.Models.Domains.Measure", "Measure")
+                        .WithMany("FoodItems")
+                        .HasForeignKey("MeasureId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("FoodItem");
+
+                    b.Navigation("Measure");
+                });
+
             modelBuilder.Entity("DietAnalyzer.Models.Domains.Measure", b =>
                 {
                     b.HasOne("DietAnalyzer.Models.Domains.ApplicationUser", "User")
@@ -599,36 +778,45 @@ namespace DietAnalyzer.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("DietAnalyzer.Models.Domains.NutritionInfo", b =>
+            modelBuilder.Entity("DietAnalyzer.Models.Domains.NutritionDiet", b =>
                 {
                     b.HasOne("DietAnalyzer.Models.Domains.Diet", "Diet")
                         .WithOne("Nutritions")
-                        .HasForeignKey("DietAnalyzer.Models.Domains.NutritionInfo", "DietId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("DietAnalyzer.Models.Domains.FoodItem", "FoodItem")
-                        .WithOne("Nutrition")
-                        .HasForeignKey("DietAnalyzer.Models.Domains.NutritionInfo", "FoodItemId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("DietAnalyzer.Models.Domains.NutritionDiet", "DietId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Diet");
+                });
+
+            modelBuilder.Entity("DietAnalyzer.Models.Domains.NutritionFood", b =>
+                {
+                    b.HasOne("DietAnalyzer.Models.Domains.FoodItem", "FoodItem")
+                        .WithOne("Nutrition")
+                        .HasForeignKey("DietAnalyzer.Models.Domains.NutritionFood", "FoodItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("FoodItem");
                 });
 
-            modelBuilder.Entity("DietAnalyzer.Models.Domains.RestrictionsInfo", b =>
+            modelBuilder.Entity("DietAnalyzer.Models.Domains.RestrictionFood", b =>
                 {
                     b.HasOne("DietAnalyzer.Models.Domains.FoodItem", "FoodItem")
                         .WithOne("Restrictions")
-                        .HasForeignKey("DietAnalyzer.Models.Domains.RestrictionsInfo", "FoodItemId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("DietAnalyzer.Models.Domains.ApplicationUser", "User")
-                        .WithOne("Restrictions")
-                        .HasForeignKey("DietAnalyzer.Models.Domains.RestrictionsInfo", "UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("DietAnalyzer.Models.Domains.RestrictionFood", "FoodItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("FoodItem");
+                });
+
+            modelBuilder.Entity("DietAnalyzer.Models.Domains.RestrictionUser", b =>
+                {
+                    b.HasOne("DietAnalyzer.Models.Domains.ApplicationUser", "User")
+                        .WithOne("Restrictions")
+                        .HasForeignKey("DietAnalyzer.Models.Domains.RestrictionUser", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("User");
                 });
@@ -697,6 +885,8 @@ namespace DietAnalyzer.Data.Migrations
                 {
                     b.Navigation("DietItems");
 
+                    b.Navigation("Measures");
+
                     b.Navigation("Nutrition")
                         .IsRequired();
 
@@ -708,6 +898,8 @@ namespace DietAnalyzer.Data.Migrations
             modelBuilder.Entity("DietAnalyzer.Models.Domains.Measure", b =>
                 {
                     b.Navigation("DietItems");
+
+                    b.Navigation("FoodItems");
                 });
 
             modelBuilder.Entity("DietAnalyzer.Models.Domains.ApplicationUser", b =>
