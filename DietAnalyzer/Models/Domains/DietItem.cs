@@ -11,10 +11,10 @@ namespace DietAnalyzer.Models.Domains
         [Key]
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "This field is required")]
         public float Quantity { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "This field is required")]
         public int MeasureId { get; set; }
         public Measure Measure { get; set; }
 

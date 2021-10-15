@@ -21,7 +21,6 @@ namespace DietAnalyzer.Models.Domains
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }
 
-        [Required]
         public NutritionFood Nutrition { get; set; }
         public RestrictionFood Restrictions { get; set; }
 

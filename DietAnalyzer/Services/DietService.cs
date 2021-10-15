@@ -29,8 +29,8 @@ namespace DietAnalyzer.Services
         public void Add(Diet diet)
         {
             _unitOfWork.Diets.Add(diet);
-            foreach (var dietItem in diet.DietItems) _unitOfWork.DietItems.Add(dietItem);
-            _unitOfWork.NutritionDiets.Add(diet.Nutritions);
+            //foreach (var dietItem in diet.DietItems) _unitOfWork.DietItems.Add(dietItem);
+            //_unitOfWork.NutritionDiets.Add(diet.Nutritions);
             _unitOfWork.Save();
         }
 
@@ -40,7 +40,7 @@ namespace DietAnalyzer.Services
             var currentDietItems = _unitOfWork.DietItems.Get(diet.Id);
             foreach (var dietItem in currentDietItems) _unitOfWork.DietItems.Delete(dietItem);
             foreach (var dietItem in diet.DietItems) _unitOfWork.DietItems.Add(dietItem);
-            _unitOfWork.NutritionDiets.Update(diet.Nutritions);
+            //_unitOfWork.NutritionDiets.Update(diet.Nutritions);
             _unitOfWork.Save();
         }
 

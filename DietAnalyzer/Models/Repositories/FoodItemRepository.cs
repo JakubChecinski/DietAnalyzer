@@ -32,6 +32,7 @@ namespace DietAnalyzer.Models.Repositories
                 .Include(x => x.Nutrition)
                 .Include(x => x.Restrictions)
                 .Include(x => x.Measures)
+                .ThenInclude(m => m.Measure)
                 .Single(x => (x.UserId == userId || x.UserId == null) && x.Id == foodId);
         }
 

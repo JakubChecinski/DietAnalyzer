@@ -1,0 +1,33 @@
+﻿@model DietAnalyzer.Models.ViewModels.DietItemRowViewModel
+@*
+    helper view to dynamically update table in the view
+    see also: https://stackoverflow.com/questions/36317362/how-to-add-an-item-to-a-list-in-a-viewmodel-using-razor-and-net-core
+*@
+
+<tr>
+    <td class="col-sm-1">
+        <input data-val="true" data-val-required="The DietId field is required." id="DietItems_@(Model.Index)__DietId" name="DietItems[@(Model.Index)].DietId" type="hidden" value="@(Model.DietId)">
+        <input data-val="true" data-val-required="The FoodItemId field is required." id="DietItems_@(Model.Index)__FoodItemId" name="DietItems[@(Model.Index)].FoodItemId" type="hidden" value="@(Model.FoodItemId)">
+        <input data-val="true" data-val-maxlength="The field Name must be a string or array type with a maximum length of '50'." data-val-maxlength-max="50" data-val-required="The Name field is required." id="DietItems_@(Model.Index)__FoodItem_Name" name="DietItems[@(Model.Index)].FoodItem.Name" type="hidden" value="@(Model.FoodItemName)">
+        <p class="text-center pt-3">@(Model.FoodItemName)</p>
+    </td>
+    <td class="col-sm-1 ">
+        <input class="numeric-input" data-val="true" data-val-number="The field Quantity must be a number." data-val-required="The Quantity field is required." id="DietItems_@(Model.Index)__Quantity" name="DietItems[@(Model.Index)].Quantity" type="text" value="0.0">
+        <span class="text-danger field-validation-valid" data-valmsg-for="DietItems[@(Model.Index)].Quantity" data-valmsg-replace="true"></span>
+    </td>
+    <td class="col-sm-2 justify-content-sm-start">
+        <select class="form-control" data-val="true" data-val-required="The MeasureId field is required." id="DietItems_@(Model.Index)__MeasureId" name="DietItems[@(Model.Index)].MeasureId">
+            <option value="">-- select unit --</option>
+            @foreach (var measureTuple in @Model.AvailableMeasuresForThisFood)
+            {
+                <option value="@measureTuple.Item1">@measureTuple.Item2</option>
+            }
+        </select>
+    </td>
+    <td class="col-sm-2 offset-1 text-right">
+        <button type="button" class="btn btn-danger tn-sm" onclick="deleteRowUpdateHTML(this, 'DietItems')">
+            Delete position
+        </button>
+    </td>
+    <td class="col-sm-auto"></td>
+</tr>

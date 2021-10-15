@@ -45,6 +45,8 @@ namespace DietAnalyzer.Services
                     }
                     foreach (var foodMeasure in oldMeasure.FoodItems)
                         _unitOfWork.FoodMeasures.Delete(foodMeasure.Id);
+                    foreach (var dietItem in oldMeasure.DietItems)
+                        _unitOfWork.DietItems.Delete(dietItem);
                     _unitOfWork.Measures.Delete(oldMeasure.Id, userId);
                 }
             if (newMeasuresList != null)

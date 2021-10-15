@@ -18,11 +18,7 @@ namespace DietAnalyzer.Models.Repositories
         public IEnumerable<DietItem> Get(int dietId)
         {
             var dietItems = _context.DietItems
-                .Where(x => x.DietId == dietId)
-                .Include(x => x.Measure)
-                .Include(x => x.MeasureId)
-                .Include(x => x.FoodItem)
-                .Include(x => x.FoodItemId);
+                .Where(x => x.DietId == dietId);
             return dietItems.ToList();
         }
         public void Add(DietItem dietItem)

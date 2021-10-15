@@ -1,5 +1,120 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@model DietAnalyzer.Models.ViewModels.DietViewModel
+
+@using (Html.BeginForm("ManageDiet", "Diet", FormMethod.Post, new { id = "mainForm" }))
+{
+    @Html.HiddenFor(x => x.IsAdd)
+    @Html.HiddenFor(x => x.PositionsToDelete)
+    @Html.HiddenFor(x => x.Diet.Id)
+    @Html.HiddenFor(x => x.Diet.UserId)
+    @for (int i = 0; i < Model.AvailableFoods.Count; i++)
+    {
+        @Html.HiddenFor(x => x.AvailableFoods[i].Id)
+        @Html.HiddenFor(x => x.AvailableFoods[i].Name)
+        @Html.HiddenFor(x => x.AvailableFoods[i].Nutrition.Id)
+    }
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="d-flex col-sm-1 justify-content-end">
+            @Html.LabelFor(x => x.Diet.Name):
+        </div>
+        <div class="d-flex col-sm-1 p-sm-0">
+            @Html.TextBoxFor(x => x.Diet.Name, new { @class = "text-input" })
+            <span asp-validation-for="@Model.Diet.Name" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+    <hr />
+    <table id="Table">
+        <tbody>
+            @for (int i = 0; i < Model.DietItems.Count; i++)
+            {
+                <tr>
+                    @Html.HiddenFor(x => Model.DietItems[i].Id)
+                    @Html.HiddenFor(x => Model.DietItems[i].DietId)
+                    @Html.HiddenFor(x => Model.DietItems[i].FoodItemId)
+                    @Html.HiddenFor(x => Model.DietItems[i].FoodItem.Name)
+                    <td class="col-sm-1">
+                        <p class="text-center pt-3">@Model.DietItems[i].FoodItem.Name</p>
+                    </td>
+                    <td class="col-sm-1 ">
+                        @Html.TextBoxFor(x => Model.DietItems[i].Quantity,
+                            new { @class = "numeric-input" })
+                        <span asp-validation-for="@Model.DietItems[i].Quantity"
+                              class="text-danger"></span>
+                    </td>
+                    <td class="col-sm-2 justify-content-sm-start">
+                        @Html.DropDownListFor(x => x.DietItems[i].MeasureId,
+                        new SelectList(Model.AvailableMeasuresForEachFood[i], "Item1", "Item2"),
+                        "-- select unit --",
+                        new { @class = "form-control" })
+                        <span asp-validation-for="@Model.DietItems[i].MeasureId"
+                              class="text-danger"></span>
+                    </td>
+                    <td class="col-sm-2 offset-1 text-right">
+                        <button type="button" class="btn btn-danger tn-sm"
+                                onclick="deleteRowUpdateHTML(this, 'DietItems')">
+                            Delete position
+                        </button>
+                    </td>
+                    <td class="col-sm-auto"></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="row mt-5">
+        <div class="d-flex col-sm-2 offset-1 mt-2">
+            @Html.DropDownListFor(x => x.CurrentFoodId,
+                        new SelectList(Model.AvailableFoods, "Id", "Name"),
+                        "-- select food --",
+                        new { @class = "form-control", @id = "foodDropDown" })
+        </div>
+        <div class="d-flex col-sm-1 mb-2">
+            <button type="button" class="btn btn-primary mt-2"
+                    onclick="addNewRow('AddNewPosition?index=', @Model.Diet.Id)">
+                Add food
+            </button>
+        </div>
+    </div>
+    <br>
+    <hr />
+    <div class="row">
+        <div class="d-flex col-sm-2 justify-content-end">
+            <button type="submit" class="btn btn-primary btn-lg mt-2">
+                Save
+            </button>
+        </div>
+        <div class="d-flex col-sm-1 offset-1 justify-content-end">
+            <button type="button" class="btn btn-primary btn-lg mt-2"
+                    onclick="location.href='@Url.Action("DietList", "Diet")'">
+                Cancel
+            </button>
+        </div>
+    </div>
+}
+
+@section Scripts
+{
+    <script type="text/javascript">
+        function addNewRow(urlString, dietId) {
+            var fDrop = document.getElementById("foodDropDown");
+            if (fDrop.options[fDrop.selectedIndex].text === "-- select food --") return;
+            var foodId = fDrop.options[fDrop.selectedIndex].value;
+            var rowIndex = $("#Table>tbody>tr").length;
+            $.ajax({
+                url: "@Url.Action("AddNewPosition", "Diet")",
+                data: {
+                    index: rowIndex,
+                    dietId: dietId,
+                    foodId: foodId
+                },
+                success: function (data) {
+                    $('#Table > tbody').append(data);
+                },
+                error: function (a, b, c) {
+                    console.log(a, b, c);
+                }
+            });
+        }
+    </script>
 }

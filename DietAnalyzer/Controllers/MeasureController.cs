@@ -51,7 +51,7 @@ namespace DietAnalyzer.Controllers
 
         // helper action to dynamically update measures table in the view
         // see also: https://stackoverflow.com/questions/36317362/how-to-add-an-item-to-a-list-in-a-viewmodel-using-razor-and-net-core
-        public ActionResult AddNewUnit(int index, MeasureViewModel vm)
+        public ActionResult AddNewUnit(int index)
         {
             return PartialView("_NewUnitRow", index);
         }

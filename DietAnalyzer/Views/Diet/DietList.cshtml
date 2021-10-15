@@ -1,5 +1,72 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@model DietAnalyzer.Models.ViewModels.DietListViewModel
+
+<table id="dietsTable">
+    <thead></thead>
+    <tbody>
+        @if (Model.Diets != null && Model.Diets.Any())
+        {
+            foreach (var diet in Model.Diets)
+            {
+                <tr class="d-flex pt-2 ml-5">
+                    <td style="width:200px;">
+                        <a href="@Url.Action("ManageDiet", "Diet",
+                                    new { id = diet.Id })"
+                           class="font-weight-bold">
+                            @diet.Name
+                        </a>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger btn-sm"
+                                onclick="deleteDiet('@diet.Id', this)">
+                            Delete diet
+                        </button>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td class="text-center" colspan="5">
+                    There are currently no diets in the database.
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<br />
+<button class="btn btn-primary btn-lg"
+        onclick="location.href='@Url.Action("ManageDiet", "Diet", new { id = 0 })'">
+    Add new diet
+</button>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        function deleteDiet(id, btn) {
+            if (!confirm("Are you sure you want to delete this position?")) return;
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Delete", "Diet")",
+                data: {
+                    id: id
+                },
+
+                dataType: "json",
+                success: function (result) {
+                    if (result.success) {
+                        var row = btn.parentNode.parentNode;
+                        row.parentNode.removeChild(row);
+                    }
+                    else {
+                        alert(result.message);
+                    }
+                },
+                error: function(result) {
+                    alert(result.message);
+                }
+            });
+        }
+    </script>
 }
