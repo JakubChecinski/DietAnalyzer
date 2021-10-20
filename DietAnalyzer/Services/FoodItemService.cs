@@ -16,8 +16,13 @@ namespace DietAnalyzer.Services
             _unitOfWork = unitOfWork;
         }
 
-        public IEnumerable<FoodItem> Get(string userId)
+        public IEnumerable<FoodItem> Get(string userId, bool suitableOnly = false)
         {
+            if (suitableOnly)
+            {
+                var userRestrictions = _unitOfWork.RestrictionUsers.Get(userId);
+                return _unitOfWork.Foods.Get(userId, userRestrictions);
+            }
             return _unitOfWork.Foods.Get(userId);
         }
 
@@ -48,8 +53,6 @@ namespace DietAnalyzer.Services
             var foodToDelete = _unitOfWork.Foods.Get(userId, foodId);
             foreach (var foodMeasure in foodToDelete.Measures)
                 _unitOfWork.FoodMeasures.Delete(foodMeasure.Id);
-            foreach (var recommendation in foodToDelete.Recommendations)
-                _unitOfWork.Recommendations.Delete(recommendation.Id);
             _unitOfWork.Foods.Delete(foodId, userId);
             _unitOfWork.Save();
         }

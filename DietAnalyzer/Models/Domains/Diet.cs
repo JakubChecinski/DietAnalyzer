@@ -22,13 +22,12 @@ namespace DietAnalyzer.Models.Domains
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }
 
-        public ICollection<DietItem> DietItems { get; set; }
-        public ICollection<FoodDietRecommendation> Recommendations { get; set; }
+        public ICollection<DietItem> DietItems { get; set; }      
         public NutritionDiet Nutritions { get; set; }
+        public ICollection<EvaluationResult> Summary { get; set; }
         public Diet()
         {
             DietItems = new Collection<DietItem>();
-            Recommendations = new Collection<FoodDietRecommendation>();
         }
     }
 }

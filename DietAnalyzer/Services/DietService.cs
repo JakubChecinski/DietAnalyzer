@@ -26,29 +26,31 @@ namespace DietAnalyzer.Services
             return _unitOfWork.Diets.Get(userId, dietId);
         }
 
+        public Diet GetWithDietItemChildren(string userId, int dietId)
+        {
+            return _unitOfWork.Diets.GetWithDietItemChildren(userId, dietId);
+        }
+
         public void Add(Diet diet)
         {
             _unitOfWork.Diets.Add(diet);
-            //foreach (var dietItem in diet.DietItems) _unitOfWork.DietItems.Add(dietItem);
-            //_unitOfWork.NutritionDiets.Add(diet.Nutritions);
             _unitOfWork.Save();
         }
 
-        public void Update(Diet diet, string userId)
+        public void Update(Diet diet, string userId, bool updateItems = true)
         {
             _unitOfWork.Diets.Update(diet, userId);
-            var currentDietItems = _unitOfWork.DietItems.Get(diet.Id);
-            foreach (var dietItem in currentDietItems) _unitOfWork.DietItems.Delete(dietItem);
-            foreach (var dietItem in diet.DietItems) _unitOfWork.DietItems.Add(dietItem);
-            //_unitOfWork.NutritionDiets.Update(diet.Nutritions);
+            if(updateItems)
+            {
+                var currentDietItems = _unitOfWork.DietItems.Get(diet.Id);
+                foreach (var dietItem in currentDietItems) _unitOfWork.DietItems.Delete(dietItem);
+                foreach (var dietItem in diet.DietItems) _unitOfWork.DietItems.Add(dietItem);
+            }
             _unitOfWork.Save();
         }
 
         public void Delete(int dietId, string userId)
         {
-            var dietToDelete = _unitOfWork.Diets.Get(userId, dietId);
-            foreach (var recommendation in dietToDelete.Recommendations)
-                _unitOfWork.Recommendations.Delete(recommendation.Id);
             _unitOfWork.Diets.Delete(dietId, userId);
             _unitOfWork.Save();
         }

@@ -65,6 +65,24 @@ hr {
     border-style: solid;
 }
 
+.evaluationResultCss {
+    font-size: small;
+    line-height: 1.2;
+}
+
+.text-red {
+    color: #ff0000 !important;
+}
+
+.text-green {
+    color: #008000 !important;
+}
+
+.evaluationRow {
+    border: 1px solid #000 !important;
+    min-height: 30px;
+}
+
 
 .privacyPolicyInfo {
     font-size: 10px;

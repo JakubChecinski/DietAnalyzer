@@ -16,6 +16,12 @@
                         </a>
                     </td>
                     <td>
+                        <button class="btn btn-primary btn-sm"
+                                onclick="evaluateDiet('@diet.Id')">
+                            Evaluate
+                        </button>
+                    </td>
+                    <td style="margin-left: 100px;">
                         <button class="btn btn-danger btn-sm"
                                 onclick="deleteDiet('@diet.Id', this)">
                             Delete diet
@@ -35,11 +41,14 @@
     </tbody>
 </table>
 <br />
-<br />
-<button class="btn btn-primary btn-lg"
+<button class="btn btn-outline-primary btn-lg"
         onclick="location.href='@Url.Action("ManageDiet", "Diet", new { id = 0 })'">
     Add new diet
 </button>
+<br />
+<br />
+<br />
+<div id="evaluationResults" class="container m-0 evaluationResultCss"></div>
 
 @section Scripts
 {
@@ -52,7 +61,6 @@
                 data: {
                     id: id
                 },
-
                 dataType: "json",
                 success: function (result) {
                     if (result.success) {
@@ -63,8 +71,26 @@
                         alert(result.message);
                     }
                 },
-                error: function(result) {
+                error: function (result) {
                     alert(result.message);
+                }
+            });
+        }
+
+        function evaluateDiet(id) {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Evaluate", "Diet")",
+                data: {
+                    id: id
+                },
+                dataType: "html",
+                success: function (result) {
+                    $("#evaluationResults").html(result);
+                },
+                error: function(result) {
+                    console.log(result);
+                    console.log(result.message);
                 }
             });
         }

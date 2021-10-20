@@ -4,14 +4,16 @@ using DietAnalyzer.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DietAnalyzer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211016131805_ReplaceFoodDietRecommendationWithString")]
+    partial class ReplaceFoodDietRecommendationWithString
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,6 +32,9 @@ namespace DietAnalyzer.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Recommendations")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -70,38 +75,6 @@ namespace DietAnalyzer.Migrations
                     b.HasIndex("MeasureId");
 
                     b.ToTable("DietItems");
-                });
-
-            modelBuilder.Entity("DietAnalyzer.Models.Domains.EvaluationResult", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("DietId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Level")
-                        .HasColumnType("int");
-
-                    b.Property<string>("NutrientName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Suggestions")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Unit")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<float?>("Value")
-                        .HasColumnType("real");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DietId");
-
-                    b.ToTable("EvaluationResults");
                 });
 
             modelBuilder.Entity("DietAnalyzer.Models.Domains.FoodItem", b =>
@@ -728,13 +701,6 @@ namespace DietAnalyzer.Migrations
                     b.Navigation("Measure");
                 });
 
-            modelBuilder.Entity("DietAnalyzer.Models.Domains.EvaluationResult", b =>
-                {
-                    b.HasOne("DietAnalyzer.Models.Domains.Diet", null)
-                        .WithMany("Summary")
-                        .HasForeignKey("DietId");
-                });
-
             modelBuilder.Entity("DietAnalyzer.Models.Domains.FoodItem", b =>
                 {
                     b.HasOne("DietAnalyzer.Models.Domains.ApplicationUser", "User")
@@ -873,8 +839,6 @@ namespace DietAnalyzer.Migrations
                     b.Navigation("DietItems");
 
                     b.Navigation("Nutritions");
-
-                    b.Navigation("Summary");
                 });
 
             modelBuilder.Entity("DietAnalyzer.Models.Domains.FoodItem", b =>

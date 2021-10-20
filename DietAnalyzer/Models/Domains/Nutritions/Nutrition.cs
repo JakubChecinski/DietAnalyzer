@@ -8,7 +8,7 @@ using DietAnalyzer.Models.DataAttributes;
 
 namespace DietAnalyzer.Models.Domains
 {
-    public abstract class NutritionInfo
+    public abstract class Nutrition
     { 
         [Display(Name = "Calories:")]
         [Range(0.0, float.MaxValue, ErrorMessage = "The value must be positive")]

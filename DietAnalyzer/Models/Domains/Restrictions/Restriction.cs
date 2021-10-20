@@ -28,7 +28,7 @@ namespace DietAnalyzer.Models.Domains
     /// IF Person.Vegetarian is TRUE, then Product.Vegetarian must also be TRUE
     /// IF Person.Vegetarian is FALSE, then Product.Vegetarian does not matter
 
-    public class RestrictionsInfo
+    public class Restriction
     {
 
         [DefaultValue(true)]

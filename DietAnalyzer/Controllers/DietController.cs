@@ -2,6 +2,7 @@
 using DietAnalyzer.Models.Extensions;
 using DietAnalyzer.Models.ViewModels;
 using DietAnalyzer.Services;
+using DietAnalyzer.Services.Utilities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -17,12 +18,14 @@ namespace DietAnalyzer.Controllers
         private readonly ILogger<DietController> _logger;
         private IDietService _service;
         private IFoodItemService _foodService;
+        private IEvaluationService _evaluationService;
         public DietController(ILogger<DietController> logger, 
-            IDietService service, IFoodItemService foodService)
+            IDietService service, IFoodItemService foodService, IEvaluationService evaluationService)
         {
             _logger = logger;
             _service = service;
             _foodService = foodService;
+            _evaluationService = evaluationService;
         }
 
         // actions for the entire diet list
@@ -82,7 +85,7 @@ namespace DietAnalyzer.Controllers
                 IsAdd = id == 0,
                 Diet = dietToManage,
                 DietItems = dietToManage.DietItems.ToList(),
-                AvailableFoods = _foodService.Get(userId).ToList(),
+                AvailableFoods = _foodService.Get(userId, true).ToList(),
                 AvailableMeasuresForEachFood = PrepareAvailableMeasures(dietToManage.DietItems),
                 CurrentFoodId = 0,
             };
@@ -145,6 +148,16 @@ namespace DietAnalyzer.Controllers
                 AvailableMeasuresForThisFood = PrepareAvailableMeasuresForFood(foodId),
             };
             return PartialView("_NewDietItemRow", vm);
+        }
+
+        public ActionResult Evaluate(int id)
+        {
+            var userId = User.GetUserId();
+            var dietToEvaluate = _service.GetWithDietItemChildren(userId, id);
+            dietToEvaluate.Nutritions = _evaluationService.GetNutritions(dietToEvaluate);
+            dietToEvaluate.Summary = _evaluationService.GetSummary(dietToEvaluate);
+            _service.Update(dietToEvaluate, userId, false);
+            return PartialView("_DietSummary", dietToEvaluate);
         }
 
     }

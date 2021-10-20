@@ -1,5 +1,6 @@
 using DietAnalyzer.Data;
 using DietAnalyzer.Services;
+using DietAnalyzer.Services.Utilities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -34,6 +35,7 @@ namespace DietAnalyzer
             services.AddScoped<IFoodItemService, FoodItemService>();
             services.AddScoped<IMeasureService, MeasureService>();
             services.AddScoped<IRestrictionService, RestrictionService>();
+            services.AddScoped<IEvaluationService, EvaluationService>();
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(

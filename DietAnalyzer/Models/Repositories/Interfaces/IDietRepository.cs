@@ -11,6 +11,7 @@ namespace DietAnalyzer.Models.Repositories
     {
         IEnumerable<Diet> Get(string userId);
         Diet Get(string userId, int dietId);
+        Diet GetWithDietItemChildren(string userId, int dietId);
         void Add(Diet diet);
         void Update(Diet diet, string userId);
         void Delete(int dietId, string userId);

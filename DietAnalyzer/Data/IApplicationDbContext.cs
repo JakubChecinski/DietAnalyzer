@@ -12,8 +12,8 @@ namespace DietAnalyzer.Data
         DbSet<ApplicationUser> ApplicationUsers { get; set; }
         DbSet<Diet> Diets { get; set; }
         DbSet<DietItem> DietItems { get; set; }
+        DbSet<EvaluationResult> EvaluationResults { get; set; }
         DbSet<FoodItem> FoodItems { get; set; }
-        DbSet<FoodDietRecommendation> FoodDietRecommendations { get; set; }
         DbSet<Measure> Measures { get; set; }
         DbSet<FoodMeasure> FoodMeasures { get; set; }
         DbSet<NutritionFood> NutritionFoods { get; set; }

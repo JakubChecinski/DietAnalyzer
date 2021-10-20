@@ -12,7 +12,6 @@ namespace DietAnalyzer.Data
         public IDietRepository Diets { get; }
         public IDietItemRepository DietItems { get; }
         public IFoodItemRepository Foods { get; }
-        public IFoodDietRecommendationRepository Recommendations { get; }
         public IMeasureRepository Measures { get; }
         public IFoodMeasureRepository FoodMeasures { get; }
         public INutritionDietRepository NutritionDiets { get; }
@@ -25,7 +24,6 @@ namespace DietAnalyzer.Data
             Diets = new DietRepository(context);
             DietItems = new DietItemRepository(context);
             Foods = new FoodItemRepository(context);
-            Recommendations = new FoodDietRecommendationRepository(context);
             Measures = new MeasureRepository(context);
             FoodMeasures = new FoodMeasureRepository(context);
             NutritionDiets = new NutritionDietRepository(context);

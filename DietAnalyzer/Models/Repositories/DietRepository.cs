@@ -21,7 +21,6 @@ namespace DietAnalyzer.Models.Repositories
         {
             var diets = _context.Diets
                 .Where(x => x.UserId == userId)
-                .Include(x => x.Recommendations)
                 .Include(x => x.DietItems)
                 .Include(x => x.Nutritions);
             return diets.ToList();
@@ -31,8 +30,19 @@ namespace DietAnalyzer.Models.Repositories
         {
             return _context.Diets
                 .Include(x => x.DietItems)
-                .Include(x => x.Recommendations)
                 .Include(x => x.Nutritions)
+                .Single(x => x.UserId == userId && x.Id == dietId);
+        }
+
+        public Diet GetWithDietItemChildren(string userId, int dietId)
+        {
+            return _context.Diets
+                .Include(x => x.Nutritions)
+                .Include(x => x.DietItems)
+                .ThenInclude(y => y.FoodItem)
+                .ThenInclude(z => z.Nutrition)
+                .Include(x => x.DietItems)
+                .ThenInclude(y => y.Measure)
                 .Single(x => x.UserId == userId && x.Id == dietId);
         }
 

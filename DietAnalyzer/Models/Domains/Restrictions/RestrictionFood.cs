@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DietAnalyzer.Models.Domains
 {
-    public class RestrictionFood : RestrictionsInfo
+    public class RestrictionFood : Restriction
     {
         [Key]
         public int Id { get; set; }

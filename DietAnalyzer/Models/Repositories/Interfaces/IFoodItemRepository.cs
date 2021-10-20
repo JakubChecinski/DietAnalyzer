@@ -10,6 +10,7 @@ namespace DietAnalyzer.Models.Repositories
     public interface IFoodItemRepository
     {
         IEnumerable<FoodItem> Get(string userId);
+        IEnumerable<FoodItem> Get(string userId, RestrictionUser restrictions);
         FoodItem Get(string userId, int foodId);
         void Add(FoodItem food);
         void Update(FoodItem food, string userId);

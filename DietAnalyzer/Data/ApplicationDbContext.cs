@@ -17,8 +17,8 @@ namespace DietAnalyzer.Data
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Diet> Diets { get; set; }
         public DbSet<DietItem> DietItems { get; set; }
+        public DbSet<EvaluationResult> EvaluationResults { get; set; }
         public DbSet<FoodItem> FoodItems { get; set; }
-        public DbSet<FoodDietRecommendation> FoodDietRecommendations { get; set; }
         public DbSet<Measure> Measures { get; set; }
         public DbSet<FoodMeasure> FoodMeasures { get; set; }
         public DbSet<NutritionFood> NutritionFoods { get; set; }
@@ -72,15 +72,6 @@ namespace DietAnalyzer.Data
                 .HasOne(x => x.Nutrition)
                 .WithOne(x => x.FoodItem)
                 .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<FoodDietRecommendation>()
-                .HasOne(x => x.FoodItem)
-                .WithMany(x => x.Recommendations)
-                .OnDelete(DeleteBehavior.Restrict);
-            modelBuilder.Entity<FoodDietRecommendation>()
-                .HasOne(x => x.Diet)
-                .WithMany(x => x.Recommendations)
-                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<FoodMeasure>()
                 .HasOne(x => x.Measure)

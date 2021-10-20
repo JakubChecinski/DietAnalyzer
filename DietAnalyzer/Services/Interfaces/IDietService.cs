@@ -11,8 +11,9 @@ namespace DietAnalyzer.Services
     {
         IEnumerable<Diet> Get(string userId);
         Diet Get(string userId, int dietId);
+        Diet GetWithDietItemChildren(string userId, int dietId);
         void Add(Diet diet);
-        void Update(Diet diet, string userId);
+        void Update(Diet diet, string userId, bool updateItems = true);
         void Delete(int dietId, string userId);
     }
 }

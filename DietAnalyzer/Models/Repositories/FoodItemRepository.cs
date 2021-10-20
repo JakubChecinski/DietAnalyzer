@@ -25,6 +25,25 @@ namespace DietAnalyzer.Models.Repositories
                 .Include(x => x.Measures);
             return foods.ToList();
         }
+        public IEnumerable<FoodItem> Get(string userId, RestrictionUser restrictions)
+        {
+            var foods = _context.FoodItems
+                .Where(x => x.UserId == userId || x.UserId == null)
+                .Where(x => !restrictions.Pescetarian || x.Restrictions.Pescetarian)
+                .Where(x => !restrictions.Vegetarian || x.Restrictions.Vegetarian)
+                .Where(x => !restrictions.DairyIntolerant || x.Restrictions.DairyIntolerant)
+                .Where(x => !restrictions.Vegan || x.Restrictions.Vegan)
+                .Where(x => !restrictions.GlutenIntolerant || x.Restrictions.GlutenIntolerant)
+                .Where(x => !restrictions.Paleo || x.Restrictions.Paleo)
+                .Where(x => !restrictions.Keto || x.Restrictions.Keto)
+                .Where(x => !restrictions.Diabetes || x.Restrictions.Diabetes)
+                .Where(x => !restrictions.HeartProblems || x.Restrictions.HeartProblems)
+                .Where(x => !restrictions.KidneyProblems || x.Restrictions.KidneyProblems)
+                .Include(x => x.Nutrition)
+                .Include(x => x.Restrictions)
+                .Include(x => x.Measures);
+            return foods.ToList();
+        }
 
         public FoodItem Get(string userId, int foodId)
         {
