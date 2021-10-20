@@ -13,7 +13,7 @@
                     @evaluation.NutrientName
                 </div>
                 <div class="d-flex col-sm-1 justify-content-center my-auto">
-                    @evaluation.Value @evaluation.Unit
+                    @String.Format("{0:0.#}", evaluation.Value) @evaluation.Unit
                 </div>
                 <div class="d-flex col-sm-9 justify-content-start my-auto">
                     @evaluation.Suggestions
@@ -24,7 +24,7 @@
                     @evaluation.NutrientName
                 </div>
                 <div class="d-flex col-sm-1 justify-content-center my-auto text-green">
-                    @evaluation.Value @evaluation.Unit
+                    @String.Format("{0:0.#}", evaluation.Value) @evaluation.Unit
                 </div>
                 <div class="d-flex col-sm-9 justify-content-start my-auto text-green">
                     @evaluation.Suggestions
@@ -35,7 +35,7 @@
                     @evaluation.NutrientName
                 </div>
                 <div class="d-flex col-sm-1 justify-content-center my-auto text-red">
-                    @evaluation.Value @evaluation.Unit
+                    @String.Format("{0:0.#}", evaluation.Value) @evaluation.Unit
                 </div>
                 <div class="d-flex col-sm-9 justify-content-start my-auto text-red">
                     @evaluation.Suggestions

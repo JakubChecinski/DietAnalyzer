@@ -15,9 +15,6 @@
 // there probably exists a better way to do that... I'm just not very good at JS
 function deleteRowUpdateHTML(button, stringCode) {
     var row = button.parentNode.parentNode;
-    var rowIndex = row.rowIndex;
-    document.getElementById("PositionsToDelete").value =
-        document.getElementById("PositionsToDelete").value.concat(row.rowIndex, ",");
     row.remove();
     var table = document.getElementById("Table");
     for (var i = 0, tableRow; tableRow = table.rows[i]; i++) {
@@ -29,8 +26,10 @@ function incrementStringPartsAfterCode(code, str, rowIndex) {
     var regex = new RegExp(code , "g"), result, indices = [];
     while ((result = regex.exec(str))) {
         indices.push(result.index);
+        console.log(result.input.substring(result.index, result.index+10));
     }
-    for (var i = 0; i < indices.length; i++) {
+    // -1 because the last index is for delete button
+    for (var i = 0; i < indices.length - 1; i++) {
         if (indices[i] < str.length - code.length - 1) {
             str = replaceAt(str, indices[i] + code.length + 1, rowIndex);
         }
