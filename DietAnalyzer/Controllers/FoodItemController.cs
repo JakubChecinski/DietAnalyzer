@@ -32,7 +32,7 @@ namespace DietAnalyzer.Controllers
         public IActionResult FoodList()
         {
             var userId = User.GetUserId();
-            var currentFoods = _service.Get(userId);
+            var currentFoods = _service.GetCustom(userId);
             var vm = new FoodListViewModel
             {
                 Foods = currentFoods,

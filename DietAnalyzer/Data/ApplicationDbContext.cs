@@ -82,6 +82,8 @@ namespace DietAnalyzer.Data
                 .WithMany(x => x.Measures)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            DataSeeder.Seed(modelBuilder);
+
         }
 
     }

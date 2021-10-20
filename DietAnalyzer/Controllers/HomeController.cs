@@ -19,7 +19,7 @@ namespace DietAnalyzer.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("DietList", "Diet");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

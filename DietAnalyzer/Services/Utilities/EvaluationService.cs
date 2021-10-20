@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System;
 
 namespace DietAnalyzer.Services.Utilities
 {
@@ -105,8 +106,8 @@ namespace DietAnalyzer.Services.Utilities
                 Value = diet.Nutritions.CarbohydratesPer100g,
                 Unit = "grams",
                 Suggestions = "Your percentage of calories coming from carbohydrates is " +
-                (diet.Nutritions.CarbohydratesPer100g / diet.Nutritions.CarbohydratesPer100g +
-                    diet.Nutritions.ProteinsPer100g + diet.Nutritions.FatsPer100g * CarbProtToFatCalorieRatio).ToString() +
+                String.Format("{0:0.#}", 100.0 * diet.Nutritions.CarbohydratesPer100g / (diet.Nutritions.CarbohydratesPer100g +
+                    diet.Nutritions.ProteinsPer100g + diet.Nutritions.FatsPer100g * CarbProtToFatCalorieRatio)) +
                 "%. The commonly recommended range is 45-65%, but some diets may require a percentage " +
                 "that is much lower or slightly higher."
             });
@@ -136,8 +137,8 @@ namespace DietAnalyzer.Services.Utilities
                 Value = diet.Nutritions.FatsPer100g,
                 Unit = "grams",
                 Suggestions = "Your percentage of calories coming from fat is " +
-                (CarbProtToFatCalorieRatio *diet.Nutritions.FatsPer100g / diet.Nutritions.CarbohydratesPer100g +
-                    diet.Nutritions.ProteinsPer100g + diet.Nutritions.FatsPer100g * CarbProtToFatCalorieRatio).ToString() +
+                String.Format("{0:0.#}", 100.0 * CarbProtToFatCalorieRatio * diet.Nutritions.FatsPer100g / (diet.Nutritions.CarbohydratesPer100g +
+                    diet.Nutritions.ProteinsPer100g + diet.Nutritions.FatsPer100g * CarbProtToFatCalorieRatio)) +
                 "%. The commonly recommended range is 20-35%, but some diets may require a percentage " +
                 "that is slightly lower or much higher."
             });
@@ -148,8 +149,8 @@ namespace DietAnalyzer.Services.Utilities
                 Value = diet.Nutritions.SaturatedFatPer100g,
                 Unit = "grams",
                 Suggestions = "Your percentage of calories coming from saturated fat is " +
-                (CarbProtToFatCalorieRatio * diet.Nutritions.SaturatedFatPer100g / diet.Nutritions.CarbohydratesPer100g +
-                    diet.Nutritions.ProteinsPer100g + diet.Nutritions.FatsPer100g * CarbProtToFatCalorieRatio).ToString() +
+                String.Format("{0:0.#}", 100.0 * CarbProtToFatCalorieRatio * diet.Nutritions.SaturatedFatPer100g / (diet.Nutritions.CarbohydratesPer100g +
+                    diet.Nutritions.ProteinsPer100g + diet.Nutritions.FatsPer100g * CarbProtToFatCalorieRatio)) +
                 "%. The most commonly found recommendation is no more than 10%, but some diets set a limit that is " +
                 "significantly lower or significantly higher."
             });
@@ -160,8 +161,8 @@ namespace DietAnalyzer.Services.Utilities
                 Value = diet.Nutritions.ProteinsPer100g,
                 Unit = "grams",
                 Suggestions = "Your percentage of calories coming from proteins is " +
-                (diet.Nutritions.ProteinsPer100g / diet.Nutritions.CarbohydratesPer100g +
-                    diet.Nutritions.ProteinsPer100g + diet.Nutritions.FatsPer100g * CarbProtToFatCalorieRatio).ToString() +
+                String.Format("{0:0.#}", 100.0 * diet.Nutritions.ProteinsPer100g / (diet.Nutritions.CarbohydratesPer100g +
+                    diet.Nutritions.ProteinsPer100g + diet.Nutritions.FatsPer100g * CarbProtToFatCalorieRatio)) +
                 "%. The recommended range is 10-35%, which tends to be agreed upon " +
                 "by a wide range of different diets."
             });

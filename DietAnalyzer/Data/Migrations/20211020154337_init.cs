@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DietAnalyzer.Migrations
 {
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -244,6 +244,30 @@ namespace DietAnalyzer.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "EvaluationResults",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NutrientName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Level = table.Column<int>(type: "int", nullable: false),
+                    Value = table.Column<float>(type: "real", nullable: true),
+                    Unit = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Suggestions = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DietId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EvaluationResults", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EvaluationResults_Diets_DietId",
+                        column: x => x.DietId,
+                        principalTable: "Diets",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "NutritionDiets",
                 columns: table => new
                 {
@@ -288,32 +312,6 @@ namespace DietAnalyzer.Migrations
                         principalTable: "Diets",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "FoodDietRecommendations",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FoodItemId = table.Column<int>(type: "int", nullable: false),
-                    DietId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FoodDietRecommendations", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_FoodDietRecommendations_Diets_DietId",
-                        column: x => x.DietId,
-                        principalTable: "Diets",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_FoodDietRecommendations_FoodItems_FoodItemId",
-                        column: x => x.FoodItemId,
-                        principalTable: "FoodItems",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -453,6 +451,80 @@ namespace DietAnalyzer.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.InsertData(
+                table: "FoodItems",
+                columns: new[] { "Id", "Name", "UserId" },
+                values: new object[,]
+                {
+                    { 1, "spinach", null },
+                    { 2, "bananas", null },
+                    { 3, "eggs", null },
+                    { 4, "yogurt", null },
+                    { 5, "chicken breast", null },
+                    { 6, "salmon", null },
+                    { 7, "bread (rye)", null },
+                    { 8, "potatoes", null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Measures",
+                columns: new[] { "Id", "Grams", "Name", "UserId" },
+                values: new object[,]
+                {
+                    { 1, 1f, "grams", null },
+                    { 2, 135f, "large bananas", null },
+                    { 3, 50f, "large eggs", null },
+                    { 4, 35f, "slices", null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "FoodMeasures",
+                columns: new[] { "Id", "FoodItemId", "IsCurrentlyLinked", "MeasureId" },
+                values: new object[,]
+                {
+                    { 31, 7, true, 4 },
+                    { 10, 2, true, 2 },
+                    { 8, 8, true, 1 },
+                    { 7, 7, true, 1 },
+                    { 6, 6, true, 1 },
+                    { 5, 5, true, 1 },
+                    { 4, 4, true, 1 },
+                    { 3, 3, true, 1 },
+                    { 2, 2, true, 1 },
+                    { 1, 1, true, 1 },
+                    { 19, 3, true, 3 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "NutritionFoods",
+                columns: new[] { "Id", "CalciumPer100g", "CaloriesPer100g", "CarbohydratesPer100g", "CopperPer100g", "FatsPer100g", "FiberPer100g", "FoodItemId", "IronPer100g", "MagnesiumPer100g", "ManganesePer100g", "PhosphorusPer100g", "PotassiumPer100g", "ProteinsPer100g", "SaturatedFatPer100g", "SeleniumPer100g", "SodiumPer100g", "SugarPer100g", "VitaminAPer100g", "VitaminB12Per100g", "VitaminB1Per100g", "VitaminB2Per100g", "VitaminB3Per100g", "VitaminB6Per100g", "VitaminB9Per100g", "VitaminCPer100g", "VitaminDPer100g", "VitaminEPer100g", "VitaminKPer100g", "ZincPer100g" },
+                values: new object[,]
+                {
+                    { 8, 1f, 86f, 20f, 8f, 0.1f, 1.8f, 8, 2f, 5f, 7f, 4f, 9f, 1.7f, 0f, 0f, 0f, 0.9f, 0f, 0f, 7f, 1f, 7f, 13f, 2f, 12f, 0f, 0f, 3f, 2f },
+                    { 1, 3f, 23f, 3.6f, 2f, 0.4f, 2.2f, 1, 5f, 6f, 13f, 1f, 5f, 2.9f, 0.1f, 0f, 3f, 0.4f, 188f, 0f, 5f, 11f, 4f, 10f, 49f, 47f, 0f, 10f, 604f, 1f },
+                    { 6, 1f, 206f, 0f, 2f, 12.3f, 0f, 6, 2f, 8f, 1f, 25f, 11f, 22.1f, 2.5f, 59f, 3f, 0f, 1f, 47f, 23f, 8f, 40f, 32f, 8f, 6f, 0f, 0f, 0f, 3f },
+                    { 5, 1f, 79f, 0.2f, 2f, 0.4f, 0f, 5, 2f, 2f, 2f, 6f, 2f, 16.8f, 0.1f, 11f, 45f, 0.1f, 0f, 1f, 1f, 2f, 17f, 8f, 0f, 0f, 0f, 0f, 0f, 2f },
+                    { 4, 12f, 61f, 4.7f, 0f, 3.3f, 0f, 4, 0f, 3f, 0f, 9f, 4f, 3.5f, 2.1f, 3f, 2f, 4.7f, 2f, 6f, 2f, 8f, 0f, 2f, 2f, 1f, 0f, 0f, 0f, 4f },
+                    { 3, 5f, 155f, 1.1f, 1f, 10.6f, 0f, 3, 7f, 2f, 1f, 17f, 4f, 12.6f, 3.3f, 44f, 5f, 1.1f, 12f, 19f, 4f, 30f, 0f, 6f, 11f, 0f, 0f, 5f, 0f, 7f },
+                    { 2, 1f, 89f, 22.8f, 4f, 0.3f, 2.6f, 2, 1f, 7f, 13f, 2f, 10f, 1.1f, 0.1f, 1f, 0f, 12.2f, 1f, 0f, 2f, 4f, 3f, 18f, 5f, 15f, 0f, 1f, 1f, 1f },
+                    { 7, 7f, 258f, 48.3f, 9f, 3.3f, 5.8f, 7, 16f, 10f, 41f, 12f, 5f, 8.5f, 0.6f, 44f, 27f, 3.8f, 0f, 0f, 29f, 20f, 19f, 4f, 27f, 1f, 0f, 2f, 1f, 8f }
+                });
+
+            migrationBuilder.InsertData(
+                table: "RestrictionsFoods",
+                columns: new[] { "Id", "DairyIntolerant", "Diabetes", "FoodItemId", "GlutenIntolerant", "HeartProblems", "Keto", "KidneyProblems", "Paleo", "Pescetarian", "Vegan", "Vegetarian" },
+                values: new object[,]
+                {
+                    { 6, true, true, 6, true, true, true, true, true, true, false, false },
+                    { 8, true, false, 8, true, true, false, false, false, true, true, true },
+                    { 5, false, true, 5, true, true, true, true, true, false, false, false },
+                    { 4, false, true, 4, true, true, true, true, false, true, false, true },
+                    { 3, true, true, 3, true, false, true, true, true, true, false, true },
+                    { 2, true, true, 2, true, true, false, false, true, true, true, true },
+                    { 1, true, true, 1, true, true, true, false, true, true, true, true },
+                    { 7, true, true, 7, false, true, false, false, false, true, true, true }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -513,14 +585,9 @@ namespace DietAnalyzer.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FoodDietRecommendations_DietId",
-                table: "FoodDietRecommendations",
+                name: "IX_EvaluationResults_DietId",
+                table: "EvaluationResults",
                 column: "DietId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_FoodDietRecommendations_FoodItemId",
-                table: "FoodDietRecommendations",
-                column: "FoodItemId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_FoodItems_UserId",
@@ -589,7 +656,7 @@ namespace DietAnalyzer.Migrations
                 name: "DietItems");
 
             migrationBuilder.DropTable(
-                name: "FoodDietRecommendations");
+                name: "EvaluationResults");
 
             migrationBuilder.DropTable(
                 name: "FoodMeasures");

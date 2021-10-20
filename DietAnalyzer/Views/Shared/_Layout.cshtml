@@ -15,11 +15,6 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
             <div class="container">
-                <ul class="navbar-nav nav-pills ml-0">
-                    <li class="nav-item">
-                        <a class="nav-link active mx-1 px-3 text-dark font-weight-bold" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                </ul>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -29,13 +24,13 @@
                         @if (SignInManager.IsSignedIn(User))
                         {
                             <li class="nav-item">
-                                <a class="nav-link active mx-1 px-3 text-dark" asp-area="" asp-controller="Diet" asp-action="DietList">Manage Diets</a>
+                                <a class="nav-link active mx-1 px-3 text-dark" asp-area="" asp-controller="Diet" asp-action="DietList">My Diets</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active mx-1 px-3 text-dark" asp-area="" asp-controller="FoodItem" asp-action="FoodList">Manage Foods</a>
+                                <a class="nav-link active mx-1 px-3 text-dark" asp-area="" asp-controller="FoodItem" asp-action="FoodList">My Foods</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active mx-1 px-3 text-dark" asp-area="" asp-controller="Measure" asp-action="Manage">Manage Units</a>
+                                <a class="nav-link active mx-1 px-3 text-dark" asp-area="" asp-controller="Measure" asp-action="Manage">My Units</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active mx-1 px-3 text-dark" asp-area="" asp-controller="Restriction" asp-action="Manage">My Restrictions</a>
@@ -75,7 +70,7 @@
 
     <script>
         $(document).ready(function () {
-            if ($.cookie("privacyPolicy") !== "1") {
+            if ($.cookie("privacyPolicy") !== "11") {
                 $('.privacyPolicyInfo').css("display", "");
             }
             else {
@@ -84,7 +79,7 @@
         });
 
         function closePrivacyPolice() {
-            $.cookie("privacyPolicy", "1", { path: '/', expires: 180 });
+            $.cookie("privacyPolicy", "11", { path: '/;SameSite=Lax', expires: 180 });
             $('.privacyPolicyInfo').css("display", "none");
         }
     </script>

@@ -26,6 +26,16 @@ namespace DietAnalyzer.Services
             return _unitOfWork.Foods.Get(userId);
         }
 
+        public IEnumerable<FoodItem> GetCustom(string userId, bool suitableOnly = false)
+        {
+            if (suitableOnly)
+            {
+                var userRestrictions = _unitOfWork.RestrictionUsers.Get(userId);
+                return _unitOfWork.Foods.GetCustom(userId, userRestrictions);
+            }
+            return _unitOfWork.Foods.GetCustom(userId);
+        }
+
         public FoodItem Get(string userId, int foodId)
         {
             return _unitOfWork.Foods.Get(userId, foodId);

@@ -23,17 +23,17 @@ namespace DietAnalyzer.Models.Repositories
             return measures.ToList();
         }
 
-        public Measure Get(int measureId)
-        {
-            return _context.Measures.Single(x => x.Id == measureId);
-        }
-
         public IEnumerable<Measure> GetCustom(string userId)
         {
             var measures = _context.Measures
                  .Where(x => x.UserId == userId)
                  .Include(x => x.FoodItems);
             return measures.ToList();
+        }
+
+        public Measure Get(int measureId)
+        {
+            return _context.Measures.Single(x => x.Id == measureId);
         }
 
         public void Add(Measure measure)

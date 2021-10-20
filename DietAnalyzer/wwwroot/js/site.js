@@ -1,5 +1,5 @@
 ﻿function addNewRow(urlString) {
-    var rowIndex = $("#Table>tbody>tr").length;
+    let rowIndex = $("#Table>tbody>tr").length;
     $.ajax({
         url: urlString + rowIndex,
         success: function (data) {
@@ -14,22 +14,22 @@
 
 // there probably exists a better way to do that... I'm just not very good at JS
 function deleteRowUpdateHTML(button, stringCode) {
-    var row = button.parentNode.parentNode;
+    let row = button.parentNode.parentNode;
+    let rowIndex = row.rowIndex;
     row.remove();
-    var table = document.getElementById("Table");
-    for (var i = 0, tableRow; tableRow = table.rows[i]; i++) {
+    let table = document.getElementById("Table");
+    for (let i = rowIndex, tableRow; tableRow = table.rows[i]; i++) {
         tableRow.innerHTML = incrementStringPartsAfterCode(stringCode, tableRow.innerHTML, tableRow.rowIndex);
     }
 }
 
 function incrementStringPartsAfterCode(code, str, rowIndex) {
-    var regex = new RegExp(code , "g"), result, indices = [];
+    let regex = new RegExp(code , "g"), result, indices = [];
     while ((result = regex.exec(str))) {
         indices.push(result.index);
-        console.log(result.input.substring(result.index, result.index+10));
     }
     // -1 because the last index is for delete button
-    for (var i = 0; i < indices.length - 1; i++) {
+    for (let i = 0; i < indices.length - 1; i++) {
         if (indices[i] < str.length - code.length - 1) {
             str = replaceAt(str, indices[i] + code.length + 1, rowIndex);
         }
