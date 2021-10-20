@@ -11,6 +11,9 @@ namespace DietAnalyzer.Models.Domains
         [Key]
         public int Id { get; set; }
 
+        public int DietId { get; set; }
+        public Diet Diet { get; set; }
+
         public string NutrientName { get; set; }
 
         [EnumDataType(typeof(Level))]

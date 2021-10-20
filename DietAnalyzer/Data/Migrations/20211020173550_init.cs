@@ -249,12 +249,12 @@ namespace DietAnalyzer.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    DietId = table.Column<int>(type: "int", nullable: false),
                     NutrientName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Level = table.Column<int>(type: "int", nullable: false),
                     Value = table.Column<float>(type: "real", nullable: true),
                     Unit = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Suggestions = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DietId = table.Column<int>(type: "int", nullable: true)
+                    Suggestions = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -264,7 +264,7 @@ namespace DietAnalyzer.Migrations
                         column: x => x.DietId,
                         principalTable: "Diets",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(

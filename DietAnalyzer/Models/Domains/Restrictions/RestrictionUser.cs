@@ -16,5 +16,19 @@ namespace DietAnalyzer.Models.Domains
         [ForeignKey("User")]
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }
+
+        public RestrictionUser()
+        {
+            Pescetarian = false;
+            Vegetarian = false;
+            Vegan = false;
+            DairyIntolerant = false;
+            GlutenIntolerant = false;
+            Paleo = false;
+            Keto = false;
+            Diabetes = false;
+            HeartProblems = false;
+            KidneyProblems = false;
+        }
     }
 }

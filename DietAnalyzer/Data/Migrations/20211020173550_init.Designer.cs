@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DietAnalyzer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211020154337_init")]
+    [Migration("20211020173550_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -81,7 +81,7 @@ namespace DietAnalyzer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("DietId")
+                    b.Property<int>("DietId")
                         .HasColumnType("int");
 
                     b.Property<int>("Level")
@@ -1267,9 +1267,13 @@ namespace DietAnalyzer.Migrations
 
             modelBuilder.Entity("DietAnalyzer.Models.Domains.EvaluationResult", b =>
                 {
-                    b.HasOne("DietAnalyzer.Models.Domains.Diet", null)
+                    b.HasOne("DietAnalyzer.Models.Domains.Diet", "Diet")
                         .WithMany("Summary")
-                        .HasForeignKey("DietId");
+                        .HasForeignKey("DietId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Diet");
                 });
 
             modelBuilder.Entity("DietAnalyzer.Models.Domains.FoodItem", b =>

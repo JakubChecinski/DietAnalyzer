@@ -28,6 +28,7 @@ namespace DietAnalyzer.Models.Domains
         public Diet()
         {
             DietItems = new Collection<DietItem>();
+            Summary = new Collection<EvaluationResult>();
         }
     }
 }

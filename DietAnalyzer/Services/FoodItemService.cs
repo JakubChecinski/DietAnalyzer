@@ -21,6 +21,25 @@ namespace DietAnalyzer.Services
             if (suitableOnly)
             {
                 var userRestrictions = _unitOfWork.RestrictionUsers.Get(userId);
+                if(userRestrictions == null)
+                {
+                    userRestrictions = new RestrictionUser
+                    {
+                        UserId = userId,
+                        Pescetarian = false,
+                        Vegetarian = false,
+                        DairyIntolerant = false,
+                        Vegan = false,
+                        GlutenIntolerant = false,
+                        Paleo = false,
+                        Keto = false,
+                        Diabetes = false,
+                        HeartProblems = false,
+                        KidneyProblems = false,
+                    };
+                    _unitOfWork.RestrictionUsers.Add(userRestrictions);
+                    _unitOfWork.Save();
+                }
                 return _unitOfWork.Foods.Get(userId, userRestrictions);
             }
             return _unitOfWork.Foods.Get(userId);

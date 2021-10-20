@@ -33,12 +33,12 @@ namespace DietAnalyzer.Services
 
         public void Update(IEnumerable<Measure> newMeasures, string userId)
         {
-            var newMeasuresList = newMeasures.ToList();
+            var newMeasuresList = newMeasures == null ? null : newMeasures.ToList();
             var oldMeasures = _unitOfWork.Measures.GetCustom(userId);
             if (oldMeasures != null)
                 foreach (Measure oldMeasure in oldMeasures)
                 {
-                    if(newMeasuresList.Any(x => x.Id == oldMeasure.Id))
+                    if(newMeasuresList != null && newMeasuresList.Any(x => x.Id == oldMeasure.Id))
                     {
                         newMeasuresList.RemoveAll(x => x.Id == oldMeasure.Id);
                         continue;

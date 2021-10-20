@@ -54,6 +54,10 @@ namespace DietAnalyzer.Data
                 .HasOne(x => x.Nutritions)
                 .WithOne(x => x.Diet)
                 .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Diet>()
+                .HasMany(x => x.Summary)
+                .WithOne(x => x.Diet)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<DietItem>()
                 .HasOne(x => x.FoodItem)
