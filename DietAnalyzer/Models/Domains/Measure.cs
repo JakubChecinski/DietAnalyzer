@@ -21,6 +21,8 @@ namespace DietAnalyzer.Models.Domains
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }
 
+        public bool IsPubliclyKnown { get; set; }
+
         [Required]
         [Range(0.0, float.MaxValue, ErrorMessage = "The value must be positive")]
         public float Grams { get; set; }
@@ -29,6 +31,7 @@ namespace DietAnalyzer.Models.Domains
         public ICollection<FoodMeasure> FoodItems { get; set; }
         public Measure()
         {
+            IsPubliclyKnown = true;
             DietItems = new Collection<DietItem>();
             FoodItems = new Collection<FoodMeasure>();
         }

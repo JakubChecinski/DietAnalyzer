@@ -16,6 +16,7 @@
                 <tr>
                     @Html.HiddenFor(x => Model.Measures[i].Id)
                     @Html.HiddenFor(x => Model.Measures[i].UserId)
+                    @Html.HiddenFor(x => Model.Measures[i].IsPubliclyKnown)
                     <td class="col-sm-1">
                         @Html.LabelFor(x => Model.Measures[i].Name):
                     </td>

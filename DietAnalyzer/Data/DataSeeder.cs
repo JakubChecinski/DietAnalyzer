@@ -450,24 +450,28 @@ namespace DietAnalyzer.Data
 					Id = 1,
 					Name = "grams",
 					Grams = 1,
+					IsPubliclyKnown = true,
 				},
 				new Measure
 				{
 					Id = 2,
 					Name = "large bananas",
 					Grams = 135,
+					IsPubliclyKnown = false,
 				},
 				new Measure
 				{
 					Id = 3,
 					Name = "large eggs",
 					Grams = 50,
+					IsPubliclyKnown = false,
 				},
 				new Measure
 				{
 					Id = 4,
 					Name = "slices",
 					Grams = 35,
+					IsPubliclyKnown = false,
 				}
 			);
 

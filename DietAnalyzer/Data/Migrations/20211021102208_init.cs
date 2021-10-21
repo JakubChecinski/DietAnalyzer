@@ -201,6 +201,7 @@ namespace DietAnalyzer.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    IsPubliclyKnown = table.Column<bool>(type: "bit", nullable: false),
                     Grams = table.Column<float>(type: "real", nullable: false)
                 },
                 constraints: table =>
@@ -468,13 +469,13 @@ namespace DietAnalyzer.Migrations
 
             migrationBuilder.InsertData(
                 table: "Measures",
-                columns: new[] { "Id", "Grams", "Name", "UserId" },
+                columns: new[] { "Id", "Grams", "IsPubliclyKnown", "Name", "UserId" },
                 values: new object[,]
                 {
-                    { 1, 1f, "grams", null },
-                    { 2, 135f, "large bananas", null },
-                    { 3, 50f, "large eggs", null },
-                    { 4, 35f, "slices", null }
+                    { 1, 1f, true, "grams", null },
+                    { 2, 135f, false, "large bananas", null },
+                    { 3, 50f, false, "large eggs", null },
+                    { 4, 35f, false, "slices", null }
                 });
 
             migrationBuilder.InsertData(

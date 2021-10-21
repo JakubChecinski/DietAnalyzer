@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DietAnalyzer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211020173550_init")]
+    [Migration("20211021102208_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -284,6 +284,9 @@ namespace DietAnalyzer.Migrations
                     b.Property<float>("Grams")
                         .HasColumnType("real");
 
+                    b.Property<bool>("IsPubliclyKnown")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -303,24 +306,28 @@ namespace DietAnalyzer.Migrations
                         {
                             Id = 1,
                             Grams = 1f,
+                            IsPubliclyKnown = true,
                             Name = "grams"
                         },
                         new
                         {
                             Id = 2,
                             Grams = 135f,
+                            IsPubliclyKnown = false,
                             Name = "large bananas"
                         },
                         new
                         {
                             Id = 3,
                             Grams = 50f,
+                            IsPubliclyKnown = false,
                             Name = "large eggs"
                         },
                         new
                         {
                             Id = 4,
                             Grams = 35f,
+                            IsPubliclyKnown = false,
                             Name = "slices"
                         });
                 });
