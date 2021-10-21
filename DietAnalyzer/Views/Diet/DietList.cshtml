@@ -68,11 +68,11 @@
                         row.parentNode.removeChild(row);
                     }
                     else {
-                        console.log(result);
+                        JL().fatal("deleteDiet - failed result received");  // JSNLog
                     }
                 },
                 error: function (result) {
-                    console.log(result);
+                    JL().fatal("deleteDiet - error: " + result);
                 }
             });
         }
@@ -88,9 +88,8 @@
                 success: function (result) {
                     $("#evaluationResults").html(result);
                 },
-                error: function(result) {
-                    console.log(result);
-                    console.log(result.message);
+                error: function (result) {
+                    JL().fatal("evaluateDiet - error: " + result);
                 }
             });
         }

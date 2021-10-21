@@ -52,11 +52,11 @@ namespace DietAnalyzer.Controllers
             }
             catch (Exception exc)
             {
-                // logowanie
+                _logger.LogError("Failed to delete diet: " + exc.Message + 
+                    "with inner exception: " + exc.InnerException);
                 return Json(new
                 {
                     success = false,
-                    message = exc.Message
                 });
             }
             return Json(new { success = true, redirectToUrl = Url.Action("DietList", "Diet") });

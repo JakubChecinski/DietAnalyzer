@@ -62,11 +62,11 @@
                         row.parentNode.removeChild(row);
                     }
                     else {
-                        alert(result.message);
+                        JL().fatal("deleteFood - failed result received");
                     }
                 },
                 error: function(result) {
-                    alert(result.message);
+                    JL().fatal("deleteFood - error: " + result);
                 }
             });
         }

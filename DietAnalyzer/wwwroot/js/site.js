@@ -5,8 +5,8 @@
         success: function (data) {
             $('#Table > tbody').append(data);
         },
-        error: function (a, b, c) {
-            console.log(a, b, c);
+        error: function (result) {
+            JL().fatal("addNewRow - error: " + result);
         }
     });
 }
