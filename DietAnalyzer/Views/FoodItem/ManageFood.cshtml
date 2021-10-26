@@ -1,5 +1,9 @@
 ﻿@model DietAnalyzer.Models.ViewModels.FoodItemViewModel
 
+@{
+    ViewBag.Title = "Edit Food";
+}
+
 @using (Html.BeginForm("ManageFood", "FoodItem", FormMethod.Post, new { id = "mainForm" }))
 {
     @Html.HiddenFor(x => x.IsAdd)

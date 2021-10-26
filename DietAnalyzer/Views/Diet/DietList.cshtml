@@ -1,5 +1,9 @@
 ﻿@model DietAnalyzer.Models.ViewModels.DietListViewModel
 
+@{
+    ViewBag.Title = "Main";
+}
+
 <table id="dietsTable">
     <thead></thead>
     <tbody>
@@ -68,11 +72,13 @@
                         row.parentNode.removeChild(row);
                     }
                     else {
-                        JL().fatal("deleteDiet - failed result received");  // JSNLog
+                        console.log("deleteDiet - failed result received");
+                        //JL().fatal("deleteDiet - failed result received");  // JSNLog
                     }
                 },
                 error: function (result) {
-                    JL().fatal("deleteDiet - error: " + result);
+                    console.log("deleteDiet - error: " + result);
+                    //JL().fatal("deleteDiet - error: " + result);
                 }
             });
         }
@@ -89,7 +95,8 @@
                     $("#evaluationResults").html(result);
                 },
                 error: function (result) {
-                    JL().fatal("evaluateDiet - error: " + result);
+                    //JL().fatal("evaluateDiet - error: " + result);
+                    console.log("evaluateDiet - error: " + result);
                 }
             });
         }

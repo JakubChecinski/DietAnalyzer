@@ -55,7 +55,7 @@ namespace DietAnalyzer
             app.UseExceptionHandler("/Home/Error");
             //app.UseDeveloperExceptionPage();
 
-            app.UseJSNLog(loggerFactory);
+            //app.UseJSNLog(loggerFactory);
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
