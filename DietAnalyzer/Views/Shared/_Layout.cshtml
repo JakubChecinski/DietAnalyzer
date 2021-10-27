@@ -3,7 +3,7 @@
 @inject UserManager<IdentityUser> UserManager
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -76,6 +76,16 @@
             else {
                 $('.privacyPolicyInfo').css("display", "none");
             }
+        });
+
+        $(document).ready(function () {
+            var originalNumber = $.validator.methods.number;
+            var wrappedNumber = function (value, element) {
+                var fixedValue = Number(value.toString().replace(",", "."));
+                console.log(fixedValue);
+                return originalNumber.call($.validator.prototype, fixedValue, element);
+            };
+            $.validator.methods.number = wrappedNumber;
         });
 
         function closePrivacyPolice() {

@@ -24,7 +24,6 @@ namespace DietAnalyzer.Models.Domains
         public bool IsPubliclyKnown { get; set; }
 
         [Required]
-        [Range(0.0, float.MaxValue, ErrorMessage = "The value must be positive")]
         public float Grams { get; set; }
 
         public ICollection<DietItem> DietItems { get; set; }

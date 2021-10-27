@@ -38,7 +38,8 @@ namespace DietAnalyzer.Services
             if (oldMeasures != null)
                 foreach (Measure oldMeasure in oldMeasures)
                 {
-                    if(newMeasuresList != null && newMeasuresList.Any(x => x.Id == oldMeasure.Id))
+                    if(newMeasuresList != null && newMeasuresList.Any(x => x.Id == oldMeasure.Id) 
+                        && newMeasuresList.Single(x => x.Id == oldMeasure.Id).Grams == oldMeasure.Grams)
                     {
                         newMeasuresList.RemoveAll(x => x.Id == oldMeasure.Id);
                         continue;

@@ -28,7 +28,7 @@ namespace DietAnalyzer.Models.Repositories
             var measures = _context.Measures
                  .Where(x => x.UserId == userId && x.IsPubliclyKnown)
                  .Include(x => x.FoodItems)
-                 .Include(x => x.DietItems);
+                 .Include(x => x.DietItems).AsSplitQuery();
             return measures.ToList();
         }
 
