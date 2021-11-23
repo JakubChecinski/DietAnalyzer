@@ -4,28 +4,28 @@
     ViewBag.Title = "Main";
 }
 
-<table id="dietsTable">
+<table id="dietsTable" class="table table-borderless">
     <thead></thead>
     <tbody>
         @if (Model.Diets != null && Model.Diets.Any())
         {
             foreach (var diet in Model.Diets)
             {
-                <tr class="d-flex pt-2 ml-5">
-                    <td style="width:200px;">
+                <tr class="d-flex pt-2 ml-1">
+                    <td class="col-5 col-lg-3">
                         <a href="@Url.Action("ManageDiet", "Diet",
                                     new { id = diet.Id })"
                            class="font-weight-bold">
                             @diet.Name
                         </a>
                     </td>
-                    <td>
+                    <td class="col-1">
                         <button class="btn btn-primary btn-sm"
                                 onclick="evaluateDiet('@diet.Id')">
                             Evaluate
                         </button>
                     </td>
-                    <td style="margin-left: 100px;">
+                    <td class="col-xl-2 col-sm-2 col-3 offset-1 offset-sm-2 offset-lg-1">
                         <button class="btn btn-danger btn-sm"
                                 onclick="deleteDiet('@diet.Id', this)">
                             Delete diet
@@ -45,14 +45,14 @@
     </tbody>
 </table>
 <br />
-<button class="btn btn-outline-primary btn-lg"
+<button class="btn btn-outline-primary btn-lg ml-1"
         onclick="location.href='@Url.Action("ManageDiet", "Diet", new { id = 0 })'">
     Add new diet
 </button>
 <br />
 <br />
 <br />
-<div id="evaluationResults" class="container m-0 evaluationResultCss"></div>
+<div id="evaluationResults" class="container m-0 p-0 evaluationResultCss"></div>
 
 @section Scripts
 {

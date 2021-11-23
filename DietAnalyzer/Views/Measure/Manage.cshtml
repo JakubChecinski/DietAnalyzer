@@ -13,7 +13,7 @@
     @Html.AntiForgeryToken()
     <div asp-validation-summary="All" class="text-danger"></div>
 
-    <table id="Table">
+    <table id="Table" class="table ml-0">
         <tbody>
             @for (int i = 0; i < Model.Measures.Count; i++)
             {
@@ -21,28 +21,28 @@
                     @Html.HiddenFor(x => Model.Measures[i].Id)
                     @Html.HiddenFor(x => Model.Measures[i].UserId)
                     @Html.HiddenFor(x => Model.Measures[i].IsPubliclyKnown)
-                    <td class="col-sm-1">
-                        @Html.LabelFor(x => Model.Measures[i].Name):
+                    <td class="col-1 col-sm-1 pl-0">
+                        Name&nbsp;:
                     </td>
-                    <td class="col-sm-1">
-                        @Html.TextBoxFor(x => Model.Measures[i].Name, new { @class = "text-input" })
+                    <td class="col-1 unit-table-td">
+                        @Html.TextBoxFor(x => Model.Measures[i].Name, new { @class = "text-input-short" })
                     </td>
-                    <td class="col-sm-1">
-                        equal to:
+                    <td class="col-2 col-sm-1 unit-table-td">
+                        equal to&nbsp;:
                     </td>
-                    <td class="col-sm-1">
+                    <td class="col-1 unit-table-td">
                         @Html.TextBoxFor(x => Model.Measures[i].Grams, new { @class = "numeric-input" })
                     </td>
-                    <td class="col-sm-1">
+                    <td class="col-1 unit-table-td">
                         grams
                     </td>
-                    <td class="col-sm-2">
+                    <td class="col-2 unit-table-td">
                         <button type="button" class="btn btn-danger tn-sm"
                                 onclick="deleteRowUpdateHTML(this, 'Measures')">
                             Delete unit
                         </button>
                     </td>
-                    <td class="col-sm-4"></td>
+                    <td class="col-4"></td>
                 </tr>
             }
         </tbody>

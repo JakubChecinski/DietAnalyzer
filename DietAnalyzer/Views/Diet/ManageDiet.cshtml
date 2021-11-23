@@ -19,11 +19,11 @@
     @Html.AntiForgeryToken()
 
     <div class="row">
-        <div class="d-flex col-sm-1 justify-content-end">
+        <div class="d-flex col-1 justify-content-end">
             @Html.LabelFor(x => x.Diet.Name):
         </div>
-        <div class="d-flex col-sm-1 p-sm-0">
-            @Html.TextBoxFor(x => x.Diet.Name, new { @class = "text-input" })
+        <div class="d-flex col-8 col-md-6 col-lg-4 col-xl-3 p-0">
+            @Html.TextBoxFor(x => x.Diet.Name, new { @class = "text-input-long" })
             <span asp-validation-for="@Model.Diet.Name" class="text-danger"></span>
         </div>
     </div>
@@ -38,42 +38,42 @@
                     @Html.HiddenFor(x => Model.DietItems[i].DietId)
                     @Html.HiddenFor(x => Model.DietItems[i].FoodItemId)
                     @Html.HiddenFor(x => Model.DietItems[i].FoodItem.Name)
-                    <td class="col-sm-1">
+                    <td class="col-1 ml-0 pl-0">
                         <p class="text-center pt-3">@Model.DietItems[i].FoodItem.Name</p>
                     </td>
-                    <td class="col-sm-1 ">
+                    <td class="col-1 px-0 px-md-3">
                         @Html.TextBoxFor(x => Model.DietItems[i].Quantity,
                             new { @class = "numeric-input" })
                         <span asp-validation-for="@Model.DietItems[i].Quantity"
                               class="text-danger"></span>
                     </td>
-                    <td class="col-sm-2 justify-content-sm-start">
+                    <td class="col-2 justify-content-start">
                         @Html.DropDownListFor(x => x.DietItems[i].MeasureId,
                         new SelectList(Model.AvailableMeasuresForEachFood[i], "Item1", "Item2"),
                         "-- select unit --",
-                        new { @class = "form-control" })
+                        new { @class = "form-control form-control-smallscreen-safe" })
                         <span asp-validation-for="@Model.DietItems[i].MeasureId"
                               class="text-danger"></span>
                     </td>
-                    <td class="col-sm-2 offset-1 text-right">
-                        <button type="button" class="btn btn-danger tn-sm"
+                    <td class="col-4 col-md-3 col-xl-2 px-0 px-md-3 offset-md-1 text-right">
+                        <button type="button" class="btn btn-danger btn-sm"
                                 onclick="deleteRowUpdateHTML(this, 'DietItems')">
                             Delete position
                         </button>
                     </td>
-                    <td class="col-sm-auto"></td>
+                    <td class="col-auto"></td>
                 </tr>
             }
         </tbody>
     </table>
     <div class="row mt-5">
-        <div class="d-flex col-sm-2 offset-1 mt-2">
+        <div class="d-flex col-2 offset-xs-0 offset-md-1 mt-2">
             @Html.DropDownListFor(x => x.CurrentFoodId,
                         new SelectList(Model.AvailableFoods, "Id", "Name"),
                         "-- select food --",
                         new { @class = "form-control", @id = "foodDropDown" })
         </div>
-        <div class="d-flex col-sm-1 mb-2">
+        <div class="d-flex col-xs-1 col-md-2 offset-md-1 offset-lg-0 mb-2">
             <button type="button" class="btn btn-outline-primary mt-2"
                     onclick="addNewRow('AddNewPosition?index=', @Model.Diet.Id)">
                 Add food
@@ -83,12 +83,12 @@
     <br>
     <hr />
     <div class="row">
-        <div class="d-flex col-sm-2 justify-content-end">
+        <div class="d-flex col-xs-1 col-md-2 justify-content-lg-end  justify-content-xs-start">
             <button type="submit" class="btn btn-primary btn-lg mt-2">
                 Save
             </button>
         </div>
-        <div class="d-flex col-sm-1 offset-1 justify-content-end">
+        <div class="d-flex col-1 offset-md-2 offset-lg-1 justify-content-xs-end">
             <button type="button" class="btn btn-primary btn-lg mt-2"
                     onclick="location.href='@Url.Action("DietList", "Diet")'">
                 Cancel

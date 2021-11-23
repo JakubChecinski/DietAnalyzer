@@ -3,6 +3,8 @@ for details on configuring this project to bundle and minify static web assets. 
 
 /* customized parts start here */
 
+/* general */
+
 body {
     background-color: #ffffcc;
     align-content: center;
@@ -10,10 +12,6 @@ body {
 
 header {
     background-color: #ffe6cc;
-}
-
-.nav-item {
-    box-sizing: unset;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
@@ -34,24 +32,75 @@ hr {
     border-width: 1px;
 }
 
-.btn-primary {
-    min-width: 120px;
+@media only screen and (min-width: 600px) {
+    .btn-primary {
+        min-width: 120px;
+    }
+
+    .container {
+        margin-left: 50px;
+    }
+
+    .nav-item {
+        box-sizing: unset;
+    }
 }
 
 .container {
-    margin-left: 50px;
     align-content: center;
     justify-content: center;
 }
+
+/* form-controls */
 
 .form-control {
     height: calc(1.3em + 2px);
     width: max-content;
 }
 
+.form-control-smallscreen-safe {
+    font-size: 0.7rem;
+}
+
+@media only screen and (min-width: 600px) {
+    .form-control-smallscreen-safe {
+        font-size: 0.9rem;
+    }
+}
+
+/* inputs */
+
+.text-input-short {
+    text-align: center;
+    max-width: 120px;
+    background-color: #ffffcc;
+    border-color: #000000;
+    border-style: solid;
+    margin: 0px;
+}
+
+@media only screen and (max-width: 600px) {
+    .text-input-short {
+        text-align: center;
+        max-width: 60px;
+        background-color: #ffffcc;
+        border-color: #000000;
+        border-style: solid;
+    }
+}
+
+
 .text-input {
     text-align: center;
     max-width: 120px;
+    background-color: #ffffcc;
+    border-color: #000000;
+    border-style: solid;
+}
+
+.text-input-long {
+    text-align: center;
+    width: 250px;
     background-color: #ffffcc;
     border-color: #000000;
     border-style: solid;
@@ -65,17 +114,40 @@ hr {
     border-style: solid;
 }
 
-.evaluationResultCss {
-    font-size: small;
-    line-height: 1.2;
+@media only screen and (max-width: 600px) {
+    .numeric-input {
+        text-align: center;
+        max-width: 35px;
+        background-color: #ffffcc;
+        border-color: #000000;
+        border-style: solid;
+    }
 }
 
-.text-red {
-    color: #ff0000 !important;
+@media only screen and (max-width: 500px) {
+    .word-wrap {
+        font-size: 0.8rem;
+        overflow: hidden;
+        overflow-wrap: break-word;
+        text-overflow: clip;
+    }
 }
 
-.text-green {
-    color: #008000 !important;
+/* misc */
+
+@media only screen and (max-width: 450px) {
+    .unit-table-td {
+        padding-right: 0.25rem !important;
+        padding-left: 0.25rem !important;
+    }
+}
+
+.green-bg {
+    background-color: #80ff80 !important;
+}
+
+.red-bg {
+    background-color: #ff8080 !important;
 }
 
 .evaluationRow {
@@ -83,6 +155,12 @@ hr {
     min-height: 30px;
 }
 
+.evaluationResultCss {
+    font-size: small;
+    line-height: 1.2;
+}
+
+/* privacy */
 
 .privacyPolicyInfo {
     font-size: 10px;
@@ -95,7 +173,7 @@ hr {
     padding: 5px 0;
 }
 
-/* get rid of annoying bootstrap border-boxes */
+/* get rid of bootstrap border-boxes */
 * {
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;

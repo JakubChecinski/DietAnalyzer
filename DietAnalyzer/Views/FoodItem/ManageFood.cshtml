@@ -20,11 +20,11 @@
     @Html.AntiForgeryToken()
 
     <div class="row">
-        <div class="d-flex col-sm-2 offset-3 justify-content-end">
+        <div class="d-flex col-2 offset-3 justify-content-end">
             @Html.LabelFor(x => x.FoodItem.Name):
         </div>
-        <div class="d-flex col-sm-1 p-sm-0">
-            @Html.TextBoxFor(x => x.FoodItem.Name, new { @class = "text-input" })
+        <div class="d-flex col-1 p-0">
+            @Html.TextBoxFor(x => x.FoodItem.Name, new { @class = "text-input-long" })
             <span asp-validation-for="@Model.FoodItem.Name" class="text-danger"></span>
         </div>
     </div>
@@ -33,63 +33,63 @@
     <p><b>Calories per 100 gram:</b></p>
     <br />
     <div class="row">
-        <div class="d-flex col-sm-2 justify-content-end">
-            @Html.LabelFor(x => x.FoodItem.Nutrition.CaloriesPer100g)
+        <div class="d-flex col-2 justify-content-end">
+            @Html.LabelFor(x => x.FoodItem.Nutrition.CaloriesPer100g, new { @class = "word-wrap" })
         </div>
-        <div class="d-flex col-sm-1 p-sm-0">
+        <div class="d-flex col-1 p-0">
             @Html.TextBoxFor(x => x.FoodItem.Nutrition.CaloriesPer100g, new { @class = "numeric-input" })
             <span asp-validation-for="@Model.FoodItem.Nutrition.CaloriesPer100g" class="text-danger"></span>
         </div>
-        <div class="d-flex col-sm-10">
+        <div class="d-flex col-10">
         </div>
     </div>
     <br />
     <hr />
     <p><b>Main nutrients per 100 gram:</b><br /><i>Specify the values in grams.</i></p>
-    <div class="row mt-2">
-        <div class="d-flex col-sm-2 justify-content-end">
-            @Html.LabelFor(x => x.FoodItem.Nutrition.CarbohydratesPer100g)
+    <div class="row mt-2 ml-1">
+        <div class="d-flex col-1 col-md-2 justify-content-end">
+            @Html.LabelFor(x => x.FoodItem.Nutrition.CarbohydratesPer100g, new { @class = "word-wrap" })
         </div>
-        <div class="d-flex col-sm-1 p-sm-0">
+        <div class="d-flex col-1 p-0">
             @Html.TextBoxFor(x => x.FoodItem.Nutrition.CarbohydratesPer100g, new { @class = "numeric-input" })
             <span asp-validation-for="@Model.FoodItem.Nutrition.CarbohydratesPer100g" class="text-danger"></span>
         </div>
-        <div class="d-flex col-sm-2 justify-content-end">
-            @Html.LabelFor(x => x.FoodItem.Nutrition.SugarPer100g)
+        <div class="d-flex col-1 col-md-2 offset-1 offset-md-0 justify-content-end">
+            @Html.LabelFor(x => x.FoodItem.Nutrition.SugarPer100g, new { @class = "word-wrap" })
         </div>
-        <div class="d-flex col-sm-1 p-sm-0">
+        <div class="d-flex col-1 p-0">
             @Html.TextBoxFor(x => x.FoodItem.Nutrition.SugarPer100g, new { @class = "numeric-input" })
             <span asp-validation-for="@Model.FoodItem.Nutrition.SugarPer100g" class="text-danger"></span>
         </div>
-        <div class="d-flex col-sm-2 justify-content-end">
-            @Html.LabelFor(x => x.FoodItem.Nutrition.FiberPer100g)
+        <div class="d-flex col-1 col-md-2 offset-1 offset-md-0 justify-content-end">
+            @Html.LabelFor(x => x.FoodItem.Nutrition.FiberPer100g, new { @class = "word-wrap" })
         </div>
-        <div class="d-flex col-sm-1 p-sm-0">
+        <div class="d-flex col-1 p-0">
             @Html.TextBoxFor(x => x.FoodItem.Nutrition.FiberPer100g, new { @class = "numeric-input" })
             <span asp-validation-for="@Model.FoodItem.Nutrition.FiberPer100g" class="text-danger"></span>
         </div>
-        <div class="d-flex col-sm-6">
+        <div class="d-flex col-6">
         </div>
     </div>
-    <div class="row mt-2">
-        <div class="d-flex col-sm-2 justify-content-end">
-            @Html.LabelFor(x => x.FoodItem.Nutrition.FatsPer100g)
+    <div class="row mt-2 ml-1">
+        <div class="d-flex col-1 col-md-2 justify-content-end">
+            @Html.LabelFor(x => x.FoodItem.Nutrition.FatsPer100g, new { @class = "word-wrap" })
         </div>
-        <div class="d-flex col-sm-1 p-sm-0">
+        <div class="d-flex col-1 p-0">
             @Html.TextBoxFor(x => x.FoodItem.Nutrition.FatsPer100g, new { @class = "numeric-input" })
             <span asp-validation-for="@Model.FoodItem.Nutrition.FatsPer100g" class="text-danger"></span>
         </div>
-        <div class="d-flex col-sm-2 justify-content-end">
-            @Html.LabelFor(x => x.FoodItem.Nutrition.SaturatedFatPer100g)
+        <div class="d-flex col-1 col-md-2 offset-1 offset-md-0 justify-content-end">
+            @Html.LabelFor(x => x.FoodItem.Nutrition.SaturatedFatPer100g, new { @class = "word-wrap" })
         </div>
-        <div class="d-flex col-sm-1 p-sm-0">
+        <div class="d-flex col-1 p-0">
             @Html.TextBoxFor(x => x.FoodItem.Nutrition.SaturatedFatPer100g, new { @class = "numeric-input" })
             <span asp-validation-for="@Model.FoodItem.Nutrition.SaturatedFatPer100g" class="text-danger"></span>
         </div>
-        <div class="d-flex col-sm-2 justify-content-end">
-            @Html.LabelFor(x => x.FoodItem.Nutrition.ProteinsPer100g)
+        <div class="d-flex col-1 col-md-2 offset-1 offset-md-0 justify-content-end">
+            @Html.LabelFor(x => x.FoodItem.Nutrition.ProteinsPer100g, new { @class = "word-wrap" })
         </div>
-        <div class="d-flex col-sm-1 p-sm-0">
+        <div class="d-flex col-1 p-0">
             @Html.TextBoxFor(x => x.FoodItem.Nutrition.ProteinsPer100g, new { @class = "numeric-input" })
             <span asp-validation-for="@Model.FoodItem.Nutrition.ProteinsPer100g" class="text-danger"></span>
         </div>
@@ -97,156 +97,156 @@
     <br />
     <hr />
     <p><b>Vitamins and minerals per 100 gram:</b><br /><i>Specify the values as % of daily need.</i></p>
-    <div class="row mt-2">
-        <div class="d-flex col-sm-2 justify-content-end">
-            @Html.LabelFor(x => x.FoodItem.Nutrition.VitaminAPer100g)
+    <div class="row mt-2 ml-1">
+        <div class="d-flex col-1 col-md-2 justify-content-end">
+            @Html.LabelFor(x => x.FoodItem.Nutrition.VitaminAPer100g, new { @class = "word-wrap" })
         </div>
-        <div class="d-flex col-sm-1 p-sm-0">
+        <div class="d-flex col-1 p-0">
             @Html.TextBoxFor(x => x.FoodItem.Nutrition.VitaminAPer100g, new { @class = "numeric-input" })
             <span asp-validation-for="@Model.FoodItem.Nutrition.VitaminAPer100g" class="text-danger"></span>
         </div>
-        <div class="d-flex col-sm-2 justify-content-end">
-            @Html.LabelFor(x => x.FoodItem.Nutrition.VitaminB1Per100g)
+        <div class="d-flex col-1 col-md-2 offset-1 offset-md-0 justify-content-end">
+            @Html.LabelFor(x => x.FoodItem.Nutrition.VitaminB1Per100g, new { @class = "word-wrap" })
         </div>
-        <div class="d-flex col-sm-1 p-sm-0">
+        <div class="d-flex col-1 p-0">
             @Html.TextBoxFor(x => x.FoodItem.Nutrition.VitaminB1Per100g, new { @class = "numeric-input" })
             <span asp-validation-for="@Model.FoodItem.Nutrition.VitaminB1Per100g" class="text-danger"></span>
         </div>
-        <div class="d-flex col-sm-2 justify-content-end">
-            @Html.LabelFor(x => x.FoodItem.Nutrition.VitaminB2Per100g)
+        <div class="d-flex col-1 col-md-2 offset-1 offset-md-0 justify-content-end">
+            @Html.LabelFor(x => x.FoodItem.Nutrition.VitaminB2Per100g, new { @class = "word-wrap" })
         </div>
-        <div class="d-flex col-sm-1 p-sm-0">
+        <div class="d-flex col-1 p-0">
             @Html.TextBoxFor(x => x.FoodItem.Nutrition.VitaminB2Per100g, new { @class = "numeric-input" })
             <span asp-validation-for="@Model.FoodItem.Nutrition.VitaminB2Per100g" class="text-danger"></span>
         </div>
     </div>
-    <div class="row mt-2">
-        <div class="d-flex col-sm-2 justify-content-end">
-            @Html.LabelFor(x => x.FoodItem.Nutrition.VitaminB3Per100g)
+    <div class="row mt-2 ml-1">
+        <div class="d-flex col-1 col-md-2 justify-content-end">
+            @Html.LabelFor(x => x.FoodItem.Nutrition.VitaminB3Per100g, new { @class = "word-wrap" })
         </div>
-        <div class="d-flex col-sm-1 p-sm-0">
+        <div class="d-flex col-1 p-0">
             @Html.TextBoxFor(x => x.FoodItem.Nutrition.VitaminB3Per100g, new { @class = "numeric-input" })
             <span asp-validation-for="@Model.FoodItem.Nutrition.VitaminB3Per100g" class="text-danger"></span>
         </div>
-        <div class="d-flex col-sm-2 justify-content-end">
-            @Html.LabelFor(x => x.FoodItem.Nutrition.VitaminB6Per100g)
+        <div class="d-flex col-1 col-md-2 offset-1 offset-md-0 justify-content-end">
+            @Html.LabelFor(x => x.FoodItem.Nutrition.VitaminB6Per100g, new { @class = "word-wrap" })
         </div>
-        <div class="d-flex col-sm-1 p-sm-0">
+        <div class="d-flex col-1 p-0">
             @Html.TextBoxFor(x => x.FoodItem.Nutrition.VitaminB6Per100g, new { @class = "numeric-input" })
             <span asp-validation-for="@Model.FoodItem.Nutrition.VitaminB6Per100g" class="text-danger"></span>
         </div>
-        <div class="d-flex col-sm-2 justify-content-end">
-            @Html.LabelFor(x => x.FoodItem.Nutrition.VitaminB9Per100g)
+        <div class="d-flex col-1 col-md-2 offset-1 offset-md-0 justify-content-end">
+            @Html.LabelFor(x => x.FoodItem.Nutrition.VitaminB9Per100g, new { @class = "word-wrap" })
         </div>
-        <div class="d-flex col-sm-1 p-sm-0">
+        <div class="d-flex col-1 p-0">
             @Html.TextBoxFor(x => x.FoodItem.Nutrition.VitaminB9Per100g, new { @class = "numeric-input" })
             <span asp-validation-for="@Model.FoodItem.Nutrition.VitaminB9Per100g" class="text-danger"></span>
         </div>
     </div>
-    <div class="row mt-2">
-        <div class="d-flex col-sm-2 justify-content-end">
-            @Html.LabelFor(x => x.FoodItem.Nutrition.VitaminB12Per100g)
+    <div class="row mt-2 ml-1">
+        <div class="d-flex col-1 col-md-2 justify-content-end">
+            @Html.LabelFor(x => x.FoodItem.Nutrition.VitaminB12Per100g, new { @class = "word-wrap" })
         </div>
-        <div class="d-flex col-sm-1 p-sm-0">
+        <div class="d-flex col-1 p-0">
             @Html.TextBoxFor(x => x.FoodItem.Nutrition.VitaminB12Per100g, new { @class = "numeric-input" })
             <span asp-validation-for="@Model.FoodItem.Nutrition.VitaminB12Per100g" class="text-danger"></span>
         </div>
-        <div class="d-flex col-sm-2 justify-content-end">
-            @Html.LabelFor(x => x.FoodItem.Nutrition.VitaminDPer100g)
+        <div class="d-flex col-1 col-md-2 offset-1 offset-md-0 justify-content-end">
+            @Html.LabelFor(x => x.FoodItem.Nutrition.VitaminDPer100g, new { @class = "word-wrap" })
         </div>
-        <div class="d-flex col-sm-1 p-sm-0">
+        <div class="d-flex col-1 p-0">
             @Html.TextBoxFor(x => x.FoodItem.Nutrition.VitaminDPer100g, new { @class = "numeric-input" })
             <span asp-validation-for="@Model.FoodItem.Nutrition.VitaminDPer100g" class="text-danger"></span>
         </div>
-        <div class="d-flex col-sm-2 justify-content-end">
-            @Html.LabelFor(x => x.FoodItem.Nutrition.VitaminEPer100g)
+        <div class="d-flex col-1 col-md-2 offset-1 offset-md-0 justify-content-end">
+            @Html.LabelFor(x => x.FoodItem.Nutrition.VitaminEPer100g, new { @class = "word-wrap" })
         </div>
-        <div class="d-flex col-sm-1 p-sm-0">
+        <div class="d-flex col-1 p-0">
             @Html.TextBoxFor(x => x.FoodItem.Nutrition.VitaminEPer100g, new { @class = "numeric-input" })
             <span asp-validation-for="@Model.FoodItem.Nutrition.VitaminEPer100g" class="text-danger"></span>
         </div>
     </div>
-    <div class="row mt-2">
-        <div class="d-flex col-sm-2 justify-content-end">
-            @Html.LabelFor(x => x.FoodItem.Nutrition.VitaminKPer100g)
+    <div class="row mt-2 ml-1">
+        <div class="d-flex col-1 col-md-2 justify-content-end">
+            @Html.LabelFor(x => x.FoodItem.Nutrition.VitaminKPer100g, new { @class = "word-wrap" })
         </div>
-        <div class="d-flex col-sm-1 p-sm-0">
+        <div class="d-flex col-1 p-0">
             @Html.TextBoxFor(x => x.FoodItem.Nutrition.VitaminKPer100g, new { @class = "numeric-input" })
             <span asp-validation-for="@Model.FoodItem.Nutrition.VitaminKPer100g" class="text-danger"></span>
         </div>
-        <div class="d-flex col-sm-2 justify-content-end">
-            @Html.LabelFor(x => x.FoodItem.Nutrition.CalciumPer100g)
+        <div class="d-flex col-1 col-md-2 offset-1 offset-md-0 justify-content-end">
+            @Html.LabelFor(x => x.FoodItem.Nutrition.CalciumPer100g, new { @class = "word-wrap" })
         </div>
-        <div class="d-flex col-sm-1 p-sm-0">
+        <div class="d-flex col-1 p-0">
             @Html.TextBoxFor(x => x.FoodItem.Nutrition.CalciumPer100g, new { @class = "numeric-input" })
             <span asp-validation-for="@Model.FoodItem.Nutrition.CalciumPer100g" class="text-danger"></span>
         </div>
-        <div class="d-flex col-sm-2 justify-content-end">
-            @Html.LabelFor(x => x.FoodItem.Nutrition.IronPer100g)
+        <div class="d-flex col-1 col-md-2 offset-1 offset-md-0 justify-content-end">
+            @Html.LabelFor(x => x.FoodItem.Nutrition.IronPer100g, new { @class = "word-wrap" })
         </div>
-        <div class="d-flex col-sm-1 p-sm-0">
+        <div class="d-flex col-1 p-0">
             @Html.TextBoxFor(x => x.FoodItem.Nutrition.IronPer100g, new { @class = "numeric-input" })
             <span asp-validation-for="@Model.FoodItem.Nutrition.IronPer100g" class="text-danger"></span>
         </div>
     </div>
-    <div class="row mt-2">
-        <div class="d-flex col-sm-2 justify-content-end">
-            @Html.LabelFor(x => x.FoodItem.Nutrition.MagnesiumPer100g)
+    <div class="row mt-2 ml-1">
+        <div class="d-flex col-1 col-md-2 justify-content-end">
+            @Html.LabelFor(x => x.FoodItem.Nutrition.MagnesiumPer100g, new { @class = "word-wrap" })
         </div>
-        <div class="d-flex col-sm-1 p-sm-0">
+        <div class="d-flex col-1 p-0">
             @Html.TextBoxFor(x => x.FoodItem.Nutrition.MagnesiumPer100g, new { @class = "numeric-input" })
             <span asp-validation-for="@Model.FoodItem.Nutrition.MagnesiumPer100g" class="text-danger"></span>
         </div>
-        <div class="d-flex col-sm-2 justify-content-end">
-            @Html.LabelFor(x => x.FoodItem.Nutrition.PhosphorusPer100g)
+        <div class="d-flex col-1 col-md-2 offset-1 offset-md-0 justify-content-end">
+            @Html.LabelFor(x => x.FoodItem.Nutrition.PhosphorusPer100g, new { @class = "word-wrap" })
         </div>
-        <div class="d-flex col-sm-1 p-sm-0">
+        <div class="d-flex col-1 p-0">
             @Html.TextBoxFor(x => x.FoodItem.Nutrition.PhosphorusPer100g, new { @class = "numeric-input" })
             <span asp-validation-for="@Model.FoodItem.Nutrition.PhosphorusPer100g" class="text-danger"></span>
         </div>
-        <div class="d-flex col-sm-2 justify-content-end">
-            @Html.LabelFor(x => x.FoodItem.Nutrition.PotassiumPer100g)
+        <div class="d-flex col-1 col-md-2 offset-1 offset-md-0 justify-content-end">
+            @Html.LabelFor(x => x.FoodItem.Nutrition.PotassiumPer100g, new { @class = "word-wrap" })
         </div>
-        <div class="d-flex col-sm-1 p-sm-0">
+        <div class="d-flex col-1 p-0">
             @Html.TextBoxFor(x => x.FoodItem.Nutrition.PotassiumPer100g, new { @class = "numeric-input" })
             <span asp-validation-for="@Model.FoodItem.Nutrition.PotassiumPer100g" class="text-danger"></span>
         </div>
     </div>
-    <div class="row mt-2">
-        <div class="d-flex col-sm-2 justify-content-end">
-            @Html.LabelFor(x => x.FoodItem.Nutrition.SodiumPer100g)
+    <div class="row mt-2 ml-1">
+        <div class="d-flex col-1 col-md-2 justify-content-end">
+            @Html.LabelFor(x => x.FoodItem.Nutrition.SodiumPer100g, new { @class = "word-wrap" })
         </div>
-        <div class="d-flex col-sm-1 p-sm-0">
+        <div class="d-flex col-1 p-0">
             @Html.TextBoxFor(x => x.FoodItem.Nutrition.SodiumPer100g, new { @class = "numeric-input" })
             <span asp-validation-for="@Model.FoodItem.Nutrition.SodiumPer100g" class="text-danger"></span>
         </div>
-        <div class="d-flex col-sm-2 justify-content-end">
-            @Html.LabelFor(x => x.FoodItem.Nutrition.ZincPer100g)
+        <div class="d-flex col-1 col-md-2 offset-1 offset-md-0 justify-content-end">
+            @Html.LabelFor(x => x.FoodItem.Nutrition.ZincPer100g, new { @class = "word-wrap" })
         </div>
-        <div class="d-flex col-sm-1 p-sm-0">
+        <div class="d-flex col-1 p-0">
             @Html.TextBoxFor(x => x.FoodItem.Nutrition.ZincPer100g, new { @class = "numeric-input" })
             <span asp-validation-for="@Model.FoodItem.Nutrition.ZincPer100g" class="text-danger"></span>
         </div>
-        <div class="d-flex col-sm-2 justify-content-end">
-            @Html.LabelFor(x => x.FoodItem.Nutrition.CopperPer100g)
+        <div class="d-flex col-1 col-md-2 offset-1 offset-md-0 justify-content-end">
+            @Html.LabelFor(x => x.FoodItem.Nutrition.CopperPer100g, new { @class = "word-wrap" })
         </div>
-        <div class="d-flex col-sm-1 p-sm-0">
+        <div class="d-flex col-1 p-0">
             @Html.TextBoxFor(x => x.FoodItem.Nutrition.CopperPer100g, new { @class = "numeric-input" })
             <span asp-validation-for="@Model.FoodItem.Nutrition.CopperPer100g" class="text-danger"></span>
         </div>
     </div>
-    <div class="row mt-2">
-        <div class="d-flex col-sm-2 justify-content-end">
-            @Html.LabelFor(x => x.FoodItem.Nutrition.ManganesePer100g)
+    <div class="row mt-2 ml-1">
+        <div class="d-flex col-1 col-md-2 justify-content-end">
+            @Html.LabelFor(x => x.FoodItem.Nutrition.ManganesePer100g, new { @class = "word-wrap" })
         </div>
-        <div class="d-flex col-sm-1 p-sm-0">
+        <div class="d-flex col-1 p-0">
             @Html.TextBoxFor(x => x.FoodItem.Nutrition.ManganesePer100g, new { @class = "numeric-input" })
             <span asp-validation-for="@Model.FoodItem.Nutrition.ManganesePer100g" class="text-danger"></span>
         </div>
-        <div class="d-flex col-sm-2 justify-content-end">
-            @Html.LabelFor(x => x.FoodItem.Nutrition.SeleniumPer100g)
+        <div class="d-flex col-1 col-md-2 offset-1 offset-md-0 justify-content-end">
+            @Html.LabelFor(x => x.FoodItem.Nutrition.SeleniumPer100g, new { @class = "word-wrap" })
         </div>
-        <div class="d-flex col-sm-1 p-sm-0">
+        <div class="d-flex col-1 p-0">
             @Html.TextBoxFor(x => x.FoodItem.Nutrition.SeleniumPer100g, new { @class = "numeric-input" })
             <span asp-validation-for="@Model.FoodItem.Nutrition.SeleniumPer100g" class="text-danger"></span>
         </div>
@@ -254,75 +254,81 @@
     <br />
     <hr />
     <p><b>This food is suitable for:</b></p>
-    <div class="row row-cols-3">
-        <div class="d-flex col-sm-2 justify-content-end">
+    <div class="row">
+        <div class="d-flex col-1 col-md-2 justify-content-end">
             @Html.CheckBoxFor(x => x.FoodItem.Restrictions.Pescetarian)
         </div>
-        <div class="d-flex col-sm-2 mb-1 align-items-center ">
-            @Html.LabelFor(x => x.FoodItem.Restrictions.Pescetarian)
+        <div class="d-flex col-1 col-xl-2 mb-1 align-items-center ">
+            @Html.LabelFor(x => x.FoodItem.Restrictions.Pescetarian, new { @class = "word-wrap" })
             <span asp-validation-for="@Model.FoodItem.Restrictions.Pescetarian" class="text-danger"></span>
         </div>
-        <div class="d-flex col-sm-1 justify-content-end">
+        <div class="d-flex col-1 justify-content-end">
             @Html.CheckBoxFor(x => x.FoodItem.Restrictions.Paleo)
         </div>
-        <div class="d-flex col-sm-2 mb-1 align-items-center ">
-            @Html.LabelFor(x => x.FoodItem.Restrictions.Paleo)
+        <div class="d-flex col-1 col-xl-2 mb-1 align-items-center ">
+            @Html.LabelFor(x => x.FoodItem.Restrictions.Paleo, new { @class = "word-wrap" })
             <span asp-validation-for="@Model.FoodItem.Restrictions.Paleo" class="text-danger"></span>
         </div>
-        <div class="d-flex col-sm-1 justify-content-end">
+        <div class="d-flex col-1 justify-content-end">
             @Html.CheckBoxFor(x => x.FoodItem.Restrictions.Diabetes)
         </div>
-        <div class="d-flex col-sm-2 mb-1 align-items-center ">
-            @Html.LabelFor(x => x.FoodItem.Restrictions.Diabetes)
+        <div class="d-flex col-1 col-xl-2 mb-1 align-items-center ">
+            @Html.LabelFor(x => x.FoodItem.Restrictions.Diabetes, new { @class = "word-wrap" })
             <span asp-validation-for="@Model.FoodItem.Restrictions.Diabetes" class="text-danger"></span>
         </div>
-        <div class="d-flex col-sm-2 justify-content-end">
+    </div>
+    <div class="row">
+        <div class="d-flex col-1 col-md-2 justify-content-end">
             @Html.CheckBoxFor(x => x.FoodItem.Restrictions.Vegetarian)
         </div>
-        <div class="d-flex col-sm-2 mb-1 align-items-center ">
-            @Html.LabelFor(x => x.FoodItem.Restrictions.Vegetarian)
+        <div class="d-flex col-1 col-xl-2 mb-1 align-items-center ">
+            @Html.LabelFor(x => x.FoodItem.Restrictions.Vegetarian, new { @class = "word-wrap" })
             <span asp-validation-for="@Model.FoodItem.Restrictions.Vegetarian" class="text-danger"></span>
         </div>
-        <div class="d-flex col-sm-1 justify-content-end">
+        <div class="d-flex col-1 justify-content-end">
             @Html.CheckBoxFor(x => x.FoodItem.Restrictions.Keto)
         </div>
-        <div class="d-flex col-sm-2 mb-1 align-items-center ">
-            @Html.LabelFor(x => x.FoodItem.Restrictions.Keto)
+        <div class="d-flex col-1 col-xl-2 mb-1 align-items-center ">
+            @Html.LabelFor(x => x.FoodItem.Restrictions.Keto, new { @class = "word-wrap" })
             <span asp-validation-for="@Model.FoodItem.Restrictions.Keto" class="text-danger"></span>
         </div>
-        <div class="d-flex col-sm-1 justify-content-end">
+        <div class="d-flex col-1 justify-content-end">
             @Html.CheckBoxFor(x => x.FoodItem.Restrictions.GlutenIntolerant)
         </div>
-        <div class="d-flex col-sm-2 mb-1 align-items-center ">
-            @Html.LabelFor(x => x.FoodItem.Restrictions.GlutenIntolerant)
+        <div class="d-flex col-1 col-xl-2 mb-1 align-items-center ">
+            @Html.LabelFor(x => x.FoodItem.Restrictions.GlutenIntolerant, new { @class = "word-wrap" })
             <span asp-validation-for="@Model.FoodItem.Restrictions.GlutenIntolerant" class="text-danger"></span>
         </div>
-        <div class="d-flex col-sm-2 justify-content-end">
+    </div>
+    <div class="row">
+        <div class="d-flex col-1 col-md-2 justify-content-end">
             @Html.CheckBoxFor(x => x.FoodItem.Restrictions.DairyIntolerant)
         </div>
-        <div class="d-flex col-sm-2 mb-1 align-items-center ">
-            @Html.LabelFor(x => x.FoodItem.Restrictions.DairyIntolerant)
+        <div class="d-flex col-1 col-xl-2 mb-1 align-items-center ">
+            @Html.LabelFor(x => x.FoodItem.Restrictions.DairyIntolerant, new { @class = "word-wrap" })
             <span asp-validation-for="@Model.FoodItem.Restrictions.DairyIntolerant" class="text-danger"></span>
         </div>
-        <div class="d-flex col-sm-1 justify-content-end">
+        <div class="d-flex col-1 justify-content-end">
             @Html.CheckBoxFor(x => x.FoodItem.Restrictions.HeartProblems)
         </div>
-        <div class="d-flex col-sm-2 mb-1 align-items-center ">
-            @Html.LabelFor(x => x.FoodItem.Restrictions.HeartProblems)
+        <div class="d-flex col-1 col-xl-2 mb-1 align-items-center ">
+            @Html.LabelFor(x => x.FoodItem.Restrictions.HeartProblems, new { @class = "word-wrap" })
             <span asp-validation-for="@Model.FoodItem.Restrictions.HeartProblems" class="text-danger"></span>
         </div>
-        <div class="d-flex col-sm-1 justify-content-end">
+        <div class="d-flex col-1 justify-content-end">
             @Html.CheckBoxFor(x => x.FoodItem.Restrictions.KidneyProblems)
         </div>
-        <div class="d-flex col-sm-2 mb-1 align-items-center ">
-            @Html.LabelFor(x => x.FoodItem.Restrictions.KidneyProblems)
+        <div class="d-flex col-1 col-md-2 mb-1 align-items-center ">
+            @Html.LabelFor(x => x.FoodItem.Restrictions.KidneyProblems, new { @class = "word-wrap" })
             <span asp-validation-for="@Model.FoodItem.Restrictions.KidneyProblems" class="text-danger"></span>
         </div>
-        <div class="d-flex col-sm-2 justify-content-end">
+    </div>
+    <div class="row">
+        <div class="d-flex col-1 col-md-2 justify-content-end">
             @Html.CheckBoxFor(x => x.FoodItem.Restrictions.Vegan)
         </div>
-        <div class="d-flex col-sm-2 mb-1 align-items-center ">
-            @Html.LabelFor(x => x.FoodItem.Restrictions.Vegan)
+        <div class="d-flex col-1 col-xl-2 mb-1 align-items-center ">
+            @Html.LabelFor(x => x.FoodItem.Restrictions.Vegan, new { @class = "word-wrap" })
             <span asp-validation-for="@Model.FoodItem.Restrictions.Vegan" class="text-danger"></span>
         </div>
     </div>
@@ -332,10 +338,10 @@
     <div class="row row-cols-3">
         @for (int i = 0; i < Model.AvailableMeasures.Count; i++)
         {
-            <div class="d-flex col-sm-2 justify-content-end align-items-center">
+            <div class="d-flex col-1 col-md-2 justify-content-end align-items-center">
                 @Html.CheckBoxFor(x => x.AvailableMeasures[i].IsCurrentlyLinked)
             </div>
-            <div class="d-flex col-sm-1 mb-1 align-items-center ">
+            <div class="d-flex col-1 mb-1 align-items-center ">
                 <text>@Model.AvailableMeasures[i].Measure.Name</text>
             </div>
         }
@@ -343,12 +349,12 @@
     <br />
     <hr />
     <div class="row">
-        <div class="d-flex col-sm-1 offset-2 justify-content-end">
+        <div class="d-flex col-1 offset-2 justify-content-end">
             <button type="submit" class="btn btn-primary btn-lg mt-2">
                 Save
             </button>
         </div>
-        <div class="d-flex col-sm-1 offset-2 justify-content-end">
+        <div class="d-flex col-1 offset-2 justify-content-end">
             <button type="button" class="btn btn-primary btn-lg mt-2"
                     onclick="location.href='@Url.Action("FoodList", "FoodItem")'">
                 Cancel

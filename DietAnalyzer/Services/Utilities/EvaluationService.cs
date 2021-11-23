@@ -94,7 +94,7 @@ namespace DietAnalyzer.Services.Utilities
                 NutrientName = "Calories",
                 Level = Level.Unrated,
                 Value = diet.Nutritions.CaloriesPer100g,
-                Unit = "kcal",
+                Unit = " kcal",
                 Suggestions = "Usually, the recommended range of daily calories is between 2000 and 2500 kcal," +
                 " but this can be changed by various factors, such as your gender, level of physical activity," +
                 " body size or being currently on a weight loss diet."
@@ -104,11 +104,11 @@ namespace DietAnalyzer.Services.Utilities
                 NutrientName = "Carbohydrates",
                 Level = Level.Unrated,
                 Value = diet.Nutritions.CarbohydratesPer100g,
-                Unit = "grams",
+                Unit = " grams",
                 Suggestions = "Your percentage of calories coming from carbohydrates is " +
                 String.Format("{0:0.#}", 100.0 * diet.Nutritions.CarbohydratesPer100g / (diet.Nutritions.CarbohydratesPer100g +
                     diet.Nutritions.ProteinsPer100g + diet.Nutritions.FatsPer100g * CarbProtToFatCalorieRatio)) +
-                "%. The commonly recommended range is 45-65%, but some diets may require a percentage " +
+                "%.<br> The commonly recommended range is 45-65%, but some diets may require a percentage " +
                 "that is much lower or slightly higher."
             });
             results.Add(new EvaluationResult
@@ -116,9 +116,9 @@ namespace DietAnalyzer.Services.Utilities
                 NutrientName = "Fibers",
                 Level = Level.Unrated,
                 Value = diet.Nutritions.FiberPer100g,
-                Unit = "grams",
+                Unit = " grams",
                 Suggestions = "Usually, the recommended amount of fiber is no less than 20-25 grams for women " +
-                "and around 30-35 grams for men. Typically, it is also not recommended to eat more " +
+                "and around 30-35 grams for men. <br>Typically, it is also not recommended to eat more " +
                 "than 70 grams per day.",
             });
             results.Add(new EvaluationResult
@@ -126,7 +126,7 @@ namespace DietAnalyzer.Services.Utilities
                 NutrientName = "Sugars",
                 Level = Level.Unrated,
                 Value = diet.Nutritions.SugarPer100g,
-                Unit = "grams",
+                Unit = " grams",
                 Suggestions = "While there is no clear value for recommended total sugar intake, " +
                 "it is commonly understood that large amounts of added sugars in your diet are unhealthy.",
             });
@@ -135,11 +135,11 @@ namespace DietAnalyzer.Services.Utilities
                 NutrientName = "Fats",
                 Level = Level.Unrated,
                 Value = diet.Nutritions.FatsPer100g,
-                Unit = "grams",
+                Unit = " grams",
                 Suggestions = "Your percentage of calories coming from fat is " +
                 String.Format("{0:0.#}", 100.0 * CarbProtToFatCalorieRatio * diet.Nutritions.FatsPer100g / (diet.Nutritions.CarbohydratesPer100g +
                     diet.Nutritions.ProteinsPer100g + diet.Nutritions.FatsPer100g * CarbProtToFatCalorieRatio)) +
-                "%. The commonly recommended range is 20-35%, but some diets may require a percentage " +
+                "%. <br>The commonly recommended range is 20-35%, but some diets may require a percentage " +
                 "that is slightly lower or much higher."
             });
             results.Add(new EvaluationResult
@@ -147,11 +147,11 @@ namespace DietAnalyzer.Services.Utilities
                 NutrientName = "Saturated Fats",
                 Level = Level.Unrated,
                 Value = diet.Nutritions.SaturatedFatPer100g,
-                Unit = "grams",
+                Unit = " grams",
                 Suggestions = "Your percentage of calories coming from saturated fat is " +
                 String.Format("{0:0.#}", 100.0 * CarbProtToFatCalorieRatio * diet.Nutritions.SaturatedFatPer100g / (diet.Nutritions.CarbohydratesPer100g +
                     diet.Nutritions.ProteinsPer100g + diet.Nutritions.FatsPer100g * CarbProtToFatCalorieRatio)) +
-                "%. The most commonly found recommendation is no more than 10%, but some diets set a limit that is " +
+                "%. <br>The most commonly found recommendation is no more than 10%, but some diets set a limit that is " +
                 "significantly lower or significantly higher."
             });
             results.Add(new EvaluationResult
@@ -159,11 +159,11 @@ namespace DietAnalyzer.Services.Utilities
                 NutrientName = "Proteins",
                 Level = Level.Unrated,
                 Value = diet.Nutritions.ProteinsPer100g,
-                Unit = "grams",
+                Unit = " grams",
                 Suggestions = "Your percentage of calories coming from proteins is " +
                 String.Format("{0:0.#}", 100.0 * diet.Nutritions.ProteinsPer100g / (diet.Nutritions.CarbohydratesPer100g +
                     diet.Nutritions.ProteinsPer100g + diet.Nutritions.FatsPer100g * CarbProtToFatCalorieRatio)) +
-                "%. The recommended range is 10-35%, which tends to be agreed upon " +
+                "%. <br>The recommended range is 10-35%, which tends to be agreed upon " +
                 "by a wide range of different diets."
             });
             EvaluateMicronutrient("VitaminA", diet.Nutritions.VitaminAPer100g, results, diet);
@@ -211,7 +211,7 @@ namespace DietAnalyzer.Services.Utilities
                     "" + foodsToAdd.ElementAt(0).Name + ", "
                     + foodsToAdd.ElementAt(1).Name + " and "
                     + foodsToAdd.ElementAt(2).Name + "";
-                micronutrientResult.Suggestions = "This value doesn't meet your dietary requirements. Consider" +
+                micronutrientResult.Suggestions = "This value doesn't meet your dietary requirements. <br>Consider" +
                     " adding the following foods high in " + name.Replace("Vitamin", "Vitamin ")
                     + " to your diet: " + stringWithFoodsToAdd + ".";
             }
@@ -228,7 +228,7 @@ namespace DietAnalyzer.Services.Utilities
                     + foodsToCut.ElementAt(1).FoodItem.Name + " and "
                     + foodsToCut.ElementAt(2).FoodItem.Name + "";
                 micronutrientResult.Suggestions = "This value is higher than the recommended upper limit, which " +
-                    "would be " + (int)DataHelper.HighValues[name] + "%. Consider cutting the following foods " +
+                    "would be " + (int)DataHelper.HighValues[name] + "%. <br>Consider cutting the following foods " +
                     "high in " + name.Replace("Vitamin", "Vitamin ") + " from your diet: " + stringWithFoodsToCut + ".";
             }
             else
