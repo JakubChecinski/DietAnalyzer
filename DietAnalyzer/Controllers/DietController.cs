@@ -19,7 +19,7 @@ namespace DietAnalyzer.Controllers
         private IDietService _service;
         private IFoodItemService _foodService;
         private IEvaluationService _evaluationService;
-        public DietController(ILogger<DietController> logger, 
+        public DietController(ILogger<DietController> logger,
             IDietService service, IFoodItemService foodService, IEvaluationService evaluationService)
         {
             _logger = logger;
@@ -52,7 +52,7 @@ namespace DietAnalyzer.Controllers
             }
             catch (Exception exc)
             {
-                _logger.LogError("Failed to delete diet: " + exc.Message + 
+                _logger.LogError("Failed to delete diet: " + exc.Message +
                     "with inner exception: " + exc.InnerException);
                 return Json(new
                 {
@@ -83,6 +83,7 @@ namespace DietAnalyzer.Controllers
             var vm = new DietViewModel
             {
                 IsAdd = id == 0,
+                NoFoodsOnList = id == 0, // the same starting condition, but will be handled differently later
                 Diet = dietToManage,
                 DietItems = dietToManage.DietItems.ToList(),
                 AvailableFoods = _foodService.Get(userId, true).ToList(),

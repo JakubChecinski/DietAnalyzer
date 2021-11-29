@@ -9,6 +9,7 @@ namespace DietAnalyzer.Models.ViewModels
     public class DietViewModel
     {
         public bool IsAdd { get; set; }
+        public bool NoFoodsOnList { get; set; }
         public Diet Diet { get; set; }
         public List<DietItem> DietItems { get; set; } 
         public List<FoodItem> AvailableFoods { get; set; }

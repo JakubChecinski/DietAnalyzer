@@ -56,8 +56,8 @@
                               class="text-danger"></span>
                     </td>
                     <td class="col-4 col-md-3 col-xl-2 px-0 px-md-3 offset-md-1 text-right">
-                        <button type="button" class="btn btn-danger btn-sm"
-                                onclick="deleteRowUpdateHTML(this, 'DietItems')">
+                        <button type="button" class="btn btn-danger btn-sm" 
+                                onclick="deleteFood(this, 'DietItems')">
                             Delete position
                         </button>
                     </td>
@@ -84,7 +84,7 @@
     <hr />
     <div class="row">
         <div class="d-flex col-xs-1 col-md-2 justify-content-lg-end  justify-content-xs-start">
-            <button type="submit" class="btn btn-primary btn-lg mt-2">
+            <button id="saveButton" type="submit" class="btn btn-primary btn-lg mt-2" disabled="@Model.NoFoodsOnList">
                 Save
             </button>
         </div>
@@ -114,6 +114,10 @@
                     foodId: foodId
                 },
                 success: function (data) {
+                    $('#saveButton').prop("disabled", false);
+                    @Model.NoFoodsOnList = false; 
+                    /* note: Model.NoFoodsOnList has to be tracked separately 
+                        in case the controller wants to reload this form */
                     $('#Table > tbody').append(data);
                 },
                 error: function (result) {
@@ -121,5 +125,14 @@
                 }
             });
         }
+
+        function deleteFood(button, stringCode) {
+            deleteRowUpdateHTML(button, stringCode);
+            if ($('#Table tbody tr').length == 0) {
+                @Model.NoFoodsOnList = true;
+                $('#saveButton').prop("disabled", true);
+            }
+        }
+
     </script>
 }
