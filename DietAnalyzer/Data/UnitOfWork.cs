@@ -1,4 +1,4 @@
-﻿using DietAnalyzer.Models.Repositories;
+﻿using DietAnalyzer.Data.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;

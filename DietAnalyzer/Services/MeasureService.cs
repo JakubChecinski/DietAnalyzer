@@ -35,32 +35,45 @@ namespace DietAnalyzer.Services
         {
             var newMeasuresList = newMeasures == null ? null : newMeasures.ToList();
             var oldMeasures = _unitOfWork.Measures.GetCustom(userId);
-            if (oldMeasures != null)
-                foreach (Measure oldMeasure in oldMeasures)
-                {
-                    if(newMeasuresList != null && newMeasuresList.Any(x => x.Id == oldMeasure.Id) 
-                        && newMeasuresList.Single(x => x.Id == oldMeasure.Id).Grams == oldMeasure.Grams)
-                    {
-                        newMeasuresList.RemoveAll(x => x.Id == oldMeasure.Id);
-                        continue;
-                    }
-                    foreach (var foodMeasure in oldMeasure.FoodItems)
-                        _unitOfWork.FoodMeasures.Delete(foodMeasure.Id);
-                    foreach (var dietItem in oldMeasure.DietItems)
-                        _unitOfWork.DietItems.Delete(dietItem);
-                    _unitOfWork.Measures.Delete(oldMeasure.Id, userId);
-                }
             if (newMeasuresList != null)
                 foreach (Measure newMeasure in newMeasuresList)
                 {
-                    _unitOfWork.Measures.Add(newMeasure);
-                    _unitOfWork.Save();
-                    foreach (var foodItem in _unitOfWork.Foods.Get(userId))
+                    if (oldMeasures != null && oldMeasures.Any(x => x.Id == newMeasure.Id))
                     {
-                        _unitOfWork.FoodMeasures.Add(newMeasure.Id, foodItem.Id);
+                        _unitOfWork.Measures.Update(newMeasure, userId);
+                    }
+                    else
+                    {
+                        AddMeasureWithLinks(newMeasure, userId);
                     }
                 }
+            if (oldMeasures != null)
+            {
+                foreach (Measure oldMeasure in oldMeasures)
+                {
+                    if (newMeasuresList != null && newMeasuresList.Any(x => x.Id == oldMeasure.Id)) continue;
+                    else DeleteMeasureWithLinks(oldMeasure, userId);
+                }
+            }
             _unitOfWork.Save();
+        }
+        private void AddMeasureWithLinks(Measure measure, string userId)
+        {
+            _unitOfWork.Measures.Add(measure);
+            _unitOfWork.Save();
+            foreach (var foodItem in _unitOfWork.Foods.Get(userId))
+            {
+                _unitOfWork.FoodMeasures.Add(measure.Id, foodItem.Id);
+            }
+        }
+
+        private void DeleteMeasureWithLinks(Measure measure, string userId)
+        {
+            foreach (var foodMeasure in measure.FoodItems)
+                _unitOfWork.FoodMeasures.Delete(foodMeasure.Id);
+            foreach (var dietItem in measure.DietItems)
+                _unitOfWork.DietItems.Delete(dietItem);
+            _unitOfWork.Measures.Delete(measure.Id, userId);
         }
 
     }

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DietAnalyzer.Models.Repositories
+namespace DietAnalyzer.Data.Repositories
 {
     public class MeasureRepository : IMeasureRepository
     {
@@ -27,6 +27,7 @@ namespace DietAnalyzer.Models.Repositories
         {
             var measures = _context.Measures
                  .Where(x => x.UserId == userId && x.IsPubliclyKnown)
+                 .OrderBy(x => x.Name)
                  .Include(x => x.FoodItems)
                  .Include(x => x.DietItems).AsSplitQuery();
             return measures.ToList();
@@ -40,6 +41,13 @@ namespace DietAnalyzer.Models.Repositories
         public void Add(Measure measure)
         {
             _context.Measures.Add(measure);
+        }
+
+        public void Update(Measure measure, string userId)
+        {
+            var measureToUpdate = _context.Measures.Single(x => x.Id == measure.Id && x.UserId == userId);
+            measureToUpdate.Name = measure.Name;
+            measureToUpdate.Grams = measure.Grams;
         }
 
         public void Delete(int measureId, string userId)

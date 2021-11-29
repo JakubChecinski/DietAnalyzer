@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DietAnalyzer.Models.Repositories
+namespace DietAnalyzer.Data.Repositories
 {
     public class DietItemRepository : IDietItemRepository
     {
