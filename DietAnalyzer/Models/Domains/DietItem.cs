@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DietAnalyzer.Models.DataAttributes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace DietAnalyzer.Models.Domains
         public int Id { get; set; }
 
         [Required(ErrorMessage = "This field is required")]
+        [LocaleSafeRange(0.0, float.MaxValue, ErrorMessage = "This value must be positive.")]
         public float Quantity { get; set; }
 
         [Required(ErrorMessage = "This field is required")]
