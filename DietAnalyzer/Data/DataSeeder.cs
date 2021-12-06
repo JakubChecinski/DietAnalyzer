@@ -17,6 +17,7 @@ namespace DietAnalyzer.Data
 			{
 				Id = 1,
 				Name = "spinach",
+				ImageFromApp = "/images/spinach.png",
 			},
 			new FoodItem()
 			{
@@ -27,6 +28,7 @@ namespace DietAnalyzer.Data
 			{
 				Id = 3,
 				Name = "eggs",
+				ImageFromApp = "/images/eggs.png",
 			},
 			new FoodItem()
 			{

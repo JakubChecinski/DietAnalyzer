@@ -29,6 +29,26 @@
     </div>
     <br />
     <hr />
+    <div class="row mt-2">
+        <div class="d-flex col-2 offset-xs-0 offset-md-2 mt-2">
+            <select name=@Html.NameFor(x => x.CurrentFoodId) id="foodDropDown" class="form-control">
+                @foreach (var food in Model.AvailableFoods)
+                {
+                    <option value="@food.Id" data-class="food-icon"
+                            data-style="background-image: url('@food.GetImageSrc()');">
+                        @food.Name
+                    </option>
+                }
+            </select>
+        </div>
+        <div class="d-flex col-xs-1 col-md-2 offset-md-1 offset-lg-0 mb-2">
+            <button type="button" class="btn btn-outline-primary mt-2"
+                    onclick="addNewRow('AddNewPosition?index=', @Model.Diet.Id)">
+                Add food
+            </button>
+        </div>
+    </div>
+    <br />
     <table id="Table">
         <tbody>
             @for (int i = 0; i < Model.DietItems.Count; i++)
@@ -38,8 +58,11 @@
                     @Html.HiddenFor(x => Model.DietItems[i].DietId)
                     @Html.HiddenFor(x => Model.DietItems[i].FoodItemId)
                     @Html.HiddenFor(x => Model.DietItems[i].FoodItem.Name)
-                    <td class="col-1 ml-0 pl-0">
-                        <p class="text-center pt-3">@Model.DietItems[i].FoodItem.Name</p>
+                    <td class="col-2 ml-0 pl-0">
+                        <div class="text-center pt-0" style="display: inline-block !important;">
+                            <img src="@Model.DietItems[i].FoodItem.GetImageSrc()" class="foodImage"/>
+                            @Model.DietItems[i].FoodItem.Name 
+                        </div>
                     </td>
                     <td class="col-1 px-0 px-md-3">
                         @Html.TextBoxFor(x => Model.DietItems[i].Quantity,
@@ -56,7 +79,7 @@
                               class="text-danger"></span>
                     </td>
                     <td class="col-4 col-md-3 col-xl-2 px-0 px-md-3 offset-md-1 text-right">
-                        <button type="button" class="btn btn-danger btn-sm" 
+                        <button type="button" class="btn btn-danger btn-sm"
                                 onclick="deleteFood(this, 'DietItems')">
                             Delete position
                         </button>
@@ -66,20 +89,6 @@
             }
         </tbody>
     </table>
-    <div class="row mt-5">
-        <div class="d-flex col-2 offset-xs-0 offset-md-1 mt-2">
-            @Html.DropDownListFor(x => x.CurrentFoodId,
-                        new SelectList(Model.AvailableFoods, "Id", "Name"),
-                        "-- select food --",
-                        new { @class = "form-control", @id = "foodDropDown" })
-        </div>
-        <div class="d-flex col-xs-1 col-md-2 offset-md-1 offset-lg-0 mb-2">
-            <button type="button" class="btn btn-outline-primary mt-2"
-                    onclick="addNewRow('AddNewPosition?index=', @Model.Diet.Id)">
-                Add food
-            </button>
-        </div>
-    </div>
     <br>
     <hr />
     <div class="row">
@@ -115,10 +124,10 @@
                 },
                 success: function (data) {
                     $('#saveButton').prop("disabled", false);
-                    @Model.NoFoodsOnList = false; 
-                    /* note: Model.NoFoodsOnList has to be tracked separately 
+                    @Model.NoFoodsOnList = false;
+                    /* note: Model.NoFoodsOnList has to be tracked separately
                         in case the controller wants to reload this form */
-                    $('#Table > tbody').append(data);
+                    $('#Table > tbody').prepend(data);
                 },
                 error: function (result) {
                     JL().fatal("addNewRow (Manage Diet) - error: " + result);
@@ -133,6 +142,29 @@
                 $('#saveButton').prop("disabled", true);
             }
         }
+
+        // from jquery-ui documentation manual
+        $(function () {
+            $.widget("custom.iconselectmenu", $.ui.selectmenu, {
+                _renderItem: function (ul, item) {
+                    var li = $("<li>"),
+                        wrapper = $("<div>", { text: item.label });
+                    if (item.disabled) {
+                        li.addClass("ui-state-disabled");
+                    }
+                    $("<span>", {
+                        style: item.element.attr("data-style"),
+                        "class": "ui-icon " + item.element.attr("data-class")
+                    })
+                        .appendTo(wrapper);
+                    return li.append(wrapper).appendTo(ul);
+                }
+            });
+            $("#foodDropDown")
+                .iconselectmenu()
+                .iconselectmenu("menuWidget")
+                .addClass("ui-menu-icons food-icon");
+        });
 
     </script>
 }

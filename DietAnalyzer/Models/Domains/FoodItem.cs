@@ -17,6 +17,9 @@ namespace DietAnalyzer.Models.Domains
         [MaxLength(50)]
         public string Name { get; set; }
 
+        public string ImageFromApp { get; set; }
+        public byte[] ImageFromUser { get; set; }
+
         [ForeignKey("User")]
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }
@@ -30,6 +33,12 @@ namespace DietAnalyzer.Models.Domains
         {
             DietItems = new Collection<DietItem>();
             Measures = new Collection<FoodMeasure>();
+        }
+        public string GetImageSrc()
+        {
+            return ImageFromApp ?? 
+                (ImageFromUser == null ? null :
+                String.Format("data:image/png;base64,{0}", Convert.ToBase64String(ImageFromUser))); 
         }
 
     }

@@ -11,6 +11,7 @@ namespace DietAnalyzer.Models.ViewModels
         public int DietId { get; set; }
         public int FoodItemId { get; set; }
         public string FoodItemName { get; set; }
+        public string FoodItemImageUrl { get; set; }
         public List<Tuple<int, string>> AvailableMeasuresForThisFood { get; set; }
     }
 }

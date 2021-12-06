@@ -92,6 +92,8 @@ namespace DietAnalyzer.Data.Repositories
         {
             var foodToUpdate = _context.FoodItems.Single(x => x.Id == food.Id && x.UserId == userId);
             foodToUpdate.Name = food.Name;
+            foodToUpdate.ImageFromUser = food.ImageFromUser;
+            foodToUpdate.ImageFromApp = food.ImageFromApp;
             // FoodItemService takes care of the rest (nutritions and restrictions)
         }
 

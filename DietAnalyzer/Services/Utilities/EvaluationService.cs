@@ -205,12 +205,12 @@ namespace DietAnalyzer.Services.Utilities
                 var foodsToAdd = _foodService.Get(diet.UserId, true).AsQueryable()
                     .OrderBy($"x => x.Nutrition.{name}Per100g desc").Take(3);
                 var stringWithFoodsToAdd = foodsToAdd == null || foodsToAdd.Count() == 0 ? null :
-                    foodsToAdd.Count() == 1 ? "" + foodsToAdd.ElementAt(0).Name + "" :
-                    foodsToAdd.Count() == 2 ? "" + foodsToAdd.ElementAt(0).Name + " and "
-                    + foodsToAdd.ElementAt(1).Name + "" :
-                    "" + foodsToAdd.ElementAt(0).Name + ", "
-                    + foodsToAdd.ElementAt(1).Name + " and "
-                    + foodsToAdd.ElementAt(2).Name + "";
+                    foodsToAdd.Count() == 1 ? "" + HtmlCodeForFood(foodsToAdd.ElementAt(0)) + "" :
+                    foodsToAdd.Count() == 2 ? "" + HtmlCodeForFood(foodsToAdd.ElementAt(0)) + " and "
+                    + HtmlCodeForFood(foodsToAdd.ElementAt(1)) + "" :
+                    "" + HtmlCodeForFood(foodsToAdd.ElementAt(0)) + ", "
+                    + HtmlCodeForFood(foodsToAdd.ElementAt(1)) + " and "
+                    + HtmlCodeForFood(foodsToAdd.ElementAt(2)) + "";
                 micronutrientResult.Suggestions = "This value doesn't meet your dietary requirements. <br>Consider" +
                     " adding the following foods high in " + name.Replace("Vitamin", "Vitamin ")
                     + " to your diet: " + stringWithFoodsToAdd + ".";
@@ -221,12 +221,12 @@ namespace DietAnalyzer.Services.Utilities
                 var foodsToCut = diet.DietItems.AsQueryable()
                     .OrderBy($"x => x.FoodItem.Nutrition.{name}Per100g desc").Take(3);
                 var stringWithFoodsToCut = foodsToCut == null || foodsToCut.Count() == 0 ? null :
-                    foodsToCut.Count() == 1 ? "" + foodsToCut.ElementAt(0).FoodItem.Name + "" :
-                    foodsToCut.Count() == 2 ? "" + foodsToCut.ElementAt(0).FoodItem.Name + " and "
-                    + foodsToCut.ElementAt(1).FoodItem.Name + "" :
-                    "" + foodsToCut.ElementAt(0).FoodItem.Name + ", "
-                    + foodsToCut.ElementAt(1).FoodItem.Name + " and "
-                    + foodsToCut.ElementAt(2).FoodItem.Name + "";
+                    foodsToCut.Count() == 1 ? "" + HtmlCodeForFood(foodsToCut.ElementAt(0).FoodItem) + "" :
+                    foodsToCut.Count() == 2 ? "" + HtmlCodeForFood(foodsToCut.ElementAt(0).FoodItem) + " and "
+                    + HtmlCodeForFood(foodsToCut.ElementAt(1).FoodItem) + "" :
+                    "" + HtmlCodeForFood(foodsToCut.ElementAt(0).FoodItem) + ", "
+                    + HtmlCodeForFood(foodsToCut.ElementAt(1).FoodItem) + " and "
+                    + HtmlCodeForFood(foodsToCut.ElementAt(2).FoodItem) + "";
                 micronutrientResult.Suggestions = "This value is higher than the recommended upper limit, which " +
                     "would be " + (int)DataHelper.HighValues[name] + "%. <br>Consider cutting the following foods " +
                     "high in " + name.Replace("Vitamin", "Vitamin ") + " from your diet: " + stringWithFoodsToCut + ".";
@@ -237,6 +237,12 @@ namespace DietAnalyzer.Services.Utilities
                 micronutrientResult.Suggestions = "It seems you have no problem with this nutrient. Great job!";
             }
             results.Add(micronutrientResult);
+        }
+
+        private string HtmlCodeForFood(FoodItem food)
+        {
+            return food.GetImageSrc() == null ? food.Name
+                : " <img src = \"" + food.GetImageSrc() + "\" class=\"foodImageSmall\"/> " + food.Name; 
         }
 
     }

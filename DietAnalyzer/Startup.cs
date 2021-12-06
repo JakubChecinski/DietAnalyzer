@@ -35,6 +35,7 @@ namespace DietAnalyzer
             services.AddScoped<IMeasureService, MeasureService>();
             services.AddScoped<IRestrictionService, RestrictionService>();
             services.AddScoped<IEvaluationService, EvaluationService>();
+            services.AddScoped<ImageHelper, ImageHelper>();
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(

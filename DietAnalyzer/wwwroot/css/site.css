@@ -58,6 +58,34 @@ hr {
     width: max-content;
 }
 
+.ui-selectmenu-button {
+    height: calc(1.3em + 2px);
+    background: white;
+    line-height: unset;
+}
+
+option.food-icon {
+    background-repeat: no-repeat !important;
+    padding-left: 10px;
+}
+
+.food-icon .ui-icon {
+    background-position: left top;
+}
+
+.ui-icon {
+    background-size: cover;
+}
+
+.ui-icon-triangle-1-s { 
+    /* 
+        this is very hacky, but I'm not willing to learn the entire jQuery-UI just for this one icon
+        the documentation suggested accessing the selectmenu to change the icon class, but it didn't work for me
+    */
+    background-position: -65px 5px;
+    background-size: unset;
+}
+
 .form-control-smallscreen-safe {
     font-size: 0.7rem;
 }
@@ -133,6 +161,12 @@ hr {
     }
 }
 
+.custom-file-upload {
+    cursor: pointer;
+    margin-bottom: 0px;
+}
+
+
 /* misc */
 
 @media only screen and (max-width: 450px) {
@@ -159,6 +193,19 @@ hr {
     font-size: small;
     line-height: 1.2;
 }
+
+/* images */
+.foodImageSmall {
+    height: 16px;
+    width: 16px;
+}
+
+.foodImage {
+    height: 40px;
+    width: 40px;
+}
+
+
 
 /* privacy */
 
@@ -187,7 +234,10 @@ hr {
 }
 
 
+/*****************************************/
 /* customized parts end here */
+/* default bootstrap styles start below */
+/*****************************************/
 
 
 a.navbar-brand {

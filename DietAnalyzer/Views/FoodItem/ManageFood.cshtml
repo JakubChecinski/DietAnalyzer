@@ -4,7 +4,8 @@
     ViewBag.Title = "Edit Food";
 }
 
-@using (Html.BeginForm("ManageFood", "FoodItem", FormMethod.Post, new { id = "mainForm" }))
+@using (Html.BeginForm("ManageFood", "FoodItem", FormMethod.Post,
+   new { id = "mainForm", enctype = "multipart/form-data" }))
 {
     @Html.HiddenFor(x => x.IsAdd)
     @Html.HiddenFor(x => x.FoodItem.Id)
@@ -20,12 +21,32 @@
     @Html.AntiForgeryToken()
 
     <div class="row">
-        <div class="d-flex col-2 offset-3 justify-content-end">
+        <div class="d-flex col-1 col-md-2 justify-content-end">
             @Html.LabelFor(x => x.FoodItem.Name):
         </div>
         <div class="d-flex col-1 p-0">
             @Html.TextBoxFor(x => x.FoodItem.Name, new { @class = "text-input-long" })
             <span asp-validation-for="@Model.FoodItem.Name" class="text-danger"></span>
+        </div>
+        <div class="d-flex col-2 col-md-1 offset-4 offset-md-4 offset-lg-2 justify-content-end">
+            @if (Model.FoodItem.ImageFromUser == null)
+            {
+                <img id="imageView" src="/images/emptyImage.png" width="40" height="40" />
+            }
+            else
+            {
+                @Html.HiddenFor(x => x.FoodItem.ImageFromUser)
+                <img id="imageView" src="@Model.FoodItem.GetImageSrc()" width="40" height="40" />
+            }
+        </div>
+        <div class="d-flex col-1 col-lg-4">
+            <label class="btn btn-sm btn-outline-primary custom-file-upload pt-2 mr-2">
+                <input asp-for="@Model.ImageFile" type="file" accept=".png, .jpg, .jpeg, .gif"
+                       style="display: none;" onchange="previewFile(this);" />
+                New file...
+            </label>
+            @if (Model.HasImageProblem)
+            {<span asp-validation-for="@Model.ImageFile" class="text-danger"></span>}
         </div>
     </div>
     <br />
@@ -361,4 +382,26 @@
             </button>
         </div>
     </div>
+}
+
+@section Scripts {
+
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script type="text/javascript">
+
+        function previewFile(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#imageView').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+</script>
+
+
+
 }

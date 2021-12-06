@@ -2,6 +2,7 @@
 using DietAnalyzer.Models.Extensions;
 using DietAnalyzer.Models.ViewModels;
 using DietAnalyzer.Services;
+using DietAnalyzer.Services.Utilities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -9,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace DietAnalyzer.Controllers
 {
@@ -18,12 +19,14 @@ namespace DietAnalyzer.Controllers
         private readonly ILogger<FoodItemController> _logger;
         private IFoodItemService _service;
         private IMeasureService _measureService;
+        private ImageHelper _imageHelper;
         public FoodItemController(ILogger<FoodItemController> logger,
-            IFoodItemService service, IMeasureService measureService)
+            IFoodItemService service, IMeasureService measureService, ImageHelper imageHelper)
         {
             _logger = logger;
             _service = service;
             _measureService = measureService;
+            _imageHelper = imageHelper;
         }
 
         // actions for the entire food list
@@ -95,6 +98,7 @@ namespace DietAnalyzer.Controllers
             var vm = new FoodItemViewModel
             {
                 IsAdd = id == 0,
+                HasImageProblem = false,
                 FoodItem = foodToManage,
                 AvailableMeasures = ReloadMeasures(foodToManage.Measures.ToList()),
             };
@@ -106,6 +110,16 @@ namespace DietAnalyzer.Controllers
         public IActionResult ManageFood(FoodItemViewModel vm)
         {
             if (!ModelState.IsValid) return View("ManageFood", vm);
+            if(vm.ImageFile != null)
+            {
+                var formFileContent = _imageHelper.ValidateFile(vm.ImageFile, ModelState);
+                if (!ModelState.IsValid)
+                {
+                    vm.HasImageProblem = true;
+                    return View("ManageFood", vm);
+                }
+                else vm.FoodItem.ImageFromUser = formFileContent;
+            }    
             var userId = User.GetUserId();
             vm.FoodItem.UserId = userId; 
             vm.FoodItem.Measures = ReloadMeasures(vm.AvailableMeasures.ToList());

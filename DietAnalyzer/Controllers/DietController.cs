@@ -146,6 +146,7 @@ namespace DietAnalyzer.Controllers
                 DietId = dietId,
                 FoodItemId = foodId,
                 FoodItemName = _foodService.Get(userId, foodId).Name,
+                FoodItemImageUrl = _foodService.Get(userId, foodId).GetImageSrc(),
                 AvailableMeasuresForThisFood = PrepareAvailableMeasuresForFood(foodId),
             };
             return PartialView("_NewDietItemRow", vm);

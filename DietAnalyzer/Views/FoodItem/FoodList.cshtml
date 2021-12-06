@@ -15,6 +15,10 @@
             foreach (var food in Model.Foods)
             {
                 <tr class="d-flex pt-2">
+                    <td>
+                        @if (food.GetImageSrc() == null){ <img src="#" class="foodImage"/> }
+                        else { <img src="@food.GetImageSrc()" class="foodImage"/> }
+                    </td>
                     <td style="width:200px;">
                         <a href="@Url.Action("ManageFood", "FoodItem",
                                     new { id = food.Id })"

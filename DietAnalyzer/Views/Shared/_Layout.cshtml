@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - DietAnalyzer</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/jquery-ui/jquery-ui.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
@@ -24,7 +25,7 @@
                         @if (SignInManager.IsSignedIn(User))
                         {
                             <li class="nav-item my-1 me-5">
-                                <a class="nav-link active mx-1 px-3 text-dark" 
+                                <a class="nav-link active mx-1 px-3 text-dark"
                                    asp-area="" asp-controller="Diet" asp-action="DietList">My Diets</a>
                             </li>
                             <li class="nav-item my-1 me-5">
@@ -55,6 +56,7 @@
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/lib/jquery-cookie/jquery.cookie.min.js"></script>
+    <script src="~/lib/jquery-ui/jquery-ui.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
