@@ -14,6 +14,34 @@ header {
     background-color: #ffe6cc;
 }
 
+.customInfo {
+    background-color: #ffe6cc;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding-top: 5px;
+    z-index: 10;
+    /* hoverable */
+    padding-bottom: 0px;
+    height: 20px;
+    color: #ffe6cc;
+    transition-duration: 0.300s;
+}
+
+.customInfo:hover {
+    padding-bottom: 50px;
+    height: initial;
+    color: black;
+    transition-duration: 0.300s;
+}
+
+.main-block {
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    overflow-x: hidden;
+}
+
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
     color: #fff;
     background-color: #99ccff;
@@ -213,11 +241,12 @@ option.food-icon {
     font-size: 10px;
     position: fixed;
     bottom: 0;
+    padding-top: 10px;
+    padding-bottom: 50px;
     background-color: darkgray;
     width: 100%;
     color: black;
     text-align: center;
-    padding: 5px 0;
 }
 
 /* get rid of bootstrap border-boxes */

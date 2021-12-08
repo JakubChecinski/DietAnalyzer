@@ -5,7 +5,7 @@
 }
 
 @using (Html.BeginForm("ManageFood", "FoodItem", FormMethod.Post,
-  new { id = "mainForm", enctype = "multipart/form-data" }))
+ new { id = "mainForm", enctype = "multipart/form-data" }))
 {
     @Html.HiddenFor(x => x.IsAdd)
     @Html.HiddenFor(x => x.FoodItem.Id)
@@ -19,7 +19,8 @@
         @Html.HiddenFor(x => x.AvailableMeasures[i].Measure.Name)
     }
     @Html.AntiForgeryToken()
-    @if (Model.HasMeasureProblem) {<span class="text-danger">At least one measure must be checked.</span>}
+    @if (Model.HasMeasureProblem)
+    {<span class="text-danger">At least one measure must be checked.</span>}
     <div class="row">
         <div class="d-flex col-1 col-md-2 justify-content-end">
             @Html.LabelFor(x => x.FoodItem.Name):
@@ -384,7 +385,13 @@
             </button>
         </div>
     </div>
+    <br />
 }
+<footer class="customInfo">
+    <div class="container mx-1 mx-lg-auto main-block">
+        Here you can edit your custom food. If you don't know a specific nutrition value, feel free to leave it blank.
+    </div>
+</footer>
 
 @section Scripts {
 

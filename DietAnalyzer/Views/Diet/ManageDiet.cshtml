@@ -60,8 +60,8 @@
                     @Html.HiddenFor(x => Model.DietItems[i].FoodItem.Name)
                     <td class="col-2 ml-0 pl-0">
                         <div class="text-center pt-0" style="display: inline-block !important;">
-                            <img src="@Model.DietItems[i].FoodItem.GetImageSrc()" class="foodImage"/>
-                            @Model.DietItems[i].FoodItem.Name 
+                            <img src="@Model.DietItems[i].FoodItem.GetImageSrc()" class="foodImage" />
+                            @Model.DietItems[i].FoodItem.Name
                         </div>
                     </td>
                     <td class="col-1 px-0 px-md-3">
@@ -104,7 +104,13 @@
             </button>
         </div>
     </div>
+    <br />
 }
+<footer class="customInfo">
+    <div class="container mx-1 mx-lg-auto main-block">
+        Here you can edit your dietary plan. Use buttons to add or delete foods, then click Save.
+    </div>
+</footer>
 
 @section Scripts
 {
