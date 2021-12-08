@@ -101,7 +101,7 @@ namespace DietAnalyzer.Controllers
                 HasImageProblem = false,
                 HasMeasureProblem = false,
                 FoodItem = foodToManage,
-                AvailableMeasures = ReloadMeasures(foodToManage.Measures.ToList()),
+                AvailableMeasures = _measureService.ReloadMeasures(foodToManage.Measures.ToList()),
             };
             return View(vm);
         }
@@ -128,21 +128,10 @@ namespace DietAnalyzer.Controllers
             }    
             var userId = User.GetUserId();
             vm.FoodItem.UserId = userId; 
-            vm.FoodItem.Measures = ReloadMeasures(vm.AvailableMeasures.ToList());
+            vm.FoodItem.Measures = _measureService.ReloadMeasures(vm.AvailableMeasures.ToList());
             if (vm.IsAdd) _service.Add(vm.FoodItem);
             else _service.Update(vm.FoodItem, userId);
             return RedirectToAction("FoodList", "FoodItem");
-        }
-
-        private List<FoodMeasure> ReloadMeasures(List<FoodMeasure> foodMeasures)
-        {
-            // I was hoping Entity would do this automatically, but apparently it doesn't
-            // Maybe it's because I added a new field to the join FoodMeasure class?
-            for (int i = 0; i < foodMeasures.Count; i++)
-            {
-                foodMeasures[i].Measure = _measureService.Get(foodMeasures[i].MeasureId);
-            }
-            return foodMeasures;
         }
 
     }

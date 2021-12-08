@@ -13,5 +13,6 @@ namespace DietAnalyzer.Services
         Measure Get(int measureId);
         IEnumerable<Measure> GetCustom(string userId);
         void Update(IEnumerable<Measure> measures, string userId);
+        List<FoodMeasure> ReloadMeasures(List<FoodMeasure> foodMeasures);
     }
 }

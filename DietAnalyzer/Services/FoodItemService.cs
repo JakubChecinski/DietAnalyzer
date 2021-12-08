@@ -37,6 +37,29 @@ namespace DietAnalyzer.Services
             }
             return _unitOfWork.Foods.GetCustom(userId);
         }
+        public List<List<Tuple<int, string>>> PrepareMeasuresForDietItems(string userId, 
+            ICollection<DietItem> dietItems)
+        {
+            var availableMeasures = new List<List<Tuple<int, string>>>();
+            for (int i = 0; i < dietItems.Count; i++)
+            {
+                availableMeasures.Add(PrepareMeasuresForFood(userId, 
+                    dietItems.ElementAt(i).FoodItemId));
+            }
+            return availableMeasures;
+        }
+        public List<Tuple<int, string>> PrepareMeasuresForFood(string userId, int foodId)
+        {
+            var availableMeasures = new List<Tuple<int, string>>();
+            var currentFood = Get(userId, foodId);
+            foreach (var measure in currentFood.Measures)
+            {
+                if (measure.IsCurrentlyLinked)
+                    availableMeasures.Add
+                        (new Tuple<int, string>(measure.MeasureId, measure.Measure.Name));
+            }
+            return availableMeasures;
+        }
 
         public FoodItem Get(string userId, int foodId)
         {

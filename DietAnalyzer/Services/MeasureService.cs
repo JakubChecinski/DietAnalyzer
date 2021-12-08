@@ -57,6 +57,18 @@ namespace DietAnalyzer.Services
             }
             _unitOfWork.Save();
         }
+
+        public List<FoodMeasure> ReloadMeasures(List<FoodMeasure> foodMeasures)
+        {
+            // I was hoping Entity would do this automatically, but apparently it doesn't
+            // Maybe it's because I added a new field to the join FoodMeasure class?
+            for (int i = 0; i < foodMeasures.Count; i++)
+            {
+                foodMeasures[i].Measure = Get(foodMeasures[i].MeasureId);
+            }
+            return foodMeasures;
+        }
+
         private void AddMeasureWithLinks(Measure measure, string userId)
         {
             _unitOfWork.Measures.Add(measure);

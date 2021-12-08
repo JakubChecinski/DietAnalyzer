@@ -30,6 +30,7 @@ namespace DietAnalyzer.Controllers
             _evaluationService = evaluationService;
         }
 
+
         // actions for the entire diet list
         [HttpGet]
         [Authorize]
@@ -64,6 +65,7 @@ namespace DietAnalyzer.Controllers
             return Json(new { success = true, redirectToUrl = Url.Action("DietList", "Diet") });
         }
 
+
         // actions for individual diet items
         [HttpGet]
         [Authorize]
@@ -89,53 +91,33 @@ namespace DietAnalyzer.Controllers
                 Diet = dietToManage,
                 DietItems = dietToManage.DietItems.ToList(),
                 AvailableFoods = _foodService.Get(userId, true).ToList(),
-                AvailableMeasuresForEachFood = PrepareAvailableMeasures(dietToManage.DietItems),
+                AvailableMeasuresForEachFood = 
+                    _foodService.PrepareMeasuresForDietItems(userId, dietToManage.DietItems),
                 CurrentFoodId = 0,
             };
             return View(vm);
         }
-        private List<List<Tuple<int, string>>> PrepareAvailableMeasures(ICollection<DietItem> fromDietItems)
-        {
-            var availableMeasures = new List<List<Tuple<int, string>>>();
-            for (int i = 0; i < fromDietItems.Count; i++)
-            {
-                availableMeasures.Add(PrepareAvailableMeasuresForFood
-                    (fromDietItems.ElementAt(i).FoodItemId));
-            }
-            return availableMeasures;
-        }
-        private List<Tuple<int, string>> PrepareAvailableMeasuresForFood(int foodId)
-        {
-            var availableMeasures = new List<Tuple<int, string>>();
-            var userId = User.GetUserId();
-            var currentFood = _foodService.Get(userId, foodId);
-            foreach (var measure in currentFood.Measures)
-            {
-                if (measure.IsCurrentlyLinked)
-                    availableMeasures.Add
-                        (new Tuple<int, string>(measure.MeasureId, measure.Measure.Name));
-            }
-            return availableMeasures;
-        }
-
+        
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult ManageDiet(DietViewModel vm)
         {
             if(vm.DietItems == null) return RedirectToAction("DietList", "Diet");
+            var userId = User.GetUserId();
             if (!ModelState.IsValid)
             {
-                vm.AvailableMeasuresForEachFood = PrepareAvailableMeasures(vm.DietItems);
+                vm.AvailableMeasuresForEachFood = 
+                    _foodService.PrepareMeasuresForDietItems(userId, vm.DietItems);
                 return View("ManageDiet", vm);
             }
             foreach (var dietItem in vm.DietItems) dietItem.FoodItem = null;
             vm.Diet.DietItems = vm.DietItems;
-            var userId = User.GetUserId();
             if (vm.IsAdd) _service.Add(vm.Diet);
             else _service.Update(vm.Diet, userId);
             return RedirectToAction("DietList", "Diet");
         }
+
 
         // helper action to dynamically update table in the view
         // see also: https://stackoverflow.com/questions/36317362/how-to-add-an-item-to-a-list-in-a-viewmodel-using-razor-and-net-core
@@ -149,7 +131,7 @@ namespace DietAnalyzer.Controllers
                 FoodItemId = foodId,
                 FoodItemName = _foodService.Get(userId, foodId).Name,
                 FoodItemImageUrl = _foodService.Get(userId, foodId).GetImageSrc(),
-                AvailableMeasuresForThisFood = PrepareAvailableMeasuresForFood(foodId),
+                AvailableMeasuresForThisFood = _foodService.PrepareMeasuresForFood(userId, foodId),
             };
             return PartialView("_NewDietItemRow", vm);
         }
