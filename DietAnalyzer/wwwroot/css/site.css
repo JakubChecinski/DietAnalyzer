@@ -1,9 +1,49 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
-/* customized parts start here */
 
-/* general */
+/********************************************************************/
+/* CUSTOMIZED PARTS START HERE */
+/********************************************************************/
+
+
+/* PART 0 - CLEANING AFTER BOOTSTRAP ********************************/
+
+* {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+*:before,
+*:after {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+@media only screen and (min-width: 600px) {
+    .btn-primary {
+        min-width: 120px;
+    }
+
+    .container {
+        margin-left: 50px;
+    }
+
+    .nav-item {
+        box-sizing: unset;
+    }
+}
+
+.container {
+    align-content: center;
+    justify-content: center;
+}
+
+
+
+
+/* PART 1 - GENERAL LAYOUT ******************************************/
 
 body {
     background-color: #ffffcc;
@@ -12,28 +52,6 @@ body {
 
 header {
     background-color: #ffe6cc;
-}
-
-.customInfo {
-    background-color: #ffe6cc;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding-top: 5px;
-    z-index: 10;
-    /* hoverable */
-    padding-bottom: 0px;
-    height: 20px;
-    color: #ffe6cc;
-    transition-duration: 0.300s;
-}
-
-.customInfo:hover {
-    padding-bottom: 50px;
-    height: initial;
-    color: black;
-    transition-duration: 0.300s;
 }
 
 .main-block {
@@ -60,58 +78,54 @@ hr {
     border-width: 1px;
 }
 
-@media only screen and (min-width: 600px) {
-    .btn-primary {
-        min-width: 120px;
-    }
 
-    .container {
-        margin-left: 50px;
-    }
+/* 1.1 FOOTERS **************************/
 
-    .nav-item {
-        box-sizing: unset;
-    }
+.customInfo, .customInfo:hover, .privacyPolicyInfo {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
-.container {
-    align-content: center;
-    justify-content: center;
+.privacyPolicyInfo {
+    background-color: darkgray;
+    padding-top: 10px;
+    padding-bottom: 50px;
+    font-size: 10px;
+    width: 100%;
+    color: black;
+    text-align: center;
 }
 
-/* form-controls */
+.customInfo, .customInfo:hover {
+    background-color: #ffe6cc;
+    padding-top: 5px;
+    z-index: 10;
+}
+
+.customInfo {
+    padding-bottom: 0px;
+    height: 20px;
+    color: #ffe6cc;
+    transition-duration: 0.300s;
+}
+
+.customInfo:hover {
+    padding-bottom: 50px;
+    height: initial;
+    color: black;
+    transition-duration: 0.300s;
+}
+
+
+
+
+/* PART 2 - COMPONENTS ********************************************/
 
 .form-control {
     height: calc(1.3em + 2px);
     width: max-content;
-}
-
-.ui-selectmenu-button {
-    height: calc(1.3em + 2px);
-    background: white;
-    line-height: unset;
-}
-
-option.food-icon {
-    background-repeat: no-repeat !important;
-    padding-left: 10px;
-}
-
-.food-icon .ui-icon {
-    background-position: left top;
-}
-
-.ui-icon {
-    background-size: cover;
-}
-
-.ui-icon-triangle-1-s { 
-    /* 
-        this is very hacky, but I'm not willing to learn the entire jQuery-UI just for this one icon
-        the documentation suggested accessing the selectmenu to change the icon class, but it didn't work for me
-    */
-    background-position: -65px 5px;
-    background-size: unset;
 }
 
 .form-control-smallscreen-safe {
@@ -124,7 +138,8 @@ option.food-icon {
     }
 }
 
-/* inputs */
+
+/* 2.1 INPUTS **************************/
 
 .text-input-short {
     text-align: center;
@@ -137,14 +152,9 @@ option.food-icon {
 
 @media only screen and (max-width: 600px) {
     .text-input-short {
-        text-align: center;
         max-width: 60px;
-        background-color: #ffffcc;
-        border-color: #000000;
-        border-style: solid;
     }
 }
-
 
 .text-input {
     text-align: center;
@@ -172,11 +182,7 @@ option.food-icon {
 
 @media only screen and (max-width: 600px) {
     .numeric-input {
-        text-align: center;
         max-width: 35px;
-        background-color: #ffffcc;
-        border-color: #000000;
-        border-style: solid;
     }
 }
 
@@ -189,13 +195,8 @@ option.food-icon {
     }
 }
 
-.custom-file-upload {
-    cursor: pointer;
-    margin-bottom: 0px;
-}
 
-
-/* misc */
+/* 2.2 TABLES **************************/
 
 @media only screen and (max-width: 450px) {
     .unit-table-td {
@@ -222,7 +223,11 @@ option.food-icon {
     line-height: 1.2;
 }
 
-/* images */
+
+
+
+/* PART 3 - IMAGES AND UPLOAD ***************************************/
+
 .foodImageSmall {
     height: 16px;
     width: 16px;
@@ -233,40 +238,56 @@ option.food-icon {
     width: 40px;
 }
 
-
-
-/* privacy */
-
-.privacyPolicyInfo {
-    font-size: 10px;
-    position: fixed;
-    bottom: 0;
-    padding-top: 10px;
-    padding-bottom: 50px;
-    background-color: darkgray;
-    width: 100%;
-    color: black;
-    text-align: center;
-}
-
-/* get rid of bootstrap border-boxes */
-* {
-    -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-}
-*:before,
-*:after {
-    -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
+.custom-file-upload {
+    cursor: pointer;
+    margin-bottom: 0px;
 }
 
 
-/*****************************************/
+
+
+/* PART 4 - JQUERY UI ***************************************/
+
+.ui-selectmenu-button {
+    height: calc(1.3em + 2px);
+    background: white;
+    line-height: unset;
+}
+
+option.food-icon {
+    background-repeat: no-repeat !important;
+    padding-left: 10px;
+}
+
+.food-icon .ui-icon {
+    background-position: left top;
+}
+
+.ui-icon {
+    background-size: cover;
+}
+
+.ui-icon-triangle-1-s {
+    /* 
+        this is pretty hacky
+        but I'm not willing to learn the entire library from the beginning just for this one icon
+        the documentation suggested accessing the selectmenu to change the icon class, which didn't work for me
+        this one works and it's unlikely to break, it's just a bit confusing on the code level
+        essentially: put the position code here and instead of a triangle you will get your desired icon
+    */
+    background-position: -65px 5px;
+    background-size: unset;
+}
+
+
+
+
+/********************************************************************/
 /* customized parts end here */
-/* default bootstrap styles start below */
-/*****************************************/
+/* styles below were written by bootstrap and not by me */
+/********************************************************************/
+
+
 
 
 a.navbar-brand {

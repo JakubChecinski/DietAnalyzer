@@ -1,9 +1,10 @@
-﻿function addNewRow(urlString) {
-    let rowIndex = $("#Table>tbody>tr").length;
+﻿
+function addNewRow(urlString, tableId) {
+    let rowIndex = $(tableId + ">tbody>tr").length;
     $.ajax({
         url: urlString + rowIndex,
         success: function (data) {
-            $('#Table > tbody').append(data);
+            $(tableId + '>tbody').append(data);
         },
         error: function (result) {
             console.log("addNewRow - error: " + result);
@@ -12,13 +13,12 @@
     });
 }
 
-
 // there probably exists a better way to do that... I'm just not very good at JS
-function deleteRowUpdateHTML(button, stringCode) {
+function deleteRowUpdateHTML(button, stringCode, tableId) {
     let row = button.parentNode.parentNode;
     let rowIndex = row.rowIndex;
     row.remove();
-    let table = document.getElementById("Table");
+    let table = document.getElementById(tableId);
     for (let i = rowIndex, tableRow; tableRow = table.rows[i]; i++) {
         tableRow.innerHTML = incrementStringPartsAfterCode(stringCode, tableRow.innerHTML, tableRow.rowIndex);
     }

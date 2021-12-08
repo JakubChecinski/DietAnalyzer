@@ -43,7 +43,7 @@
         </div>
         <div class="d-flex col-xs-1 col-md-2 offset-md-1 offset-lg-0 mb-2">
             <button type="button" class="btn btn-outline-primary mt-2"
-                    onclick="addNewRow('AddNewPosition?index=', @Model.Diet.Id)">
+                    onclick="addNewRowDiet('AddNewPosition?index=', @Model.Diet.Id)">
                 Add food
             </button>
         </div>
@@ -116,7 +116,7 @@
 {
     <script type="text/javascript">
 
-        function addNewRow(urlString, dietId) {
+        function addNewRowDiet(urlString, dietId) {
             var fDrop = document.getElementById("foodDropDown");
             if (fDrop.options[fDrop.selectedIndex].text === "-- select food --") return;
             var foodId = fDrop.options[fDrop.selectedIndex].value;
@@ -143,7 +143,7 @@
         }
 
         function deleteFood(button, stringCode) {
-            deleteRowUpdateHTML(button, stringCode);
+            deleteRowUpdateHTML(button, stringCode, 'Table');
             if ($('#Table tbody tr').length == 0) {
                 @Model.NoFoodsOnList = true;
                 $('#saveButton').prop("disabled", true);
