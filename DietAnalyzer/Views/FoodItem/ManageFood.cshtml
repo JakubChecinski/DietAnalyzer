@@ -5,7 +5,7 @@
 }
 
 @using (Html.BeginForm("ManageFood", "FoodItem", FormMethod.Post,
-   new { id = "mainForm", enctype = "multipart/form-data" }))
+  new { id = "mainForm", enctype = "multipart/form-data" }))
 {
     @Html.HiddenFor(x => x.IsAdd)
     @Html.HiddenFor(x => x.FoodItem.Id)
@@ -19,7 +19,7 @@
         @Html.HiddenFor(x => x.AvailableMeasures[i].Measure.Name)
     }
     @Html.AntiForgeryToken()
-
+    @if (Model.HasMeasureProblem) {<span class="text-danger">At least one measure must be checked.</span>}
     <div class="row">
         <div class="d-flex col-1 col-md-2 justify-content-end">
             @Html.LabelFor(x => x.FoodItem.Name):
@@ -356,6 +356,8 @@
     <br />
     <hr />
     <p><b>Available units of measure:</b></p>
+    @if (Model.HasMeasureProblem)
+    {<span class="text-danger">At least one measure must be checked.</span>}
     <div class="row row-cols-3">
         @for (int i = 0; i < Model.AvailableMeasures.Count; i++)
         {
@@ -386,9 +388,9 @@
 
 @section Scripts {
 
-@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
-<script type="text/javascript">
+    <script type="text/javascript">
 
         function previewFile(input) {
             if (input.files && input.files[0]) {
@@ -400,7 +402,7 @@
             }
         }
 
-</script>
+    </script>
 
 
 

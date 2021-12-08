@@ -16,7 +16,8 @@
 
     <div class="row">
         <div class="form-group col-5 col-sm-3">
-            @Html.CheckBoxFor(x => x.RestrictionInfo.Pescetarian)
+            @Html.CheckBoxFor(x => x.RestrictionInfo.Pescetarian,
+                new { id = "pescetarian", onclick = "verifyVegeRestrictions('pescetarian')" })
             @Html.LabelFor(x => x.RestrictionInfo.Pescetarian)
             <span asp-validation-for="@Model.RestrictionInfo.Pescetarian" class="text-danger"></span>
         </div>
@@ -28,7 +29,8 @@
     </div>
     <div class="row">
         <div class="form-group col-5 col-sm-3">
-            @Html.CheckBoxFor(x => x.RestrictionInfo.Vegetarian)
+            @Html.CheckBoxFor(x => x.RestrictionInfo.Vegetarian,
+                new { id = "vegetarian", onclick = "verifyVegeRestrictions('vegetarian')" })
             @Html.LabelFor(x => x.RestrictionInfo.Vegetarian)
             <span asp-validation-for="@Model.RestrictionInfo.Vegetarian" class="text-danger"></span>
         </div>
@@ -40,7 +42,8 @@
     </div>
     <div class="row">
         <div class="form-group col-5 col-sm-3">
-            @Html.CheckBoxFor(x => x.RestrictionInfo.DairyIntolerant)
+            @Html.CheckBoxFor(x => x.RestrictionInfo.DairyIntolerant,
+                new { id = "dairy", onclick = "verifyVegeRestrictions('dairy')" })
             @Html.LabelFor(x => x.RestrictionInfo.DairyIntolerant)
             <span asp-validation-for="@Model.RestrictionInfo.DairyIntolerant" class="text-danger"></span>
         </div>
@@ -52,7 +55,8 @@
     </div>
     <div class="row">
         <div class="form-group col-5 col-sm-3">
-            @Html.CheckBoxFor(x => x.RestrictionInfo.Vegan)
+            @Html.CheckBoxFor(x => x.RestrictionInfo.Vegan,
+                new { id = "vegan", onclick = "verifyVegeRestrictions('vegan')" })
             @Html.LabelFor(x => x.RestrictionInfo.Vegan)
             <span asp-validation-for="@Model.RestrictionInfo.Vegan" class="text-danger"></span>
         </div>
@@ -79,4 +83,44 @@
         Save
     </button>
 
+}
+
+
+@section Scripts
+{
+    <script type="text/javascript">
+
+        function verifyVegeRestrictions(source) {
+            switch (source) {
+                case 'pescetarian':
+                    if (document.getElementById("pescetarian").checked === false) {
+                        document.getElementById("vegetarian").checked = false;
+                        document.getElementById("vegan").checked = false;
+                    }
+                    break;
+                case 'vegetarian':
+                    if (document.getElementById("vegetarian").checked === false) {
+                        document.getElementById("vegan").checked = false;
+                    }
+                    else {
+                        document.getElementById("pescetarian").checked = true;
+                    }
+                    break;
+                case 'dairy':
+                    if (document.getElementById("dairy").checked === false) {
+                        document.getElementById("vegan").checked = false;
+                    }
+                    break;
+                case 'vegan':
+                    if (document.getElementById("vegan").checked === true) {
+                        document.getElementById("dairy").checked = true;
+                        document.getElementById("vegetarian").checked = true;
+                        document.getElementById("pescetarian").checked = true;
+                    }
+                    break;
+            }
+        }
+
+
+    </script>
 }

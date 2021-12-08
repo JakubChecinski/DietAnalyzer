@@ -78,6 +78,7 @@ namespace DietAnalyzer.Data.Repositories
             return _context.FoodItems
                 .Include(x => x.Nutrition)
                 .Include(x => x.Restrictions)
+                .Include(x => x.DietItems)
                 .Include(x => x.Measures)
                 .ThenInclude(m => m.Measure)
                 .Single(x => (x.UserId == userId || x.UserId == null) && x.Id == foodId);

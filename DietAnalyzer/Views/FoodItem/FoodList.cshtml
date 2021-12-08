@@ -71,11 +71,13 @@
                         row.parentNode.removeChild(row);
                     }
                     else {
-                        JL().fatal("deleteFood - failed result received");
+                        console.log("deleteFood - failed result received");
+                        //JL().fatal("deleteFood - failed result received");
                     }
                 },
-                error: function(result) {
-                    JL().fatal("deleteFood - error: " + result);
+                error: function (result) {
+                    console.log("deleteFood - error: " + result);
+                    //JL().fatal("deleteFood - error: " + result);
                 }
             });
         }

@@ -87,7 +87,7 @@ namespace DietAnalyzer.Controllers
                 {
                     foodToManage.Measures.Add(new FoodMeasure
                     {
-                        IsCurrentlyLinked = false,
+                        IsCurrentlyLinked = measure.Id == 1 ? true : false,
                         FoodItemId = 0,
                         Measure = measure,
                         MeasureId = measure.Id,
@@ -99,6 +99,7 @@ namespace DietAnalyzer.Controllers
             {
                 IsAdd = id == 0,
                 HasImageProblem = false,
+                HasMeasureProblem = false,
                 FoodItem = foodToManage,
                 AvailableMeasures = ReloadMeasures(foodToManage.Measures.ToList()),
             };
@@ -109,7 +110,12 @@ namespace DietAnalyzer.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult ManageFood(FoodItemViewModel vm)
         {
-            if (!ModelState.IsValid) return View("ManageFood", vm);
+            if(!ModelState.IsValid) return View("ManageFood", vm);
+            if(!vm.AvailableMeasures.Any(x => x.IsCurrentlyLinked))
+            {
+                vm.HasMeasureProblem = true;
+                return View("ManageFood", vm);
+            }
             if(vm.ImageFile != null)
             {
                 var formFileContent = _imageHelper.ValidateFile(vm.ImageFile, ModelState);

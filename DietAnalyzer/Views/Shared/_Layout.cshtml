@@ -85,7 +85,6 @@
             var originalNumber = $.validator.methods.number;
             var wrappedNumber = function (value, element) {
                 var fixedValue = Number(value.toString().replace(",", "."));
-                console.log(fixedValue);
                 return originalNumber.call($.validator.prototype, fixedValue, element);
             };
             $.validator.methods.number = wrappedNumber;
