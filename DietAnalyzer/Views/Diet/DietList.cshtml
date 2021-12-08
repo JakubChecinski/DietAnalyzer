@@ -16,7 +16,14 @@
                         <a href="@Url.Action("ManageDiet", "Diet",
                                     new { id = diet.Id })"
                            class="font-weight-bold">
-                            @diet.Name
+                            @if (Model.IncompatibleDietIds.Contains(diet.Id))
+                            {
+                                @diet.Name @:&#10071;
+                            }
+                            else
+                            {
+                                @diet.Name
+                            }
                         </a>
                     </td>
                     <td class="col-1">
@@ -44,6 +51,10 @@
         }
     </tbody>
 </table>
+@if (Model.IncompatibleDietIds.Any())
+{
+    <div class="small ml-3">&#10071; This diet contains foods forbidden by your dietary restrictions</div>
+}
 <br />
 <button class="btn btn-outline-primary btn-lg ml-1"
         onclick="location.href='@Url.Action("ManageDiet", "Diet", new { id = 0 })'">

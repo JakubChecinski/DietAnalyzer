@@ -19,8 +19,10 @@ namespace DietAnalyzer.Controllers
         private IDietService _service;
         private IFoodItemService _foodService;
         private IEvaluationService _evaluationService;
+        
         public DietController(ILogger<DietController> logger,
-            IDietService service, IFoodItemService foodService, IEvaluationService evaluationService)
+            IDietService service, IFoodItemService foodService, 
+            IEvaluationService evaluationService)
         {
             _logger = logger;
             _service = service;
@@ -34,10 +36,10 @@ namespace DietAnalyzer.Controllers
         public IActionResult DietList()
         {
             var userId = User.GetUserId();
-            var currentDiets = _service.Get(userId);
             var vm = new DietListViewModel
             {
-                Diets = currentDiets,
+                Diets = _service.Get(userId),
+                IncompatibleDietIds = _service.GetIncompatibleDietIds(userId),
             };
             return View(vm);
         }

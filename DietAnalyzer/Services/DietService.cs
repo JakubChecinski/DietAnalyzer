@@ -11,14 +11,26 @@ namespace DietAnalyzer.Services
     public class DietService : IDietService
     {
         private IUnitOfWork _unitOfWork;
-        public DietService(IUnitOfWork unitOfWork)
+        private IFoodItemService _foodService;
+        public DietService(IUnitOfWork unitOfWork, IFoodItemService foodService)
         {
             _unitOfWork = unitOfWork;
+            _foodService = foodService;
         }
 
         public IEnumerable<Diet> Get(string userId)
         {
             return _unitOfWork.Diets.Get(userId);
+        }
+        public IEnumerable<int> GetIncompatibleDietIds(string userId)
+        {
+            var incompatibleDietIds = new List<int>();
+            foreach(var diet in _unitOfWork.Diets.Get(userId))
+            {
+                if (CheckCompatibilityWithCurrentRestrictions(diet, userId)) continue;
+                else incompatibleDietIds.Add(diet.Id);
+            }
+            return incompatibleDietIds;
         }
 
         public Diet Get(string userId, int dietId)
@@ -55,6 +67,15 @@ namespace DietAnalyzer.Services
             _unitOfWork.Save();
         }
 
+        private bool CheckCompatibilityWithCurrentRestrictions(Diet diet, string userId)
+        {
+            var compatibleFoodIds = _foodService.Get(userId, true).Select(x => x.Id);
+            foreach(var dietItem in diet.DietItems)
+            {
+                if (!compatibleFoodIds.Contains(dietItem.FoodItemId)) return false;
+            }
+            return true;
+        }
 
     }
 }

@@ -9,5 +9,6 @@ namespace DietAnalyzer.Models.ViewModels
     public class DietListViewModel
     {
         public IEnumerable<Diet> Diets { get; set; }
+        public IEnumerable<int> IncompatibleDietIds { get; set; }
     }
 }

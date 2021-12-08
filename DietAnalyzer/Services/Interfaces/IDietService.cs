@@ -10,6 +10,7 @@ namespace DietAnalyzer.Services
     public interface IDietService
     {
         IEnumerable<Diet> Get(string userId);
+        IEnumerable<int> GetIncompatibleDietIds(string userId);
         Diet Get(string userId, int dietId);
         Diet GetWithDietItemChildren(string userId, int dietId);
         void Add(Diet diet);

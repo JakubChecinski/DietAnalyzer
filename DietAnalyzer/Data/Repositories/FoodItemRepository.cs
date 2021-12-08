@@ -22,7 +22,8 @@ namespace DietAnalyzer.Data.Repositories
                 .Where(x => x.UserId == userId || x.UserId == null)
                 .Include(x => x.Nutrition)
                 .Include(x => x.Restrictions)
-                .Include(x => x.Measures);
+                .Include(x => x.Measures)
+                .OrderBy(x => x.Name);
             return foods.ToList();
         }
         public IEnumerable<FoodItem> Get(string userId, RestrictionUser restrictions)
@@ -41,7 +42,8 @@ namespace DietAnalyzer.Data.Repositories
                 .Where(x => !restrictions.KidneyProblems || x.Restrictions.KidneyProblems)
                 .Include(x => x.Nutrition)
                 .Include(x => x.Restrictions)
-                .Include(x => x.Measures);
+                .Include(x => x.Measures)
+                .OrderBy(x => x.Name);
             return foods.ToList();
         }
         public IEnumerable<FoodItem> GetCustom(string userId)
@@ -50,7 +52,8 @@ namespace DietAnalyzer.Data.Repositories
                 .Where(x => x.UserId == userId)
                 .Include(x => x.Nutrition)
                 .Include(x => x.Restrictions)
-                .Include(x => x.Measures);
+                .Include(x => x.Measures)
+                .OrderBy(x => x.Name);
             return foods.ToList();
         }
         public IEnumerable<FoodItem> GetCustom(string userId, RestrictionUser restrictions)
@@ -69,7 +72,8 @@ namespace DietAnalyzer.Data.Repositories
                 .Where(x => !restrictions.KidneyProblems || x.Restrictions.KidneyProblems)
                 .Include(x => x.Nutrition)
                 .Include(x => x.Restrictions)
-                .Include(x => x.Measures);
+                .Include(x => x.Measures)
+                .OrderBy(x => x.Name);
             return foods.ToList();
         }
 

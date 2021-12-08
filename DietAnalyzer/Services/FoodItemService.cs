@@ -11,35 +11,18 @@ namespace DietAnalyzer.Services
     public class FoodItemService : IFoodItemService
     {
         private IUnitOfWork _unitOfWork;
-        public FoodItemService(IUnitOfWork unitOfWork)
+        private IRestrictionService _restrictionService;
+        public FoodItemService(IUnitOfWork unitOfWork, IRestrictionService restrictionService)
         {
             _unitOfWork = unitOfWork;
+            _restrictionService = restrictionService;
         }
 
         public IEnumerable<FoodItem> Get(string userId, bool suitableOnly = false)
         {
             if (suitableOnly)
             {
-                var userRestrictions = _unitOfWork.RestrictionUsers.Get(userId);
-                if (userRestrictions == null)
-                {
-                    userRestrictions = new RestrictionUser
-                    {
-                        UserId = userId,
-                        Pescetarian = false,
-                        Vegetarian = false,
-                        DairyIntolerant = false,
-                        Vegan = false,
-                        GlutenIntolerant = false,
-                        Paleo = false,
-                        Keto = false,
-                        Diabetes = false,
-                        HeartProblems = false,
-                        KidneyProblems = false,
-                    };
-                    _unitOfWork.RestrictionUsers.Add(userRestrictions);
-                    _unitOfWork.Save();
-                }
+                var userRestrictions = _restrictionService.Get(userId);
                 return _unitOfWork.Foods.Get(userId, userRestrictions);
             }
             return _unitOfWork.Foods.Get(userId);
