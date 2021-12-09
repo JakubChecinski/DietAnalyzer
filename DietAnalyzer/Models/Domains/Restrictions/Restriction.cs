@@ -9,7 +9,15 @@ using System.Threading.Tasks;
 
 namespace DietAnalyzer.Models.Domains
 {
+    /// <summary>
+    /// 
+    /// A domain class representing a table of dietary restrictions
+    /// Such a table can belong to either an application user or a food (see remarks below)
+    /// Which is why this class is abstract and we have two concrete versions inheriting after it
+    /// 
+    /// </summary>
 
+    /// <remarks>
     /// note about yes/no conventions
     /// 
     /// convention for FOODS is as following:
@@ -27,6 +35,7 @@ namespace DietAnalyzer.Models.Domains
     /// a simple consequence is the rule for matching people and products:
     /// IF Person.Vegetarian is TRUE, then Product.Vegetarian must also be TRUE
     /// IF Person.Vegetarian is FALSE, then Product.Vegetarian does not matter
+    /// </remarks>
 
     public class Restriction
     {

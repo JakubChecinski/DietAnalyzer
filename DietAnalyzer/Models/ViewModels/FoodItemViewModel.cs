@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace DietAnalyzer.Models.ViewModels
 {
+    /// <summary>
+    /// A viewModel for a food
+    /// </summary>
     public class FoodItemViewModel
     {
         public bool IsAdd { get; set; }

@@ -7,6 +7,13 @@ using System.Threading.Tasks;
 
 namespace DietAnalyzer.Models.Domains
 {
+    /// <summary>
+    /// 
+    /// A domain class representing a single diet item in the format of:
+    /// [QUANTITY] [MEASURES] of [FOODITEM]
+    /// for example, 2 cups of flour or 15 grams of garlic
+    /// 
+    /// </summary>
     public class DietItem
     {
         [Key]

@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace DietAnalyzer.Data
 {
-    public static partial class MeasureSeeder
+
+	/// See DataSeeder.cs for more comments on data seeding classes
+
+	public static partial class MeasureSeeder
     {
         public static void Seed(ModelBuilder modelBuilder)
         {
@@ -24,28 +27,28 @@ namespace DietAnalyzer.Data
 					Id = 1,
 					Name = "grams",
 					Grams = 1,
-					IsPubliclyKnown = true,
+					IsKnownUniversally = true,
 				},
 				new Measure
 				{
 					Id = 2,
 					Name = "large bananas",
 					Grams = 135,
-					IsPubliclyKnown = false,
+					IsKnownUniversally = false,
 				},
 				new Measure
 				{
 					Id = 3,
 					Name = "large eggs",
 					Grams = 50,
-					IsPubliclyKnown = false,
+					IsKnownUniversally = false,
 				},
 				new Measure
 				{
 					Id = 4,
 					Name = "slices",
 					Grams = 35,
-					IsPubliclyKnown = false,
+					IsKnownUniversally = false,
 				}
 			};
         }

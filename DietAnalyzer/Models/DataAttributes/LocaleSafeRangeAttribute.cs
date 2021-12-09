@@ -13,6 +13,10 @@ namespace DietAnalyzer.Models.DataAttributes
     /// https://stackoverflow.com/questions/29437989/range-validation-where-value-is-with-comma-and-not-with-dot
     /// But a custom attribute seems easier and more robust to me 
     /// 
+    /// Note: I am not sure why the standard RangeAttribute breaks for commas
+    /// Especially since my solution seems very simple and yet it still handles commas correctly
+    /// But this version works and RangeAttribute doesn't, so I'm going to just use this one
+    /// 
     /// </summary>
     public class LocaleSafeRangeAttribute : ValidationAttribute
     {
@@ -28,10 +32,18 @@ namespace DietAnalyzer.Models.DataAttributes
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            var valueTested = value == null ? 0.0 : (float)value;
+            float valueTested;
+            try
+            {
+                valueTested = value == null ? 0.0f : (float)value;
+            }
+            catch (InvalidCastException)
+            {
+                return new ValidationResult($"Not a proper value: {value}");
+            }
             if (valueTested < min || valueTested > max)
             {
-                if (errorMsg == null)
+                if (errorMsg != null)
                     return new ValidationResult(errorMsg);
                 else return new ValidationResult($"This value must be between {min:G2} and {max:G2}");
             }

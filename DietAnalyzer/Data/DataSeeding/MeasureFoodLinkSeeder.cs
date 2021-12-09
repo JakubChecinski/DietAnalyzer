@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace DietAnalyzer.Data
 {
-    public static partial class MeasureSeeder
+
+	/// See DataSeeder.cs for more comments on data seeding classes
+
+	public static partial class MeasureSeeder
     {
 		private static FoodMeasure[] ConstructFoodMeasures()
 		{

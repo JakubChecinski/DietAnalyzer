@@ -14,6 +14,16 @@ using System.Linq;
 
 namespace DietAnalyzer.Controllers
 {
+    /// <summary>
+    /// 
+    /// A controller for FoodItems 
+    /// 
+    /// Notable methods:
+    /// FoodList() - gets the list of all FoodItems belonging to the current user
+    /// ManageFood(int id) - gets/posts a single FoodItem by id
+    /// Delete(int id) - deletes a single FoodItem by id
+    /// 
+    /// </summary>
     public class FoodItemController : Controller
     {
         private readonly ILogger<FoodItemController> _logger;

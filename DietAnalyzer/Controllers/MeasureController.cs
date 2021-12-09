@@ -12,6 +12,14 @@ using System.Threading.Tasks;
 
 namespace DietAnalyzer.Controllers
 {
+    /// <summary>
+    /// 
+    /// A controller for Measures
+    /// 
+    /// Notable methods:
+    /// Manage() - gets/posts the list of all Measures belonging to the current user
+    /// 
+    /// </summary>
     public class MeasureController : Controller
     {
         private readonly ILogger<MeasureController> _logger;

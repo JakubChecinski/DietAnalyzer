@@ -8,10 +8,14 @@ namespace DietAnalyzer.Models.Domains
 {
     /// <summary>
     /// 
-    /// this is an (almost) purely technical class 
-    /// used to represent the many-to-many relationship between FoodItem and Measure
-    /// (a join table)
-    /// the only difference is an additional boolean field
+    /// This is an (almost) purely technical class 
+    /// Used to represent the many-to-many relationship between FoodItem and Measure (basically, a join table)
+    /// 
+    /// The only addition is an extra boolean field to keep track of links between foods and measures
+    /// Because while most foods will typically only use SOME measures,
+    /// they still need to be aware of ALL measures, in case the user changes their mind
+    /// So we need to represent both the food-measure links that are currently active 
+    /// and the ones that are currently inactive.
     /// 
     /// </summary>
     public class FoodMeasure

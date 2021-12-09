@@ -19,14 +19,14 @@ namespace DietAnalyzer.Data.Repositories
         public IEnumerable<Measure> Get(string userId)
         {
             var measures = _context.Measures
-                 .Where(x => (x.UserId == userId || x.UserId == null) && x.IsPubliclyKnown);
+                 .Where(x => (x.UserId == userId || x.UserId == null) && x.IsKnownUniversally);
             return measures.ToList();
         }
 
         public IEnumerable<Measure> GetCustom(string userId)
         {
             var measures = _context.Measures
-                 .Where(x => x.UserId == userId && x.IsPubliclyKnown)
+                 .Where(x => x.UserId == userId && x.IsKnownUniversally)
                  .OrderBy(x => x.Name)
                  .Include(x => x.FoodItems)
                  .Include(x => x.DietItems).AsSplitQuery();

@@ -8,6 +8,14 @@ using DietAnalyzer.Models.DataAttributes;
 
 namespace DietAnalyzer.Models.Domains
 {
+    /// <summary>
+    /// 
+    /// A domain class representing a table of nutritional values
+    /// Such a table can belong to either a single food or an entire diet
+    /// Which is why this class is abstract and we have two concrete versions inheriting after it
+    /// 
+    /// </summary>
+
     public abstract class Nutrition
     { 
         [Display(Name = "Calories:")]

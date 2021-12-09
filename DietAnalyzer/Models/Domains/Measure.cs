@@ -9,6 +9,15 @@ using DietAnalyzer.Models.DataAttributes;
 
 namespace DietAnalyzer.Models.Domains
 {
+    /// <summary>
+    /// 
+    /// A simple domain class for units of measure
+    /// In fact, it is a bit too simple, since some measures (like cups or spoons) 
+    /// may correspond to slightly different number of grams for different foods
+    /// Currently, these discrepancies are ignored on purpose
+    /// If you want to change this, you need to know the physical density of each food
+    /// 
+    /// </summary>
     public class Measure
     {
         [Key]
@@ -22,7 +31,7 @@ namespace DietAnalyzer.Models.Domains
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }
 
-        public bool IsPubliclyKnown { get; set; }
+        public bool IsKnownUniversally { get; set; }
 
         [Required]
         [LocaleSafeRange(0.0, float.MaxValue, ErrorMessage = "This value must be positive.")]
@@ -32,7 +41,7 @@ namespace DietAnalyzer.Models.Domains
         public ICollection<FoodMeasure> FoodItems { get; set; }
         public Measure()
         {
-            IsPubliclyKnown = true;
+            IsKnownUniversally = true;
             DietItems = new Collection<DietItem>();
             FoodItems = new Collection<FoodMeasure>();
         }

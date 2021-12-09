@@ -12,6 +12,14 @@ using System.Threading.Tasks;
 
 namespace DietAnalyzer.Controllers
 {
+    /// <summary>
+    /// 
+    /// A controller for Restrictions
+    /// 
+    /// Notable methods:
+    /// Manage() - gets/posts the table of Restrictions belonging to the current user
+    /// 
+    /// </summary>
     public class RestrictionController : Controller
     {
         private readonly ILogger<RestrictionController> _logger;

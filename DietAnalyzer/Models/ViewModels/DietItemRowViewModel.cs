@@ -5,6 +5,10 @@ using System.Threading.Tasks;
 
 namespace DietAnalyzer.Models.ViewModels
 {
+    /// <summary>
+    /// A helper viewModel for a new row in the table of diet items,
+    /// used only for an Ajax trick to dynamically update the table
+    /// </summary>
     public class DietItemRowViewModel
     {
         public int Index { get; set; }

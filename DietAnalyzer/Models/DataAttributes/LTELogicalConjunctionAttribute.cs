@@ -11,8 +11,9 @@ namespace DietAnalyzer.Models.DataAttributes
     /// 
     /// Less Than (or Equal to) Logical Conjunction Attribute
     /// A custom attribute with the following condition: 
-    /// IF ANY of the reference properties is FALSE, then the tested property must be FALSE
-    /// ELSE no check is performed
+    /// IF the tested property is FALSE, then the condition is always fulfilled 
+    /// IF the tested property is TRUE, 
+    ///     then the condition is fulfilled only if all reference properties are also TRUE
     /// 
     /// Example: 
     /// [LTELogicalConjunction("propB", "propC")] 
@@ -20,7 +21,7 @@ namespace DietAnalyzer.Models.DataAttributes
     /// 
     /// propA = true, propB = true, propC = false   // returns Error
     /// propA = true, propB = true, propC = true    // returns Success
-    /// propA = false                               // always returns Success (nothing to check)
+    /// propA = false, ...                          // always returns Success (nothing to check)
     /// 
     /// </summary>
     public class LTELogicalConjunctionAttribute : ValidationAttribute
@@ -35,24 +36,42 @@ namespace DietAnalyzer.Models.DataAttributes
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             string errorReport = "";
-            var valueTested = value == null ? false : (bool)value;
-            var performCheck = false;
-            //
+            bool valueTested;
+            bool performCheck = false;
+            try
+            {
+                valueTested = value == null ? false : (bool)value;
+            }
+            catch (InvalidCastException)
+            {
+                return new ValidationResult($"Not a proper value: {value}");
+            }
             if(!valueTested) return ValidationResult.Success;
             foreach (string s in includedProperties)
             {
                 var attribute = validationContext.ObjectType.GetProperty(s);
-                if (attribute == null) throw new ArgumentException("Property with this name not found");
-                if (attribute.GetValue(validationContext.ObjectInstance) != null 
-                    && !(bool)attribute.GetValue(validationContext.ObjectInstance))
+                if (attribute == null) 
+                    throw new ArgumentException($"Property with this name not found: {s}");
+                if (attribute.GetValue(validationContext.ObjectInstance) != null)
                 {
-                    performCheck = true;
-                    errorReport = s;
-                    break;
+                    try
+                    {
+                        if(!(bool)attribute.GetValue(validationContext.ObjectInstance))
+                        {
+                            performCheck = true;
+                            errorReport = s;
+                            break;
+                        }
+                    }
+                    catch (InvalidCastException)
+                    {
+                        return new ValidationResult($"Not a proper value: " +
+                           $"{attribute.GetValue(validationContext.ObjectInstance)}");
+                    }
                 } 
             }
             if (performCheck) 
-                return new ValidationResult($"There is a logical conflict between this value and {errorReport}");
+                return new ValidationResult($"This field is inconsistent with {errorReport}.");
             return ValidationResult.Success;
         }
     }

@@ -13,6 +13,17 @@ using System.Threading.Tasks;
 
 namespace DietAnalyzer.Controllers
 {
+    /// <summary>
+    /// 
+    /// A controller for Diets 
+    /// 
+    /// Notable methods:
+    /// DietList() - gets the list of all Diets belonging to the current user
+    /// ManageDiet(int id) - gets/posts a single Diet by id
+    /// Delete(int id) - deletes a single Diet by id
+    /// Evaluate(int id) - calls IEvaluationService to evaluate a single diet by id
+    /// 
+    /// </summary>
     public class DietController : Controller
     {
         private readonly ILogger<DietController> _logger;

@@ -8,6 +8,11 @@ using System.Threading.Tasks;
 
 namespace DietAnalyzer.Models.Domains
 {
+    /// <summary>
+    /// 
+    /// A domain class representing a single diet
+    /// 
+    /// </summary>
     public class Diet
     {
         [Key]

@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 
 namespace DietAnalyzer.Models.Domains
 {
+    /// <summary>
+    /// 
+    /// A domain class representing the evaluation result for a single nutrient,
+    /// i.e., one row in the table of recommendations that the user can receive for each of their diets. 
+    /// To see how it works, visit IEvaluationService and class(es) implementing it. 
+    /// 
+    /// </summary>
     public class EvaluationResult
     {
         [Key]

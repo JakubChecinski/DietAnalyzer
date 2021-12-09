@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace DietAnalyzer.Models.ViewModels
 {
+    /// <summary>
+    /// A viewModel for the list of all diets belonging to the current user
+    /// </summary>
     public class DietListViewModel
     {
         public IEnumerable<Diet> Diets { get; set; }
