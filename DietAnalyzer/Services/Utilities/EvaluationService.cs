@@ -1,13 +1,9 @@
 ﻿using DietAnalyzer.Models.Domains;
-using DietAnalyzer.Data;
 using System.Linq.Dynamic.Core;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 using System;
+using DietAnalyzer.Data;
 
 namespace DietAnalyzer.Services.Utilities
 {
@@ -16,7 +12,7 @@ namespace DietAnalyzer.Services.Utilities
     /// A standard implementation of IEvaluationService
     /// 
     /// </summary>
-    
+
     /// <remarks>
     /// 
     /// The code of this class gets pretty verbose, 
@@ -36,7 +32,7 @@ namespace DietAnalyzer.Services.Utilities
         {
             _foodService = foodService;
             cptfCalorieRatio = DataHelper.CarbProtToFatCalorieRatio;
-            lowerToleranceLevel = 0.95f;
+            lowerToleranceLevel = 95.0f;
         }
         public NutritionDiet GetNutritions(Diet diet)
         {
