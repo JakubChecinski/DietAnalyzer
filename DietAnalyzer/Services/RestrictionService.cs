@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace DietAnalyzer.Services
 {
+    /// <summary>
+    /// 
+    /// A standard implementation of IRestrictionService
+    /// 
+    /// </summary>
     public class RestrictionService : IRestrictionService
     {
         private IUnitOfWork _unitOfWork;

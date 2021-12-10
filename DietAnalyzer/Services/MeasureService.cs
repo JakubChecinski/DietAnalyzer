@@ -8,6 +8,11 @@ using System.Threading.Tasks;
 
 namespace DietAnalyzer.Services
 {
+    /// <summary>
+    /// 
+    /// A standard implementation of IMeasureService
+    /// 
+    /// </summary>
     public class MeasureService : IMeasureService
     {
         private IUnitOfWork _unitOfWork;

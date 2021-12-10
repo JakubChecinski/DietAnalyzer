@@ -1,4 +1,5 @@
 ﻿using DietAnalyzer.Models.Domains;
+using DietAnalyzer.Data;
 using System.Linq.Dynamic.Core;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,13 +11,32 @@ using System;
 
 namespace DietAnalyzer.Services.Utilities
 {
+    /// <summary>
+    /// 
+    /// A standard implementation of IEvaluationService
+    /// 
+    /// </summary>
+    
+    /// <remarks>
+    /// 
+    /// The code of this class gets pretty verbose, 
+    /// but I think it's a good idea to keep every nutrient a separate database field. 
+    /// One interesting possibility for refactorization would be to write an Iterator for the Nutrition class 
+    /// and use it in loops to perform a repeatable action for every nutrient (would that work?). 
+    /// For now though, I'm leaving it as it is
+    /// 
+    /// </remarks>
+    /// 
     public class EvaluationService : IEvaluationService
     {
-        private const float CarbProtToFatCalorieRatio = 2.25F;
+        private float cptfCalorieRatio;
+        private float lowerToleranceLevel;
         private IFoodItemService _foodService;
         public EvaluationService(IFoodItemService foodService)
         {
             _foodService = foodService;
+            cptfCalorieRatio = DataHelper.CarbProtToFatCalorieRatio;
+            lowerToleranceLevel = 0.95f;
         }
         public NutritionDiet GetNutritions(Diet diet)
         {
@@ -135,7 +155,7 @@ namespace DietAnalyzer.Services.Utilities
                 Unit = " grams",
                 Suggestions = "Your percentage of calories coming from carbohydrates is " +
                 String.Format("{0:0.#}", 100.0 * diet.Nutritions.CarbohydratesPer100g / (diet.Nutritions.CarbohydratesPer100g +
-                    diet.Nutritions.ProteinsPer100g + diet.Nutritions.FatsPer100g * CarbProtToFatCalorieRatio)) +
+                    diet.Nutritions.ProteinsPer100g + diet.Nutritions.FatsPer100g * cptfCalorieRatio)) +
                 "%.<br> The commonly recommended range is 45-65%, but some diets may require a percentage " +
                 "that is much lower or slightly higher."
             });
@@ -165,8 +185,8 @@ namespace DietAnalyzer.Services.Utilities
                 Value = diet.Nutritions.FatsPer100g,
                 Unit = " grams",
                 Suggestions = "Your percentage of calories coming from fat is " +
-                String.Format("{0:0.#}", 100.0 * CarbProtToFatCalorieRatio * diet.Nutritions.FatsPer100g / (diet.Nutritions.CarbohydratesPer100g +
-                    diet.Nutritions.ProteinsPer100g + diet.Nutritions.FatsPer100g * CarbProtToFatCalorieRatio)) +
+                String.Format("{0:0.#}", 100.0 * cptfCalorieRatio * diet.Nutritions.FatsPer100g / (diet.Nutritions.CarbohydratesPer100g +
+                    diet.Nutritions.ProteinsPer100g + diet.Nutritions.FatsPer100g * cptfCalorieRatio)) +
                 "%. <br>The commonly recommended range is 20-35%, but some diets may require a percentage " +
                 "that is slightly lower or much higher."
             });
@@ -177,8 +197,8 @@ namespace DietAnalyzer.Services.Utilities
                 Value = diet.Nutritions.SaturatedFatPer100g,
                 Unit = " grams",
                 Suggestions = "Your percentage of calories coming from saturated fat is " +
-                String.Format("{0:0.#}", 100.0 * CarbProtToFatCalorieRatio * diet.Nutritions.SaturatedFatPer100g / (diet.Nutritions.CarbohydratesPer100g +
-                    diet.Nutritions.ProteinsPer100g + diet.Nutritions.FatsPer100g * CarbProtToFatCalorieRatio)) +
+                String.Format("{0:0.#}", 100.0 * cptfCalorieRatio * diet.Nutritions.SaturatedFatPer100g / (diet.Nutritions.CarbohydratesPer100g +
+                    diet.Nutritions.ProteinsPer100g + diet.Nutritions.FatsPer100g * cptfCalorieRatio)) +
                 "%. <br>The most commonly found recommendation is no more than 10%, but some diets set a limit that is " +
                 "significantly lower or significantly higher."
             });
@@ -190,7 +210,7 @@ namespace DietAnalyzer.Services.Utilities
                 Unit = " grams",
                 Suggestions = "Your percentage of calories coming from proteins is " +
                 String.Format("{0:0.#}", 100.0 * diet.Nutritions.ProteinsPer100g / (diet.Nutritions.CarbohydratesPer100g +
-                    diet.Nutritions.ProteinsPer100g + diet.Nutritions.FatsPer100g * CarbProtToFatCalorieRatio)) +
+                    diet.Nutritions.ProteinsPer100g + diet.Nutritions.FatsPer100g * cptfCalorieRatio)) +
                 "%. <br>The recommended range is 10-35%, which tends to be agreed upon " +
                 "by a wide range of different diets."
             });
@@ -227,7 +247,7 @@ namespace DietAnalyzer.Services.Utilities
                 Value = value,
                 Unit = "% of RDI",
             };
-            if (value < 95.0)
+            if (value < lowerToleranceLevel)
             {
                 micronutrientResult.Level = Level.Low;
                 var foodsToAdd = _foodService.Get(diet.UserId, true).AsQueryable()

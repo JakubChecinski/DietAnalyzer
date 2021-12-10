@@ -12,16 +12,34 @@ using System.Threading.Tasks;
 
 namespace DietAnalyzer.Services.Utilities
 {
-    // based on:
-    // https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/mvc/models/file-uploads/samples/3.x/SampleApp/Utilities/FileHelpers.cs
-    // note: this class could be static, but I want to use constructor for dependency injection
+    /// <summary>
+    /// 
+    /// A class used to upload and validate images. 
+    /// The image saved by the application will be always png and cropped to 40x40.
+    /// 
+    /// </summary>
+
+    /// <remarks>
+    /// 
+    /// based on:
+    /// https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/mvc/models/file-uploads/samples/3.x/SampleApp/Utilities/FileHelpers.cs
+    /// note: this class could be static, but I want to use constructor for dependency injection
+    /// 
+    /// </remarks>
+
     public class ImageHelper
     {
+        // edit these constants to allow different extensions, change the size limit etc.
+        // in the future, this may be moved to application settings (not sure...)
+        // note 1: DON'T change width or height parameters unless you also change the css classes for image
+        // AND you are going to test whether the final result looks good or not
+        // note 2: new image extensions require modifying the _fileSignature field as well
         private readonly ILogger<ImageHelper> _logger;
         private string[] permittedExtensions = {".png", ".jpg", ".jpeg"};
         private long sizeLimit = 1048576; // 1MB
         private int forceWidthTo = 40;
         private int forceHeightTo = 40;
+
 
         public ImageHelper(ILogger<ImageHelper> logger)
         {
