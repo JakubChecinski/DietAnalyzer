@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace DietAnalyzer.Data.Repositories
 {
+    /// <summary>
+    /// 
+    /// Standard implementation of IRestrictionFoodRepository
+    /// 
+    /// </summary>
     public class RestrictionFoodRepository : IRestrictionFoodRepository
     {
         private IApplicationDbContext _context;

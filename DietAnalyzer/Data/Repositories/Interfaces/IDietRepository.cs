@@ -7,6 +7,13 @@ using System.Threading.Tasks;
 
 namespace DietAnalyzer.Data.Repositories
 {
+    /// <summary>
+    /// 
+    /// A repository for Diets
+    /// Methods: get all diets for the current user, get a single diet, get a single diet with dependences,
+    /// add, update, delete
+    /// 
+    /// </summary>
     public interface IDietRepository
     {
         IEnumerable<Diet> Get(string userId);

@@ -7,6 +7,13 @@ using System.Threading.Tasks;
 
 namespace DietAnalyzer.Data.Repositories
 {
+    /// <summary>
+    /// 
+    /// A repository for FoodItems
+    /// Methods: get foods, get foods filtered by restrictions, get only custom (non-library) foods, 
+    /// get only custom AND filtered foods, get a single food, add, update, delete
+    /// 
+    /// </summary>
     public interface IFoodItemRepository
     {
         IEnumerable<FoodItem> Get(string userId);

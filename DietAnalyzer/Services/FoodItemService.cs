@@ -11,11 +11,14 @@ namespace DietAnalyzer.Services
     public class FoodItemService : IFoodItemService
     {
         private IUnitOfWork _unitOfWork;
+        private IMeasureService _measureService;
         private IRestrictionService _restrictionService;
-        public FoodItemService(IUnitOfWork unitOfWork, IRestrictionService restrictionService)
+        public FoodItemService(IUnitOfWork unitOfWork, 
+            IMeasureService measureService, IRestrictionService restrictionService)
         {
             _unitOfWork = unitOfWork;
             _restrictionService = restrictionService;
+            _measureService = measureService;
         }
 
         public IEnumerable<FoodItem> Get(string userId, bool suitableOnly = false)
@@ -37,7 +40,7 @@ namespace DietAnalyzer.Services
             }
             return _unitOfWork.Foods.GetCustom(userId);
         }
-        public List<List<Tuple<int, string>>> PrepareMeasuresForDietItems(string userId, 
+        public List<List<Tuple<int, string>>> PrepareMeasuresForFoods(string userId, 
             ICollection<DietItem> dietItems)
         {
             var availableMeasures = new List<List<Tuple<int, string>>>();
@@ -64,6 +67,31 @@ namespace DietAnalyzer.Services
         public FoodItem Get(string userId, int foodId)
         {
             return _unitOfWork.Foods.Get(userId, foodId);
+        }
+
+        public FoodItem PrepareNewFood(string userId)
+        {
+            var newFood = new FoodItem
+            {
+                Name = "",
+                UserId = userId,
+                Nutrition = new NutritionFood(),
+                Restrictions = new RestrictionFood(),
+            };
+            newFood.Nutrition.FoodItem = newFood;
+            newFood.Restrictions.FoodItem = newFood;
+            var availableMeasures = _measureService.Get(userId);
+            foreach (Measure measure in availableMeasures)
+            {
+                newFood.Measures.Add(new FoodMeasure
+                {
+                    IsCurrentlyLinked = measure.Id == 1 ? true : false,
+                    FoodItemId = 0,
+                    Measure = measure,
+                    MeasureId = measure.Id,
+                });
+            }
+            return newFood;
         }
 
         public void Add(FoodItem food)

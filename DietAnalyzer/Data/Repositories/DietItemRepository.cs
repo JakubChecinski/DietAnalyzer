@@ -8,6 +8,11 @@ using System.Threading.Tasks;
 
 namespace DietAnalyzer.Data.Repositories
 {
+    /// <summary>
+    /// 
+    /// Standard implementation of IDietItemRepository
+    /// 
+    /// </summary>
     public class DietItemRepository : IDietItemRepository
     {
         private IApplicationDbContext _context;
@@ -25,7 +30,6 @@ namespace DietAnalyzer.Data.Repositories
         {
             _context.DietItems.Add(dietItem);
         }
-
         public void Delete(DietItem dietItem)
         {
             var itemToDelete = _context.DietItems.Single(x => x.Id == dietItem.Id);

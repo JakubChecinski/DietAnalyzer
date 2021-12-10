@@ -7,6 +7,13 @@ using System.Threading.Tasks;
 
 namespace DietAnalyzer.Data.Repositories
 {
+    /// <summary>
+    /// 
+    /// A repository for Measures
+    /// Methods: get measures, get a single measure, get only custom (non-library) measures,
+    /// add, update, delete
+    /// 
+    /// </summary>
     public interface IMeasureRepository
     {
         IEnumerable<Measure> Get(string userId);

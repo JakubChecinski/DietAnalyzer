@@ -39,7 +39,6 @@ namespace DietAnalyzer.Controllers
             _imageHelper = imageHelper;
         }
 
-        // actions for the entire food list
         [HttpGet]
         [Authorize]
         public IActionResult FoodList()
@@ -53,57 +52,13 @@ namespace DietAnalyzer.Controllers
             return View(vm);
         }
 
-        [HttpPost]
-        public IActionResult Delete(int id)
-        {
-            var userId = User.GetUserId();
-            try
-            {
-                _service.Delete(id, userId);
-            }
-            catch (Exception exc)
-            {
-                _logger.LogError("Failed to delete food item: " + exc.Message +
-                    "with inner exception: " + exc.InnerException);
-                return Json(new
-                {
-                    success = false,
-                });
-            }
-            return Json(new { success = true, redirectToUrl = Url.Action("FoodList", "FoodItem") });
-        }
-
-
-        // actions for individual food items
         [HttpGet]
         [Authorize]
         public IActionResult ManageFood(int id = 0)
         {
             var userId = User.GetUserId();
             FoodItem foodToManage;
-            if (id == 0)
-            {
-                foodToManage = new FoodItem
-                {
-                    Name = "",
-                    UserId = userId,
-                    Nutrition = new NutritionFood(),
-                    Restrictions = new RestrictionFood(),
-                };
-                foodToManage.Nutrition.FoodItem = foodToManage;
-                foodToManage.Restrictions.FoodItem = foodToManage;
-                var availableMeasures = _measureService.Get(userId);
-                foreach (Measure measure in availableMeasures)
-                {
-                    foodToManage.Measures.Add(new FoodMeasure
-                    {
-                        IsCurrentlyLinked = measure.Id == 1 ? true : false,
-                        FoodItemId = 0,
-                        Measure = measure,
-                        MeasureId = measure.Id,
-                    });
-                }
-            }
+            if (id == 0) foodToManage = _service.PrepareNewFood(userId);
             else foodToManage = _service.Get(userId, id);
             var vm = new FoodItemViewModel
             {
@@ -142,6 +97,26 @@ namespace DietAnalyzer.Controllers
             if (vm.IsAdd) _service.Add(vm.FoodItem);
             else _service.Update(vm.FoodItem, userId);
             return RedirectToAction("FoodList", "FoodItem");
+        }
+
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            var userId = User.GetUserId();
+            try
+            {
+                _service.Delete(id, userId);
+            }
+            catch (Exception exc)
+            {
+                _logger.LogError("Failed to delete food item: " + exc.Message +
+                    "with inner exception: " + exc.InnerException);
+                return Json(new
+                {
+                    success = false,
+                });
+            }
+            return Json(new { success = true, redirectToUrl = Url.Action("FoodList", "FoodItem") });
         }
 
     }

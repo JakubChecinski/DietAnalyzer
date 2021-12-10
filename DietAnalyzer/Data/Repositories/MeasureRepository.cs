@@ -9,6 +9,11 @@ using System.Threading.Tasks;
 
 namespace DietAnalyzer.Data.Repositories
 {
+    /// <summary>
+    /// 
+    /// Standard implementation of IMeasureRepository
+    /// 
+    /// </summary>
     public class MeasureRepository : IMeasureRepository
     {
         private IApplicationDbContext _context;

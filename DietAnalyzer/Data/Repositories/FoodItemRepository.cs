@@ -9,6 +9,11 @@ using System.Threading.Tasks;
 
 namespace DietAnalyzer.Data.Repositories
 {
+    /// <summary>
+    /// 
+    /// Standard implementation of IFoodItemRepository
+    /// 
+    /// </summary>
     public class FoodItemRepository : IFoodItemRepository
     {
         private IApplicationDbContext _context;

@@ -13,6 +13,7 @@ namespace DietAnalyzer.Services
         IEnumerable<int> GetIncompatibleDietIds(string userId);
         Diet Get(string userId, int dietId);
         Diet GetWithDietItemChildren(string userId, int dietId);
+        Diet PrepareNewDiet(string userId);
         void Add(Diet diet);
         void Update(Diet diet, string userId, bool updateItems = true);
         void Delete(int dietId, string userId);

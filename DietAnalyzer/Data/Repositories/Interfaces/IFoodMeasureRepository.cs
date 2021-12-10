@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace DietAnalyzer.Data.Repositories
 {
+    /// <summary>
+    /// 
+    /// A repository for join table FoodMeasure objects
+    /// Methods: add, update, delete
+    /// 
+    /// </summary>
     public interface IFoodMeasureRepository
     {
         void Add(int measureId, int foodId);

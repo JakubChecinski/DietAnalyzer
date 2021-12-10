@@ -10,16 +10,16 @@
         <input data-val="true" data-val-required="The FoodItemId field is required." id="DietItems_@(Model.Index)__FoodItemId" name="DietItems[@(Model.Index)].FoodItemId" type="hidden" value="@(Model.FoodItemId)">
         <input data-val="true" data-val-maxlength="The field Name must be a string or array type with a maximum length of '50'." data-val-maxlength-max="50" data-val-required="The Name field is required." id="DietItems_@(Model.Index)__FoodItem_Name" name="DietItems[@(Model.Index)].FoodItem.Name" type="hidden" value="@(Model.FoodItemName)">
         <div class="text-center pt-0" style="display: inline-block !important;">
-            <img src="@Model.FoodItemImageUrl" />
+            <img src="@Model.FoodItemImageUrl" class="foodImage"/>
             @(Model.FoodItemName)
         </div>
     </td>
     <td class="col-1 px-0 px-md-3">
-        <input class="numeric-input" data-val="true" data-val-number="The field Quantity must be a number." data-val-required="The Quantity field is required." id="DietItems_@(Model.Index)__Quantity" name="DietItems[@(Model.Index)].Quantity" type="text" value="0">
+        <input class="numeric-input volatile-input" data-val="true" data-val-number="The field Quantity must be a number." data-val-required="The Quantity field is required." id="DietItems_@(Model.Index)__Quantity" name="DietItems[@(Model.Index)].Quantity" type="text" value="0">
         <span class="text-danger field-validation-valid" data-valmsg-for="DietItems[@(Model.Index)].Quantity" data-valmsg-replace="true"></span>
     </td>
     <td class="col-2 justify-content-start">
-        <select class="form-control form-control-smallscreen-safe" data-val="true" data-val-required="The MeasureId field is required." id="DietItems_@(Model.Index)__MeasureId" name="DietItems[@(Model.Index)].MeasureId">
+        <select class="form-control form-control-smallscreen-safe volatile-input" data-val="true" data-val-required="The MeasureId field is required." id="DietItems_@(Model.Index)__MeasureId" name="DietItems[@(Model.Index)].MeasureId">
             <option value="">-- select unit --</option>
             @foreach (var measureTuple in @Model.AvailableMeasuresForThisFood)
             {

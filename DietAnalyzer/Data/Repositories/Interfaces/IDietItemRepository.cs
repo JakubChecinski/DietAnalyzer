@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace DietAnalyzer.Data.Repositories
 {
+    /// <summary>
+    /// 
+    /// A repository for DietItems
+    /// Methods: get, add, delete
+    /// 
+    /// </summary>
     public interface IDietItemRepository
     {
         IEnumerable<DietItem> Get(int dietId);

@@ -43,6 +43,18 @@ namespace DietAnalyzer.Services
             return _unitOfWork.Diets.GetWithDietItemChildren(userId, dietId);
         }
 
+        public Diet PrepareNewDiet(string userId)
+        {
+            var newDiet = new Diet
+            {
+                Name = "",
+                UserId = userId,
+                Nutritions = new NutritionDiet(),
+            };
+            newDiet.Nutritions.Diet = newDiet;
+            return newDiet;
+        }
+
         public void Add(Diet diet)
         {
             _unitOfWork.Diets.Add(diet);

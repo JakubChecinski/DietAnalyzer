@@ -42,7 +42,6 @@ namespace DietAnalyzer.Controllers
         }
 
 
-        // actions for the entire diet list
         [HttpGet]
         [Authorize]
         public IActionResult DietList()
@@ -54,6 +53,47 @@ namespace DietAnalyzer.Controllers
                 IncompatibleDietIds = _service.GetIncompatibleDietIds(userId),
             };
             return View(vm);
+        }
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult ManageDiet(int id = 0)
+        {
+            var userId = User.GetUserId();
+            Diet dietToManage;
+            if (id == 0) dietToManage = _service.PrepareNewDiet(userId);
+            else dietToManage = _service.Get(userId, id);
+            var vm = new DietViewModel
+            {
+                IsAdd = id == 0,
+                NoFoodsOnList = id == 0, // the same starting condition, but will be handled differently later
+                Diet = dietToManage,
+                DietItems = dietToManage.DietItems.ToList(),
+                AvailableFoods = _foodService.Get(userId, true).ToList(),
+                AvailableMeasuresForEachFood = 
+                    _foodService.PrepareMeasuresForFoods(userId, dietToManage.DietItems),
+                CurrentFoodId = 0,
+            };
+            return View(vm);
+        }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ManageDiet(DietViewModel vm)
+        {
+            if(vm.DietItems == null) return RedirectToAction("DietList", "Diet");
+            var userId = User.GetUserId();
+            if (!ModelState.IsValid)
+            {
+                vm.AvailableMeasuresForEachFood = 
+                    _foodService.PrepareMeasuresForFoods(userId, vm.DietItems);
+                return View("ManageDiet", vm);
+            }
+            foreach (var dietItem in vm.DietItems) dietItem.FoodItem = null;
+            vm.Diet.DietItems = vm.DietItems;
+            if (vm.IsAdd) _service.Add(vm.Diet);
+            else _service.Update(vm.Diet, userId);
+            return RedirectToAction("DietList", "Diet");
         }
 
         [HttpPost]
@@ -76,57 +116,14 @@ namespace DietAnalyzer.Controllers
             return Json(new { success = true, redirectToUrl = Url.Action("DietList", "Diet") });
         }
 
-
-        // actions for individual diet items
-        [HttpGet]
-        [Authorize]
-        public IActionResult ManageDiet(int id = 0)
+        public ActionResult Evaluate(int id)
         {
             var userId = User.GetUserId();
-            Diet dietToManage;
-            if (id == 0)
-            {
-                dietToManage = new Diet
-                {
-                    Name = "",
-                    UserId = userId,
-                    Nutritions = new NutritionDiet(),
-                };
-                dietToManage.Nutritions.Diet = dietToManage;
-            }
-            else dietToManage = _service.Get(userId, id);
-            var vm = new DietViewModel
-            {
-                IsAdd = id == 0,
-                NoFoodsOnList = id == 0, // the same starting condition, but will be handled differently later
-                Diet = dietToManage,
-                DietItems = dietToManage.DietItems.ToList(),
-                AvailableFoods = _foodService.Get(userId, true).ToList(),
-                AvailableMeasuresForEachFood = 
-                    _foodService.PrepareMeasuresForDietItems(userId, dietToManage.DietItems),
-                CurrentFoodId = 0,
-            };
-            return View(vm);
-        }
-        
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult ManageDiet(DietViewModel vm)
-        {
-            if(vm.DietItems == null) return RedirectToAction("DietList", "Diet");
-            var userId = User.GetUserId();
-            if (!ModelState.IsValid)
-            {
-                vm.AvailableMeasuresForEachFood = 
-                    _foodService.PrepareMeasuresForDietItems(userId, vm.DietItems);
-                return View("ManageDiet", vm);
-            }
-            foreach (var dietItem in vm.DietItems) dietItem.FoodItem = null;
-            vm.Diet.DietItems = vm.DietItems;
-            if (vm.IsAdd) _service.Add(vm.Diet);
-            else _service.Update(vm.Diet, userId);
-            return RedirectToAction("DietList", "Diet");
+            var dietToEvaluate = _service.GetWithDietItemChildren(userId, id);
+            dietToEvaluate.Nutritions = _evaluationService.GetNutritions(dietToEvaluate);
+            dietToEvaluate.Summary = _evaluationService.GetSummary(dietToEvaluate);
+            _service.Update(dietToEvaluate, userId, false);
+            return PartialView("_DietSummary", dietToEvaluate);
         }
 
 
@@ -145,16 +142,6 @@ namespace DietAnalyzer.Controllers
                 AvailableMeasuresForThisFood = _foodService.PrepareMeasuresForFood(userId, foodId),
             };
             return PartialView("_NewDietItemRow", vm);
-        }
-
-        public ActionResult Evaluate(int id)
-        {
-            var userId = User.GetUserId();
-            var dietToEvaluate = _service.GetWithDietItemChildren(userId, id);
-            dietToEvaluate.Nutritions = _evaluationService.GetNutritions(dietToEvaluate);
-            dietToEvaluate.Summary = _evaluationService.GetSummary(dietToEvaluate);
-            _service.Update(dietToEvaluate, userId, false);
-            return PartialView("_DietSummary", dietToEvaluate);
         }
 
     }

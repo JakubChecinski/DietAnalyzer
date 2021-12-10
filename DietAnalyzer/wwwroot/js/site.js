@@ -15,12 +15,36 @@ function addNewRow(urlString, tableId) {
 
 // there probably exists a better way to do that... I'm just not very good at JS
 function deleteRowUpdateHTML(button, stringCode, tableId) {
+    let volatileInputValues = memorizeVolatileInputs();
     let rowToRemove = button.parentNode.parentNode;
     let removedCode = extractCodeValue(stringCode, rowToRemove.innerHTML);
     rowToRemove.remove();
     let table = document.getElementById(tableId);
     for (let i = 0, tableRow; tableRow = table.rows[i]; i++) {
         tableRow.innerHTML = decrementStringPartsAfterCode(stringCode, tableRow.innerHTML, removedCode);
+    }
+    restoreVolatileInputs(volatileInputValues, stringCode, removedCode);
+}
+
+function memorizeVolatileInputs() {
+    let volatileInputs = document.getElementsByClassName('volatile-input');
+    let valuesToMemorize = new Map();
+    for (let input of volatileInputs) {
+        valuesToMemorize.set(input.id, input.value);
+    }
+    return valuesToMemorize;
+}
+
+function restoreVolatileInputs(valuesToRestore, stringCode, removedCode) {
+    for (let kvp of valuesToRestore) {
+        let currentIndex = extractCodeValue(stringCode, kvp[0]);
+        if (currentIndex < removedCode) {
+            document.getElementById(kvp[0]).value = kvp[1];
+        }
+        else if (currentIndex > removedCode) {
+            let newId = replaceAt(kvp[0], stringCode.length + 1, currentIndex.toString().length, currentIndex - 1)
+            document.getElementById(newId).value = kvp[1];
+        }
     }
 }
 
