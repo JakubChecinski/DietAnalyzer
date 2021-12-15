@@ -15,6 +15,9 @@ namespace DietAnalyzer.Data
 		{
 			return new FoodMeasure[]
 			{
+
+				// grams
+
 				new FoodMeasure
 				{
 					Id = 1,
@@ -73,6 +76,93 @@ namespace DietAnalyzer.Data
 				},
 				new FoodMeasure
 				{
+					Id = 109,
+					IsCurrentlyLinked = true,
+					MeasureId = 1,
+					FoodItemId = 9,
+				},
+				new FoodMeasure
+				{
+					Id = 110,
+					IsCurrentlyLinked = true,
+					MeasureId = 1,
+					FoodItemId = 10,
+				},
+				new FoodMeasure
+				{
+					Id = 111,
+					IsCurrentlyLinked = true,
+					MeasureId = 1,
+					FoodItemId = 11,
+				},
+				new FoodMeasure
+				{
+					Id = 112,
+					IsCurrentlyLinked = true,
+					MeasureId = 1,
+					FoodItemId = 12,
+				},
+				new FoodMeasure
+				{
+					Id = 113,
+					IsCurrentlyLinked = true,
+					MeasureId = 1,
+					FoodItemId = 13,
+				},
+				new FoodMeasure
+				{
+					Id = 114,
+					IsCurrentlyLinked = true,
+					MeasureId = 1,
+					FoodItemId = 14,
+				},
+				new FoodMeasure
+				{
+					Id = 115,
+					IsCurrentlyLinked = true,
+					MeasureId = 1,
+					FoodItemId = 15,
+				},
+				new FoodMeasure
+				{
+					Id = 116,
+					IsCurrentlyLinked = true,
+					MeasureId = 1,
+					FoodItemId = 16,
+				},
+				new FoodMeasure
+				{
+					Id = 117,
+					IsCurrentlyLinked = true,
+					MeasureId = 1,
+					FoodItemId = 17,
+				},
+				new FoodMeasure
+				{
+					Id = 118,
+					IsCurrentlyLinked = true,
+					MeasureId = 1,
+					FoodItemId = 18,
+				},
+				new FoodMeasure
+				{
+					Id = 119,
+					IsCurrentlyLinked = true,
+					MeasureId = 1,
+					FoodItemId = 19,
+				},
+				new FoodMeasure
+				{
+					Id = 120,
+					IsCurrentlyLinked = true,
+					MeasureId = 1,
+					FoodItemId = 20,
+				},
+
+				// other measures
+
+				new FoodMeasure
+				{
 					Id = 10,
 					IsCurrentlyLinked = true,
 					MeasureId = 2,
@@ -91,6 +181,34 @@ namespace DietAnalyzer.Data
 					IsCurrentlyLinked = true,
 					MeasureId = 4,
 					FoodItemId = 7,
+				},
+				new FoodMeasure
+				{
+					Id = 200,
+					IsCurrentlyLinked = true,
+					MeasureId = 4,
+					FoodItemId = 11,
+				},
+				new FoodMeasure
+				{
+					Id = 201,
+					IsCurrentlyLinked = true,
+					MeasureId = 5,
+					FoodItemId = 12,
+				},
+				new FoodMeasure
+				{
+					Id = 202,
+					IsCurrentlyLinked = true,
+					MeasureId = 6,
+					FoodItemId = 15,
+				},
+				new FoodMeasure
+				{
+					Id = 203,
+					IsCurrentlyLinked = true,
+					MeasureId = 7,
+					FoodItemId = 16,
 				}
 			};
 		}

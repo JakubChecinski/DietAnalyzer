@@ -125,7 +125,6 @@ hr {
 
 .form-control {
     height: calc(1.3em + 2px);
-    width: max-content;
 }
 
 .form-control-smallscreen-safe {

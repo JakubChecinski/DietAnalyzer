@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DietAnalyzer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211209115820_change-name-of-measure-IsKnownUniversally")]
-    partial class changenameofmeasureIsKnownUniversally
+    [Migration("20211215102915_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -143,6 +143,7 @@ namespace DietAnalyzer.Migrations
                         new
                         {
                             Id = 2,
+                            ImageFromApp = "/images/bananas.png",
                             Name = "bananas"
                         },
                         new
@@ -154,27 +155,104 @@ namespace DietAnalyzer.Migrations
                         new
                         {
                             Id = 4,
+                            ImageFromApp = "/images/yogurt.png",
                             Name = "yogurt"
                         },
                         new
                         {
                             Id = 5,
+                            ImageFromApp = "/images/chicken_breast.png",
                             Name = "chicken breast"
                         },
                         new
                         {
                             Id = 6,
+                            ImageFromApp = "/images/salmon.png",
                             Name = "salmon"
                         },
                         new
                         {
                             Id = 7,
+                            ImageFromApp = "/images/bread_rye.png",
                             Name = "bread (rye)"
                         },
                         new
                         {
                             Id = 8,
+                            ImageFromApp = "/images/potatoes.png",
                             Name = "potatoes"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            ImageFromApp = "/images/cheese.png",
+                            Name = "cheese"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            ImageFromApp = "/images/chocolate.png",
+                            Name = "chocolate"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            ImageFromApp = "/images/bread_wheat.png",
+                            Name = "bread (wheat)"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            ImageFromApp = "/images/sardines.png",
+                            Name = "sardines"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            ImageFromApp = "/images/steak.png",
+                            Name = "pork steak"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            ImageFromApp = "/images/olives.png",
+                            Name = "olives"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            ImageFromApp = "/images/tomato.png",
+                            Name = "tomatoes"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            ImageFromApp = "/images/onion.png",
+                            Name = "onions"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            ImageFromApp = "/images/pasta.png",
+                            Name = "pasta"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            ImageFromApp = "/images/kidney_beans.png",
+                            Name = "kidney beans"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            ImageFromApp = "/images/milk.png",
+                            Name = "milk"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            ImageFromApp = "/images/mushrooms.png",
+                            Name = "mushrooms"
                         });
                 });
 
@@ -261,6 +339,90 @@ namespace DietAnalyzer.Migrations
                         },
                         new
                         {
+                            Id = 109,
+                            FoodItemId = 9,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 1
+                        },
+                        new
+                        {
+                            Id = 110,
+                            FoodItemId = 10,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 1
+                        },
+                        new
+                        {
+                            Id = 111,
+                            FoodItemId = 11,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 1
+                        },
+                        new
+                        {
+                            Id = 112,
+                            FoodItemId = 12,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 1
+                        },
+                        new
+                        {
+                            Id = 113,
+                            FoodItemId = 13,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 1
+                        },
+                        new
+                        {
+                            Id = 114,
+                            FoodItemId = 14,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 1
+                        },
+                        new
+                        {
+                            Id = 115,
+                            FoodItemId = 15,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 1
+                        },
+                        new
+                        {
+                            Id = 116,
+                            FoodItemId = 16,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 1
+                        },
+                        new
+                        {
+                            Id = 117,
+                            FoodItemId = 17,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 1
+                        },
+                        new
+                        {
+                            Id = 118,
+                            FoodItemId = 18,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 1
+                        },
+                        new
+                        {
+                            Id = 119,
+                            FoodItemId = 19,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 1
+                        },
+                        new
+                        {
+                            Id = 120,
+                            FoodItemId = 20,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 1
+                        },
+                        new
+                        {
                             Id = 10,
                             FoodItemId = 2,
                             IsCurrentlyLinked = true,
@@ -279,6 +441,34 @@ namespace DietAnalyzer.Migrations
                             FoodItemId = 7,
                             IsCurrentlyLinked = true,
                             MeasureId = 4
+                        },
+                        new
+                        {
+                            Id = 200,
+                            FoodItemId = 11,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 4
+                        },
+                        new
+                        {
+                            Id = 201,
+                            FoodItemId = 12,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 5
+                        },
+                        new
+                        {
+                            Id = 202,
+                            FoodItemId = 15,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 6
+                        },
+                        new
+                        {
+                            Id = 203,
+                            FoodItemId = 16,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 7
                         });
                 });
 
@@ -337,6 +527,27 @@ namespace DietAnalyzer.Migrations
                             Grams = 35f,
                             IsKnownUniversally = false,
                             Name = "slices"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Grams = 12f,
+                            IsKnownUniversally = false,
+                            Name = "medium sardines"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Grams = 170f,
+                            IsKnownUniversally = false,
+                            Name = "medium tomatoes"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Grams = 110f,
+                            IsKnownUniversally = false,
+                            Name = "medium onions"
                         });
                 });
 
@@ -807,6 +1018,402 @@ namespace DietAnalyzer.Migrations
                             VitaminEPer100g = 0f,
                             VitaminKPer100g = 3f,
                             ZincPer100g = 2f
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CalciumPer100g = 70f,
+                            CaloriesPer100g = 356f,
+                            CarbohydratesPer100g = 2.2f,
+                            CopperPer100g = 2f,
+                            FatsPer100g = 27.4f,
+                            FiberPer100g = 0f,
+                            FoodItemId = 9,
+                            IronPer100g = 1f,
+                            MagnesiumPer100g = 7f,
+                            ManganesePer100g = 1f,
+                            PhosphorusPer100g = 55f,
+                            PotassiumPer100g = 3f,
+                            ProteinsPer100g = 24.9f,
+                            SaturatedFatPer100g = 17.6f,
+                            SeleniumPer100g = 21f,
+                            SodiumPer100g = 34f,
+                            SugarPer100g = 2.2f,
+                            VitaminAPer100g = 11f,
+                            VitaminB12Per100g = 26f,
+                            VitaminB1Per100g = 3f,
+                            VitaminB2Per100g = 20f,
+                            VitaminB3Per100g = 0f,
+                            VitaminB6Per100g = 4f,
+                            VitaminB9Per100g = 5f,
+                            VitaminCPer100g = 0f,
+                            VitaminDPer100g = 0f,
+                            VitaminEPer100g = 1f,
+                            VitaminKPer100g = 2f,
+                            ZincPer100g = 26f
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CalciumPer100g = 3f,
+                            CaloriesPer100g = 479f,
+                            CarbohydratesPer100g = 63.1f,
+                            CopperPer100g = 35f,
+                            FatsPer100g = 30f,
+                            FiberPer100g = 5.9f,
+                            FoodItemId = 10,
+                            IronPer100g = 17f,
+                            MagnesiumPer100g = 29f,
+                            ManganesePer100g = 40f,
+                            PhosphorusPer100g = 13f,
+                            PotassiumPer100g = 10f,
+                            ProteinsPer100g = 4.2f,
+                            SaturatedFatPer100g = 17.7f,
+                            SeleniumPer100g = 6f,
+                            SodiumPer100g = 0f,
+                            SugarPer100g = 54.5f,
+                            VitaminAPer100g = 0f,
+                            VitaminB12Per100g = 0f,
+                            VitaminB1Per100g = 4f,
+                            VitaminB2Per100g = 5f,
+                            VitaminB3Per100g = 2f,
+                            VitaminB6Per100g = 2f,
+                            VitaminB9Per100g = 3f,
+                            VitaminCPer100g = 0f,
+                            VitaminDPer100g = 0f,
+                            VitaminEPer100g = 1f,
+                            VitaminKPer100g = 7f,
+                            ZincPer100g = 11f
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CalciumPer100g = 14f,
+                            CaloriesPer100g = 266f,
+                            CarbohydratesPer100g = 47.5f,
+                            CopperPer100g = 8f,
+                            FatsPer100g = 3.6f,
+                            FiberPer100g = 3.6f,
+                            FoodItemId = 11,
+                            IronPer100g = 19f,
+                            MagnesiumPer100g = 12f,
+                            ManganesePer100g = 56f,
+                            PhosphorusPer100g = 15f,
+                            PotassiumPer100g = 5f,
+                            ProteinsPer100g = 10.9f,
+                            SaturatedFatPer100g = 0.8f,
+                            SeleniumPer100g = 41f,
+                            SodiumPer100g = 22f,
+                            SugarPer100g = 5.8f,
+                            VitaminAPer100g = 0f,
+                            VitaminB12Per100g = 0f,
+                            VitaminB1Per100g = 25f,
+                            VitaminB2Per100g = 18f,
+                            VitaminB3Per100g = 26f,
+                            VitaminB6Per100g = 6f,
+                            VitaminB9Per100g = 21f,
+                            VitaminCPer100g = 0f,
+                            VitaminDPer100g = 0f,
+                            VitaminEPer100g = 1f,
+                            VitaminKPer100g = 6f,
+                            ZincPer100g = 8f
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CalciumPer100g = 38f,
+                            CaloriesPer100g = 208f,
+                            CarbohydratesPer100g = 0f,
+                            CopperPer100g = 9f,
+                            FatsPer100g = 11.5f,
+                            FiberPer100g = 0f,
+                            FoodItemId = 12,
+                            IronPer100g = 16f,
+                            MagnesiumPer100g = 10f,
+                            ManganesePer100g = 5f,
+                            PhosphorusPer100g = 49f,
+                            PotassiumPer100g = 11f,
+                            ProteinsPer100g = 24.6f,
+                            SaturatedFatPer100g = 1.5f,
+                            SeleniumPer100g = 75f,
+                            SodiumPer100g = 21f,
+                            SugarPer100g = 0f,
+                            VitaminAPer100g = 2f,
+                            VitaminB12Per100g = 149f,
+                            VitaminB1Per100g = 5f,
+                            VitaminB2Per100g = 13f,
+                            VitaminB3Per100g = 26f,
+                            VitaminB6Per100g = 8f,
+                            VitaminB9Per100g = 3f,
+                            VitaminCPer100g = 0f,
+                            VitaminDPer100g = 68f,
+                            VitaminEPer100g = 10f,
+                            VitaminKPer100g = 3f,
+                            ZincPer100g = 9f
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CalciumPer100g = 3f,
+                            CaloriesPer100g = 227f,
+                            CarbohydratesPer100g = 0f,
+                            CopperPer100g = 10f,
+                            FatsPer100g = 12.1f,
+                            FiberPer100g = 0f,
+                            FoodItemId = 13,
+                            IronPer100g = 10f,
+                            MagnesiumPer100g = 5f,
+                            ManganesePer100g = 1f,
+                            PhosphorusPer100g = 23f,
+                            PotassiumPer100g = 11f,
+                            ProteinsPer100g = 27.6f,
+                            SaturatedFatPer100g = 4.6f,
+                            SeleniumPer100g = 65f,
+                            SodiumPer100g = 6f,
+                            SugarPer100g = 0f,
+                            VitaminAPer100g = 0f,
+                            VitaminB12Per100g = 16f,
+                            VitaminB1Per100g = 28f,
+                            VitaminB2Per100g = 22f,
+                            VitaminB3Per100g = 18f,
+                            VitaminB6Per100g = 24f,
+                            VitaminB9Per100g = 0f,
+                            VitaminCPer100g = 0f,
+                            VitaminDPer100g = 0f,
+                            VitaminEPer100g = 1f,
+                            VitaminKPer100g = 0f,
+                            ZincPer100g = 32f
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CalciumPer100g = 5f,
+                            CaloriesPer100g = 145f,
+                            CarbohydratesPer100g = 3.8f,
+                            CopperPer100g = 6f,
+                            FatsPer100g = 15.3f,
+                            FiberPer100g = 3.3f,
+                            FoodItemId = 14,
+                            IronPer100g = 3f,
+                            MagnesiumPer100g = 3f,
+                            ManganesePer100g = 0f,
+                            PhosphorusPer100g = 0f,
+                            PotassiumPer100g = 1f,
+                            ProteinsPer100g = 1f,
+                            SaturatedFatPer100g = 2f,
+                            SeleniumPer100g = 1f,
+                            SodiumPer100g = 65f,
+                            SugarPer100g = 0.5f,
+                            VitaminAPer100g = 8f,
+                            VitaminB12Per100g = 0f,
+                            VitaminB1Per100g = 1f,
+                            VitaminB2Per100g = 0f,
+                            VitaminB3Per100g = 1f,
+                            VitaminB6Per100g = 2f,
+                            VitaminB9Per100g = 1f,
+                            VitaminCPer100g = 0f,
+                            VitaminDPer100g = 0f,
+                            VitaminEPer100g = 19f,
+                            VitaminKPer100g = 2f,
+                            ZincPer100g = 0f
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CalciumPer100g = 1f,
+                            CaloriesPer100g = 18f,
+                            CarbohydratesPer100g = 3.9f,
+                            CopperPer100g = 3f,
+                            FatsPer100g = 0.2f,
+                            FiberPer100g = 1.2f,
+                            FoodItemId = 15,
+                            IronPer100g = 1f,
+                            MagnesiumPer100g = 3f,
+                            ManganesePer100g = 6f,
+                            PhosphorusPer100g = 2f,
+                            PotassiumPer100g = 7f,
+                            ProteinsPer100g = 0.9f,
+                            SaturatedFatPer100g = 0f,
+                            SeleniumPer100g = 0f,
+                            SodiumPer100g = 0f,
+                            SugarPer100g = 2.6f,
+                            VitaminAPer100g = 17f,
+                            VitaminB12Per100g = 0f,
+                            VitaminB1Per100g = 2f,
+                            VitaminB2Per100g = 1f,
+                            VitaminB3Per100g = 3f,
+                            VitaminB6Per100g = 4f,
+                            VitaminB9Per100g = 4f,
+                            VitaminCPer100g = 21f,
+                            VitaminDPer100g = 0f,
+                            VitaminEPer100g = 3f,
+                            VitaminKPer100g = 10f,
+                            ZincPer100g = 1f
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CalciumPer100g = 2f,
+                            CaloriesPer100g = 40f,
+                            CarbohydratesPer100g = 9.3f,
+                            CopperPer100g = 2f,
+                            FatsPer100g = 0.1f,
+                            FiberPer100g = 1.7f,
+                            FoodItemId = 16,
+                            IronPer100g = 1f,
+                            MagnesiumPer100g = 2f,
+                            ManganesePer100g = 6f,
+                            PhosphorusPer100g = 3f,
+                            PotassiumPer100g = 4f,
+                            ProteinsPer100g = 1.1f,
+                            SaturatedFatPer100g = 0f,
+                            SeleniumPer100g = 1f,
+                            SodiumPer100g = 0f,
+                            SugarPer100g = 4.2f,
+                            VitaminAPer100g = 0f,
+                            VitaminB12Per100g = 0f,
+                            VitaminB1Per100g = 3f,
+                            VitaminB2Per100g = 2f,
+                            VitaminB3Per100g = 1f,
+                            VitaminB6Per100g = 6f,
+                            VitaminB9Per100g = 5f,
+                            VitaminCPer100g = 12f,
+                            VitaminDPer100g = 0f,
+                            VitaminEPer100g = 0f,
+                            VitaminKPer100g = 0f,
+                            ZincPer100g = 1f
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CalciumPer100g = 1f,
+                            CaloriesPer100g = 131f,
+                            CarbohydratesPer100g = 24.9f,
+                            CopperPer100g = 5f,
+                            FatsPer100g = 1.1f,
+                            FiberPer100g = 0f,
+                            FoodItemId = 17,
+                            IronPer100g = 6f,
+                            MagnesiumPer100g = 5f,
+                            ManganesePer100g = 11f,
+                            PhosphorusPer100g = 6f,
+                            PotassiumPer100g = 1f,
+                            ProteinsPer100g = 5.2f,
+                            SaturatedFatPer100g = 0.2f,
+                            SeleniumPer100g = 0f,
+                            SodiumPer100g = 0f,
+                            SugarPer100g = 0f,
+                            VitaminAPer100g = 0f,
+                            VitaminB12Per100g = 2f,
+                            VitaminB1Per100g = 14f,
+                            VitaminB2Per100g = 9f,
+                            VitaminB3Per100g = 5f,
+                            VitaminB6Per100g = 2f,
+                            VitaminB9Per100g = 16f,
+                            VitaminCPer100g = 0f,
+                            VitaminDPer100g = 0f,
+                            VitaminEPer100g = 0f,
+                            VitaminKPer100g = 0f,
+                            ZincPer100g = 4f
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CalciumPer100g = 4f,
+                            CaloriesPer100g = 225f,
+                            CarbohydratesPer100g = 22.8f,
+                            CopperPer100g = 12f,
+                            FatsPer100g = 0.5f,
+                            FiberPer100g = 6.4f,
+                            FoodItemId = 18,
+                            IronPer100g = 12f,
+                            MagnesiumPer100g = 10f,
+                            ManganesePer100g = 22f,
+                            PhosphorusPer100g = 14f,
+                            PotassiumPer100g = 12f,
+                            ProteinsPer100g = 8.7f,
+                            SaturatedFatPer100g = 0.1f,
+                            SeleniumPer100g = 2f,
+                            SodiumPer100g = 0f,
+                            SugarPer100g = 0.3f,
+                            VitaminAPer100g = 0f,
+                            VitaminB12Per100g = 0f,
+                            VitaminB1Per100g = 11f,
+                            VitaminB2Per100g = 3f,
+                            VitaminB3Per100g = 3f,
+                            VitaminB6Per100g = 6f,
+                            VitaminB9Per100g = 33f,
+                            VitaminCPer100g = 2f,
+                            VitaminDPer100g = 0f,
+                            VitaminEPer100g = 0f,
+                            VitaminKPer100g = 10f,
+                            ZincPer100g = 7f
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CalciumPer100g = 11f,
+                            CaloriesPer100g = 60f,
+                            CarbohydratesPer100g = 5.3f,
+                            CopperPer100g = 1f,
+                            FatsPer100g = 3.3f,
+                            FiberPer100g = 0f,
+                            FoodItemId = 19,
+                            IronPer100g = 0f,
+                            MagnesiumPer100g = 2f,
+                            ManganesePer100g = 0f,
+                            PhosphorusPer100g = 9f,
+                            PotassiumPer100g = 4f,
+                            ProteinsPer100g = 3.2f,
+                            SaturatedFatPer100g = 1.9f,
+                            SeleniumPer100g = 5f,
+                            SodiumPer100g = 2f,
+                            SugarPer100g = 0f,
+                            VitaminAPer100g = 2f,
+                            VitaminB12Per100g = 7f,
+                            VitaminB1Per100g = 3f,
+                            VitaminB2Per100g = 11f,
+                            VitaminB3Per100g = 1f,
+                            VitaminB6Per100g = 2f,
+                            VitaminB9Per100g = 1f,
+                            VitaminCPer100g = 0f,
+                            VitaminDPer100g = 10f,
+                            VitaminEPer100g = 0f,
+                            VitaminKPer100g = 0f,
+                            ZincPer100g = 3f
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CalciumPer100g = 0f,
+                            CaloriesPer100g = 35f,
+                            CarbohydratesPer100g = 4.9f,
+                            CopperPer100g = 25f,
+                            FatsPer100g = 0.7f,
+                            FiberPer100g = 2.2f,
+                            FoodItemId = 20,
+                            IronPer100g = 3f,
+                            MagnesiumPer100g = 4f,
+                            ManganesePer100g = 4f,
+                            PhosphorusPer100g = 15f,
+                            PotassiumPer100g = 15f,
+                            ProteinsPer100g = 4.3f,
+                            SaturatedFatPer100g = 0.1f,
+                            SeleniumPer100g = 25f,
+                            SodiumPer100g = 0f,
+                            SugarPer100g = 0f,
+                            VitaminAPer100g = 0f,
+                            VitaminB12Per100g = 0f,
+                            VitaminB1Per100g = 6f,
+                            VitaminB2Per100g = 28f,
+                            VitaminB3Per100g = 30f,
+                            VitaminB6Per100g = 4f,
+                            VitaminB9Per100g = 5f,
+                            VitaminCPer100g = 0f,
+                            VitaminDPer100g = 0f,
+                            VitaminEPer100g = 0f,
+                            VitaminKPer100g = 0f,
+                            ZincPer100g = 5f
                         });
                 });
 
@@ -974,6 +1581,186 @@ namespace DietAnalyzer.Migrations
                             Keto = false,
                             KidneyProblems = false,
                             Paleo = false,
+                            Pescetarian = true,
+                            Vegan = true,
+                            Vegetarian = true
+                        },
+                        new
+                        {
+                            Id = 9,
+                            DairyIntolerant = false,
+                            Diabetes = true,
+                            FoodItemId = 9,
+                            GlutenIntolerant = true,
+                            HeartProblems = false,
+                            Keto = true,
+                            KidneyProblems = true,
+                            Paleo = false,
+                            Pescetarian = true,
+                            Vegan = false,
+                            Vegetarian = true
+                        },
+                        new
+                        {
+                            Id = 10,
+                            DairyIntolerant = false,
+                            Diabetes = false,
+                            FoodItemId = 10,
+                            GlutenIntolerant = true,
+                            HeartProblems = false,
+                            Keto = false,
+                            KidneyProblems = false,
+                            Paleo = false,
+                            Pescetarian = true,
+                            Vegan = false,
+                            Vegetarian = true
+                        },
+                        new
+                        {
+                            Id = 11,
+                            DairyIntolerant = true,
+                            Diabetes = false,
+                            FoodItemId = 11,
+                            GlutenIntolerant = false,
+                            HeartProblems = false,
+                            Keto = false,
+                            KidneyProblems = true,
+                            Paleo = false,
+                            Pescetarian = true,
+                            Vegan = true,
+                            Vegetarian = true
+                        },
+                        new
+                        {
+                            Id = 12,
+                            DairyIntolerant = true,
+                            Diabetes = true,
+                            FoodItemId = 12,
+                            GlutenIntolerant = true,
+                            HeartProblems = true,
+                            Keto = true,
+                            KidneyProblems = true,
+                            Paleo = true,
+                            Pescetarian = true,
+                            Vegan = false,
+                            Vegetarian = false
+                        },
+                        new
+                        {
+                            Id = 13,
+                            DairyIntolerant = true,
+                            Diabetes = true,
+                            FoodItemId = 13,
+                            GlutenIntolerant = true,
+                            HeartProblems = false,
+                            Keto = true,
+                            KidneyProblems = false,
+                            Paleo = true,
+                            Pescetarian = false,
+                            Vegan = false,
+                            Vegetarian = false
+                        },
+                        new
+                        {
+                            Id = 14,
+                            DairyIntolerant = true,
+                            Diabetes = true,
+                            FoodItemId = 14,
+                            GlutenIntolerant = true,
+                            HeartProblems = true,
+                            Keto = true,
+                            KidneyProblems = true,
+                            Paleo = true,
+                            Pescetarian = true,
+                            Vegan = true,
+                            Vegetarian = true
+                        },
+                        new
+                        {
+                            Id = 15,
+                            DairyIntolerant = true,
+                            Diabetes = true,
+                            FoodItemId = 15,
+                            GlutenIntolerant = true,
+                            HeartProblems = true,
+                            Keto = true,
+                            KidneyProblems = false,
+                            Paleo = true,
+                            Pescetarian = true,
+                            Vegan = true,
+                            Vegetarian = true
+                        },
+                        new
+                        {
+                            Id = 16,
+                            DairyIntolerant = true,
+                            Diabetes = true,
+                            FoodItemId = 16,
+                            GlutenIntolerant = true,
+                            HeartProblems = true,
+                            Keto = false,
+                            KidneyProblems = true,
+                            Paleo = true,
+                            Pescetarian = true,
+                            Vegan = true,
+                            Vegetarian = true
+                        },
+                        new
+                        {
+                            Id = 17,
+                            DairyIntolerant = true,
+                            Diabetes = false,
+                            FoodItemId = 17,
+                            GlutenIntolerant = false,
+                            HeartProblems = false,
+                            Keto = false,
+                            KidneyProblems = true,
+                            Paleo = false,
+                            Pescetarian = true,
+                            Vegan = true,
+                            Vegetarian = true
+                        },
+                        new
+                        {
+                            Id = 18,
+                            DairyIntolerant = true,
+                            Diabetes = true,
+                            FoodItemId = 18,
+                            GlutenIntolerant = true,
+                            HeartProblems = true,
+                            Keto = false,
+                            KidneyProblems = false,
+                            Paleo = false,
+                            Pescetarian = true,
+                            Vegan = true,
+                            Vegetarian = true
+                        },
+                        new
+                        {
+                            Id = 19,
+                            DairyIntolerant = false,
+                            Diabetes = true,
+                            FoodItemId = 19,
+                            GlutenIntolerant = true,
+                            HeartProblems = false,
+                            Keto = false,
+                            KidneyProblems = false,
+                            Paleo = false,
+                            Pescetarian = true,
+                            Vegan = false,
+                            Vegetarian = true
+                        },
+                        new
+                        {
+                            Id = 20,
+                            DairyIntolerant = true,
+                            Diabetes = true,
+                            FoodItemId = 20,
+                            GlutenIntolerant = true,
+                            HeartProblems = true,
+                            Keto = true,
+                            KidneyProblems = false,
+                            Paleo = true,
                             Pescetarian = true,
                             Vegan = true,
                             Vegetarian = true

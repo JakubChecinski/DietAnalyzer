@@ -49,6 +49,27 @@ namespace DietAnalyzer.Data
 					Name = "slices",
 					Grams = 35,
 					IsKnownUniversally = false,
+				},
+				new Measure
+				{
+					Id = 5,
+					Name = "medium sardines",
+					Grams = 12,
+					IsKnownUniversally = false,
+				},
+				new Measure
+				{
+					Id = 6,
+					Name = "medium tomatoes",
+					Grams = 170,
+					IsKnownUniversally = false,
+				},
+				new Measure
+				{
+					Id = 7,
+					Name = "medium onions",
+					Grams = 110,
+					IsKnownUniversally = false,
 				}
 			};
         }
