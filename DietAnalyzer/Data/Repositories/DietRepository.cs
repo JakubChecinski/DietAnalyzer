@@ -56,6 +56,11 @@ namespace DietAnalyzer.Data.Repositories
             _context.Diets.Add(diet);
         }
 
+        public async Task AddAsync(Diet diet)
+        {
+            await _context.Diets.AddAsync(diet);
+        }
+
         public void Update(Diet diet, string userId)
         {
             var dietToUpdate = _context.Diets.Single(x => x.Id == diet.Id && x.UserId == userId);

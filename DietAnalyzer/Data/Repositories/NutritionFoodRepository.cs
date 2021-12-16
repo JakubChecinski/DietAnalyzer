@@ -24,6 +24,12 @@ namespace DietAnalyzer.Data.Repositories
         {
             _context.NutritionFoods.Add(nutrition);
         }
+
+        public async Task AddAsync(NutritionFood nutrition)
+        {
+            await _context.NutritionFoods.AddAsync(nutrition);
+        }
+
         public void Update(NutritionFood nutrition)
         {
             var nutritionToUpdate = _context.NutritionFoods.Single(x => x.Id == nutrition.Id);

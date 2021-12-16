@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DietAnalyzer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211215102915_Init")]
+    [Migration("20211216085731_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -18,7 +18,7 @@ namespace DietAnalyzer.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.3")
+                .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("DietAnalyzer.Models.Domains.Diet", b =>
@@ -339,136 +339,556 @@ namespace DietAnalyzer.Migrations
                         },
                         new
                         {
-                            Id = 109,
+                            Id = 9,
                             FoodItemId = 9,
                             IsCurrentlyLinked = true,
                             MeasureId = 1
                         },
                         new
                         {
-                            Id = 110,
+                            Id = 10,
                             FoodItemId = 10,
                             IsCurrentlyLinked = true,
                             MeasureId = 1
                         },
                         new
                         {
-                            Id = 111,
+                            Id = 11,
                             FoodItemId = 11,
                             IsCurrentlyLinked = true,
                             MeasureId = 1
                         },
                         new
                         {
-                            Id = 112,
+                            Id = 12,
                             FoodItemId = 12,
                             IsCurrentlyLinked = true,
                             MeasureId = 1
                         },
                         new
                         {
-                            Id = 113,
+                            Id = 13,
                             FoodItemId = 13,
                             IsCurrentlyLinked = true,
                             MeasureId = 1
                         },
                         new
                         {
-                            Id = 114,
+                            Id = 14,
                             FoodItemId = 14,
                             IsCurrentlyLinked = true,
                             MeasureId = 1
                         },
                         new
                         {
-                            Id = 115,
+                            Id = 15,
                             FoodItemId = 15,
                             IsCurrentlyLinked = true,
                             MeasureId = 1
                         },
                         new
                         {
-                            Id = 116,
+                            Id = 16,
                             FoodItemId = 16,
                             IsCurrentlyLinked = true,
                             MeasureId = 1
                         },
                         new
                         {
-                            Id = 117,
+                            Id = 17,
                             FoodItemId = 17,
                             IsCurrentlyLinked = true,
                             MeasureId = 1
                         },
                         new
                         {
-                            Id = 118,
+                            Id = 18,
                             FoodItemId = 18,
                             IsCurrentlyLinked = true,
                             MeasureId = 1
                         },
                         new
                         {
-                            Id = 119,
+                            Id = 19,
                             FoodItemId = 19,
                             IsCurrentlyLinked = true,
                             MeasureId = 1
                         },
                         new
                         {
-                            Id = 120,
+                            Id = 20,
                             FoodItemId = 20,
                             IsCurrentlyLinked = true,
                             MeasureId = 1
                         },
                         new
                         {
-                            Id = 10,
+                            Id = 101,
+                            FoodItemId = 1,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 2
+                        },
+                        new
+                        {
+                            Id = 102,
                             FoodItemId = 2,
                             IsCurrentlyLinked = true,
                             MeasureId = 2
                         },
                         new
                         {
-                            Id = 19,
+                            Id = 103,
+                            FoodItemId = 3,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 2
+                        },
+                        new
+                        {
+                            Id = 104,
+                            FoodItemId = 4,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 2
+                        },
+                        new
+                        {
+                            Id = 105,
+                            FoodItemId = 5,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 2
+                        },
+                        new
+                        {
+                            Id = 106,
+                            FoodItemId = 6,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 2
+                        },
+                        new
+                        {
+                            Id = 107,
+                            FoodItemId = 7,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 2
+                        },
+                        new
+                        {
+                            Id = 108,
+                            FoodItemId = 8,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 2
+                        },
+                        new
+                        {
+                            Id = 109,
+                            FoodItemId = 9,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 2
+                        },
+                        new
+                        {
+                            Id = 110,
+                            FoodItemId = 10,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 2
+                        },
+                        new
+                        {
+                            Id = 111,
+                            FoodItemId = 11,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 2
+                        },
+                        new
+                        {
+                            Id = 112,
+                            FoodItemId = 12,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 2
+                        },
+                        new
+                        {
+                            Id = 113,
+                            FoodItemId = 13,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 2
+                        },
+                        new
+                        {
+                            Id = 114,
+                            FoodItemId = 14,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 2
+                        },
+                        new
+                        {
+                            Id = 115,
+                            FoodItemId = 15,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 2
+                        },
+                        new
+                        {
+                            Id = 116,
+                            FoodItemId = 16,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 2
+                        },
+                        new
+                        {
+                            Id = 117,
+                            FoodItemId = 17,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 2
+                        },
+                        new
+                        {
+                            Id = 118,
+                            FoodItemId = 18,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 2
+                        },
+                        new
+                        {
+                            Id = 119,
+                            FoodItemId = 19,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 2
+                        },
+                        new
+                        {
+                            Id = 120,
+                            FoodItemId = 20,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 2
+                        },
+                        new
+                        {
+                            Id = 201,
+                            FoodItemId = 1,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 3
+                        },
+                        new
+                        {
+                            Id = 202,
+                            FoodItemId = 2,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 3
+                        },
+                        new
+                        {
+                            Id = 203,
                             FoodItemId = 3,
                             IsCurrentlyLinked = true,
                             MeasureId = 3
                         },
                         new
                         {
-                            Id = 31,
+                            Id = 204,
+                            FoodItemId = 4,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 3
+                        },
+                        new
+                        {
+                            Id = 205,
+                            FoodItemId = 5,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 3
+                        },
+                        new
+                        {
+                            Id = 206,
+                            FoodItemId = 6,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 3
+                        },
+                        new
+                        {
+                            Id = 207,
+                            FoodItemId = 7,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 3
+                        },
+                        new
+                        {
+                            Id = 208,
+                            FoodItemId = 8,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 3
+                        },
+                        new
+                        {
+                            Id = 209,
+                            FoodItemId = 9,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 3
+                        },
+                        new
+                        {
+                            Id = 210,
+                            FoodItemId = 10,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 3
+                        },
+                        new
+                        {
+                            Id = 211,
+                            FoodItemId = 11,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 3
+                        },
+                        new
+                        {
+                            Id = 212,
+                            FoodItemId = 12,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 3
+                        },
+                        new
+                        {
+                            Id = 213,
+                            FoodItemId = 13,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 3
+                        },
+                        new
+                        {
+                            Id = 214,
+                            FoodItemId = 14,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 3
+                        },
+                        new
+                        {
+                            Id = 215,
+                            FoodItemId = 15,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 3
+                        },
+                        new
+                        {
+                            Id = 216,
+                            FoodItemId = 16,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 3
+                        },
+                        new
+                        {
+                            Id = 217,
+                            FoodItemId = 17,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 3
+                        },
+                        new
+                        {
+                            Id = 218,
+                            FoodItemId = 18,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 3
+                        },
+                        new
+                        {
+                            Id = 219,
+                            FoodItemId = 19,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 3
+                        },
+                        new
+                        {
+                            Id = 220,
+                            FoodItemId = 20,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 3
+                        },
+                        new
+                        {
+                            Id = 301,
+                            FoodItemId = 1,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 4
+                        },
+                        new
+                        {
+                            Id = 302,
+                            FoodItemId = 2,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 4
+                        },
+                        new
+                        {
+                            Id = 303,
+                            FoodItemId = 3,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 4
+                        },
+                        new
+                        {
+                            Id = 304,
+                            FoodItemId = 4,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 4
+                        },
+                        new
+                        {
+                            Id = 305,
+                            FoodItemId = 5,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 4
+                        },
+                        new
+                        {
+                            Id = 306,
+                            FoodItemId = 6,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 4
+                        },
+                        new
+                        {
+                            Id = 307,
                             FoodItemId = 7,
                             IsCurrentlyLinked = true,
                             MeasureId = 4
                         },
                         new
                         {
-                            Id = 200,
+                            Id = 308,
+                            FoodItemId = 8,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 4
+                        },
+                        new
+                        {
+                            Id = 309,
+                            FoodItemId = 9,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 4
+                        },
+                        new
+                        {
+                            Id = 310,
+                            FoodItemId = 10,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 4
+                        },
+                        new
+                        {
+                            Id = 311,
                             FoodItemId = 11,
                             IsCurrentlyLinked = true,
                             MeasureId = 4
                         },
                         new
                         {
-                            Id = 201,
+                            Id = 312,
                             FoodItemId = 12,
                             IsCurrentlyLinked = true,
-                            MeasureId = 5
+                            MeasureId = 4
                         },
                         new
                         {
-                            Id = 202,
+                            Id = 313,
+                            FoodItemId = 13,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 4
+                        },
+                        new
+                        {
+                            Id = 314,
+                            FoodItemId = 14,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 4
+                        },
+                        new
+                        {
+                            Id = 315,
                             FoodItemId = 15,
                             IsCurrentlyLinked = true,
-                            MeasureId = 6
+                            MeasureId = 4
                         },
                         new
                         {
-                            Id = 203,
+                            Id = 316,
                             FoodItemId = 16,
                             IsCurrentlyLinked = true,
-                            MeasureId = 7
+                            MeasureId = 4
+                        },
+                        new
+                        {
+                            Id = 317,
+                            FoodItemId = 17,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 4
+                        },
+                        new
+                        {
+                            Id = 318,
+                            FoodItemId = 18,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 4
+                        },
+                        new
+                        {
+                            Id = 319,
+                            FoodItemId = 19,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 4
+                        },
+                        new
+                        {
+                            Id = 320,
+                            FoodItemId = 20,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 4
+                        },
+                        new
+                        {
+                            Id = 1000,
+                            FoodItemId = 2,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 10
+                        },
+                        new
+                        {
+                            Id = 1001,
+                            FoodItemId = 3,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 11
+                        },
+                        new
+                        {
+                            Id = 1002,
+                            FoodItemId = 7,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 12
+                        },
+                        new
+                        {
+                            Id = 1003,
+                            FoodItemId = 11,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 12
+                        },
+                        new
+                        {
+                            Id = 1004,
+                            FoodItemId = 12,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 13
+                        },
+                        new
+                        {
+                            Id = 1005,
+                            FoodItemId = 15,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 14
+                        },
+                        new
+                        {
+                            Id = 1006,
+                            FoodItemId = 16,
+                            IsCurrentlyLinked = true,
+                            MeasureId = 15
                         });
                 });
 
@@ -510,41 +930,62 @@ namespace DietAnalyzer.Migrations
                         new
                         {
                             Id = 2,
+                            Grams = 15f,
+                            IsKnownUniversally = true,
+                            Name = "tablespoons"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Grams = 5f,
+                            IsKnownUniversally = true,
+                            Name = "teaspoons"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Grams = 250f,
+                            IsKnownUniversally = true,
+                            Name = "cups"
+                        },
+                        new
+                        {
+                            Id = 10,
                             Grams = 135f,
                             IsKnownUniversally = false,
                             Name = "large bananas"
                         },
                         new
                         {
-                            Id = 3,
+                            Id = 11,
                             Grams = 50f,
                             IsKnownUniversally = false,
                             Name = "large eggs"
                         },
                         new
                         {
-                            Id = 4,
+                            Id = 12,
                             Grams = 35f,
                             IsKnownUniversally = false,
                             Name = "slices"
                         },
                         new
                         {
-                            Id = 5,
+                            Id = 13,
                             Grams = 12f,
                             IsKnownUniversally = false,
                             Name = "medium sardines"
                         },
                         new
                         {
-                            Id = 6,
+                            Id = 14,
                             Grams = 170f,
                             IsKnownUniversally = false,
                             Name = "medium tomatoes"
                         },
                         new
                         {
-                            Id = 7,
+                            Id = 15,
                             Grams = 110f,
                             IsKnownUniversally = false,
                             Name = "medium onions"

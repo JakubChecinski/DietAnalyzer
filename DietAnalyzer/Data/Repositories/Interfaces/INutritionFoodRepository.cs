@@ -15,6 +15,7 @@ namespace DietAnalyzer.Data.Repositories
     public interface INutritionFoodRepository
     {
         void Add(NutritionFood nutrition);
+        Task AddAsync(NutritionFood nutrition);
         void Update(NutritionFood nutrition);
     }
 }

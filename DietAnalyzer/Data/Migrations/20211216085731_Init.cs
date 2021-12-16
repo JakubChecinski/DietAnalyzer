@@ -465,11 +465,11 @@ namespace DietAnalyzer.Migrations
                     { 18, "/images/kidney_beans.png", null, "kidney beans", null },
                     { 17, "/images/pasta.png", null, "pasta", null },
                     { 16, "/images/onion.png", null, "onions", null },
-                    { 15, "/images/tomato.png", null, "tomatoes", null },
+                    { 14, "/images/olives.png", null, "olives", null },
                     { 13, "/images/steak.png", null, "pork steak", null },
                     { 12, "/images/sardines.png", null, "sardines", null },
                     { 11, "/images/bread_wheat.png", null, "bread (wheat)", null },
-                    { 14, "/images/olives.png", null, "olives", null },
+                    { 15, "/images/tomato.png", null, "tomatoes", null },
                     { 9, "/images/cheese.png", null, "cheese", null },
                     { 8, "/images/potatoes.png", null, "potatoes", null },
                     { 7, "/images/bread_rye.png", null, "bread (rye)", null },
@@ -486,13 +486,16 @@ namespace DietAnalyzer.Migrations
                 columns: new[] { "Id", "Grams", "IsKnownUniversally", "Name", "UserId" },
                 values: new object[,]
                 {
-                    { 6, 170f, false, "medium tomatoes", null },
+                    { 13, 12f, false, "medium sardines", null },
+                    { 12, 35f, false, "slices", null },
+                    { 11, 50f, false, "large eggs", null },
+                    { 10, 135f, false, "large bananas", null },
                     { 1, 1f, true, "grams", null },
-                    { 2, 135f, false, "large bananas", null },
-                    { 3, 50f, false, "large eggs", null },
-                    { 4, 35f, false, "slices", null },
-                    { 5, 12f, false, "medium sardines", null },
-                    { 7, 110f, false, "medium onions", null }
+                    { 3, 5f, true, "teaspoons", null },
+                    { 2, 15f, true, "tablespoons", null },
+                    { 14, 170f, false, "medium tomatoes", null },
+                    { 4, 250f, true, "cups", null },
+                    { 15, 110f, false, "medium onions", null }
                 });
 
             migrationBuilder.InsertData(
@@ -500,33 +503,107 @@ namespace DietAnalyzer.Migrations
                 columns: new[] { "Id", "FoodItemId", "IsCurrentlyLinked", "MeasureId" },
                 values: new object[,]
                 {
-                    { 203, 16, true, 7 },
+                    { 104, 4, true, 2 },
+                    { 213, 13, true, 3 },
+                    { 212, 12, true, 3 },
+                    { 211, 11, true, 3 },
+                    { 210, 10, true, 3 },
+                    { 209, 9, true, 3 },
+                    { 208, 8, true, 3 },
+                    { 207, 7, true, 3 },
+                    { 206, 6, true, 3 },
+                    { 205, 5, true, 3 },
+                    { 204, 4, true, 3 },
+                    { 203, 3, true, 3 },
+                    { 202, 2, true, 3 },
+                    { 201, 1, true, 3 },
+                    { 214, 14, true, 3 },
+                    { 120, 20, true, 2 },
+                    { 118, 18, true, 2 },
+                    { 117, 17, true, 2 },
+                    { 116, 16, true, 2 },
+                    { 115, 15, true, 2 },
+                    { 114, 14, true, 2 },
+                    { 113, 13, true, 2 },
+                    { 112, 12, true, 2 },
+                    { 111, 11, true, 2 },
+                    { 110, 10, true, 2 },
+                    { 109, 9, true, 2 },
+                    { 108, 8, true, 2 },
+                    { 107, 7, true, 2 },
+                    { 106, 6, true, 2 },
+                    { 119, 19, true, 2 },
+                    { 105, 5, true, 2 },
+                    { 215, 15, true, 3 },
+                    { 217, 17, true, 3 },
+                    { 1004, 12, true, 13 },
+                    { 1003, 11, true, 12 },
+                    { 1002, 7, true, 12 },
+                    { 1001, 3, true, 11 },
+                    { 1000, 2, true, 10 },
+                    { 320, 20, true, 4 },
+                    { 319, 19, true, 4 },
+                    { 318, 18, true, 4 },
+                    { 317, 17, true, 4 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "FoodMeasures",
+                columns: new[] { "Id", "FoodItemId", "IsCurrentlyLinked", "MeasureId" },
+                values: new object[,]
+                {
+                    { 316, 16, true, 4 },
+                    { 315, 15, true, 4 },
+                    { 314, 14, true, 4 },
+                    { 313, 13, true, 4 },
+                    { 216, 16, true, 3 },
+                    { 312, 12, true, 4 },
+                    { 310, 10, true, 4 },
+                    { 309, 9, true, 4 },
+                    { 308, 8, true, 4 },
+                    { 307, 7, true, 4 },
+                    { 306, 6, true, 4 },
+                    { 305, 5, true, 4 },
+                    { 304, 4, true, 4 },
+                    { 303, 3, true, 4 },
+                    { 302, 2, true, 4 },
+                    { 301, 1, true, 4 },
+                    { 220, 20, true, 3 },
+                    { 219, 19, true, 3 },
+                    { 218, 18, true, 3 },
+                    { 311, 11, true, 4 },
+                    { 1005, 15, true, 14 },
+                    { 1006, 16, true, 15 },
+                    { 102, 2, true, 2 },
+                    { 103, 3, true, 2 },
                     { 1, 1, true, 1 },
                     { 2, 2, true, 1 },
                     { 3, 3, true, 1 },
                     { 4, 4, true, 1 },
-                    { 5, 5, true, 1 },
                     { 6, 6, true, 1 },
                     { 7, 7, true, 1 },
                     { 8, 8, true, 1 },
-                    { 109, 9, true, 1 },
-                    { 110, 10, true, 1 },
-                    { 202, 15, true, 6 },
-                    { 112, 12, true, 1 },
-                    { 111, 11, true, 1 },
-                    { 114, 14, true, 1 },
-                    { 201, 12, true, 5 },
-                    { 200, 11, true, 4 },
-                    { 31, 7, true, 4 },
-                    { 113, 13, true, 1 },
-                    { 10, 2, true, 2 },
-                    { 19, 3, true, 3 },
-                    { 119, 19, true, 1 },
-                    { 118, 18, true, 1 },
-                    { 117, 17, true, 1 },
-                    { 116, 16, true, 1 },
-                    { 115, 15, true, 1 },
-                    { 120, 20, true, 1 }
+                    { 9, 9, true, 1 },
+                    { 10, 10, true, 1 },
+                    { 5, 5, true, 1 },
+                    { 12, 12, true, 1 },
+                    { 13, 13, true, 1 },
+                    { 14, 14, true, 1 },
+                    { 15, 15, true, 1 },
+                    { 16, 16, true, 1 },
+                    { 17, 17, true, 1 },
+                    { 18, 18, true, 1 },
+                    { 19, 19, true, 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "FoodMeasures",
+                columns: new[] { "Id", "FoodItemId", "IsCurrentlyLinked", "MeasureId" },
+                values: new object[,]
+                {
+                    { 20, 20, true, 1 },
+                    { 101, 1, true, 2 },
+                    { 11, 11, true, 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -534,33 +611,26 @@ namespace DietAnalyzer.Migrations
                 columns: new[] { "Id", "CalciumPer100g", "CaloriesPer100g", "CarbohydratesPer100g", "CopperPer100g", "FatsPer100g", "FiberPer100g", "FoodItemId", "IronPer100g", "MagnesiumPer100g", "ManganesePer100g", "PhosphorusPer100g", "PotassiumPer100g", "ProteinsPer100g", "SaturatedFatPer100g", "SeleniumPer100g", "SodiumPer100g", "SugarPer100g", "VitaminAPer100g", "VitaminB12Per100g", "VitaminB1Per100g", "VitaminB2Per100g", "VitaminB3Per100g", "VitaminB6Per100g", "VitaminB9Per100g", "VitaminCPer100g", "VitaminDPer100g", "VitaminEPer100g", "VitaminKPer100g", "ZincPer100g" },
                 values: new object[,]
                 {
+                    { 11, 14f, 266f, 47.5f, 8f, 3.6f, 3.6f, 11, 19f, 12f, 56f, 15f, 5f, 10.9f, 0.8f, 41f, 22f, 5.8f, 0f, 0f, 25f, 18f, 26f, 6f, 21f, 0f, 0f, 1f, 6f, 8f },
+                    { 10, 3f, 479f, 63.1f, 35f, 30f, 5.9f, 10, 17f, 29f, 40f, 13f, 10f, 4.2f, 17.7f, 6f, 0f, 54.5f, 0f, 0f, 4f, 5f, 2f, 2f, 3f, 0f, 0f, 1f, 7f, 11f },
+                    { 9, 70f, 356f, 2.2f, 2f, 27.4f, 0f, 9, 1f, 7f, 1f, 55f, 3f, 24.9f, 17.6f, 21f, 34f, 2.2f, 11f, 26f, 3f, 20f, 0f, 4f, 5f, 0f, 0f, 1f, 2f, 26f },
+                    { 8, 1f, 86f, 20f, 8f, 0.1f, 1.8f, 8, 2f, 5f, 7f, 4f, 9f, 1.7f, 0f, 0f, 0f, 0.9f, 0f, 0f, 7f, 1f, 7f, 13f, 2f, 12f, 0f, 0f, 3f, 2f },
+                    { 3, 5f, 155f, 1.1f, 1f, 10.6f, 0f, 3, 7f, 2f, 1f, 17f, 4f, 12.6f, 3.3f, 44f, 5f, 1.1f, 12f, 19f, 4f, 30f, 0f, 6f, 11f, 0f, 0f, 5f, 0f, 7f },
+                    { 6, 1f, 206f, 0f, 2f, 12.3f, 0f, 6, 2f, 8f, 1f, 25f, 11f, 22.1f, 2.5f, 59f, 3f, 0f, 1f, 47f, 23f, 8f, 40f, 32f, 8f, 6f, 0f, 0f, 0f, 3f },
+                    { 5, 1f, 79f, 0.2f, 2f, 0.4f, 0f, 5, 2f, 2f, 2f, 6f, 2f, 16.8f, 0.1f, 11f, 45f, 0.1f, 0f, 1f, 1f, 2f, 17f, 8f, 0f, 0f, 0f, 0f, 0f, 2f },
+                    { 4, 12f, 61f, 4.7f, 0f, 3.3f, 0f, 4, 0f, 3f, 0f, 9f, 4f, 3.5f, 2.1f, 3f, 2f, 4.7f, 2f, 6f, 2f, 8f, 0f, 2f, 2f, 1f, 0f, 0f, 0f, 4f },
+                    { 2, 1f, 89f, 22.8f, 4f, 0.3f, 2.6f, 2, 1f, 7f, 13f, 2f, 10f, 1.1f, 0.1f, 1f, 0f, 12.2f, 1f, 0f, 2f, 4f, 3f, 18f, 5f, 15f, 0f, 1f, 1f, 1f },
+                    { 12, 38f, 208f, 0f, 9f, 11.5f, 0f, 12, 16f, 10f, 5f, 49f, 11f, 24.6f, 1.5f, 75f, 21f, 0f, 2f, 149f, 5f, 13f, 26f, 8f, 3f, 0f, 68f, 10f, 3f, 9f },
+                    { 7, 7f, 258f, 48.3f, 9f, 3.3f, 5.8f, 7, 16f, 10f, 41f, 12f, 5f, 8.5f, 0.6f, 44f, 27f, 3.8f, 0f, 0f, 29f, 20f, 19f, 4f, 27f, 1f, 0f, 2f, 1f, 8f },
+                    { 13, 3f, 227f, 0f, 10f, 12.1f, 0f, 13, 10f, 5f, 1f, 23f, 11f, 27.6f, 4.6f, 65f, 6f, 0f, 0f, 16f, 28f, 22f, 18f, 24f, 0f, 0f, 0f, 1f, 0f, 32f },
+                    { 16, 2f, 40f, 9.3f, 2f, 0.1f, 1.7f, 16, 1f, 2f, 6f, 3f, 4f, 1.1f, 0f, 1f, 0f, 4.2f, 0f, 0f, 3f, 2f, 1f, 6f, 5f, 12f, 0f, 0f, 0f, 1f },
+                    { 18, 4f, 225f, 22.8f, 12f, 0.5f, 6.4f, 18, 12f, 10f, 22f, 14f, 12f, 8.7f, 0.1f, 2f, 0f, 0.3f, 0f, 0f, 11f, 3f, 3f, 6f, 33f, 2f, 0f, 0f, 10f, 7f },
                     { 20, 0f, 35f, 4.9f, 25f, 0.7f, 2.2f, 20, 3f, 4f, 4f, 15f, 15f, 4.3f, 0.1f, 25f, 0f, 0f, 0f, 0f, 6f, 28f, 30f, 4f, 5f, 0f, 0f, 0f, 0f, 5f },
                     { 19, 11f, 60f, 5.3f, 1f, 3.3f, 0f, 19, 0f, 2f, 0f, 9f, 4f, 3.2f, 1.9f, 5f, 2f, 0f, 2f, 7f, 3f, 11f, 1f, 2f, 1f, 0f, 10f, 0f, 0f, 3f },
-                    { 18, 4f, 225f, 22.8f, 12f, 0.5f, 6.4f, 18, 12f, 10f, 22f, 14f, 12f, 8.7f, 0.1f, 2f, 0f, 0.3f, 0f, 0f, 11f, 3f, 3f, 6f, 33f, 2f, 0f, 0f, 10f, 7f },
+                    { 14, 5f, 145f, 3.8f, 6f, 15.3f, 3.3f, 14, 3f, 3f, 0f, 0f, 1f, 1f, 2f, 1f, 65f, 0.5f, 8f, 0f, 1f, 0f, 1f, 2f, 1f, 0f, 0f, 19f, 2f, 0f },
                     { 17, 1f, 131f, 24.9f, 5f, 1.1f, 0f, 17, 6f, 5f, 11f, 6f, 1f, 5.2f, 0.2f, 0f, 0f, 0f, 0f, 2f, 14f, 9f, 5f, 2f, 16f, 0f, 0f, 0f, 0f, 4f },
                     { 1, 3f, 23f, 3.6f, 2f, 0.4f, 2.2f, 1, 5f, 6f, 13f, 1f, 5f, 2.9f, 0.1f, 0f, 3f, 0.4f, 188f, 0f, 5f, 11f, 4f, 10f, 49f, 47f, 0f, 10f, 604f, 1f },
-                    { 16, 2f, 40f, 9.3f, 2f, 0.1f, 1.7f, 16, 1f, 2f, 6f, 3f, 4f, 1.1f, 0f, 1f, 0f, 4.2f, 0f, 0f, 3f, 2f, 1f, 6f, 5f, 12f, 0f, 0f, 0f, 1f },
-                    { 2, 1f, 89f, 22.8f, 4f, 0.3f, 2.6f, 2, 1f, 7f, 13f, 2f, 10f, 1.1f, 0.1f, 1f, 0f, 12.2f, 1f, 0f, 2f, 4f, 3f, 18f, 5f, 15f, 0f, 1f, 1f, 1f },
-                    { 3, 5f, 155f, 1.1f, 1f, 10.6f, 0f, 3, 7f, 2f, 1f, 17f, 4f, 12.6f, 3.3f, 44f, 5f, 1.1f, 12f, 19f, 4f, 30f, 0f, 6f, 11f, 0f, 0f, 5f, 0f, 7f },
-                    { 4, 12f, 61f, 4.7f, 0f, 3.3f, 0f, 4, 0f, 3f, 0f, 9f, 4f, 3.5f, 2.1f, 3f, 2f, 4.7f, 2f, 6f, 2f, 8f, 0f, 2f, 2f, 1f, 0f, 0f, 0f, 4f },
-                    { 5, 1f, 79f, 0.2f, 2f, 0.4f, 0f, 5, 2f, 2f, 2f, 6f, 2f, 16.8f, 0.1f, 11f, 45f, 0.1f, 0f, 1f, 1f, 2f, 17f, 8f, 0f, 0f, 0f, 0f, 0f, 2f },
-                    { 6, 1f, 206f, 0f, 2f, 12.3f, 0f, 6, 2f, 8f, 1f, 25f, 11f, 22.1f, 2.5f, 59f, 3f, 0f, 1f, 47f, 23f, 8f, 40f, 32f, 8f, 6f, 0f, 0f, 0f, 3f },
-                    { 7, 7f, 258f, 48.3f, 9f, 3.3f, 5.8f, 7, 16f, 10f, 41f, 12f, 5f, 8.5f, 0.6f, 44f, 27f, 3.8f, 0f, 0f, 29f, 20f, 19f, 4f, 27f, 1f, 0f, 2f, 1f, 8f },
-                    { 8, 1f, 86f, 20f, 8f, 0.1f, 1.8f, 8, 2f, 5f, 7f, 4f, 9f, 1.7f, 0f, 0f, 0f, 0.9f, 0f, 0f, 7f, 1f, 7f, 13f, 2f, 12f, 0f, 0f, 3f, 2f },
-                    { 10, 3f, 479f, 63.1f, 35f, 30f, 5.9f, 10, 17f, 29f, 40f, 13f, 10f, 4.2f, 17.7f, 6f, 0f, 54.5f, 0f, 0f, 4f, 5f, 2f, 2f, 3f, 0f, 0f, 1f, 7f, 11f },
-                    { 11, 14f, 266f, 47.5f, 8f, 3.6f, 3.6f, 11, 19f, 12f, 56f, 15f, 5f, 10.9f, 0.8f, 41f, 22f, 5.8f, 0f, 0f, 25f, 18f, 26f, 6f, 21f, 0f, 0f, 1f, 6f, 8f }
-                });
-
-            migrationBuilder.InsertData(
-                table: "NutritionFoods",
-                columns: new[] { "Id", "CalciumPer100g", "CaloriesPer100g", "CarbohydratesPer100g", "CopperPer100g", "FatsPer100g", "FiberPer100g", "FoodItemId", "IronPer100g", "MagnesiumPer100g", "ManganesePer100g", "PhosphorusPer100g", "PotassiumPer100g", "ProteinsPer100g", "SaturatedFatPer100g", "SeleniumPer100g", "SodiumPer100g", "SugarPer100g", "VitaminAPer100g", "VitaminB12Per100g", "VitaminB1Per100g", "VitaminB2Per100g", "VitaminB3Per100g", "VitaminB6Per100g", "VitaminB9Per100g", "VitaminCPer100g", "VitaminDPer100g", "VitaminEPer100g", "VitaminKPer100g", "ZincPer100g" },
-                values: new object[,]
-                {
-                    { 12, 38f, 208f, 0f, 9f, 11.5f, 0f, 12, 16f, 10f, 5f, 49f, 11f, 24.6f, 1.5f, 75f, 21f, 0f, 2f, 149f, 5f, 13f, 26f, 8f, 3f, 0f, 68f, 10f, 3f, 9f },
-                    { 9, 70f, 356f, 2.2f, 2f, 27.4f, 0f, 9, 1f, 7f, 1f, 55f, 3f, 24.9f, 17.6f, 21f, 34f, 2.2f, 11f, 26f, 3f, 20f, 0f, 4f, 5f, 0f, 0f, 1f, 2f, 26f },
-                    { 13, 3f, 227f, 0f, 10f, 12.1f, 0f, 13, 10f, 5f, 1f, 23f, 11f, 27.6f, 4.6f, 65f, 6f, 0f, 0f, 16f, 28f, 22f, 18f, 24f, 0f, 0f, 0f, 1f, 0f, 32f },
-                    { 15, 1f, 18f, 3.9f, 3f, 0.2f, 1.2f, 15, 1f, 3f, 6f, 2f, 7f, 0.9f, 0f, 0f, 0f, 2.6f, 17f, 0f, 2f, 1f, 3f, 4f, 4f, 21f, 0f, 3f, 10f, 1f },
-                    { 14, 5f, 145f, 3.8f, 6f, 15.3f, 3.3f, 14, 3f, 3f, 0f, 0f, 1f, 1f, 2f, 1f, 65f, 0.5f, 8f, 0f, 1f, 0f, 1f, 2f, 1f, 0f, 0f, 19f, 2f, 0f }
+                    { 15, 1f, 18f, 3.9f, 3f, 0.2f, 1.2f, 15, 1f, 3f, 6f, 2f, 7f, 0.9f, 0f, 0f, 0f, 2.6f, 17f, 0f, 2f, 1f, 3f, 4f, 4f, 21f, 0f, 3f, 10f, 1f }
                 });
 
             migrationBuilder.InsertData(
@@ -568,27 +638,31 @@ namespace DietAnalyzer.Migrations
                 columns: new[] { "Id", "DairyIntolerant", "Diabetes", "FoodItemId", "GlutenIntolerant", "HeartProblems", "Keto", "KidneyProblems", "Paleo", "Pescetarian", "Vegan", "Vegetarian" },
                 values: new object[,]
                 {
-                    { 11, true, false, 11, false, false, false, true, false, true, true, true },
+                    { 10, false, false, 10, true, false, false, false, false, true, false, true },
                     { 1, true, true, 1, true, true, true, false, true, true, true, true },
-                    { 15, true, true, 15, true, true, true, false, true, true, true, true },
+                    { 20, true, true, 20, true, true, true, false, true, true, true, true },
                     { 2, true, true, 2, true, true, false, false, true, true, true, true },
-                    { 3, true, true, 3, true, false, true, true, true, true, false, true },
-                    { 18, true, true, 18, true, true, false, false, false, true, true, true },
-                    { 4, false, true, 4, true, true, true, true, false, true, false, true },
                     { 14, true, true, 14, true, true, true, true, true, true, true, true },
-                    { 5, false, true, 5, true, true, true, true, true, false, false, false },
+                    { 3, true, true, 3, true, false, true, true, true, true, false, true },
                     { 19, false, true, 19, true, false, false, false, false, true, false, true },
+                    { 4, false, true, 4, true, true, true, true, false, true, false, true },
+                    { 12, true, true, 12, true, true, true, true, true, true, false, false },
+                    { 5, false, true, 5, true, true, true, true, true, false, false, false },
+                    { 18, true, true, 18, true, true, false, false, false, true, true, true },
                     { 6, true, true, 6, true, true, true, true, true, true, false, false },
                     { 7, true, true, 7, false, true, false, false, false, true, true, true },
-                    { 20, true, true, 20, true, true, true, false, true, true, true, true },
+                    { 17, true, false, 17, false, false, false, true, false, true, true, true },
                     { 8, true, false, 8, true, true, false, false, false, true, true, true },
-                    { 16, true, true, 16, true, true, false, true, true, true, true, true },
+                    { 11, true, false, 11, false, false, false, true, false, true, true, true },
                     { 9, false, true, 9, true, false, true, true, false, true, false, true },
-                    { 13, true, true, 13, true, false, true, false, true, false, false, false },
-                    { 10, false, false, 10, true, false, false, false, false, true, false, true },
-                    { 12, true, true, 12, true, true, true, true, true, true, false, false },
-                    { 17, true, false, 17, false, false, false, true, false, true, true, true }
+                    { 16, true, true, 16, true, true, false, true, true, true, true, true },
+                    { 15, true, true, 15, true, true, true, false, true, true, true, true }
                 });
+
+            migrationBuilder.InsertData(
+                table: "RestrictionsFoods",
+                columns: new[] { "Id", "DairyIntolerant", "Diabetes", "FoodItemId", "GlutenIntolerant", "HeartProblems", "Keto", "KidneyProblems", "Paleo", "Pescetarian", "Vegan", "Vegetarian" },
+                values: new object[] { 13, true, true, 13, true, false, true, false, true, false, false, false });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

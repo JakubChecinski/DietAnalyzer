@@ -20,6 +20,7 @@ namespace DietAnalyzer.Data.Repositories
         Measure Get(int measureId);
         IEnumerable<Measure> GetCustom(string userId);
         void Add(Measure measure);
+        Task AddAsync(Measure measure);
         void Update(Measure measure, string userId);
         void Delete(int measureId, string userId);
     }

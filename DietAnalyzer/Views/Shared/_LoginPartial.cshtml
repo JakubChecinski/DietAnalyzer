@@ -1,13 +1,15 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
 <ul class="navbar-nav ml-auto">
     @if (SignInManager.IsSignedIn(User))
     {
-        <li class="nav-item mx-2">
+        @*<li class="nav-item mx-2">
             <a class="nav-link btn text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Profile</a>
-        </li>
+        </li>*@
         <li class="nav-item">
             <div class="row justify-content-center">
                 <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
@@ -19,7 +21,10 @@
     else
     {
         <li class="nav-item mx-2">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+            @if(Convert.ToBoolean(@Configuration["AllowNewUsersRegistration"]))
+            { 
+                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+            }
         </li>
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">&nbsp&nbspLogin&nbsp</a>

@@ -98,6 +98,11 @@ namespace DietAnalyzer.Data.Repositories
             _context.FoodItems.Add(food);
         }
 
+        public async Task AddAsync(FoodItem food)
+        {
+            await _context.FoodItems.AddAsync(food);
+        }
+
         public void Update(FoodItem food, string userId)
         {
             var foodToUpdate = _context.FoodItems.Single(x => x.Id == food.Id && x.UserId == userId);

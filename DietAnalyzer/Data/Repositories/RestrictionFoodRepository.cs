@@ -25,6 +25,11 @@ namespace DietAnalyzer.Data.Repositories
             _context.RestrictionsFoods.Add(restriction);
         }
 
+        public async Task AddAsync(RestrictionFood restriction)
+        {
+            await _context.RestrictionsFoods.AddAsync(restriction);
+        }
+
         public void Update(RestrictionFood restriction)
         {
             var restrictionToUpdate = _context.RestrictionsFoods.Single(x => x.Id == restriction.Id);

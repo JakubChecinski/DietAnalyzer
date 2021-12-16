@@ -162,7 +162,7 @@ namespace DietAnalyzer.Services.Utilities
                 Value = diet.Nutritions.FiberPer100g,
                 Unit = " grams",
                 Suggestions = "Usually, the recommended amount of fiber is no less than 20-25 grams for women " +
-                "and around 30-35 grams for men. <br>Typically, it is also not recommended to eat more " +
+                "and no less than 30-35 grams for men. <br>Typically, it is also not recommended to eat more " +
                 "than 70 grams per day.",
             });
             results.Add(new EvaluationResult

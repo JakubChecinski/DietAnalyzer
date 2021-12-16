@@ -48,6 +48,11 @@ namespace DietAnalyzer.Data.Repositories
             _context.Measures.Add(measure);
         }
 
+        public async Task AddAsync(Measure measure)
+        {
+            await _context.Measures.AddAsync(measure);
+        }
+
         public void Update(Measure measure, string userId)
         {
             var measureToUpdate = _context.Measures.Single(x => x.Id == measure.Id && x.UserId == userId);

@@ -9,7 +9,7 @@ namespace DietAnalyzer.Services.Utilities
 {
     /// <summary>
     /// 
-    /// An utility service containing methods for diet evaluation
+    /// A utility service containing methods for diet evaluation
     ///
     /// </summary>
     public interface IEvaluationService

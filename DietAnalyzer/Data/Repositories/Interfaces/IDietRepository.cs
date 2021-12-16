@@ -20,6 +20,7 @@ namespace DietAnalyzer.Data.Repositories
         Diet Get(string userId, int dietId);
         Diet GetWithDietItemChildren(string userId, int dietId);
         void Add(Diet diet);
+        Task AddAsync(Diet diet);
         void Update(Diet diet, string userId);
         void Delete(int dietId, string userId);
 

@@ -29,6 +29,17 @@ namespace DietAnalyzer.Data.Repositories
             };
             _context.FoodMeasures.Add(fmToAdd);
         }
+
+        public async Task AddAsync(int measureId, int foodId)
+        {
+            var fmToAdd = new FoodMeasure
+            {
+                MeasureId = measureId,
+                FoodItemId = foodId,
+            };
+            await _context.FoodMeasures.AddAsync(fmToAdd);
+        }
+
         public void Update(FoodMeasure foodMeasure)
         {
             var fm = _context.FoodMeasures.Single(x => x.Id == foodMeasure.Id);

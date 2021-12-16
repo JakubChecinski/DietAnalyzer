@@ -32,45 +32,67 @@ namespace DietAnalyzer.Data
 				new Measure
 				{
 					Id = 2,
+					Name = "tablespoons",
+					Grams = 15,
+					IsKnownUniversally = true,
+				},
+				new Measure
+				{
+					Id = 3,
+					Name = "teaspoons",
+					Grams = 5,
+					IsKnownUniversally = true,
+				},
+				new Measure
+				{
+					Id = 4,
+					Name = "cups",
+					Grams = 250,
+					IsKnownUniversally = true,
+				},
+				new Measure
+				{
+					Id = 10,
 					Name = "large bananas",
 					Grams = 135,
 					IsKnownUniversally = false,
 				},
 				new Measure
 				{
-					Id = 3,
+					Id = 11,
 					Name = "large eggs",
 					Grams = 50,
 					IsKnownUniversally = false,
 				},
 				new Measure
 				{
-					Id = 4,
+					Id = 12,
 					Name = "slices",
 					Grams = 35,
 					IsKnownUniversally = false,
 				},
 				new Measure
 				{
-					Id = 5,
+					Id = 13,
 					Name = "medium sardines",
 					Grams = 12,
 					IsKnownUniversally = false,
 				},
 				new Measure
 				{
-					Id = 6,
+					Id = 14,
 					Name = "medium tomatoes",
 					Grams = 170,
 					IsKnownUniversally = false,
 				},
 				new Measure
 				{
-					Id = 7,
+					Id = 15,
 					Name = "medium onions",
 					Grams = 110,
 					IsKnownUniversally = false,
-				}
+				},
+				
 			};
         }
 

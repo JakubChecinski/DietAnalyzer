@@ -15,6 +15,7 @@ namespace DietAnalyzer.Data.Repositories
     public interface IRestrictionFoodRepository
     {
         void Add(RestrictionFood restriction);
+        Task AddAsync(RestrictionFood restriction);
         void Update(RestrictionFood restriction);
     }
 }

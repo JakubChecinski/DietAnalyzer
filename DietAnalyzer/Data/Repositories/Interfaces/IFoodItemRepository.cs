@@ -22,6 +22,7 @@ namespace DietAnalyzer.Data.Repositories
         IEnumerable<FoodItem> GetCustom(string userId, RestrictionUser restrictions);
         FoodItem Get(string userId, int foodId);
         void Add(FoodItem food);
+        Task AddAsync(FoodItem food);
         void Update(FoodItem food, string userId);
         void Delete(int foodId, string userId);
     }
