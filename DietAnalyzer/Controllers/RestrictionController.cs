@@ -49,7 +49,7 @@ namespace DietAnalyzer.Controllers
         {
             if (!ModelState.IsValid) return View("Manage", vm);
             _service.Update(vm.RestrictionInfo);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("DietList", "Diet");
         }
 
     }

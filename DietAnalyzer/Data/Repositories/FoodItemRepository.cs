@@ -31,6 +31,7 @@ namespace DietAnalyzer.Data.Repositories
                 .OrderBy(x => x.Name);
             return foods.ToList();
         }
+
         public IEnumerable<FoodItem> Get(string userId, RestrictionUser restrictions)
         {
             var foods = _context.FoodItems

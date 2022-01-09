@@ -18,7 +18,7 @@ namespace DietAnalyzer.Services
         private IUnitOfWork _unitOfWork;
         private IMeasureService _measureService;
         private IRestrictionService _restrictionService;
-        public FoodItemService(IUnitOfWork unitOfWork, 
+        public FoodItemService(IUnitOfWork unitOfWork,
             IMeasureService measureService, IRestrictionService restrictionService)
         {
             _unitOfWork = unitOfWork;
@@ -40,14 +40,15 @@ namespace DietAnalyzer.Services
         {
             if (suitableOnly)
             {
-                var userRestrictions = _unitOfWork.RestrictionUsers.Get(userId);
+                var userRestrictions = _restrictionService.Get(userId);
                 return _unitOfWork.Foods.GetCustom(userId, userRestrictions);
             }
             return _unitOfWork.Foods.GetCustom(userId);
         }
-        public List<List<Tuple<int, string>>> PrepareMeasuresForFoods(string userId, 
+        public List<List<Tuple<int, string>>> PrepareMeasuresForFoods(string userId,
             ICollection<DietItem> dietItems)
         {
+            if (dietItems == null || dietItems.Count == 0) return null;
             var availableMeasures = new List<List<Tuple<int, string>>>();
             for (int i = 0; i < dietItems.Count; i++)
             {
@@ -101,6 +102,7 @@ namespace DietAnalyzer.Services
 
         public void Add(FoodItem food)
         {
+            if (food == null) throw new ArgumentNullException("Food to add is null!");
             _unitOfWork.Foods.Add(food);
             _unitOfWork.RestrictionFoods.Add(food.Restrictions);
             _unitOfWork.NutritionFoods.Add(food.Nutrition);
@@ -109,6 +111,7 @@ namespace DietAnalyzer.Services
 
         public void Update(FoodItem food, string userId)
         {
+            if (food == null) throw new ArgumentNullException("Food to update is null!");
             _unitOfWork.Foods.Update(food, userId);
             _unitOfWork.NutritionFoods.Update(food.Nutrition);
             _unitOfWork.RestrictionFoods.Update(food.Restrictions);
@@ -133,6 +136,12 @@ namespace DietAnalyzer.Services
             foreach (var diet in _unitOfWork.Diets.Get(userId)) 
                 if (diet.DietItems.Count == 0) _unitOfWork.Diets.Delete(diet.Id, userId);
             _unitOfWork.Save();
+        }
+
+        public void AssignFoodItemData(FoodItemViewModel vm, string userId)
+        {
+            vm.FoodItem.UserId = userId;
+            vm.FoodItem.Measures = _measureService.ReloadMeasures(vm.AvailableMeasures.ToList());
         }
 
     }

@@ -77,5 +77,11 @@ namespace DietAnalyzer.Services
         /// <param name="dietId"> is the ID of the diet to delete</param>
         /// <param name="userId"> is the current user ID</param>
         void Delete(int dietId, string userId);
+
+        /// <summary>
+        /// Utility method to post-process the DietViewModel and reassign diet items
+        /// </summary>
+        /// <param name="vm"> is the viewModel to post-process</param>
+        void AssignDietItems(DietViewModel vm);
     }
 }

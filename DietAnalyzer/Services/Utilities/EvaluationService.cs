@@ -36,6 +36,7 @@ namespace DietAnalyzer.Services.Utilities
         }
         public NutritionDiet GetNutritions(Diet diet)
         {
+            if (diet == null) throw new ArgumentNullException("Diet to evaluate is null!");
             var totalNutrition = new NutritionDiet
             {
                 DietId = diet.Id,
@@ -132,6 +133,7 @@ namespace DietAnalyzer.Services.Utilities
 
         public List<EvaluationResult> GetSummary(Diet diet)
         {
+            if (diet == null) throw new ArgumentNullException("Diet to evaluate is null!");
             var results = new List<EvaluationResult>();
             results.Add(new EvaluationResult
             {

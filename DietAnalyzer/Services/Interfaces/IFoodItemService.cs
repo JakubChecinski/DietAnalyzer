@@ -92,5 +92,13 @@ namespace DietAnalyzer.Services
         /// <param name="foodId"> is the FoodItem</param>
         /// <param name="userId"> is the current user ID</param>
         void Delete(int foodId, string userId);
+
+        /// <summary>
+        /// Utility method to post-process the FoodItemViewModel and reassign food item data
+        /// </summary>
+        /// <param name="vm"> is the viewModel to post-process</param>
+        /// /// <param name="userId"> is the current user ID</param>
+        void AssignFoodItemData(FoodItemViewModel vm, string userId);
+
     }
 }

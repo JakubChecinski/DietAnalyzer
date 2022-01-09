@@ -62,12 +62,14 @@ namespace DietAnalyzer.Services
 
         public void Add(Diet diet)
         {
+            if (diet == null) throw new ArgumentNullException("Diet to add is null!");
             _unitOfWork.Diets.Add(diet);
             _unitOfWork.Save();
         }
 
         public void Update(Diet diet, string userId, bool updateItems = true)
         {
+            if (diet == null) throw new ArgumentNullException("Diet to update is null!");
             _unitOfWork.Diets.Update(diet, userId);
             if(updateItems)
             {
@@ -92,6 +94,12 @@ namespace DietAnalyzer.Services
                 if (!compatibleFoodIds.Contains(dietItem.FoodItemId)) return false;
             }
             return true;
+        }
+
+        public void AssignDietItems(DietViewModel vm)
+        {
+            foreach (var dietItem in vm.DietItems) dietItem.FoodItem = null;
+            vm.Diet.DietItems = vm.DietItems;
         }
 
     }

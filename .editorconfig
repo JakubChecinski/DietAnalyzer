@@ -1,0 +1,7 @@
+﻿[*.cs]
+
+# CS0649: Field [name] is never assigned to, and will always have its default value null
+dotnet_diagnostic.CS0649.severity = suggestion
+
+# CS0169: The field [name] is never used
+dotnet_diagnostic.CS0169.severity = suggestion

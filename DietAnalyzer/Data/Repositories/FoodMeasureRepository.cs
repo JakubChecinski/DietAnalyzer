@@ -22,6 +22,8 @@ namespace DietAnalyzer.Data.Repositories
 
         public void Add(int measureId, int foodId)
         {
+            if (_context.FoodMeasures.Any(x => x.MeasureId == measureId && x.FoodItemId == foodId))
+                throw new ArgumentException("This FoodMeasure already exists in the database");
             var fmToAdd = new FoodMeasure
             {
                 MeasureId = measureId,

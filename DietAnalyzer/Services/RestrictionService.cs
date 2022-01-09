@@ -45,6 +45,7 @@ namespace DietAnalyzer.Services
 
         public void Update(RestrictionUser restriction)
         {
+            if (restriction == null) throw new ArgumentNullException("Restrictions to update are null!");
             _unitOfWork.RestrictionUsers.Update(restriction);
             _unitOfWork.Save();
         }

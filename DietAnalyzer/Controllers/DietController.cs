@@ -87,10 +87,11 @@ namespace DietAnalyzer.Controllers
             {
                 vm.AvailableMeasuresForEachFood = 
                     _foodService.PrepareMeasuresForFoods(userId, vm.DietItems);
+                foreach (var dietItem in vm.DietItems) 
+                    dietItem.FoodItem = _foodService.Get(userId, dietItem.FoodItemId);
                 return View("ManageDiet", vm);
             }
-            foreach (var dietItem in vm.DietItems) dietItem.FoodItem = null;
-            vm.Diet.DietItems = vm.DietItems;
+            _service.AssignDietItems(vm);
             if (vm.IsAdd) _service.Add(vm.Diet);
             else _service.Update(vm.Diet, userId);
             return RedirectToAction("DietList", "Diet");
@@ -120,6 +121,11 @@ namespace DietAnalyzer.Controllers
         {
             var userId = User.GetUserId();
             var dietToEvaluate = _service.GetWithDietItemChildren(userId, id);
+            if (dietToEvaluate == null)
+            {
+                _logger.LogError("Error in Evaluate: diet with this id does not exist. Id: " + id);
+                throw new ArgumentException("Error in Evaluate: diet with this id does not exist. Id: " + id);
+            }
             dietToEvaluate.Nutritions = _evaluationService.GetNutritions(dietToEvaluate);
             dietToEvaluate.Summary = _evaluationService.GetSummary(dietToEvaluate);
             _service.Update(dietToEvaluate, userId, false);

@@ -92,8 +92,7 @@ namespace DietAnalyzer.Controllers
                 else vm.FoodItem.ImageFromUser = formFileContent;
             }    
             var userId = User.GetUserId();
-            vm.FoodItem.UserId = userId; 
-            vm.FoodItem.Measures = _measureService.ReloadMeasures(vm.AvailableMeasures.ToList());
+            _service.AssignFoodItemData(vm, userId);
             if (vm.IsAdd) _service.Add(vm.FoodItem);
             else _service.Update(vm.FoodItem, userId);
             return RedirectToAction("FoodList", "FoodItem");
