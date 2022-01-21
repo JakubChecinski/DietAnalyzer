@@ -94,8 +94,9 @@ namespace DietAnalyzer.Data
         // for sql warnings debug
         /*
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        { 
-            optionsBuilder.ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning));
+        {
+            optionsBuilder.EnableSensitiveDataLogging(true);
+            // optionsBuilder.ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning));
         }
         */
 

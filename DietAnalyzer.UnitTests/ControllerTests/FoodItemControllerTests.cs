@@ -23,7 +23,6 @@ namespace DietAnalyzer.UnitTests.ControllerTests
         // note: image processing is not covered in the tests here
         // therefore, the image helper object is essentially a dummy and will never be used 
         // (but it must be provided to make the compiler happy)
-
         private CustomMockLogger<FoodItemController> mockLogger;
         private CustomMockLogger<ImageHelper> mockImageLogger;
         private ImageHelper imageHelper;

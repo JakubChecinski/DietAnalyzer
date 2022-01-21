@@ -76,7 +76,7 @@ namespace DietAnalyzer.Controllers
         public IActionResult ManageFood(FoodItemViewModel vm)
         {
             if(!ModelState.IsValid) return View("ManageFood", vm);
-            if(!vm.AvailableMeasures.Any(x => x.IsCurrentlyLinked))
+            if(vm.AvailableMeasures == null || !vm.AvailableMeasures.Any(x => x.IsCurrentlyLinked))
             {
                 vm.HasMeasureProblem = true;
                 return View("ManageFood", vm);

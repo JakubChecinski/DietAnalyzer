@@ -124,7 +124,7 @@ namespace DietAnalyzer.UnitTests.ServiceTests
         }
 
         [Test]
-        public void GetSummary_RatedNutrientIsLow_ReturnLevelNormal()
+        public void GetSummary_RatedNutrientIsNormal_ReturnLevelNormal()
         {
             Init();
             nutr1A = 100F; nutr2A = 0F;
@@ -141,7 +141,7 @@ namespace DietAnalyzer.UnitTests.ServiceTests
         }
 
         [Test]
-        public void GetSummary_RatedNutrientIsLow_ReturnLevelHigh()
+        public void GetSummary_RatedNutrientIsHigh_ReturnLevelHigh()
         {
             Init();
             quantity1 = 1000F; quantity2 = 1000F;
