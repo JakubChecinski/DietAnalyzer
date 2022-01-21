@@ -4,7 +4,6 @@ using DietAnalyzer.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace DietAnalyzer.Services
 {
@@ -30,7 +29,7 @@ namespace DietAnalyzer.Services
         public IEnumerable<int> GetIncompatibleDietIds(string userId)
         {
             var incompatibleDietIds = new List<int>();
-            foreach(var diet in _unitOfWork.Diets.Get(userId))
+            foreach (var diet in _unitOfWork.Diets.Get(userId))
             {
                 if (CheckCompatibilityWithCurrentRestrictions(diet, userId)) continue;
                 else incompatibleDietIds.Add(diet.Id);
@@ -71,7 +70,7 @@ namespace DietAnalyzer.Services
         {
             if (diet == null) throw new ArgumentNullException("Diet to update is null!");
             _unitOfWork.Diets.Update(diet, userId);
-            if(updateItems)
+            if (updateItems)
             {
                 var currentDietItems = _unitOfWork.DietItems.Get(diet.Id);
                 foreach (var dietItem in currentDietItems) _unitOfWork.DietItems.Delete(dietItem);
@@ -89,7 +88,7 @@ namespace DietAnalyzer.Services
         private bool CheckCompatibilityWithCurrentRestrictions(Diet diet, string userId)
         {
             var compatibleFoodIds = _foodService.Get(userId, true).Select(x => x.Id);
-            foreach(var dietItem in diet.DietItems)
+            foreach (var dietItem in diet.DietItems)
             {
                 if (!compatibleFoodIds.Contains(dietItem.FoodItemId)) return false;
             }

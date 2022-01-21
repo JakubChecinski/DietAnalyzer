@@ -1,15 +1,10 @@
 ﻿using DietAnalyzer.Data;
-using DietAnalyzer.Services;
 using DietAnalyzer.Models.Domains;
-using DietAnalyzer.UnitTests.Extensions;
+using DietAnalyzer.Services;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DietAnalyzer.UnitTests.ServiceTests
 {

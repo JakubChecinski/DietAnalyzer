@@ -1,9 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DietAnalyzer.UnitTests.Extensions
 {
@@ -25,9 +21,9 @@ namespace DietAnalyzer.UnitTests.Extensions
         {
             // very minimalistic, but I think that's all I need right now
             LogDump = "Last call:";
-            if (state != null) 
+            if (state != null)
                 LogDump += " " + state.ToString();
-            if (exception != null) 
+            if (exception != null)
                 LogDump += " " + exception.ToString() + ": " + exception.Message;
             if (state == null && exception == null)
                 LogDump += " null";

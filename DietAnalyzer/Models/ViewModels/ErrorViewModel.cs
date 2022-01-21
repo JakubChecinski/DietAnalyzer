@@ -1,5 +1,3 @@
-using System;
-
 namespace DietAnalyzer.Models
 {
     /// <summary>

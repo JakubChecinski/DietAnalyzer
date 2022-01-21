@@ -1,16 +1,11 @@
 ﻿using DietAnalyzer.Data;
 using DietAnalyzer.Data.Repositories;
 using DietAnalyzer.Models.Domains;
-using DietAnalyzer.UnitTests.Extensions;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
-using Moq;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DietAnalyzer.UnitTests.RepositoryTests
 {
@@ -68,8 +63,13 @@ namespace DietAnalyzer.UnitTests.RepositoryTests
         public void Update_FoodMeasureFound_ChangeIsCurrentlyLinked()
         {
             Init();
-            var stubFoodMeasure = new FoodMeasure() { Id = 1, 
-                FoodItemId = 1, MeasureId = 1, IsCurrentlyLinked = true };
+            var stubFoodMeasure = new FoodMeasure()
+            {
+                Id = 1,
+                FoodItemId = 1,
+                MeasureId = 1,
+                IsCurrentlyLinked = true
+            };
             using var context = new ApplicationDbContext(dbStructureInfo);
             repository = new FoodMeasureRepository(context);
 

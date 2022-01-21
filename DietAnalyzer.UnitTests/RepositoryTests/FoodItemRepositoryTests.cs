@@ -1,16 +1,11 @@
 ﻿using DietAnalyzer.Data;
 using DietAnalyzer.Data.Repositories;
 using DietAnalyzer.Models.Domains;
-using DietAnalyzer.UnitTests.Extensions;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
-using Moq;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DietAnalyzer.UnitTests.RepositoryTests
 {
@@ -32,14 +27,30 @@ namespace DietAnalyzer.UnitTests.RepositoryTests
             context.SaveChanges();
             // back to normal flow
             context.FoodItems.AddRange(
-                new FoodItem { Id = 1, UserId = "abc",
-                    Restrictions = new RestrictionFood { FoodItemId = 1 } },
-                new FoodItem { Id = 2, UserId = "abc", 
-                    Restrictions = new RestrictionFood { FoodItemId = 2, Diabetes = false } },
-                new FoodItem { Id = 3, UserId = "def",
-                    Restrictions = new RestrictionFood { FoodItemId = 3 } },
-                new FoodItem { Id = 4, UserId = null,
-                    Restrictions = new RestrictionFood { FoodItemId = 4 } }
+                new FoodItem
+                {
+                    Id = 1,
+                    UserId = "abc",
+                    Restrictions = new RestrictionFood { FoodItemId = 1 }
+                },
+                new FoodItem
+                {
+                    Id = 2,
+                    UserId = "abc",
+                    Restrictions = new RestrictionFood { FoodItemId = 2, Diabetes = false }
+                },
+                new FoodItem
+                {
+                    Id = 3,
+                    UserId = "def",
+                    Restrictions = new RestrictionFood { FoodItemId = 3 }
+                },
+                new FoodItem
+                {
+                    Id = 4,
+                    UserId = null,
+                    Restrictions = new RestrictionFood { FoodItemId = 4 }
+                }
             );
             context.SaveChanges();
         }

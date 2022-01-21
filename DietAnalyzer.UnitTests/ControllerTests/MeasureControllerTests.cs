@@ -1,19 +1,14 @@
-﻿using DietAnalyzer.Data;
-using DietAnalyzer.Controllers;
+﻿using DietAnalyzer.Controllers;
 using DietAnalyzer.Models.Domains;
-using DietAnalyzer.UnitTests.Extensions;
-using Microsoft.Extensions.Logging;
+using DietAnalyzer.Models.ViewModels;
 using DietAnalyzer.Services;
+using DietAnalyzer.UnitTests.Extensions;
 using FluentAssertions;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using DietAnalyzer.Models.ViewModels;
 
 namespace DietAnalyzer.UnitTests.ControllerTests
 {

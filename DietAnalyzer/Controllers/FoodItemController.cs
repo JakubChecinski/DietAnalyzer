@@ -7,8 +7,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 
 
@@ -75,13 +73,13 @@ namespace DietAnalyzer.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult ManageFood(FoodItemViewModel vm)
         {
-            if(!ModelState.IsValid) return View("ManageFood", vm);
-            if(vm.AvailableMeasures == null || !vm.AvailableMeasures.Any(x => x.IsCurrentlyLinked))
+            if (!ModelState.IsValid) return View("ManageFood", vm);
+            if (vm.AvailableMeasures == null || !vm.AvailableMeasures.Any(x => x.IsCurrentlyLinked))
             {
                 vm.HasMeasureProblem = true;
                 return View("ManageFood", vm);
             }
-            if(vm.ImageFile != null)
+            if (vm.ImageFile != null)
             {
                 var formFileContent = _imageHelper.ValidateFile(vm.ImageFile, ModelState);
                 if (!ModelState.IsValid)
@@ -90,7 +88,7 @@ namespace DietAnalyzer.Controllers
                     return View("ManageFood", vm);
                 }
                 else vm.FoodItem.ImageFromUser = formFileContent;
-            }    
+            }
             var userId = User.GetUserId();
             _service.AssignFoodItemData(vm, userId);
             if (vm.IsAdd) _service.Add(vm.FoodItem);

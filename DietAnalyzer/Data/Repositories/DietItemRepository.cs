@@ -1,10 +1,6 @@
-﻿using DietAnalyzer.Data;
-using DietAnalyzer.Models.Domains;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using DietAnalyzer.Models.Domains;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace DietAnalyzer.Data.Repositories
 {

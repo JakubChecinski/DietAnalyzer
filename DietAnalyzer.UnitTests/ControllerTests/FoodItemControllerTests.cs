@@ -1,20 +1,14 @@
-﻿using DietAnalyzer.Data;
-using DietAnalyzer.Controllers;
+﻿using DietAnalyzer.Controllers;
 using DietAnalyzer.Models.Domains;
-using DietAnalyzer.UnitTests.Extensions;
-using Microsoft.Extensions.Logging;
+using DietAnalyzer.Models.ViewModels;
 using DietAnalyzer.Services;
+using DietAnalyzer.Services.Utilities;
+using DietAnalyzer.UnitTests.Extensions;
 using FluentAssertions;
+using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DietAnalyzer.Services.Utilities;
-using Microsoft.AspNetCore.Mvc;
-using DietAnalyzer.Models.ViewModels;
 
 namespace DietAnalyzer.UnitTests.ControllerTests
 {
@@ -26,7 +20,7 @@ namespace DietAnalyzer.UnitTests.ControllerTests
         private CustomMockLogger<FoodItemController> mockLogger;
         private CustomMockLogger<ImageHelper> mockImageLogger;
         private ImageHelper imageHelper;
-        private Mock<IMeasureService> mockMeasureService; 
+        private Mock<IMeasureService> mockMeasureService;
         private Mock<IFoodItemService> mockService;
         private FoodItemController controller;
         private string userId;
@@ -128,7 +122,7 @@ namespace DietAnalyzer.UnitTests.ControllerTests
             result.Model.Should().NotBeNull();
             result.Model.Should().BeOfType<FoodItemViewModel>();
         }
-        
+
 
         [Test]
         public void ManageFoodPost_HasMeasureProblem_ReturnFoodItemView()

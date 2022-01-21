@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using DietAnalyzer.Controllers;
-using DietAnalyzer.Models.Domains;
+﻿using DietAnalyzer.Controllers;
 using DietAnalyzer.Services;
 using DietAnalyzer.Services.Utilities;
 using DietAnalyzer.UnitTests.Extensions;
@@ -17,7 +14,7 @@ namespace DietAnalyzer.IntegrationTests
         private RestrictionService restrictionService;
         private EvaluationService evaluationService;
         public ControllerFactory(DietService dietService, FoodItemService foodService,
-            MeasureService measureService, RestrictionService restrictionService, 
+            MeasureService measureService, RestrictionService restrictionService,
             EvaluationService evaluationService, string userName, string userId)
         {
             this.dietService = dietService;

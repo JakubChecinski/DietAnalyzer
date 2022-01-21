@@ -1,12 +1,6 @@
-﻿using DietAnalyzer.Controllers;
-using DietAnalyzer.Models.Domains;
+﻿using DietAnalyzer.Models.Domains;
 using DietAnalyzer.Models.ViewModels;
-using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DietAnalyzer.UnitTests.ControllerTests
 {

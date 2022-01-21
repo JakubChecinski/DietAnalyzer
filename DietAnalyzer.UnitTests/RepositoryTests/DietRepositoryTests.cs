@@ -1,16 +1,11 @@
 ﻿using DietAnalyzer.Data;
 using DietAnalyzer.Data.Repositories;
 using DietAnalyzer.Models.Domains;
-using DietAnalyzer.UnitTests.Extensions;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
-using Moq;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DietAnalyzer.UnitTests.RepositoryTests
 {

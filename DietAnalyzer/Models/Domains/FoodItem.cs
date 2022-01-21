@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DietAnalyzer.Models.Domains
 {
@@ -54,9 +52,9 @@ namespace DietAnalyzer.Models.Domains
         }
         public string GetImageSrc()
         {
-            return ImageFromApp ?? 
+            return ImageFromApp ??
                 (ImageFromUser == null ? null :
-                String.Format("data:image/png;base64,{0}", Convert.ToBase64String(ImageFromUser))); 
+                String.Format("data:image/png;base64,{0}", Convert.ToBase64String(ImageFromUser)));
         }
 
     }

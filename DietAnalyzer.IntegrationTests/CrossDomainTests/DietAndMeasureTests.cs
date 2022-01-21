@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using NUnit.Framework;
-using FluentAssertions;
-using Moq;
-using DietAnalyzer.Controllers;
-using DietAnalyzer.Models.Domains;
+﻿using DietAnalyzer.Controllers;
 using DietAnalyzer.Models.ViewModels;
-using DietAnalyzer.Services;
-using DietAnalyzer.UnitTests.Extensions;
+using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
-using DietAnalyzer.Services.Utilities;
+using NUnit.Framework;
+using System;
+using System.Linq;
 
 namespace DietAnalyzer.IntegrationTests.CrossDomain
 {

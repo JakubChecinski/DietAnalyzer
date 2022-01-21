@@ -1,9 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DietAnalyzer.Data
 {
@@ -40,8 +35,8 @@ namespace DietAnalyzer.Data
     {
         public static void Seed(ModelBuilder modelBuilder)
         {
-			FoodSeeder.Seed(modelBuilder);
+            FoodSeeder.Seed(modelBuilder);
             MeasureSeeder.Seed(modelBuilder);
-		}
+        }
     }
 }

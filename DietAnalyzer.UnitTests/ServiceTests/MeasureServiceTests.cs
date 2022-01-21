@@ -1,16 +1,12 @@
 ﻿using DietAnalyzer.Data;
-using DietAnalyzer.Services;
+using DietAnalyzer.Data.Repositories;
 using DietAnalyzer.Models.Domains;
-using DietAnalyzer.UnitTests.Extensions;
+using DietAnalyzer.Services;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DietAnalyzer.Data.Repositories;
 
 namespace DietAnalyzer.UnitTests.ServiceTests
 {
@@ -101,8 +97,8 @@ namespace DietAnalyzer.UnitTests.ServiceTests
             Init();
             var measureToUpdateOld = TestObjects.GetMeasureWithId(3, userId);
             var measureToUpdateNew = TestObjects.GetMeasureWithId(3, userId);
-            var oldMeasures = new List<Measure>{ measureToUpdateOld };
-            var newMeasures = new List<Measure>{ measureToUpdateNew };
+            var oldMeasures = new List<Measure> { measureToUpdateOld };
+            var newMeasures = new List<Measure> { measureToUpdateNew };
             mockUoW.Setup(x => x.Measures.GetCustom(userId)).Returns(oldMeasures);
 
             service.Update(newMeasures, userId);
@@ -131,7 +127,7 @@ namespace DietAnalyzer.UnitTests.ServiceTests
 
         [Test]
         public void Update_MeasureToDeleteWhileUpdating_CallDeletes()
-        { 
+        {
             Init();
             var measureToDeleteWhileUpdating = TestObjects.GetMeasureWithId(3, userId);
             var oldMeasures = new List<Measure> { measureToDeleteWhileUpdating };
@@ -139,7 +135,7 @@ namespace DietAnalyzer.UnitTests.ServiceTests
             mockUoW.Setup(x => x.Measures.GetCustom(userId)).Returns(oldMeasures);
             mockUoW.Setup(x => x.FoodMeasures).Returns(new Mock<IFoodMeasureRepository>().Object);
             mockUoW.Setup(x => x.DietItems).Returns(new Mock<IDietItemRepository>().Object);
-            
+
 
             service.Update(newMeasures, userId);
 
@@ -155,9 +151,9 @@ namespace DietAnalyzer.UnitTests.ServiceTests
         public void ReloadMeasures_FoodMeasuresSupplied_ReturnThemWithMeasures()
         {
             Init();
-            var foodMeasures = new List<FoodMeasure> 
-            { 
-                new FoodMeasure { Id = 1, MeasureId = measure.Id } 
+            var foodMeasures = new List<FoodMeasure>
+            {
+                new FoodMeasure { Id = 1, MeasureId = measure.Id }
             };
 
             var result = service.ReloadMeasures(foodMeasures);

@@ -1,11 +1,8 @@
-﻿using System;
+﻿using DietAnalyzer.Models.DataAttributes;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
-using DietAnalyzer.Models.DataAttributes;
 
 namespace DietAnalyzer.Models.Domains
 {

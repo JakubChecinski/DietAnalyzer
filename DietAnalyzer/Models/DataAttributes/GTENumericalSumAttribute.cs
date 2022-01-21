@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 
 namespace DietAnalyzer.Models.DataAttributes
 {
@@ -26,9 +22,9 @@ namespace DietAnalyzer.Models.DataAttributes
     public class GTENumericalSumAttribute : ValidationAttribute
     {
         private string[] includedProperties;
-        public GTENumericalSumAttribute(params string[] includedProperties) 
+        public GTENumericalSumAttribute(params string[] includedProperties)
         {
-            if(includedProperties == null) throw new ArgumentException("Comparison property not found");
+            if (includedProperties == null) throw new ArgumentException("Comparison property not found");
             this.includedProperties = includedProperties;
         }
 
@@ -40,19 +36,19 @@ namespace DietAnalyzer.Models.DataAttributes
             {
                 valueTested = value == null ? 0.0f : (float)value;
             }
-            catch(InvalidCastException)
+            catch (InvalidCastException)
             {
                 return new ValidationResult($"Not a proper value: {value}");
             }
             var sumOfAttributeValues = 0.0;
-            for(int i = 0; i < includedProperties.Length; i++)
+            for (int i = 0; i < includedProperties.Length; i++)
             {
                 var attribute = validationContext.ObjectType.GetProperty(includedProperties[i]);
                 if (attribute == null)
                 {
                     throw new ArgumentException($"Property with this name not found: {includedProperties[i]}");
-                } 
-                if(attribute.GetValue(validationContext.ObjectInstance) != null)
+                }
+                if (attribute.GetValue(validationContext.ObjectInstance) != null)
                 {
                     try
                     {
@@ -67,7 +63,7 @@ namespace DietAnalyzer.Models.DataAttributes
                 if (i < includedProperties.Length - 1) errorReport = errorReport + includedProperties[i] + ", ";
                 else errorReport = errorReport + includedProperties[i];
             }
-            if (valueTested < sumOfAttributeValues) 
+            if (valueTested < sumOfAttributeValues)
                 return new ValidationResult($"This value cannot be smaller than the sum of: {errorReport}");
             return ValidationResult.Success;
         }

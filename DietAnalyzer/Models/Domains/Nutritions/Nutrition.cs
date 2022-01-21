@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DietAnalyzer.Models.DataAttributes;
 using System.ComponentModel.DataAnnotations;
-using DietAnalyzer.Models.DataAttributes;
 
 
 namespace DietAnalyzer.Models.Domains
@@ -17,7 +13,7 @@ namespace DietAnalyzer.Models.Domains
     /// </summary>
 
     public abstract class Nutrition
-    { 
+    {
         [Display(Name = "Calories:")]
         // note: calories can be negative (not an omission)
         public float? CaloriesPer100g { get; set; }
@@ -31,7 +27,7 @@ namespace DietAnalyzer.Models.Domains
         public float? SugarPer100g { get; set; }
 
         [Display(Name = "Carbohydrates:")]
-        [GTENumericalSum("FiberPer100g", "SugarPer100g", 
+        [GTENumericalSum("FiberPer100g", "SugarPer100g",
             ErrorMessage = "Carbohydrates value cannot be smaller than the sum of fibers and sugars")]
         [LocaleSafeRange(0.0, float.MaxValue, ErrorMessage = "This value must be positive.")]
         public float? CarbohydratesPer100g { get; set; }

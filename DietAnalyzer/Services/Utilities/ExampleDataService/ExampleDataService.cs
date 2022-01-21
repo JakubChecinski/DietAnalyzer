@@ -2,9 +2,7 @@
 using DietAnalyzer.Models.Domains;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace DietAnalyzer.Services.Utilities
@@ -29,7 +27,7 @@ namespace DietAnalyzer.Services.Utilities
         List<Measure> measuresToAdd;
 
         public ExampleDataService(IUnitOfWork unitOfWork, IDietService dietService,
-            IFoodItemService foodService, 
+            IFoodItemService foodService,
             IMeasureService measureService,
             IWebHostEnvironment webHost,
             ILogger<ExampleDataService> logger)
@@ -54,7 +52,7 @@ namespace DietAnalyzer.Services.Utilities
             await InsertExampleFoodsAsync(userId);
             await InsertExampleDietsAsync(userId);
         }
-        
+
 
         // sync versions
         private void InsertExampleDiets(string userId)

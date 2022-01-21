@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using NUnit.Framework;
-using FluentAssertions;
-using Moq;
-using DietAnalyzer.Controllers;
+﻿using DietAnalyzer.Controllers;
 using DietAnalyzer.Models.Domains;
 using DietAnalyzer.Models.ViewModels;
-using DietAnalyzer.Services;
-using DietAnalyzer.UnitTests.Extensions;
+using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
+using NUnit.Framework;
+using System.Linq;
 
 namespace DietAnalyzer.IntegrationTests.SingleDomain
 {
@@ -105,7 +100,7 @@ namespace DietAnalyzer.IntegrationTests.SingleDomain
         public void ManageDietPost_DietItemModified_ModifyDietItemInDb()
         {
             Init();
-            var viewModel = GetValidViewModel();  
+            var viewModel = GetValidViewModel();
             var itemToModify = viewModel.DietItems.Single(x => x.MeasureId == 12);
             var indexToModify = viewModel.DietItems.IndexOf(itemToModify);
             viewModel.DietItems[indexToModify] = new DietItem
@@ -141,7 +136,7 @@ namespace DietAnalyzer.IntegrationTests.SingleDomain
 
             controller.ManageDiet(viewModel);
 
-            var dietItemsInDb = context.DietItems.Where(x => x.DietId == chocolateDietId); 
+            var dietItemsInDb = context.DietItems.Where(x => x.DietId == chocolateDietId);
             dietItemsInDb.Where(x => x.MeasureId == 12).Count().Should().Be(0);
             dietItemsInDb.Where(x => x.MeasureId == 2).Count().Should().Be(1);
             dietItemsInDb.Count().Should().Be(initialItemsCount);
@@ -151,7 +146,7 @@ namespace DietAnalyzer.IntegrationTests.SingleDomain
         {
             var chocolateDietId = context.Diets.Single(x => x.Name.Contains("chocolate")).Id;
             var viewModel = ((controller.ManageDiet(chocolateDietId) as ViewResult).Model as DietViewModel);
-            foreach (var item in viewModel.DietItems) { item.Diet = null; item.Measure = null; } 
+            foreach (var item in viewModel.DietItems) { item.Diet = null; item.Measure = null; }
             return viewModel;
         }
 

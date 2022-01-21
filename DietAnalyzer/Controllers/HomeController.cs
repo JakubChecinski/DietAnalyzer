@@ -1,13 +1,8 @@
 ﻿using DietAnalyzer.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DietAnalyzer.Controllers
 {
@@ -41,7 +36,7 @@ namespace DietAnalyzer.Controllers
             catch (Exception exc)
             {
                 // something went wrong and we can't even access the logs
-                return RedirectToAction("ShowError", new { message = exc.Message } );
+                return RedirectToAction("ShowError", new { message = exc.Message });
             }
             return RedirectToAction("ShowError", new { message = "Please see logs for more info" });
         }

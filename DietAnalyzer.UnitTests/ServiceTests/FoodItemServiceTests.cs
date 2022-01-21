@@ -1,17 +1,13 @@
 ﻿using DietAnalyzer.Data;
-using DietAnalyzer.Services;
+using DietAnalyzer.Data.Repositories;
 using DietAnalyzer.Models.Domains;
-using DietAnalyzer.UnitTests.Extensions;
+using DietAnalyzer.Services;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DietAnalyzer.Data.Repositories;
-using DietAnalyzer.Models.ViewModels;
 
 namespace DietAnalyzer.UnitTests.ServiceTests
 {
@@ -28,7 +24,7 @@ namespace DietAnalyzer.UnitTests.ServiceTests
             mockUoW = new Mock<IUnitOfWork>();
             mockMeasureService = new Mock<IMeasureService>();
             mockRestrictionService = new Mock<IRestrictionService>();
-            service = new FoodItemService(mockUoW.Object, 
+            service = new FoodItemService(mockUoW.Object,
                 mockMeasureService.Object, mockRestrictionService.Object);
             food = TestObjects.GetFood(FoodType.Normal);
             foodCustom = TestObjects.GetFood(FoodType.Custom);
@@ -42,7 +38,7 @@ namespace DietAnalyzer.UnitTests.ServiceTests
             mockUoW.Setup(x => x.DietItems).Returns(new Mock<IDietItemRepository>().Object);
             mockUoW.Setup(x => x.Diets).Returns(new Mock<IDietRepository>().Object);
 
-            
+
         }
 
         [Test]
@@ -101,7 +97,7 @@ namespace DietAnalyzer.UnitTests.ServiceTests
         public void Get_FoodFound_ReturnFood()
         {
             Init();
-            mockUoW.Setup(x => x.Foods.Get(userId, foodCustom.Id)).Returns(foodCustom); 
+            mockUoW.Setup(x => x.Foods.Get(userId, foodCustom.Id)).Returns(foodCustom);
 
             var result = service.Get(userId, foodCustom.Id);
 

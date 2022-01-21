@@ -1,10 +1,6 @@
 ﻿using DietAnalyzer.Models.Domains;
 using DietAnalyzer.Models.ViewModels;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DietAnalyzer.UnitTests.ServiceTests
 {
@@ -48,17 +44,18 @@ namespace DietAnalyzer.UnitTests.ServiceTests
 
         public static FoodItem GetFood(FoodType type)
         {
-            switch(type)
+            switch (type)
             {
                 case FoodType.Normal:
                     return new FoodItem { Id = 1 };
                 case FoodType.Custom:
                     return new FoodItem { Id = 2, UserId = "abc" };
                 case FoodType.Restricted:
-                    return new FoodItem 
-                    { 
-                        Id = 3, 
-                        Restrictions = new RestrictionFood { Diabetes = false } };
+                    return new FoodItem
+                    {
+                        Id = 3,
+                        Restrictions = new RestrictionFood { Diabetes = false }
+                    };
                 case FoodType.CustomRestricted:
                     return new FoodItem
                     {
@@ -67,26 +64,26 @@ namespace DietAnalyzer.UnitTests.ServiceTests
                         Restrictions = new RestrictionFood { Diabetes = false }
                     };
                 case FoodType.NormalWithMeasures:
-                    return new FoodItem 
-                    { 
-                        Id = 5, 
+                    return new FoodItem
+                    {
+                        Id = 5,
                         Measures = new List<FoodMeasure>
                         {
-                            new FoodMeasure 
-                            { 
-                                Id = 1, 
-                                IsCurrentlyLinked = true, 
+                            new FoodMeasure
+                            {
+                                Id = 1,
+                                IsCurrentlyLinked = true,
                                 MeasureId = 1,
-                                Measure = new Measure { Name = "linked" } 
+                                Measure = new Measure { Name = "linked" }
                             },
-                            new FoodMeasure 
-                            { 
-                                Id = 2, 
-                                IsCurrentlyLinked = false, 
+                            new FoodMeasure
+                            {
+                                Id = 2,
+                                IsCurrentlyLinked = false,
                                 MeasureId = 2,
-                                Measure = new Measure { Name = "unlinked" } 
+                                Measure = new Measure { Name = "unlinked" }
                             },
-                        } 
+                        }
                     };
                 case FoodType.NormalWithAllElements:
                     return new FoodItem

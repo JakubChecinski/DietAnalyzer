@@ -1,20 +1,16 @@
-﻿using DietAnalyzer.Data;
-using DietAnalyzer.Controllers;
+﻿using DietAnalyzer.Controllers;
 using DietAnalyzer.Models.Domains;
-using DietAnalyzer.UnitTests.Extensions;
-using Microsoft.Extensions.Logging;
+using DietAnalyzer.Models.ViewModels;
 using DietAnalyzer.Services;
+using DietAnalyzer.Services.Utilities;
+using DietAnalyzer.UnitTests.Extensions;
 using FluentAssertions;
+using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DietAnalyzer.Services.Utilities;
-using Microsoft.AspNetCore.Mvc;
-using DietAnalyzer.Models.ViewModels;
 
 namespace DietAnalyzer.UnitTests.ControllerTests
 {
@@ -147,9 +143,9 @@ namespace DietAnalyzer.UnitTests.ControllerTests
         {
             Init();
             var foodId = 2;
-            var testTuple = new Tuple<int, string>(3, "def"); 
+            var testTuple = new Tuple<int, string>(3, "def");
             mockFoodService.Setup(x => x.PrepareMeasuresForFoods(userId, It.IsAny<ICollection<DietItem>>()))
-                .Returns(new List<List<Tuple<int, string>>> { new List<Tuple<int, string>> { testTuple }});
+                .Returns(new List<List<Tuple<int, string>>> { new List<Tuple<int, string>> { testTuple } });
             var vm = TestObjects.GetDietViewModelForInvalidState(foodId);
 
             controller.ModelState.AddModelError("ErrorKey", "ErrorMessage");
@@ -168,7 +164,7 @@ namespace DietAnalyzer.UnitTests.ControllerTests
             Init();
             var vm = TestObjects.GetValidDietViewModel(true);
 
-            controller.ManageDiet(vm); 
+            controller.ManageDiet(vm);
 
             mockService.Verify(x => x.Add(It.IsAny<Diet>()), Times.Once);
         }
@@ -223,7 +219,7 @@ namespace DietAnalyzer.UnitTests.ControllerTests
             result.Should().BeAssignableTo<JsonResult>();
             dynamic json = (JsonResult)result;
             bool isSuccess = json.Value.GetType().GetProperty("success").GetValue(json.Value);
-            isSuccess.Should().Be(true); 
+            isSuccess.Should().Be(true);
             string url = json.Value.GetType().GetProperty("redirectToUrl").GetValue(json.Value);
             url.Should().Be("testUrl");
         }

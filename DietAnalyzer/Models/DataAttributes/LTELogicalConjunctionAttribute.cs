@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 
 namespace DietAnalyzer.Models.DataAttributes
 {
@@ -46,17 +42,17 @@ namespace DietAnalyzer.Models.DataAttributes
             {
                 return new ValidationResult($"Not a proper value: {value}");
             }
-            if(!valueTested) return ValidationResult.Success;
+            if (!valueTested) return ValidationResult.Success;
             foreach (string s in includedProperties)
             {
                 var attribute = validationContext.ObjectType.GetProperty(s);
-                if (attribute == null) 
+                if (attribute == null)
                     throw new ArgumentException($"Property with this name not found: {s}");
                 if (attribute.GetValue(validationContext.ObjectInstance) != null)
                 {
                     try
                     {
-                        if(!(bool)attribute.GetValue(validationContext.ObjectInstance))
+                        if (!(bool)attribute.GetValue(validationContext.ObjectInstance))
                         {
                             performCheck = true;
                             errorReport = s;
@@ -68,9 +64,9 @@ namespace DietAnalyzer.Models.DataAttributes
                         return new ValidationResult($"Not a proper value: " +
                            $"{attribute.GetValue(validationContext.ObjectInstance)}");
                     }
-                } 
+                }
             }
-            if (performCheck) 
+            if (performCheck)
                 return new ValidationResult($"This field is inconsistent with {errorReport}.");
             return ValidationResult.Success;
         }

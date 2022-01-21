@@ -8,11 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Moq;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DietAnalyzer.IntegrationTests
 {
@@ -62,8 +59,8 @@ namespace DietAnalyzer.IntegrationTests
         private string AddUserToDb()
         {
             if (context.Users.Any()) return null;
-            context.Users.Add(new ApplicationUser 
-            { 
+            context.Users.Add(new ApplicationUser
+            {
                 UserName = userName
             });
             context.SaveChanges();

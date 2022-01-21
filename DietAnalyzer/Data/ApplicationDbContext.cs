@@ -1,10 +1,6 @@
 ﻿using DietAnalyzer.Models.Domains;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DietAnalyzer.Data
 {

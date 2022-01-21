@@ -1,16 +1,12 @@
 ﻿using DietAnalyzer.Data;
-using DietAnalyzer.Services;
 using DietAnalyzer.Models.Domains;
-using DietAnalyzer.UnitTests.Extensions;
+using DietAnalyzer.Services;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DietAnalyzer.Models.ViewModels;
 
 namespace DietAnalyzer.UnitTests.ServiceTests
 {
@@ -18,7 +14,7 @@ namespace DietAnalyzer.UnitTests.ServiceTests
     {
         private Mock<IUnitOfWork> mockUoW;
         private Mock<IFoodItemService> mockFoodService;
-        private DietService service;  
+        private DietService service;
         private Diet testDiet;
         private string userId;
 
@@ -75,8 +71,8 @@ namespace DietAnalyzer.UnitTests.ServiceTests
         public void GetIncompatibleDietIds_AllDietItemsAreCompatible_DontReturnDietId()
         {
             Init();
-            mockFoodService.Setup(x => x.Get(userId, true)).Returns(new List<FoodItem>() 
-            { 
+            mockFoodService.Setup(x => x.Get(userId, true)).Returns(new List<FoodItem>()
+            {
                 new FoodItem { Id = 1 },
                 new FoodItem { Id = 2 }
             });
@@ -134,7 +130,7 @@ namespace DietAnalyzer.UnitTests.ServiceTests
             Init();
 
             var result = service.GetWithDietItemChildren(userId, -1);
-            var result2 = result = service.Get("wrongId", testDiet.Id);
+            var result2 = service.Get("wrongId", testDiet.Id);
 
             result.Should().BeNull();
             result2.Should().BeNull();

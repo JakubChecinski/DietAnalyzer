@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 
 namespace DietAnalyzer.Services.Utilities
 {
@@ -35,7 +34,7 @@ namespace DietAnalyzer.Services.Utilities
         // AND you are going to test whether the final result looks good or not
         // note 2: new image extensions require modifying the _fileSignature field as well
         private readonly ILogger<ImageHelper> _logger;
-        private string[] permittedExtensions = {".png", ".jpg", ".jpeg"};
+        private string[] permittedExtensions = { ".png", ".jpg", ".jpeg" };
         private long sizeLimit = 1048576; // 1MB
         private int forceWidthTo = 40;
         private int forceHeightTo = 40;
@@ -64,10 +63,10 @@ namespace DietAnalyzer.Services.Utilities
                     new byte[] { 0xFF, 0xD8, 0xFF, 0xE8 },
                 }
             },
-            
+
         };
 
-        private bool IsValidFileExtensionAndSignature(string fileName, 
+        private bool IsValidFileExtensionAndSignature(string fileName,
             Stream data, string[] permittedExtensions)
         {
             if (string.IsNullOrEmpty(fileName) || data == null || data.Length == 0) return false;
@@ -89,7 +88,7 @@ namespace DietAnalyzer.Services.Utilities
             image.Mutate(x => x.Resize(forceWidthTo, forceHeightTo));
             MemoryStream myResult = new MemoryStream();
             image.SaveAsPng(myResult);
-            return myResult.ToArray();  
+            return myResult.ToArray();
         }
 
         public byte[] ValidateFile(IFormFile formFile, ModelStateDictionary modelState)

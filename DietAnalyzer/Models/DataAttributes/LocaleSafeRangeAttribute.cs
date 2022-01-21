@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DietAnalyzer.Models.DataAttributes
 {
@@ -23,7 +20,7 @@ namespace DietAnalyzer.Models.DataAttributes
         protected double min;
         protected double max;
         protected string errorMsg;
-        public LocaleSafeRangeAttribute(double minimum, double maximum, string errorMessage = null) 
+        public LocaleSafeRangeAttribute(double minimum, double maximum, string errorMessage = null)
         {
             min = minimum;
             max = maximum;

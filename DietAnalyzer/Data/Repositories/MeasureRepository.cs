@@ -1,8 +1,5 @@
-﻿using DietAnalyzer.Data;
-using DietAnalyzer.Models.Domains;
-using DietAnalyzer.Models.ViewModels;
+﻿using DietAnalyzer.Models.Domains;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -65,6 +62,6 @@ namespace DietAnalyzer.Data.Repositories
             var measureToDelete = _context.Measures.Single(x => x.Id == measureId && x.UserId == userId);
             _context.Measures.Remove(measureToDelete);
         }
- 
+
     }
 }

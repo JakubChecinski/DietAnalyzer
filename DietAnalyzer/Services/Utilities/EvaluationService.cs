@@ -1,9 +1,9 @@
-﻿using DietAnalyzer.Models.Domains;
-using System.Linq.Dynamic.Core;
+﻿using DietAnalyzer.Data;
+using DietAnalyzer.Models.Domains;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System;
-using DietAnalyzer.Data;
+using System.Linq.Dynamic.Core;
 
 namespace DietAnalyzer.Services.Utilities
 {
@@ -71,7 +71,7 @@ namespace DietAnalyzer.Services.Utilities
             totalNutrition.SeleniumPer100g = 0.0F;
             foreach (var item in diet.DietItems)
             {
-                if(item.FoodItem.Nutrition.CaloriesPer100g != null)
+                if (item.FoodItem.Nutrition.CaloriesPer100g != null)
                     totalNutrition.CaloriesPer100g += item.FoodItem.Nutrition.CaloriesPer100g * item.Quantity * item.Measure.Grams / 100.0F;
                 if (item.FoodItem.Nutrition.FiberPer100g != null)
                     totalNutrition.FiberPer100g += item.FoodItem.Nutrition.FiberPer100g * item.Quantity * item.Measure.Grams / 100.0F;
@@ -250,7 +250,7 @@ namespace DietAnalyzer.Services.Utilities
                 micronutrientResult.Level = Level.Low;
                 var foodsToAdd = _foodService.Get(diet.UserId, true).AsQueryable()
                     .OrderBy($"x => x.Nutrition.{name}Per100g desc").Take(3);
-                var stringWithFoodsToAdd = foodsToAdd == null || foodsToAdd.Count() == 0 ? null :
+                var stringWithFoodsToAdd = foodsToAdd == null || !foodsToAdd.Any() ? null :
                     foodsToAdd.Count() == 1 ? "" + HtmlCodeForFood(foodsToAdd.ElementAt(0)) + "" :
                     foodsToAdd.Count() == 2 ? "" + HtmlCodeForFood(foodsToAdd.ElementAt(0)) + " and "
                     + HtmlCodeForFood(foodsToAdd.ElementAt(1)) + "" :
@@ -266,7 +266,7 @@ namespace DietAnalyzer.Services.Utilities
                 micronutrientResult.Level = Level.High;
                 var foodsToCut = diet.DietItems.AsQueryable()
                     .OrderBy($"x => x.FoodItem.Nutrition.{name}Per100g desc").Take(3);
-                var stringWithFoodsToCut = foodsToCut == null || foodsToCut.Count() == 0 ? null :
+                var stringWithFoodsToCut = foodsToCut == null || !foodsToCut.Any() ? null :
                     foodsToCut.Count() == 1 ? "" + HtmlCodeForFood(foodsToCut.ElementAt(0).FoodItem) + "" :
                     foodsToCut.Count() == 2 ? "" + HtmlCodeForFood(foodsToCut.ElementAt(0).FoodItem) + " and "
                     + HtmlCodeForFood(foodsToCut.ElementAt(1).FoodItem) + "" :
@@ -288,7 +288,7 @@ namespace DietAnalyzer.Services.Utilities
         private string HtmlCodeForFood(FoodItem food)
         {
             return food.GetImageSrc() == null ? food.Name
-                : " <img src = \"" + food.GetImageSrc() + "\" class=\"foodImageSmall\"/> " + food.Name; 
+                : " <img src = \"" + food.GetImageSrc() + "\" class=\"foodImageSmall\"/> " + food.Name;
         }
 
     }

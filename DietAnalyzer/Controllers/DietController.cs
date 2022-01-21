@@ -7,9 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace DietAnalyzer.Controllers
 {
@@ -30,9 +28,9 @@ namespace DietAnalyzer.Controllers
         private IDietService _service;
         private IFoodItemService _foodService;
         private IEvaluationService _evaluationService;
-        
+
         public DietController(ILogger<DietController> logger,
-            IDietService service, IFoodItemService foodService, 
+            IDietService service, IFoodItemService foodService,
             IEvaluationService evaluationService)
         {
             _logger = logger;
@@ -70,24 +68,24 @@ namespace DietAnalyzer.Controllers
                 Diet = dietToManage,
                 DietItems = dietToManage.DietItems.ToList(),
                 AvailableFoods = _foodService.Get(userId, true).ToList(),
-                AvailableMeasuresForEachFood = 
+                AvailableMeasuresForEachFood =
                     _foodService.PrepareMeasuresForFoods(userId, dietToManage.DietItems),
                 CurrentFoodId = 0,
             };
             return View(vm);
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult ManageDiet(DietViewModel vm)
         {
-            if(vm.DietItems == null) return RedirectToAction("DietList", "Diet");
+            if (vm.DietItems == null) return RedirectToAction("DietList", "Diet");
             var userId = User.GetUserId();
             if (!ModelState.IsValid)
             {
-                vm.AvailableMeasuresForEachFood = 
+                vm.AvailableMeasuresForEachFood =
                     _foodService.PrepareMeasuresForFoods(userId, vm.DietItems);
-                foreach (var dietItem in vm.DietItems) 
+                foreach (var dietItem in vm.DietItems)
                     dietItem.FoodItem = _foodService.Get(userId, dietItem.FoodItemId);
                 return View("ManageDiet", vm);
             }

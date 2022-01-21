@@ -2,8 +2,6 @@
 using DietAnalyzer.Models.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DietAnalyzer.Services
 {
@@ -54,7 +52,7 @@ namespace DietAnalyzer.Services
         /// and the second element is the measure name. 
         /// The outer list includes one element for each input DietItem.
         /// The inner lists include all measures available for the FoodItem inside this DietItem.</returns>
-        List<List<Tuple<int, string>>> PrepareMeasuresForFoods(string userId, 
+        List<List<Tuple<int, string>>> PrepareMeasuresForFoods(string userId,
             ICollection<DietItem> fromDietItems);
 
         /// <summary>

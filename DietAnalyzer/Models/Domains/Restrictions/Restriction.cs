@@ -1,11 +1,6 @@
 ﻿using DietAnalyzer.Models.DataAttributes;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DietAnalyzer.Models.Domains
 {
@@ -49,7 +44,7 @@ namespace DietAnalyzer.Models.Domains
 
         [DefaultValue(true)]
         [Display(Name = "Dairy Intolerant")]
-        public bool DairyIntolerant { get; set; }  
+        public bool DairyIntolerant { get; set; }
 
         [DefaultValue(true)]
         [LTELogicalConjunction("Pescetarian", "Vegetarian", "DairyIntolerant")]

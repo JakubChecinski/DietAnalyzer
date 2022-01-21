@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DietAnalyzer.Models.Domains
 {
@@ -27,7 +24,7 @@ namespace DietAnalyzer.Models.Domains
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }
 
-        public ICollection<DietItem> DietItems { get; set; }      
+        public ICollection<DietItem> DietItems { get; set; }
         public NutritionDiet Nutritions { get; set; }
         public ICollection<EvaluationResult> Summary { get; set; }
         public Diet()

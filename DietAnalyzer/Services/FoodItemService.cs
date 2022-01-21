@@ -4,7 +4,6 @@ using DietAnalyzer.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace DietAnalyzer.Services
 {
@@ -52,7 +51,7 @@ namespace DietAnalyzer.Services
             var availableMeasures = new List<List<Tuple<int, string>>>();
             for (int i = 0; i < dietItems.Count; i++)
             {
-                availableMeasures.Add(PrepareMeasuresForFood(userId, 
+                availableMeasures.Add(PrepareMeasuresForFood(userId,
                     dietItems.ElementAt(i).FoodItemId));
             }
             return availableMeasures;
@@ -133,7 +132,7 @@ namespace DietAnalyzer.Services
 
         private void CleanUpEmptyDiets(string userId)
         {
-            foreach (var diet in _unitOfWork.Diets.Get(userId)) 
+            foreach (var diet in _unitOfWork.Diets.Get(userId))
                 if (diet.DietItems.Count == 0) _unitOfWork.Diets.Delete(diet.Id, userId);
             _unitOfWork.Save();
         }
