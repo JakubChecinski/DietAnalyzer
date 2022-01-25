@@ -7,8 +7,7 @@ function addNewRow(urlString, tableId) {
             $(('#' + tableId + '>tbody')).append(data);
         },
         error: function (result) {
-            console.log("addNewRow - error: " + result);
-            //JL().fatal("addNewRow - error: " + result);
+            JL().fatal("addNewRow - error: " + result);
         }
     });
 }

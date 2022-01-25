@@ -89,13 +89,11 @@
                         row.parentNode.removeChild(row);
                     }
                     else {
-                        console.log("deleteDiet - failed result received");
-                        //JL().fatal("deleteDiet - failed result received");  // JSNLog
+                        JL().fatal("deleteDiet - failed result received");  // JSNLog
                     }
                 },
                 error: function (result) {
-                    console.log("deleteDiet - error: " + result);
-                    //JL().fatal("deleteDiet - error: " + result);
+                    JL().fatal("deleteDiet - error: " + result);
                 }
             });
         }
@@ -112,8 +110,7 @@
                     $("#evaluationResults").html(result);
                 },
                 error: function (result) {
-                    //JL().fatal("evaluateDiet - error: " + result);
-                    console.log("evaluateDiet - error: " + result);
+                    JL().fatal("evaluateDiet - error: " + result);
                 }
             });
         }

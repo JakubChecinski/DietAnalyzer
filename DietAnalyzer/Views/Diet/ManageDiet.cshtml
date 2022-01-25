@@ -136,8 +136,7 @@
                     $('#Table > tbody').prepend(data);
                 },
                 error: function (result) {
-                    console.log("addNewRow (Manage Diet) - error: " + result);
-                    //JL().fatal("addNewRow (Manage Diet) - error: " + result);
+                    JL().fatal("addNewRow (Manage Diet) - error: " + result);
                 }
             });
         }
