@@ -39,6 +39,7 @@ namespace DietAnalyzer
                 {
                     logging.ClearProviders();
                     logging.SetMinimumLevel(LogLevel.Trace);
+                    logging.AddAzureWebAppDiagnostics();
                 })
                 .UseNLog();  // NLog: Setup NLog for Dependency injection
     }
