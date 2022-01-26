@@ -25,7 +25,7 @@ namespace DietAnalyzer.Data.Repositories
                 .Include(x => x.Nutrition)
                 .Include(x => x.Restrictions)
                 .Include(x => x.Measures)
-                .OrderBy(x => x.Name);
+                .OrderBy(x => x.Name).AsSplitQuery(); ;
             return foods.ToList();
         }
 

@@ -51,7 +51,7 @@ namespace DietAnalyzer
 
             services.AddHsts(opts =>
             {
-                opts.MaxAge = System.TimeSpan.FromDays(1);
+                opts.MaxAge = System.TimeSpan.FromDays(30);
             });
 
         }
@@ -61,15 +61,11 @@ namespace DietAnalyzer
         {
             app.UseHttpsRedirection();
 
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-                app.UseHsts();
-            }
+            // app.UseDeveloperExceptionPage();
+
+            app.UseExceptionHandler("/Home/Error");
+            app.UseHsts();
+            app.UseStatusCodePages();
 
             app.UseStaticFiles();
             app.UseRouting();

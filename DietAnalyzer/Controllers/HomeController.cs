@@ -35,14 +35,21 @@ namespace DietAnalyzer.Controllers
             }
             catch (Exception exc)
             {
-                // something went wrong and we can't even access the logs
-                return RedirectToAction("ShowError", new { message = exc.Message });
+                try
+                {
+                    _logger.LogError("ShowError exception caught: " + exc.Message);
+                }
+                finally
+                {
+                    // something went really wrong and we can't even access the logger
+                    // so we have to die in silence
+                }
             }
             return RedirectToAction("ShowError", new { message = "Please see logs for more info" });
         }
 
         /*
-            For some mysterious reason, the line:
+            For some reason, the line:
             return View("Error", new ErrorViewModel() { ExceptionMessage = message });
             doesn't work when I put it in the Error() action. All I get is a blank page and "An exception 
             was thrown attempting to execute the error handler" in logs (no further explanation and no exception

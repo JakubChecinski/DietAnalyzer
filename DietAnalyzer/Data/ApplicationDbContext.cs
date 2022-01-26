@@ -86,15 +86,26 @@ namespace DietAnalyzer.Data
             DataSeeder.Seed(modelBuilder);
 
         }
-
-        // for sql warnings debug
-        /*
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.EnableSensitiveDataLogging(true);
-            // optionsBuilder.ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning));
+            optionsBuilder.UseSqlServer(o => o.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery));
+
+            // See: https://stackoverflow.com/a/66153603
+            // I've checked this and in my case the issue is exactly the same - the warning fires
+            // during a Single() call and not during any actual Take/OrderBy call
+            // So I'm ignoring it for now
+            optionsBuilder.ConfigureWarnings(w => w.Ignore
+                (Microsoft.EntityFrameworkCore.Diagnostics.CoreEventId.RowLimitingOperationWithoutOrderByWarning));
+
+            // sql warnings debug
+            /*
+            // optionsBuilder.EnableSensitiveDataLogging(true);
+            optionsBuilder.ConfigureWarnings(w => w.Throw
+                (Microsoft.EntityFrameworkCore.Diagnostics.RelationalEventId.MultipleCollectionIncludeWarning));
+            */
         }
-        */
+        
 
     }
 }
