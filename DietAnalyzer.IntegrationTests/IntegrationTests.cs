@@ -33,6 +33,7 @@ namespace DietAnalyzer.IntegrationTests
             // create database
             dbStructureInfo = new DbContextOptionsBuilder<ApplicationDbContext>()
                 .UseSqlServer("Server=(local)\\SQLEXPRESS;Database=DietAnalyzerTests;User Id=JCH;Password=pwd")
+                .UseSqlServer(o => o.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery))
                 .Options;
             context = new ApplicationDbContext(dbStructureInfo);
             context.Database.EnsureDeleted();

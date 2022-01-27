@@ -78,7 +78,7 @@ namespace DietAnalyzer.UnitTests.ControllerTests
         }
 
         [Test]
-        public void ManagePost_ValidState_RedirectToDietList()
+        public void ManagePost_ValidState_RedirectToAction()
         {
             Init();
 
@@ -86,9 +86,6 @@ namespace DietAnalyzer.UnitTests.ControllerTests
 
             result.Should().NotBeNull();
             result.Should().BeOfType<RedirectToActionResult>();
-            var redirect = (RedirectToActionResult)result;
-            redirect.ActionName.Should().Be("DietList");
-            redirect.ControllerName.Should().Be("Diet");
         }
 
     }

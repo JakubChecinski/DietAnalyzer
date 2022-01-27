@@ -50,7 +50,7 @@ namespace DietAnalyzer.Controllers
             if (vm.Measures != null)
                 foreach (Measure measure in vm.Measures) measure.UserId = userId;
             _service.Update(vm.Measures, userId);
-            return RedirectToAction("DietList", "Diet");
+            return RedirectToAction("Manage", "Measure");
         }
 
 

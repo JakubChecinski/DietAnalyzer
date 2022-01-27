@@ -119,14 +119,23 @@ namespace DietAnalyzer.Controllers
         {
             var userId = User.GetUserId();
             var dietToEvaluate = _service.GetWithDietItemChildren(userId, id);
-            if (dietToEvaluate == null)
+            try
             {
-                _logger.LogError("Error in Evaluate: diet with this id does not exist. Id: " + id);
-                throw new ArgumentException("Error in Evaluate: diet with this id does not exist. Id: " + id);
+                if (dietToEvaluate == null)
+                    throw new ArgumentException("Diet with this id does not exist. Id: " + id);
+                dietToEvaluate.Nutritions = _evaluationService.GetNutritions(dietToEvaluate);
+                dietToEvaluate.Summary = _evaluationService.GetSummary(dietToEvaluate);
+                _service.Update(dietToEvaluate, userId, false);
             }
-            dietToEvaluate.Nutritions = _evaluationService.GetNutritions(dietToEvaluate);
-            dietToEvaluate.Summary = _evaluationService.GetSummary(dietToEvaluate);
-            _service.Update(dietToEvaluate, userId, false);
+            catch(Exception e)
+            {
+                _logger.LogError("Error in Evaluate: " + e.Message);
+                var contentResult = new ContentResult
+                {
+                    Content = "Our server may be overloaded. Please try again."
+                };
+                return contentResult;
+            }
             return PartialView("_DietSummary", dietToEvaluate);
         }
 

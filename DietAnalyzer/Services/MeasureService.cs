@@ -40,6 +40,7 @@ namespace DietAnalyzer.Services
             if (newMeasuresList != null)
                 foreach (Measure newMeasure in newMeasuresList)
                 {
+                    EnsureUniqueName(newMeasure, userId);
                     if (oldMeasures != null && oldMeasures.Any(x => x.Id == newMeasure.Id))
                     {
                         _unitOfWork.Measures.Update(newMeasure, userId);
@@ -88,6 +89,21 @@ namespace DietAnalyzer.Services
             foreach (var dietItem in measure.DietItems)
                 _unitOfWork.DietItems.Delete(dietItem);
             _unitOfWork.Measures.Delete(measure.Id, userId);
+        }
+
+        private void EnsureUniqueName(Measure measure, string userId)
+        {
+            if (_unitOfWork.Measures.Get(userId)
+                .Where(x => x.Name == measure.Name && x.Id != measure.Id).Count() == 0) return;
+            var i = 2;
+            string nameCandidate;
+            do
+            {
+                nameCandidate = measure.Name + " (" + i + ")";
+                i++;
+            } while (_unitOfWork.Measures.Get(userId)
+                .Where(x => x.Name == nameCandidate && x.Id != measure.Id).Count() != 0);
+            measure.Name = nameCandidate;
         }
 
     }

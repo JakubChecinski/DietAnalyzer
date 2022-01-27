@@ -294,13 +294,15 @@ namespace DietAnalyzer.UnitTests.ControllerTests
         }
 
         [Test]
-        public void Evaluate_WrongId_ThrowArgumentExceptionAndLogError()
+        public void Evaluate_WrongId_LogErrorAndReturnString()
         {
             Init();
 
-            Action action = () => controller.Evaluate(1);
-            action.Should().Throw<ArgumentException>();
-            mockLogger.LogDump.Should().Contain("diet with this id does not exist");
+            var result = controller.Evaluate(1) as ContentResult;
+
+            result.Should().NotBeNull();
+            result.Content.Should().NotBeNull();
+            mockLogger.LogDump.Should().Contain("Diet with this id does not exist");
         }
 
         [Test]

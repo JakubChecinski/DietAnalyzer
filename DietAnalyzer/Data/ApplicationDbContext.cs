@@ -89,8 +89,6 @@ namespace DietAnalyzer.Data
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(o => o.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery));
-
             // See: https://stackoverflow.com/a/66153603
             // I've checked this and in my case the issue is exactly the same - the warning fires
             // during a Single() call and not during any actual Take/OrderBy call

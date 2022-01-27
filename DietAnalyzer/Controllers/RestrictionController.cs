@@ -44,7 +44,7 @@ namespace DietAnalyzer.Controllers
         {
             if (!ModelState.IsValid) return View("Manage", vm);
             _service.Update(vm.RestrictionInfo);
-            return RedirectToAction("DietList", "Diet");
+            return RedirectToAction("Manage", "Restriction");
         }
 
     }

@@ -102,6 +102,7 @@ namespace DietAnalyzer.Services
         public void Add(FoodItem food)
         {
             if (food == null) throw new ArgumentNullException("Food to add is null!");
+            EnsureUniqueName(food, food.UserId);
             _unitOfWork.Foods.Add(food);
             _unitOfWork.RestrictionFoods.Add(food.Restrictions);
             _unitOfWork.NutritionFoods.Add(food.Nutrition);
@@ -111,6 +112,7 @@ namespace DietAnalyzer.Services
         public void Update(FoodItem food, string userId)
         {
             if (food == null) throw new ArgumentNullException("Food to update is null!");
+            EnsureUniqueName(food, userId);
             _unitOfWork.Foods.Update(food, userId);
             _unitOfWork.NutritionFoods.Update(food.Nutrition);
             _unitOfWork.RestrictionFoods.Update(food.Restrictions);
@@ -141,6 +143,21 @@ namespace DietAnalyzer.Services
         {
             vm.FoodItem.UserId = userId;
             vm.FoodItem.Measures = _measureService.ReloadMeasures(vm.AvailableMeasures.ToList());
+        }
+
+        private void EnsureUniqueName(FoodItem food, string userId)
+        {
+            if (_unitOfWork.Foods.Get(userId)
+                .Where(x => x.Name == food.Name && x.Id != food.Id).Count() == 0) return;
+            var i = 2;
+            string nameCandidate;
+            do
+            {
+                nameCandidate = food.Name + " (" + i + ")";
+                i++;
+            } while (_unitOfWork.Foods.Get(userId)
+                .Where(x => x.Name == nameCandidate && x.Id != food.Id).Count() != 0);
+            food.Name = nameCandidate;
         }
 
     }

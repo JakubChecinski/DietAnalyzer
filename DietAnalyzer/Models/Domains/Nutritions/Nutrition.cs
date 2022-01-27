@@ -19,31 +19,31 @@ namespace DietAnalyzer.Models.Domains
         public float? CaloriesPer100g { get; set; }
 
         [Display(Name = "Fiber:")]
-        [LocaleSafeRange(0.0, float.MaxValue, ErrorMessage = "This value must be positive.")]
+        [LocaleSafeRange(0.0, 100.0, ErrorMessage = "This value must be between 0 and 100.")]
         public float? FiberPer100g { get; set; }
 
         [Display(Name = "Sugar:")]
-        [LocaleSafeRange(0.0, float.MaxValue, ErrorMessage = "This value must be positive.")]
+        [LocaleSafeRange(0.0, 100.0, ErrorMessage = "This value must be between 0 and 100.")]
         public float? SugarPer100g { get; set; }
 
         [Display(Name = "Carbohydrates:")]
         [GTENumericalSum("FiberPer100g", "SugarPer100g",
             ErrorMessage = "Carbohydrates value cannot be smaller than the sum of fibers and sugars")]
-        [LocaleSafeRange(0.0, float.MaxValue, ErrorMessage = "This value must be positive.")]
+        [LocaleSafeRange(0.0, 100.0, ErrorMessage = "This value must be between 0 and 100.")]
         public float? CarbohydratesPer100g { get; set; }
 
         [Display(Name = "Saturated fats:")]
-        [LocaleSafeRange(0.0, float.MaxValue, ErrorMessage = "This value must be positive.")]
+        [LocaleSafeRange(0.0, 100.0, ErrorMessage = "This value must be between 0 and 100.")]
         public float? SaturatedFatPer100g { get; set; }
 
         [Display(Name = "Fats:")]
         [GTENumericalSum("SaturatedFatPer100g",
             ErrorMessage = "Fats value cannot be smaller than the saturated fats value")]
-        [LocaleSafeRange(0.0, float.MaxValue, ErrorMessage = "This value must be positive.")]
+        [LocaleSafeRange(0.0, 100.0, ErrorMessage = "This value must be between 0 and 100.")]
         public float? FatsPer100g { get; set; }
 
         [Display(Name = "Proteins:")]
-        [LocaleSafeRange(0.0, float.MaxValue, ErrorMessage = "This value must be positive.")]
+        [LocaleSafeRange(0.0, 100.0, ErrorMessage = "This value must be between 0 and 100.")]
         public float? ProteinsPer100g { get; set; }
 
         [Display(Name = "Vitamin A:")]
