@@ -18,24 +18,24 @@
             <div class="container ml-auto" style="box-sizing: border-box;">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon" style="border:solid;"></span>
                 </button>
                 <div class="navbar-collapse collapse">
                     <ul class="navbar-nav nav-pills">
                         @if (SignInManager.IsSignedIn(User))
                         {
                             <li class="nav-item my-1 me-5">
-                                <a class="nav-link active mx-1 px-3 text-dark"
+                                <a class="nav-link active mx-1 px-3 text-dark header-button"
                                    asp-area="" asp-controller="Diet" asp-action="DietList">My Diets</a>
                             </li>
                             <li class="nav-item my-1 me-5">
-                                <a class="nav-link active mx-1 px-3 text-dark" asp-area="" asp-controller="FoodItem" asp-action="FoodList">My Foods</a>
+                                <a class="nav-link active mx-1 px-3 text-dark header-button" asp-area="" asp-controller="FoodItem" asp-action="FoodList">My Foods</a>
                             </li>
                             <li class="nav-item my-1 me-5">
-                                <a class="nav-link active mx-1 px-3 text-dark" asp-area="" asp-controller="Measure" asp-action="Manage">My Units</a>
+                                <a class="nav-link active mx-1 px-3 text-dark header-button" asp-area="" asp-controller="Measure" asp-action="Manage">My Units</a>
                             </li>
                             <li class="nav-item my-1 me-5">
-                                <a class="nav-link active mx-1 px-3 text-dark" asp-area="" asp-controller="Restriction" asp-action="Manage">My Restrictions</a>
+                                <a class="nav-link active mx-1 px-3 text-dark header-button" asp-area="" asp-controller="Restriction" asp-action="Manage">My Restrictions</a>
                             </li>
                         }
                     </ul>

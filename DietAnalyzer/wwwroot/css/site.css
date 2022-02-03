@@ -51,7 +51,13 @@ body {
 }
 
 header {
-    background-color: #ffe6cc;
+    /*background-color: #ffe6cc;*/
+    background-image: url('../images/banner.png');
+}
+
+.header-button {
+    border: solid;
+    border-color: dodgerblue;
 }
 
 .main-block {
