@@ -26,11 +26,11 @@
         <li class="nav-item mx-2">
             @if(Convert.ToBoolean(@Configuration["AllowNewUsersRegistration"]))
             { 
-                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                <a class="nav-link header-button text-dark" style="background-color: #99ccff;font-weight: bold;" asp-area="Identity" asp-page="/Account/Register">Register</a>
             }
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">&nbsp&nbspLogin&nbsp</a>
+            <a class="nav-link header-button text-dark" style="background-color: #99ccff;font-weight: bold;" asp-area="Identity" asp-page="/Account/Login">&nbsp&nbspLogin&nbsp</a>
         </li>
     }
 </ul>
