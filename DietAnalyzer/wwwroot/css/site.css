@@ -58,6 +58,12 @@ header {
 .header-button {
     border: solid;
     border-color: dodgerblue;
+    min-width: 120px;
+}
+
+.log-button {
+    min-width: 80px;
+    text-align: center;
 }
 
 .main-block {
