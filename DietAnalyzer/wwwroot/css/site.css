@@ -22,7 +22,7 @@ for details on configuring this project to bundle and minify static web assets. 
 }
 
 @media only screen and (min-width: 600px) {
-    .btn-primary {
+    .btn-outline-primary {
         min-width: 120px;
     }
 
@@ -40,13 +40,16 @@ for details on configuring this project to bundle and minify static web assets. 
     justify-content: center;
 }
 
-
+.form-inline {
+    width: 100%;
+}
 
 
 /* PART 1 - GENERAL LAYOUT ******************************************/
 
 body {
-    background-color: #ffffcc;
+    /*background-color: #ffffcc;*/
+    background-color: #f1f1f1;
     align-content: center;
 }
 
@@ -60,11 +63,22 @@ header {
     border-color: dodgerblue;
     min-width: 120px;
 }
+    .header-button:hover {
+        background-color: dodgerblue !important;
+    }
+
+.header-button-current {
+    background-color: dodgerblue !important;
+}
 
 .log-button {
-    min-width: 80px;
+    width: 100%;
     text-align: center;
 }
+    .log-button:hover {
+        background-color: dodgerblue !important;
+    }
+
 
 .main-block {
     box-sizing: border-box;
@@ -78,6 +92,12 @@ header {
     min-width: 120px;
     text-align: center;
     font-weight: bold;
+}
+
+.navbar-toggler {
+    background-color: #99ccff;
+    border-color: dodgerblue !important;
+    border-width: 3px;
 }
 
 hr {
@@ -155,7 +175,7 @@ hr {
 .text-input-short {
     text-align: center;
     max-width: 120px;
-    background-color: #ffffcc;
+    background-color: #f1f1f1;
     border-color: #000000;
     border-style: solid;
     margin: 0px;
@@ -170,7 +190,7 @@ hr {
 .text-input {
     text-align: center;
     max-width: 120px;
-    background-color: #ffffcc;
+    background-color: #f1f1f1;
     border-color: #000000;
     border-style: solid;
 }
@@ -178,7 +198,7 @@ hr {
 .text-input-long {
     text-align: center;
     width: 250px;
-    background-color: #ffffcc;
+    background-color: #f1f1f1;
     border-color: #000000;
     border-style: solid;
 }
@@ -186,7 +206,7 @@ hr {
 .numeric-input {
     text-align: center;
     max-width: 60px;
-    background-color: #ffffcc;
+    background-color: #f1f1f1;
     border-color: #000000;
     border-style: solid;
 }

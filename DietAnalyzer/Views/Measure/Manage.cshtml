@@ -4,7 +4,11 @@
     ViewBag.Title = "My Measures";
 }
 
-<h3 class="mb-2">Your custom units: </h3>
+<h3 class="mb-2">My Units</h3>
+<div>
+    Here you can edit your custom units. It is more convenient to measure some foods in cups, tablespoons, etc. than in grams.
+</div>
+<hr />
 <br>
 
 @using (Html.BeginForm("Manage", "Measure", FormMethod.Post, new { id = "mainForm" }))
@@ -37,7 +41,7 @@
                         grams
                     </td>
                     <td class="col-2 unit-table-td">
-                        <button type="button" class="btn btn-danger tn-sm"
+                        <button type="button" class="btn btn-outline-danger tn-sm"
                                 onclick="deleteRowUpdateHTML(this, 'Measures', 'Table')">
                             Delete unit
                         </button>
@@ -55,12 +59,18 @@
     </button>
     <br>
     <br />
-    <button type="submit" class="btn btn-primary btn-lg mt-2">
+    <button type="submit" class="btn btn-outline-primary btn-lg mt-2">
         Save
     </button>
 }
-<footer class="customInfo">
-    <div class="container mx-1 mx-lg-auto main-block">
-        Here you can edit your custom units. It is more convenient to measure some foods in cups, tablespoons, etc. than in grams.
-    </div>
-</footer>
+
+@section Scripts
+{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#nav-unit').addClass('header-button-current');
+        });
+
+    </script>
+}

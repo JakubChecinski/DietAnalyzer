@@ -16,26 +16,30 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-toggleable-lg navbar-light border-bottom box-shadow mb-3">
             <div class="container ml-auto" style="box-sizing: border-box;">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon" style="border:solid;"></span>
+                <button class="navbar-toggler"  
+                        type="button" data-toggle="collapse" data-target=".navbar-collapse" 
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse">
                     <ul class="navbar-nav nav-pills">
                         @if (SignInManager.IsSignedIn(User))
                         {
                             <li class="nav-item my-1 me-5">
-                                <a class="nav-link active mx-1 px-3 text-dark header-button"
+                                <a class="nav-link active mx-1 px-3 text-dark header-button" id="nav-diet"
                                    asp-area="" asp-controller="Diet" asp-action="DietList">My Diets</a>
                             </li>
                             <li class="nav-item my-1 me-5">
-                                <a class="nav-link active mx-1 px-3 text-dark header-button" asp-area="" asp-controller="FoodItem" asp-action="FoodList">My Foods</a>
+                                <a class="nav-link active mx-1 px-3 text-dark header-button" id="nav-food"
+                                   asp-area="" asp-controller="FoodItem" asp-action="FoodList">My Foods</a>
                             </li>
                             <li class="nav-item my-1 me-5">
-                                <a class="nav-link active mx-1 px-3 text-dark header-button" asp-area="" asp-controller="Measure" asp-action="Manage">My Units</a>
+                                <a class="nav-link active mx-1 px-3 text-dark header-button" id="nav-unit"
+                                   asp-area="" asp-controller="Measure" asp-action="Manage">My Units</a>
                             </li>
                             <li class="nav-item my-1 me-5">
-                                <a class="nav-link active mx-1 px-3 text-dark header-button" asp-area="" asp-controller="Restriction" asp-action="Manage">My Restrictions</a>
+                                <a class="nav-link active mx-1 px-3 text-dark header-button" id="nav-restriction"
+                                   asp-area="" asp-controller="Restriction" asp-action="Manage">My Restrictions</a>
                             </li>
                         }
                     </ul>
@@ -45,7 +49,7 @@
         </nav>
     </header>
     <div class="container mx-1 mx-lg-auto main-block">
-        <main role="main" class="pb-3" background-color="#ffffcc">
+        <main role="main" class="pb-3" background-color="#f1f1f1">
             @RenderBody()
         </main>
     </div>

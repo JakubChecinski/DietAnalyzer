@@ -4,6 +4,13 @@
     ViewBag.Title = "Edit Diet";
 }
 
+<h3 class="mb-2">Edit Diet</h3>
+<div>
+    Here you can edit your dietary plan. Use buttons to add or delete foods, then click Save.
+</div>
+<hr />
+<br>
+
 @using (Html.BeginForm("ManageDiet", "Diet", FormMethod.Post, new { id = "mainForm" }))
 {
     @Html.HiddenFor(x => x.IsAdd)
@@ -28,7 +35,6 @@
         </div>
     </div>
     <br />
-    <hr />
     <div class="row mt-2">
         <div class="d-flex col-2 offset-xs-0 offset-md-2 mt-2">
             <select name=@Html.NameFor(x => x.CurrentFoodId) id="foodDropDown" class="form-control">
@@ -79,7 +85,7 @@
                               class="text-danger"></span>
                     </td>
                     <td class="col-4 col-md-3 col-xl-2 px-0 px-md-3 offset-md-1 text-right">
-                        <button type="button" class="btn btn-danger btn-sm"
+                        <button type="button" class="btn btn-outline-danger btn-sm"
                                 onclick="deleteFood(this, 'DietItems')">
                             Delete position
                         </button>
@@ -93,12 +99,12 @@
     <hr />
     <div class="row">
         <div class="d-flex col-xs-1 col-md-2 justify-content-lg-end  justify-content-xs-start">
-            <button id="saveButton" type="submit" class="btn btn-primary btn-lg mt-2" disabled="@Model.NoFoodsOnList">
+            <button id="saveButton" type="submit" class="btn btn-outline-primary btn-lg mt-2" disabled="@Model.NoFoodsOnList">
                 Save
             </button>
         </div>
         <div class="d-flex col-1 offset-md-2 offset-lg-1 justify-content-xs-end">
-            <button type="button" class="btn btn-primary btn-lg mt-2"
+            <button type="button" class="btn btn-outline-primary btn-lg mt-2"
                     onclick="location.href='@Url.Action("DietList", "Diet")'">
                 Cancel
             </button>
@@ -106,11 +112,6 @@
     </div>
     <br />
 }
-<footer class="customInfo">
-    <div class="container mx-1 mx-lg-auto main-block">
-        Here you can edit your dietary plan. Use buttons to add or delete foods, then click Save.
-    </div>
-</footer>
 
 @section Scripts
 {

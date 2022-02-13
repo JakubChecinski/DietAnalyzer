@@ -4,6 +4,14 @@
     ViewBag.Title = "Main";
 }
 
+<h3 class="mb-2">My Diets</h3>
+<div>
+    Here you can see all your dietary plans. To edit a diet, click on its name.
+    To receive feedback about your plan, click Evaluate.
+</div>
+<hr />
+<br>
+
 <table id="dietsTable" class="table table-borderless">
     <thead></thead>
     <tbody>
@@ -27,13 +35,13 @@
                         </a>
                     </td>
                     <td class="col-1">
-                        <button class="btn btn-primary btn-sm"
+                        <button class="btn btn-outline-primary btn-sm"
                                 onclick="evaluateDiet('@diet.Id')">
                             Evaluate
                         </button>
                     </td>
                     <td class="col-xl-2 col-sm-2 col-3 offset-1 offset-sm-2 offset-lg-1">
-                        <button class="btn btn-danger btn-sm"
+                        <button class="btn btn-outline-danger btn-sm"
                                 onclick="deleteDiet('@diet.Id', this)">
                             Delete diet
                         </button>
@@ -64,12 +72,6 @@
 <br />
 <br />
 <div id="evaluationResults" class="container m-0 p-0 evaluationResultCss"></div>
-<footer class="customInfo">
-    <div class="container mx-1 mx-lg-auto main-block">
-        Here you can see all your dietary plans. To edit a diet, click on its name.
-        To receive feedback about your plan, click Evaluate.
-    </div>
-</footer>
 
 @section Scripts
 {
@@ -114,5 +116,10 @@
                 }
             });
         }
+
+        $(document).ready(function () {
+            $('#nav-diet').addClass('header-button-current');
+        });
+
     </script>
 }

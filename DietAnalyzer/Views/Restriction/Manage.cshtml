@@ -4,7 +4,11 @@
     ViewBag.Title = "My Restrictions";
 }
 
-<h3 class="mb-2">Which of the following dietary restrictions apply to you?</h3>
+<h3 class="mb-2">My Restrictions</h3>
+<div>
+    Here you can edit your special dietary restrictions. We will avoid suggesting you foods that are incompatible with your preferences.
+</div>
+<hr />
 <br>
 
 @using (Html.BeginForm("Manage", "Restriction", FormMethod.Post, new { id = "mainForm" }))
@@ -79,16 +83,11 @@
         </div>
     </div>
     <br>
-    <button type="submit" class="btn btn-primary btn-lg mt-2">
+    <button type="submit" class="btn btn-outline-primary btn-lg mt-2">
         Save
     </button>
 
 }
-<footer class="customInfo">
-    <div class="container mx-1 mx-lg-auto main-block">
-        Here you can edit your special dietary restrictions. We will avoid suggesting you foods that are incompatible with your preferences.
-    </div>
-</footer>
 
 
 @section Scripts
@@ -126,6 +125,9 @@
             }
         }
 
+        $(document).ready(function () {
+            $('#nav-restriction').addClass('header-button-current');
+        });
 
     </script>
 }

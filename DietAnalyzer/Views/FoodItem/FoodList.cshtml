@@ -4,7 +4,12 @@
     ViewBag.Title = "My Foods";
 }
 
-<h3 class="mb-2">Your custom foods: </h3>
+<h3 class="mb-2">My Foods</h3>
+<div>
+    Here you can see your custom foods. To edit a food position, click on its name. <br />
+    Note: in your dietary plans, you can use both pre-defined library foods and your own custom foods.
+</div>
+<hr />
 <br>
 
 <table id="foodsTable">
@@ -16,8 +21,10 @@
             {
                 <tr class="d-flex pt-2">
                     <td>
-                        @if (food.GetImageSrc() == null){ <img src="#" class="foodImage"/> }
-                        else { <img src="@food.GetImageSrc()" class="foodImage"/> }
+                        @if (food.GetImageSrc() == null)
+                        {<img src="#" class="foodImage" /> }
+                        else
+                        { <img src="@food.GetImageSrc()" class="foodImage" />}
                     </td>
                     <td style="width:200px;">
                         <a href="@Url.Action("ManageFood", "FoodItem",
@@ -27,7 +34,7 @@
                         </a>
                     </td>
                     <td>
-                        <button class="btn btn-danger btn-sm"
+                        <button class="btn btn-outline-danger btn-sm"
                                 onclick="deleteFood('@food.Id', this)">
                             Delete food
                         </button>
@@ -51,12 +58,6 @@
         onclick="location.href='@Url.Action("ManageFood", "FoodItem", new { id = 0 })'">
     Add new food
 </button>
-<footer class="customInfo">
-    <div class="container mx-1 mx-lg-auto main-block">
-        Here you can see your custom foods. To edit a food position, click on its name. <br />
-        In your dietary plans, you can use both pre-defined library foods and your own custom foods.
-    </div>
-</footer>
 
 @section Scripts
 {
@@ -85,5 +86,10 @@
                 }
             });
         }
+
+        $(document).ready(function () {
+            $('#nav-food').addClass('header-button-current');
+        });
+
     </script>
 }
