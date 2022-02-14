@@ -24,6 +24,7 @@ new { id = "mainForm", enctype = "multipart/form-data" }))
         @Html.HiddenFor(x => x.AvailableMeasures[i].FoodItemId)
         @Html.HiddenFor(x => x.AvailableMeasures[i].MeasureId)
         @Html.HiddenFor(x => x.AvailableMeasures[i].Measure.Name)
+        @Html.HiddenFor(x => x.AvailableMeasures[i].Measure.Grams)
     }
     @Html.AntiForgeryToken()
     @if (Model.HasMeasureProblem)

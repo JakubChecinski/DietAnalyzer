@@ -20,11 +20,14 @@ namespace DietAnalyzer.Models.DataAttributes
         protected double min;
         protected double max;
         protected string errorMsg;
-        public LocaleSafeRangeAttribute(double minimum, double maximum, string errorMessage = null)
+        protected bool lowerExcl;
+        public LocaleSafeRangeAttribute(double minimum, double maximum,
+            bool lowerExclusive = false, string errorMessage = null)
         {
             min = minimum;
             max = maximum;
             errorMsg = errorMessage;
+            lowerExcl = lowerExclusive;
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
@@ -38,11 +41,23 @@ namespace DietAnalyzer.Models.DataAttributes
             {
                 return new ValidationResult($"Not a proper value: {value}");
             }
-            if (valueTested < min || valueTested > max)
+            if(lowerExcl && (valueTested <= min || valueTested > max))
             {
                 if (errorMsg != null)
                     return new ValidationResult(errorMsg);
-                else return new ValidationResult($"This value must be between {min:G2} and {max:G2}");
+                else if(valueTested <= min)
+                    return new ValidationResult($"This value must be bigger than {min:G2}");
+                else
+                    return new ValidationResult($"This value must be smaller than or equal to {max:G2}");
+            }
+            else if (valueTested < min || valueTested > max)
+            {
+                if (errorMsg != null)
+                    return new ValidationResult(errorMsg);
+                else if (valueTested <= min)
+                    return new ValidationResult($"This value must be bigger than or equal to {min:G2}");
+                else
+                    return new ValidationResult($"This value must be smaller than or equal to {max:G2}");
             }
             return ValidationResult.Success;
         }
