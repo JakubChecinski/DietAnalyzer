@@ -65,6 +65,7 @@ namespace DietAnalyzer.Controllers
             {
                 IsAdd = id == 0,
                 NoFoodsOnList = id == 0, // the same starting condition, but will be handled differently later
+                SomeDietItemsAreRestricted = false,
                 Diet = dietToManage,
                 DietItems = dietToManage.DietItems.ToList(),
                 AvailableFoods = _foodService.Get(userId, true).ToList(),
@@ -72,6 +73,7 @@ namespace DietAnalyzer.Controllers
                     _foodService.PrepareMeasuresForFoods(userId, dietToManage.DietItems),
                 CurrentFoodId = 0,
             };
+            vm.AvailableFoodIds = vm.AvailableFoods.Select(x => x.Id).ToList();
             return View(vm);
         }
 
@@ -85,6 +87,7 @@ namespace DietAnalyzer.Controllers
             {
                 vm.AvailableMeasuresForEachFood =
                     _foodService.PrepareMeasuresForFoods(userId, vm.DietItems);
+                vm.AvailableFoodIds = _foodService.Get(userId, true).Select(x => x.Id).ToList();
                 foreach (var dietItem in vm.DietItems)
                     dietItem.FoodItem = _foodService.Get(userId, dietItem.FoodItemId);
                 return View("ManageDiet", vm);

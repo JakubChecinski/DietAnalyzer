@@ -67,7 +67,15 @@
                     <td class="col-2 ml-0 pl-0">
                         <div class="text-center pt-0" style="display: inline-block !important;">
                             <img src="@Model.DietItems[i].FoodItem.GetImageSrc()" class="foodImage" />
-                            @Model.DietItems[i].FoodItem.Name
+                            @if (Model.AvailableFoodIds.Contains(Model.DietItems[i].FoodItemId))
+                            {
+                                @Model.DietItems[i].FoodItem.Name
+                            }
+                            else
+                            {
+                                Model.SomeDietItemsAreRestricted = true;
+                                @Model.DietItems[i].FoodItem.Name @:&#10071;
+                            }
                         </div>
                     </td>
                     <td class="col-1 px-0 px-md-3">
@@ -95,6 +103,11 @@
             }
         </tbody>
     </table>
+    <br>
+    @if (Model.SomeDietItemsAreRestricted)
+    {
+        <div class="small ml-3">&#10071; This food is forbidden by your dietary restrictions</div>
+    }
     <br>
     <hr />
     <div class="row">
