@@ -87,7 +87,7 @@ namespace DietAnalyzer.Services
         /// <summary>
         /// Delete an existing FoodItem from database
         /// </summary>
-        /// <param name="foodId"> is the FoodItem</param>
+        /// <param name="foodId"> is the FoodItem id</param>
         /// <param name="userId"> is the current user ID</param>
         void Delete(int foodId, string userId);
 
@@ -95,8 +95,18 @@ namespace DietAnalyzer.Services
         /// Utility method to post-process the FoodItemViewModel and reassign food item data
         /// </summary>
         /// <param name="vm"> is the viewModel to post-process</param>
-        /// /// <param name="userId"> is the current user ID</param>
+        /// <param name="userId"> is the current user ID</param>
         void AssignFoodItemData(FoodItemViewModel vm, string userId);
+
+        /// <summary>
+        /// Utility method to get the names of all Diets containing the specified FoodItem
+        /// </summary>
+        /// <remarks>
+        /// The string format is: "dietName1, dietName2, (...), dietNameN."
+        /// </remarks>
+        /// <param name="foodId"> is the FoodItem id</param>
+        /// <param name="userId"> is the current user ID</param>
+        string GetDietsWithThisFood(int foodId, string userId);
 
     }
 }

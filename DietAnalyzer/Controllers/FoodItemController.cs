@@ -6,6 +6,7 @@ using DietAnalyzer.Services.Utilities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using DietAnalyzer.Controllers.ActionAttributes;
 using System;
 using System.Linq;
 
@@ -107,13 +108,45 @@ namespace DietAnalyzer.Controllers
             catch (Exception exc)
             {
                 _logger.LogError("Failed to delete food item: " + exc.Message +
-                    "with inner exception: " + exc.InnerException);
+                    " with inner exception: " + exc.InnerException);
                 return Json(new
                 {
                     success = false,
                 });
             }
             return Json(new { success = true, redirectToUrl = Url.Action("FoodList", "FoodItem") });
+        }
+
+        [AjaxOnly]
+        [HttpGet]
+        public IActionResult GetDeleteConfirmMessage(int id)
+        {
+            var userId = User.GetUserId();
+            var dietsWithThisFood = String.Empty;
+            try
+            {
+                dietsWithThisFood = _service.GetDietsWithThisFood(id, userId);
+            }
+            catch (Exception exc)
+            {
+                _logger.LogError("Failed to verify diets connected to the food item: " + id 
+                    + ". Exception: " + exc.Message + " with inner exception: " + exc.InnerException);
+                return Json(new 
+                { 
+                    message = "Are you sure you want to delete this position?" 
+                });
+            }
+            if (String.IsNullOrEmpty(dietsWithThisFood))
+                return Json(new
+                {
+                    message = "Are you sure you want to delete this position?"
+                });
+            else
+                return Json(new
+                {
+                    message = "Are you sure you want to delete this position? " +
+                    "This food is currently used in the following diets: " + dietsWithThisFood
+                });
         }
 
     }

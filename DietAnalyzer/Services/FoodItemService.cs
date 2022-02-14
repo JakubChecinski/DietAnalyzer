@@ -145,6 +145,25 @@ namespace DietAnalyzer.Services
             vm.FoodItem.Measures = _measureService.ReloadMeasures(vm.AvailableMeasures.ToList());
         }
 
+        public string GetDietsWithThisFood(int foodId, string userId)
+        {
+            var food = _unitOfWork.Foods.Get(userId, foodId);
+            var connectedElements = food.DietItems.Count;
+            var stringWithDiets = "";
+            for(int i = 0; i < connectedElements - 1; i++)
+            {
+                stringWithDiets += _unitOfWork.Diets.Get(userId, food.DietItems.ElementAt(i).DietId).Name;
+                stringWithDiets += ", "; 
+            }
+            if(food.DietItems.Count > 0)
+            {
+                stringWithDiets += 
+                    _unitOfWork.Diets.Get(userId, food.DietItems.ElementAt(connectedElements - 1).DietId).Name;
+                stringWithDiets += ".";
+            }
+            return stringWithDiets;
+        }
+
         private void EnsureUniqueName(FoodItem food, string userId)
         {
             if (_unitOfWork.Foods.Get(userId)
@@ -159,6 +178,7 @@ namespace DietAnalyzer.Services
                 .Where(x => x.Name == nameCandidate && x.Id != food.Id).Count() != 0);
             food.Name = nameCandidate;
         }
+
 
     }
 }

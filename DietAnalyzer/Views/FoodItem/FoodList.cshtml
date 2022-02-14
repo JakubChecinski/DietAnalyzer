@@ -35,7 +35,7 @@
                     </td>
                     <td>
                         <button class="btn btn-outline-danger btn-sm"
-                                onclick="deleteFood('@food.Id', this)">
+                                onclick="verifyFoodLinks('@food.Id', this)">
                             Delete food
                         </button>
                     </td>
@@ -62,8 +62,27 @@
 @section Scripts
 {
     <script type="text/javascript">
-        function deleteFood(id, btn) {
-            if (!confirm("Are you sure you want to delete this position?")) return;
+
+        function verifyFoodLinks(id, btn) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetDeleteConfirmMessage", "FoodItem")",
+                data: {
+                    id: id
+                },
+                dataType: "json",
+                success: function (result) {
+                    deleteFood(id, btn, result.message)
+                },
+                error: function (result) {
+                    JL().fatal("verifyFoodLinks - error: " + result);
+                }
+            });
+        }
+
+        function deleteFood(id, btn, message) {
+            //if (!confirm("Are you sure you want to delete this position?")) return;
+            if (!confirm(message)) return;
             $.ajax({
                 type: "POST",
                 url: "@Url.Action("Delete", "FoodItem")",

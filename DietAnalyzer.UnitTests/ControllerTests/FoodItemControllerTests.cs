@@ -242,5 +242,50 @@ namespace DietAnalyzer.UnitTests.ControllerTests
             mockLogger.LogDump.Should().Contain("Failed to delete food");
         }
 
+        [Test]
+        public void GetDeleteConfirmMessage_DietsFound_ReturnJsonInfo()
+        {
+            Init();
+            int foodId = 1;
+            mockService.Setup(x => x.GetDietsWithThisFood(foodId, userId)).Returns("abc");
+
+            var result = controller.GetDeleteConfirmMessage(foodId);
+
+            result.Should().BeAssignableTo<JsonResult>();
+            dynamic json = (JsonResult)result;
+            string message = json.Value.GetType().GetProperty("message").GetValue(json.Value);
+            message.Should().Contain("abc");
+        }
+
+        [Test]
+        public void GetDeleteConfirmMessage_DietsNotFound_ReturnJsonInfo()
+        {
+            Init();
+            int foodId = 1;
+            mockService.Setup(x => x.GetDietsWithThisFood(foodId, userId)).Returns("");
+
+            var result = controller.GetDeleteConfirmMessage(foodId);
+
+            result.Should().BeAssignableTo<JsonResult>();
+            dynamic json = (JsonResult)result;
+            string message = json.Value.GetType().GetProperty("message").GetValue(json.Value);
+            message.Should().NotBeEmpty();
+        }
+
+        [Test]
+        public void GetDeleteConfirmMessage_ExceptionOccurred_ReturnJsonInfo()
+        {
+            Init();
+            int foodId = 1;
+            mockService.Setup(x => x.GetDietsWithThisFood(foodId, userId)).Throws(new Exception());
+
+            var result = controller.GetDeleteConfirmMessage(foodId);
+
+            result.Should().BeAssignableTo<JsonResult>();
+            dynamic json = (JsonResult)result;
+            string message = json.Value.GetType().GetProperty("message").GetValue(json.Value);
+            message.Should().NotBeEmpty();
+        }
+
     }
 }

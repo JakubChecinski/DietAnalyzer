@@ -37,8 +37,6 @@ namespace DietAnalyzer.UnitTests.ServiceTests
             mockUoW.Setup(x => x.FoodMeasures).Returns(new Mock<IFoodMeasureRepository>().Object);
             mockUoW.Setup(x => x.DietItems).Returns(new Mock<IDietItemRepository>().Object);
             mockUoW.Setup(x => x.Diets).Returns(new Mock<IDietRepository>().Object);
-
-
         }
 
         [Test]
@@ -269,6 +267,37 @@ namespace DietAnalyzer.UnitTests.ServiceTests
 
             vm.FoodItem.UserId.Should().Be(userId);
             vm.FoodItem.Measures.Should().BeEquivalentTo(measuresAfter);
+        }
+
+        [Test]
+        public void GetDietsWithThisFood_DietsExist_ReturnDietNames()
+        {
+            Init();
+            int dietId = 1;
+            int foodId = 1;
+            var dietItemStub = new DietItem { DietId = dietId };
+            var dietStub = new Diet { Id = dietId, Name = "abc" };
+            var testFood = new FoodItem { Id = foodId, DietItems = new List<DietItem> { dietItemStub } };
+            mockUoW.Setup(x => x.Diets.Get(userId, dietId)).Returns(dietStub);
+            mockUoW.Setup(x => x.Foods.Get(userId, foodId)).Returns(testFood);
+
+            var result = service.GetDietsWithThisFood(foodId, userId);
+
+            result.Should().NotBeEmpty();
+            result.Should().Contain("abc");
+        }
+
+        [Test]
+        public void GetDietsWithThisFood_DietsDontExist_ReturnEmptyString()
+        {
+            Init();
+            int foodId = 1;
+            var testFood = new FoodItem { Id = foodId, DietItems = new List<DietItem> () };
+            mockUoW.Setup(x => x.Foods.Get(userId, foodId)).Returns(testFood);
+
+            var result = service.GetDietsWithThisFood(foodId, userId);
+
+            result.Should().BeEmpty();
         }
 
     }
