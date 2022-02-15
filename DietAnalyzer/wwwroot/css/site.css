@@ -113,7 +113,7 @@ hr {
 
 /* 1.1 FOOTERS **************************/
 
-.customInfo, .customInfo:hover, .privacyPolicyInfo {
+.privacyPolicyInfo {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -129,27 +129,6 @@ hr {
     color: black;
     text-align: center;
 }
-
-.customInfo, .customInfo:hover {
-    background-color: #ffe6cc;
-    padding-top: 5px;
-    z-index: 10;
-}
-
-.customInfo {
-    padding-bottom: 0px;
-    height: 20px;
-    color: #ffe6cc;
-    transition-duration: 0.300s;
-}
-
-.customInfo:hover {
-    padding-bottom: 50px;
-    height: initial;
-    color: black;
-    transition-duration: 0.300s;
-}
-
 
 
 

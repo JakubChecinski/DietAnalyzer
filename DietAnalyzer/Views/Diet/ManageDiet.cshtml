@@ -88,7 +88,7 @@
                         @Html.DropDownListFor(x => x.DietItems[i].MeasureId,
                         new SelectList(Model.AvailableMeasuresForEachFood[i], "Item1", "Item2"),
                         "-- select unit --",
-                        new { @class = "form-control form-control-smallscreen-safe volatile-input" })
+                        new { @class = "form-control form-control-smallscreen-safe volatile-input my-select" })
                         <span asp-validation-for="@Model.DietItems[i].MeasureId"
                               class="text-danger"></span>
                     </td>
@@ -148,6 +148,7 @@
                     /* note: Model.NoFoodsOnList has to be tracked separately
                         in case the controller wants to reload this form */
                     $('#Table > tbody').prepend(data);
+                    $(".my-select").selectmenu();
                 },
                 error: function (result) {
                     JL().fatal("addNewRow (Manage Diet) - error: " + result);
@@ -184,6 +185,7 @@
                 .iconselectmenu()
                 .iconselectmenu("menuWidget")
                 .addClass("ui-menu-icons food-icon");
+            $(".my-select").selectmenu();
         });
 
     </script>

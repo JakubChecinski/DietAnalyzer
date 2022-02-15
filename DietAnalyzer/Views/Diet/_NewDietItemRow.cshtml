@@ -19,7 +19,7 @@
         <span class="text-danger field-validation-valid" data-valmsg-for="DietItems[@(Model.Index)].Quantity" data-valmsg-replace="true"></span>
     </td>
     <td class="col-2 justify-content-start">
-        <select class="form-control form-control-smallscreen-safe volatile-input" data-val="true" data-val-required="The MeasureId field is required." id="DietItems_@(Model.Index)__MeasureId" name="DietItems[@(Model.Index)].MeasureId">
+        <select class="form-control form-control-smallscreen-safe volatile-input my-select" data-val="true" data-val-required="The MeasureId field is required." id="DietItems_@(Model.Index)__MeasureId" name="DietItems[@(Model.Index)].MeasureId">
             <option value="">-- select unit --</option>
             @foreach (var measureTuple in @Model.AvailableMeasuresForThisFood)
             {
