@@ -23,6 +23,8 @@ namespace DietAnalyzer.Controllers
     /// Delete(int id) - deletes a single FoodItem by id
     /// 
     /// </summary>
+    
+    [Authorize]
     public class FoodItemController : Controller
     {
         private readonly ILogger<FoodItemController> _logger;
@@ -39,7 +41,6 @@ namespace DietAnalyzer.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         public IActionResult FoodList()
         {
             var userId = User.GetUserId();
@@ -52,7 +53,6 @@ namespace DietAnalyzer.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         public IActionResult ManageFood(int id = 0)
         {
             var userId = User.GetUserId();
@@ -97,7 +97,7 @@ namespace DietAnalyzer.Controllers
             return RedirectToAction("FoodList", "FoodItem");
         }
 
-        [HttpPost]
+        [HttpDelete]
         public IActionResult Delete(int id)
         {
             var userId = User.GetUserId();

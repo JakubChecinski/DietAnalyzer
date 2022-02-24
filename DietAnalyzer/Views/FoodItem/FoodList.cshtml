@@ -84,7 +84,7 @@
             //if (!confirm("Are you sure you want to delete this position?")) return;
             if (!confirm(message)) return;
             $.ajax({
-                type: "POST",
+                type: "DELETE",
                 url: "@Url.Action("Delete", "FoodItem")",
                 data: {
                     id: id

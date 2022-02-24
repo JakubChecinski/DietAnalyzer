@@ -1,4 +1,5 @@
-﻿using DietAnalyzer.Models.Domains;
+﻿using DietAnalyzer.Controllers.ActionAttributes;
+using DietAnalyzer.Models.Domains;
 using DietAnalyzer.Models.Extensions;
 using DietAnalyzer.Models.ViewModels;
 using DietAnalyzer.Services;
@@ -17,6 +18,8 @@ namespace DietAnalyzer.Controllers
     /// Manage() - gets/posts the list of all Measures belonging to the current user
     /// 
     /// </summary>
+
+    [Authorize]
     public class MeasureController : Controller
     {
         private readonly ILogger<MeasureController> _logger;
@@ -28,7 +31,6 @@ namespace DietAnalyzer.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         public IActionResult Manage()
         {
             var userId = User.GetUserId();
@@ -56,6 +58,8 @@ namespace DietAnalyzer.Controllers
 
         // helper action to dynamically update measures table in the view
         // see also: https://stackoverflow.com/questions/36317362/how-to-add-an-item-to-a-list-in-a-viewmodel-using-razor-and-net-core
+        [AjaxOnly]
+        [HttpGet]
         public ActionResult AddNewUnit(int index)
         {
             return PartialView("_NewUnitRow", index);

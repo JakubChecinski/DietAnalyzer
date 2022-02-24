@@ -15,6 +15,8 @@ namespace DietAnalyzer.Controllers
     /// Manage() - gets/posts the table of Restrictions belonging to the current user
     /// 
     /// </summary>
+
+    [Authorize]
     public class RestrictionController : Controller
     {
         private readonly ILogger<RestrictionController> _logger;
@@ -26,7 +28,6 @@ namespace DietAnalyzer.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         public IActionResult Manage()
         {
             var userId = User.GetUserId();

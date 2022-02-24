@@ -1,4 +1,5 @@
-﻿using DietAnalyzer.Models.Domains;
+﻿using DietAnalyzer.Controllers.ActionAttributes;
+using DietAnalyzer.Models.Domains;
 using DietAnalyzer.Models.Extensions;
 using DietAnalyzer.Models.ViewModels;
 using DietAnalyzer.Services;
@@ -22,6 +23,8 @@ namespace DietAnalyzer.Controllers
     /// Evaluate(int id) - calls IEvaluationService to evaluate a single diet by id
     /// 
     /// </summary>
+
+    [Authorize]
     public class DietController : Controller
     {
         private readonly ILogger<DietController> _logger;
@@ -39,9 +42,7 @@ namespace DietAnalyzer.Controllers
             _evaluationService = evaluationService;
         }
 
-
         [HttpGet]
-        [Authorize]
         public IActionResult DietList()
         {
             var userId = User.GetUserId();
@@ -54,7 +55,6 @@ namespace DietAnalyzer.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         public IActionResult ManageDiet(int id = 0)
         {
             var userId = User.GetUserId();
@@ -98,7 +98,7 @@ namespace DietAnalyzer.Controllers
             return RedirectToAction("DietList", "Diet");
         }
 
-        [HttpPost]
+        [HttpDelete]
         public IActionResult Delete(int id)
         {
             var userId = User.GetUserId();
@@ -118,6 +118,8 @@ namespace DietAnalyzer.Controllers
             return Json(new { success = true, redirectToUrl = Url.Action("DietList", "Diet") });
         }
 
+        [AjaxOnly]
+        [HttpPost]
         public ActionResult Evaluate(int id)
         {
             var userId = User.GetUserId();
@@ -145,6 +147,8 @@ namespace DietAnalyzer.Controllers
 
         // helper action to dynamically update table in the view
         // see also: https://stackoverflow.com/questions/36317362/how-to-add-an-item-to-a-list-in-a-viewmodel-using-razor-and-net-core
+        [AjaxOnly]
+        [HttpGet]
         public ActionResult AddNewPosition(int index, int dietId, int foodId)
         {
             var userId = User.GetUserId();
