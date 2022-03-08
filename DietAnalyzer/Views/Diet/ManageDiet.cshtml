@@ -88,7 +88,8 @@
                         @Html.DropDownListFor(x => x.DietItems[i].MeasureId,
                         new SelectList(Model.AvailableMeasuresForEachFood[i], "Item1", "Item2"),
                         "-- select unit --",
-                        new { @class = "form-control form-control-smallscreen-safe volatile-input my-select" })
+                        new { @class = "form-control form-control-smallscreen-safe " +
+                        "volatile-input my-select" })
                         <span asp-validation-for="@Model.DietItems[i].MeasureId"
                               class="text-danger"></span>
                     </td>
@@ -112,7 +113,8 @@
     <hr />
     <div class="row">
         <div class="d-flex col-xs-1 col-md-2 justify-content-lg-end  justify-content-xs-start">
-            <button id="saveButton" type="submit" class="btn btn-outline-primary btn-lg mt-2" disabled="@Model.NoFoodsOnList">
+            <button id="saveButton" type="submit" class="btn btn-outline-primary btn-lg mt-2" 
+                    disabled="@Model.NoFoodsOnList">
                 Save
             </button>
         </div>
@@ -157,7 +159,12 @@
         }
 
         function deleteFood(button, stringCode) {
+            // selectmenu interferes with custom JS deletion code
+            // so we first remove the selectmenu functionality from secondary menus
+            $(".my-select").selectmenu("destroy");  
             deleteRowUpdateHTML(button, stringCode, 'Table');
+            // and after executing the custom code we restore it
+            $(".my-select").selectmenu();
             if ($('#Table tbody tr').length == 0) {
                 @Model.NoFoodsOnList = true;
                 $('#saveButton').prop("disabled", true);
